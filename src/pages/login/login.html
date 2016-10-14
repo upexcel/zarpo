@@ -1,11 +1,11 @@
 
-<ion-content trackScroll no-bounce>
+<ion-content class="login" trackScroll no-bounce>
 
-    <div class="login">
+    <div>
         <div class="login_pic hide-on-keyboard-open">
             <img src="assets/img/zarpoapp_signin_pic.jpg" />
         </div>
-        <div class="logincard">
+        <div class="logcard">
             <div class="myform login-header hide-on-keyboard-open">
                 <ul>
                     <li class="greybg" [class.activetab]="!ifUserRegistered" (click)="signUp()"><a dark>Criar uma conta</a></li>
@@ -27,7 +27,7 @@
                                           [class.errormsg]="Uemail" class="inputArea " name="signupEmail" placeholder="Seu e-mail">
                                 <input  noSpace onReturn type="password" (click)="modelChange()" [(ngModel)]="user.password" [class.errormsg]="Upassword && !user.password"   class="mypwd" name="signupPasswordR" placeholder="{{placeholder}}">
 
-                                <button class="button button-block loginbtn marT20" primary type="button"
+                                <button ion-button class="button button-block loginbtn marT20" color="primary" type="button"
                                         (click)="login(user,signup_button,email.errors)" *ngIf="signup_button !== 'Aguarde'"
                                         >
                                     <span>{{signup_button}}</span>

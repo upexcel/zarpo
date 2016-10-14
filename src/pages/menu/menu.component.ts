@@ -160,8 +160,8 @@ export class menu implements OnInit {
 
     }
     logout() {
-        this._localStorage.removeTimerStorage('flash_data');
-        this._localStorage.removeTimerStorage('user_data');
+        this._localStorage.remove('flash_data');
+        this._localStorage.remove('user_data');
         if (Network.connection && Network.connection !== 'none') {
             console.log(Network.connection);
             this._nav.setRoot(Login);

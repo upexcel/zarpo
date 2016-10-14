@@ -2,9 +2,12 @@
     .item{
         min-height: 35px;
     }
+    .scroll-content{
+        padding-top:0px !important;
+    }
     ion-content{
-        scroll-content{
-            padding-top:0 !important;
+        .scroll-content{
+            padding-top:0px !important;
         }
         top:0px;
     }
@@ -42,6 +45,11 @@
         padding-top: 8px;
     }
     .login .logincard {
+        padding: 10px 0px 0px 0px;
+        width: 96%;
+        margin: 0 auto;
+    }
+    .logcard{
         padding: 10px 0px 0px 0px;
         width: 96%;
         margin: 0 auto;

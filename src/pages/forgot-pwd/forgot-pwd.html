@@ -15,7 +15,7 @@
                                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                                [class.errormsgF]="errorMsg && !username" type="email" placeholder="Seu e-mail"  (click)="modelChange()" [(ngModel)]="username">
 
-                        <button block primary class="marT20" type="submit"  (click)="sendpwd(email.errors)" [class.greybg]="buttonText == 'Aguarde'">
+                        <button ion-button block color="primary" class="marT20" type="submit"  (click)="sendpwd(email.errors)" [class.greybg]="buttonText == 'Aguarde'">
                             {{buttonText}}
                             <ion-spinner name="bubbles" [hidden]="buttonText == 'Enviar nova senha'"></ion-spinner>
                         </button>
