@@ -26,11 +26,11 @@ import {StringToNumberPipe} from '../../filters/keys/string-to-number.pipe';
 @Component({
     templateUrl: 'pacote-detail.html',
 
-//    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent,
-//        ZarpoSliderComponent, ZarpoAccordianComponent, GOOGLE_MAPS_DIRECTIVES, SebmGoogleMap, SebmGoogleMapMarker],
-    providers: [GeocoderService],
+    //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent,
+    //        ZarpoSliderComponent, ZarpoAccordianComponent, GOOGLE_MAPS_DIRECTIVES, SebmGoogleMap, SebmGoogleMapMarker],
+    //    providers: [GeocoderService],
 
-//    pipes: [KeysPipe, StringToNumberPipe]
+    //    pipes: [KeysPipe, StringToNumberPipe]
 
 })
 
@@ -157,8 +157,9 @@ export class PacoteDetail {
     }
     fetchCalenderData() {
         //fetch data from booking api
-//        this._calenderService.fetchCalenderData(this.navParams.get('id'), this.data.is_ja).subscribe((res: any) => {
-//        });
+        this._calenderService.fetchCalenderData(this.navParams.get('id'), this.data.is_ja)
+        //        .subscribe((res: any) => {
+        //        });
     }
     showOffer() {
         this.ifRules = false;

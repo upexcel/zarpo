@@ -5,7 +5,7 @@ import {Component, ViewChild, forwardRef} from '@angular/core';
 
 import {GOOGLE_MAPS_PROVIDERS, GOOGLE_MAPS_DIRECTIVES, GoogleMapsAPIWrapper, SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 
-import  _ from 'lodash';
+import _ from 'lodash';
 
 import {errorhandler} from '../../services/error';
 import {NavController} from 'ionic-angular';
@@ -29,12 +29,12 @@ import {StringToNumberPipe} from '../../filters/keys/string-to-number.pipe';
 @Component({
     templateUrl: 'ja-detail.html',
 
-//    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent,
-//
-//        ZarpoSliderComponent, ZarpoAccordianComponent, GOOGLE_MAPS_DIRECTIVES, SebmGoogleMap, SebmGoogleMapMarker],
-    providers: [GeocoderService],
+    //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent,
+    //
+    //        ZarpoSliderComponent, ZarpoAccordianComponent, GOOGLE_MAPS_DIRECTIVES, SebmGoogleMap, SebmGoogleMapMarker],
+    //    providers: [GeocoderService],
 
-//    pipes: [KeysPipe, StringToNumberPipe]
+    //    pipes: [KeysPipe, StringToNumberPipe]
 
 })
 
@@ -171,9 +171,10 @@ export class JaDetail {
     }
     fetchCalenderData() {
         //fetch data from booking api
-//        this._calenderService.fetchCalenderData(this.navParams.get('id'), this.data['is_ja']).subscribe((res: any) => {
-//            console.log(res);
-//        });
+        this._calenderService.fetchCalenderData(this.navParams.get('id'), this.data['is_ja'])
+        //        .subscribe((res: any) => {
+        //            console.log(res);
+        //        });
     }
     showOffer() {
         this.ifRules = false;
@@ -206,7 +207,7 @@ export class JaDetail {
             let paramdata = {
                 id: this.navParams.get('id'),
                 name: this.pageTitle,
-                is_ja:true,
+                is_ja: true,
                 location: this.location,
                 flashType: 'Ja'
             }

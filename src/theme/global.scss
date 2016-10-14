@@ -21,6 +21,17 @@
 .scroll-content {
     padding-top: 70px;
 }
+
+.item-md.item-block .item-inner {
+     padding-right: 0px !important; 
+   
+}
+.bar-button-menutoggle-md[end], .bar-button-menutoggle-md[right] {
+    min-width: 40px !important;
+}
+.label-md {
+     margin: 0px 0px 0px 0 !important; 
+}
 input{
     -webkit-appearance: none;
     -webkit-user-select: text !important;
@@ -260,7 +271,7 @@ color{
 /*datepicker css*/
 .imgloader {
     width: 100%;
-    background: url('../../img/dark_zarpo_spinner.gif') no-repeat 50% 50% #ffffff;
+    background: url('../../assets/img/dark_zarpo_spinner.gif') no-repeat 50% 50% #ffffff;
     background-size: 50px 50px;
     background-color: #ffffff;
     line-height: 1;

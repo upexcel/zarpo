@@ -50,7 +50,7 @@
                     <ion-row>
                         <ion-col  class="no-padding">
                             <input type="text" noSpace onReturn   word-case name="input2"
-                                   pattern="^[A-Za-z \-\'\ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]*$"
+                                
                                    formControlName="payee_name"  placeholder="Nome impresso no cartão"
                                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"       
                                    [ngClass]="{'errormsgB': ifPaymentConfirmed && (paymentForm.controls.payee_name.value.trim().length < 1|| !paymentForm.controls.payee_name.valid)}" 
@@ -120,7 +120,7 @@
                     <ion-row>
                         <input type="email" name="input7" noSpace onReturn
                                formControlName="payee_email" (click)="modelChange()" placeholder="E-mail Zarpo"
-                               pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$"
+                            
                                class="" [ngClass]="{'errormsgB': ifPaymentConfirmed && (paymentForm.controls.payee_email.value.trim().length < 1|| !paymentForm.controls.payee_email.valid)}" />
 
                     </ion-row>
@@ -136,7 +136,7 @@
             </form>
         </div>
         <div>
-            <button class="button button-block button-calm " primary type="button" [ngClass]="{'greybg': payment_btn === 'Aguarde'}"
+            <button ion-button class="button button-block button-calm " color="primary" type="button" [ngClass]="{'greybg': payment_btn === 'Aguarde'}"
                     (click)="payment_confirm(paymentForm)">
                 <span>{{payment_btn}}</span>
                 <ion-spinner class="waitloader" style="fill: #404040;position: relative;top:7px;"

@@ -124,7 +124,7 @@
         background-color: transparent
     }
     .bar-button-logo {
-        background-image: url("../../img/zarpo_app_logo.png");
+        background-image: url("../../assets/img/zarpo_app_logo.png");
         background-position: 0px center;
         background-repeat: no-repeat;
         background-size: 57px 57px;
@@ -141,7 +141,7 @@
         background-color: transparent
     }
     .spinner{
-        background-image: url("../../img/spinner.gif");
+        background-image: url("../../assets/img/spinner.gif");
         background-size: 28px 28px;
         height: 28px;
         width: 28px;
@@ -155,7 +155,7 @@
         fill: #FACD7A;
     }
     .inner{
-        background-image: url("../../img/ajax-loader.gif");
+        background-image: url("../../assets/img/ajax-loader.gif");
         z-index: 8;
         background-position: 0px center;
         background-repeat: no-repeat;
@@ -167,7 +167,7 @@
 
     }
     .logoBtn{
-        background-image: url("../../img/zarpo_app_logo.png");
+        background-image: url("../../assets/img/zarpo_app_logo.png");
         background-position: 0px center;
         background-repeat: no-repeat;
         background-size: 57px 57px;
@@ -233,7 +233,7 @@
         animation-play-state: paused;
     }
     .bar-button-blank {
-        background-image: url("../../img/zarpo_app_empty.png");
+        background-image: url("../../assets/img/zarpo_app_empty.png");
 
     }
     ion-spinner {

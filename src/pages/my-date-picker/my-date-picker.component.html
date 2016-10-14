@@ -6,8 +6,8 @@
             <span *ngIf='selectionDayTxt.length>0'>{{selectionDayTxt}}</span>
         </span>
         <span class="selbtngroup" [style.height]="height">
-            <button type="button" class="btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()"><span class="icon icon-cross"></span></button>
-            <button type="button" class="btnpicker" (click)="openBtnClicked()"><span class="icon icon-calendar" *ngIf="showIcon"></span></button>
+            <button ion-button type="button" class="btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()"><span class="icon icon-cross"></span></button>
+            <button ion-button type="button" class="btnpicker" (click)="openBtnClicked()"><span class="icon icon-calendar" *ngIf="showIcon"></span></button>
         </span>
     </div>
     <div class="selector" *ngIf="showSelector||inline" [ngClass]="{'inlinedp': inline}">
@@ -21,7 +21,7 @@
                     </div>
                 </td>
                 <td>
-                    <button type="button" class="headertodaybtn" (click)="todayClicked()">{{todayBtnTxt}}</button>
+                    <button ion-button type="button" class="headertodaybtn" (click)="todayClicked()">{{todayBtnTxt}}</button>
                 </td>
                 <td>
                     <div style="float:right">

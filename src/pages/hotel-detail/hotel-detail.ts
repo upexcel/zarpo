@@ -26,7 +26,7 @@ import {StringToNumberPipe} from '../../filters/keys/string-to-number.pipe';
 @Component({
     templateUrl: 'hotel-detail.html',
 
-    providers: [GeocoderService],
+//    providers: [GeocoderService],
 //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent,
 //        ZarpoSliderComponent, ZarpoAccordianComponent, GOOGLE_MAPS_DIRECTIVES, SebmGoogleMap, SebmGoogleMapMarker],
 //
@@ -183,7 +183,9 @@ export class HotelDetail implements AfterViewChecked {
     }
     //fetch data from booking api
     fetchCalenderData() {
-//        this._calenderService.fetchCalenderData(this.navParams.get('id'), this.data.is_ja).subscribe((res: any) => {
+        console.log('dates for checkin and checkout')
+        this._calenderService.fetchCalenderData(this.navParams.get('id'), this.data.is_ja)
+//            .subscribe((res: any) => {
 //
 //        });
 

@@ -30,7 +30,7 @@
             </ion-grid>
 
         </div>
-        <button class="button button-block loginbtn marT20" primary type="submit" [class.greybg]="bt_name === 'Aguarde'" (click)="newsletter(bt_name)">
+        <button  ion-button class="button button-block loginbtn marT20" color="primary" type="submit" [class.greybg]="bt_name === 'Aguarde'" (click)="newsletter(bt_name)">
             <span>{{bt_name}}</span>
             <ion-spinner name="bubbles" *ngIf="bt_name === 'Aguarde'"></ion-spinner>   
 

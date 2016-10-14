@@ -1,6 +1,6 @@
 import {Events, NavParams} from 'ionic-angular';
-import {Component, ViewChild, ElementRef, forwardRef} from '@angular/core';
-//import { FormBuilder, Validators } from '@angular/common';
+import {Component, ViewChild, ElementRef, forwardRef,Inject} from '@angular/core';
+import  {FormBuilder, FormGroup, Validators}  from '@angular/forms';
 import {errorhandler} from '../../services/error';
 import {Content, NavController} from 'ionic-angular';
 import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
@@ -20,10 +20,10 @@ import {CheckReceiptService} from '../../services/check-receipt.service';
 import {DateService} from '../../services/date.service';
 
 @Component({
-//    templateUrl: 'vale-detail.html',
+    templateUrl: 'vale-detail.html',
 //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent, MyDatePicker,
 //        ZarpoSliderComponent, ZarpoAccordianComponent, NoSpaceDirective, OnReturnDirective],
-    providers: [LocalStorageService, UserDetailService, Rxjs, DateService,],
+//    providers: [LocalStorageService, UserDetailService, Rxjs, DateService,],
 //    pipes: [ValeKeysPipe]
 
 })
@@ -78,7 +78,7 @@ export class ValeDetail {
     constructor(private _nav: NavController, private _navParams: NavParams,
         public _events: Events, private _localStorageService: LocalStorageService,
         private _ajaxRxjs: Rxjs, 
-//        private _fb: FormBuilder,
+        private _fb: FormBuilder,
         private _userData: UserDetailService, private _errorhandler: errorhandler,
         private _checkReceiptService: CheckReceiptService,
         private _dateService: DateService,
@@ -108,13 +108,13 @@ export class ValeDetail {
             console.log("custom back");
             this.backbutton();
         });
-//        this.valeForm = this._fb.group({
-//            firstname: ["", Validators.required],
-//            lname: ["", Validators.required],
-//            email: ["", Validators.required],
-//            giftDate: ["", Validators.required],
-//            comment: ["", Validators.required]
-//        });
+        this.valeForm = this._fb.group({
+            firstname: ["", Validators.required],
+            lname: ["", Validators.required],
+            email: ["", Validators.required],
+            giftDate: ["", Validators.required],
+            comment: ["", Validators.required]
+        });
 
         this._userData.fetchUserData().then((result: any) => {
             result.subscribe((response: any) => {

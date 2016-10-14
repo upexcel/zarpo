@@ -1,6 +1,6 @@
 import {NavParams, NavController, LoadingController} from 'ionic-angular';
 import {Component, forwardRef} from '@angular/core';
-//import { FormBuilder, Validators } from '@angular/common';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
 import {ValeCancel} from '../vale-cancel/vale-cancel';
@@ -23,9 +23,9 @@ import {MyDatePicker} from '../my-date-picker/my-date-picker.component';
 
 
 @Component({
-//    templateUrl: 'product-payment.html',
-//    directives: [forwardRef(() => ZarpoNavComponent), MyDatePicker, NoSpaceDirective, OnReturnDirective],
-    providers: [Rxjs, PaymentService, DateService, LocalStorageService, MoipService, SuperService]
+    templateUrl: 'product-payment.html',
+    //    directives: [forwardRef(() => ZarpoNavComponent), MyDatePicker, NoSpaceDirective, OnReturnDirective],
+    //    providers: [Rxjs, PaymentService, DateService, LocalStorageService, MoipService, SuperService]
 })
 
 export class ProductPayment {
@@ -35,14 +35,14 @@ export class ProductPayment {
     path: string = "payment";
     installmentAmount: number = 100;
     dateTitle: string = "Válido até";
-    showIcon:boolean=false;
+    showIcon: boolean = false;
     ifPaymentConfirmed: boolean;
     payment_btn = "Finalizr a reserva"
     creditCard: {} = {
         hasError: false
     };
     payment_emi: any = [];
-    payee_emi: any="-1";
+    payee_emi: any = "-1";
     emiSet: any = [];
     payee_email = "";
     payee_cardname: string = 'Visa';
@@ -69,7 +69,7 @@ export class ProductPayment {
         private _local: LocalStorageService,
         private _moip: MoipService,
         private _super: SuperService,
-//        private _fb: FormBuilder,
+        private _fb: FormBuilder,
         private _api: Rxjs,
         private _checkSelected: CheckSelectedService,
         private _checkReceipt: CheckReceiptService,
@@ -83,25 +83,25 @@ export class ProductPayment {
                 1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun',
                 7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez'
             },
-            showIcon:false,
-            dateTitle:this.dateTitle,
+            showIcon: false,
+            dateTitle: this.dateTitle,
             sunHighlight: false,
             dateFormat: 'dd-mm-yyyy',
             height: '34px',
             width: '100%'
         }
-    console.log(this._navParams);
+        console.log(this._navParams);
         this._localStorageService.getValue('user_data').then((response) => {
             this.payee_email = response.data.customer_email;
-//            this.paymentForm = this._fb.group({
-//                payee_card_no: ["", Validators.required],
-//                payee_name: ["", Validators.required],
-//                payee_card_cvv: ["", Validators.required],
-//                payee_cpf: ["", Validators.minLength(11)],
-//                payee_contact_code: ["", Validators.minLength(2)],
-//                payee_contact_no: ["", Validators.minLength(7)],
-//                payee_email: [this.payee_email, Validators.required]
-//            });
+            this.paymentForm = this._fb.group({
+                payee_card_no: ["", Validators.required],
+                payee_name: ["", Validators.required],
+                payee_card_cvv: ["", Validators.required],
+                payee_cpf: ["", Validators.minLength(11)],
+                payee_contact_code: ["", Validators.minLength(2)],
+                payee_contact_no: ["", Validators.minLength(7)],
+                payee_email: [this.payee_email, Validators.required]
+            });
         });
         this.intervalFunction();
         this.getCurrentMonth();
@@ -129,9 +129,9 @@ export class ProductPayment {
         this.creditCard['hasError'] = false;
 
     }
-    public myDate:any;
+    public myDate: any;
     onDateChanged(e: any) {
-        console.log('expiry date',e);
+        console.log('expiry date', e);
         this.payee_card_month = e.formatted;
     }
     findInstallment(amount: number) {
@@ -221,7 +221,7 @@ export class ProductPayment {
     }
     payment_confirm(myForm: any) {
         var cardMonth;
-        console.log('sdf',this.paymentForm);
+        console.log('sdf', this.paymentForm);
         this.ifPaymentConfirmed = true
         if (myForm.controls.payee_name.value) var payee_name = myForm.controls.payee_name.value.trim();
         if (myForm.controls.payee_card_no.value) var payee_card_no = myForm.controls.payee_card_no.value.trim();

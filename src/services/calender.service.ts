@@ -1,7 +1,7 @@
 import { Injectable, OnInit} from '@angular/core';
 import {Rxjs} from './Rxjs';
 import {errorhandler} from './error';
-import  _ from 'lodash'
+import _ from 'lodash'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -13,7 +13,7 @@ export class CalenderService implements OnInit {
     data = {
         website_code: "",
         product_id: 0,
-        is_ja:false
+        is_ja: false
     };
     public calenderData: {};
     public id: number;
@@ -22,24 +22,24 @@ export class CalenderService implements OnInit {
     constructor(private api: Rxjs,
         private _errorhandler: errorhandler) {
     }
-    
-    fetchCalenderData(id: number,is_ja) {
+
+    fetchCalenderData(id: number, is_ja) {
         this.data.website_code = 'zarpo';
         this.data.product_id = id;
-        this.data.is_ja=is_ja;
-//        return this.api.ajaxRequest(this.path, this.data).map((response: any) => {
-//            if (response.data) {
-//                this.calenderData = response.data;
-//                this.id = id;
-//                return this.calenderData;
-//            }
-//            else {
-//                return {};
-//            }
-//        }, (error) => {
-//            this._errorhandler.err(error);
-//            return {};
-//        });
+        this.data.is_ja = is_ja;
+        this.api.ajaxRequest(this.path, this.data).subscribe((response: any) => {
+            if (response.data) {
+                this.calenderData = response.data;
+                this.id = id;
+                return this.calenderData;
+            }
+            else {
+                return {};
+            }
+        }, (error) => {
+            this._errorhandler.err(error);
+            return {};
+        });
     }
     getCalenderData(id: number) {
         //if data is already is fetched for same product return it

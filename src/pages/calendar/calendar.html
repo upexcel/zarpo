@@ -98,7 +98,7 @@
                                         </li>
                                         <li>
 
-                                            <button primary class="calm-bg options fa" >
+                                            <button ion-button color="primary" class="calm-bg options fa" >
                                                 opções &nbsp;  
                                                 <span *ngIf="header[rooms.room_id] === false || !header[rooms.room_id]"> + </span>
                                                 <span *ngIf="header[rooms.room_id] === true"> - </span>
@@ -193,7 +193,7 @@
             <li width-50 class="no-margin no-padding" >
                 <div *ngIf="selectError" style="display: block;">
                 </div>
-                <button class="button br no-margin" primary type="button" 
+                <button ion-button class="button br no-margin" color="primary" type="button" 
                         style="float: right;padding: 0 18px;height:37px;" [ngClass]="{'greybg':step3_btn == 'Aguarde'}"
                         on-tap="addbookingRooms()">
                     {{step3_btn}}                

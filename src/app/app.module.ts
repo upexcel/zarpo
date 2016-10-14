@@ -17,13 +17,17 @@ import {UserDetailService} from '../services/user-detail.service';
 import {GuestDetailService} from '../services/guest-detail.service';
 import {CheckSelectedService} from '../services/check-selected.service';
 import {CheckReceiptService} from '../services/check-receipt.service';
-
-
+import {DateService} from '../services/date.service';
+import {calendarService} from '../pages/calendar//calendar.servise';
 import {errorhandler} from '../services/error';
 import {facebookLogin} from '../services/fbLogin';
-//filters
+
 import {GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
 //, provideLazyMapsAPILoaderConfig
+import {MoipService} from '../services/moip.service';
+import {GeocoderService} from '../services/geocoder.service';
+import {SuperService} from '../services/super.service';
+import {PaymentService} from '../services/payment.service';
 //COMPONENTS
 
 import {calendar} from '../pages/calendar/calendar';
@@ -32,7 +36,7 @@ import {cancel} from '../pages/cancel/cancel';
 import {feedBack} from '../pages/feedback/feedback';
 import {feedbackLanding} from '../pages/feedback/feedbackLanding'
 import {ForgotPwd} from '../pages/forgot-pwd/forgot-pwd';
-//import {GuestDetail} from '../pages/guest-detail/guest-detail';
+import {GuestDetail} from '../pages/guest-detail/guest-detail';
 import {HotelDetail} from '../pages/hotel-detail/hotel-detail';
 import {HotelFlash} from '../pages/hotel-flash/hotel-flash';
 import {hotelTag} from '../pages/hotelFilter/hotelTag';
@@ -87,6 +91,7 @@ import {ZarpoNavComponent} from '../zarpo-nav/zarpo-nav.component';
 import {ZarpoSliderComponent} from '../zarpo-slider/zarpo-slider.component';
 import {NoSpaceDirective} from '../directives/no-space.directive';
 import {OnReturnDirective} from '../directives/on-return.directive';
+import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
 @NgModule({
     declarations: [
         MyApp,
@@ -96,12 +101,12 @@ import {OnReturnDirective} from '../directives/on-return.directive';
         feedBack,
         feedbackLanding,
         ForgotPwd,
-        //        GuestDetail,
+        GuestDetail,
         HotelDetail,
         HotelFlash,
         hotelTag,
         invite,
-//        JaDetail,
+        JaDetail,
         Login,
         menu,
         mordomo,
@@ -109,19 +114,19 @@ import {OnReturnDirective} from '../directives/on-return.directive';
         myReservation,
         nLetter,
         offline,
-//        OrderFail,
+        //        OrderFail,
         OrderSuccess,
-//        PacoteDetail,
+        PacoteDetail,
         privacy,
         ProductClosed,
         ProductDeactivated,
-//        ProductPayment,
+        //        ProductPayment,
         Receipt,
         SuccessFeedback,
         terms,
-//        Timeout,
+        //        Timeout,
         ValeCancel,
-//        ValeDetail,
+        ValeDetail,
         ValeFlash,
         //   ==========    pipe 
         DayPipe,
@@ -145,8 +150,9 @@ import {OnReturnDirective} from '../directives/on-return.directive';
         ZarpoAccordianComponent,
         ZarpoNavComponent,
         ZarpoSliderComponent,
-//        OnReturnDirective,
-//        NoSpaceDirective
+        //        OnReturnDirective,
+        //        NoSpaceDirective,
+        MyDatePicker
     ],
     imports: [
         IonicModule.forRoot(MyApp)
@@ -160,12 +166,12 @@ import {OnReturnDirective} from '../directives/on-return.directive';
         feedBack,
         feedbackLanding,
         ForgotPwd,
-        //        GuestDetail,
+        GuestDetail,
         HotelDetail,
         HotelFlash,
         hotelTag,
         invite,
-//        JaDetail,
+        JaDetail,
         Login,
         menu,
         mordomo,
@@ -173,19 +179,19 @@ import {OnReturnDirective} from '../directives/on-return.directive';
         myReservation,
         nLetter,
         offline,
-//        OrderFail,
+        //        OrderFail,
         OrderSuccess,
-//        PacoteDetail,
+        PacoteDetail,
         privacy,
         ProductClosed,
         ProductDeactivated,
-//        ProductPayment,
+        //        ProductPayment,
         Receipt,
         SuccessFeedback,
         terms,
-//        Timeout,
+        //        Timeout,
         ValeCancel,
-//        ValeDetail,
+        ValeDetail,
         ValeFlash,
         //        ==========================directive===========
         FacebookComponent,
@@ -194,14 +200,15 @@ import {OnReturnDirective} from '../directives/on-return.directive';
         ZarpoAccordianComponent,
         ZarpoNavComponent,
         ZarpoSliderComponent,
-//        OnReturnDirective,
-//        NoSpaceDirective
+        //        OnReturnDirective,
+        //        NoSpaceDirective,
+        MyDatePicker
     ],
-    providers: [Storage, Rxjs,ImageHeightService, GoogleTagService, facebookLogin, errorhandler, LocalStorageService, UserDetailService,
-//        GOOGLE_MAPS_PROVIDERS,
-//        provideLazyMapsAPILoaderConfig({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' }),
-        GuestDetailService, CheckReceiptService, CheckSelectedService, menuService, CalenderService
-    ]
+    providers: [Storage, Rxjs, ImageHeightService, GoogleTagService, facebookLogin, errorhandler, LocalStorageService, UserDetailService,
+        //        GOOGLE_MAPS_PROVIDERS,
+        //        provideLazyMapsAPILoaderConfig({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' }),
+        GuestDetailService, CheckReceiptService, GeocoderService, DateService, CheckSelectedService, menuService, CalenderService, calendarService
+        , MoipService, SuperService,PaymentService]
 
 })
 export class AppModule { }

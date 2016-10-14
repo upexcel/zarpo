@@ -4,7 +4,7 @@
             {{title}}
         </ion-title>
         <ion-title hideWhen="ios">
-            <button hideWhen="ios" class="bgtransparent">
+            <button ion-button hideWhen="ios" class="bgtransparent">
                 <div  class="bar-button-bt startSpin " *ngIf="!loading && !showBack && !customback" (click)="goBack()"></div>
                 <div  class="bar-button-bt startSpin " *ngIf="customback" (click)="custom()"></div>
                 <div  class="bar-button-img bar-button-blank " *ngIf="loading">
@@ -18,7 +18,7 @@
             <span class="titleAndroid">{{title}}</span>
         </ion-title>
         <ion-buttons start>
-            <button showWhen="ios" side="left" class="bgtransparent">
+            <button ion-button showWhen="ios" side="left" class="bgtransparent">
                 <div  class="bar-button-bt startSpin " *ngIf="!loading && !showBack && !customback" (click)="goBack()"></div>
                 <div  class="bar-button-bt startSpin " *ngIf="customback" (click)="custom()"></div>
                 <div  class="bar-button-img bar-button-blank " *ngIf="loading">
@@ -40,7 +40,7 @@
 
         </ion-buttons>
 
-        <button end tappable menuToggle class="showbt bgtransparent" *ngIf="title != 'Reenvio de senha'">
+        <button end tappable menuToggle class="showbt bgtransparent" ion-button icon-only *ngIf="title != 'Reenvio de senha'">
                 <ion-icon name="menu"></ion-icon>
         </button>
 

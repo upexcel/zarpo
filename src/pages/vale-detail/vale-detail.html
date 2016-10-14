@@ -99,14 +99,14 @@
             <div class="list">
 
                 <input noSpace onReturn  type="text" placeholder="Nome do presenteado" name="fname" id="firstname"
-                       pattern="^[A-Za-z \-\'\ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]*$"
+                     
                        (click)="modelChange()" required formControlName="firstname"
                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" 
                        [ngClass]="{errormsgB:formsubmitted===true &&
                        (valeForm.controls.firstname.value.trim().length < 1 || !valeForm.controls.firstname.valid)}"
                        >
                        <input noSpace onReturn type="text" placeholder="Sobrenome do presenteado" name="lname" (click)="modelChange()"
-                       pattern="^[A-Za-z \-\'\ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]*$" 
+                   
                        id="surname" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" 
                        formControlName="lname" required
                        [ngClass]="{errormsgB:formsubmitted===true &&
@@ -116,7 +116,7 @@
                        formControlName="email" id="email" required 
                        [ngClass]="{errormsgB:formsubmitted===true &&
                        (valeForm.controls.email.value.trim().length < 1 || !valeForm.controls.email.valid)}"
-                       pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$"
+                    
                        >
 
 
@@ -172,7 +172,7 @@
                     <ion-col width-50 class=" padLR0 padUD0">
                         <div *ngIf="selectError" class="newtooltip3" style="display: block;">
                         </div>
-                        <button class="button br button-calm beRight no-margin" primary type="submit" style="max-height: 32px;font-size: 1.1em;float: right;" 
+                        <button ion-button class="button br button-calm beRight no-margin" color="primary" type="submit" style="max-height: 32px;font-size: 1.1em;float: right;" 
                                 (click)="sendPresent(valeForm)">Comprar</button>
 
                     </ion-col>
@@ -180,7 +180,7 @@
             </ion-grid>
 
         </div>
-        <button class="button button-block marT20 marB20" primary [hidden]="ifPresentear"
+        <button ion-button class="button button-block marT20 marB20" color="primary" [hidden]="ifPresentear"
                 type="submit" (click)="showPresentear()">
                 Presentear
     </button>

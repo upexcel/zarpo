@@ -27,7 +27,7 @@ import {CheckReceiptService} from '../../services/check-receipt.service';
 @Component({
     templateUrl: 'calendar.html',
 //    directives: [forwardRef(() => ZarpoNavComponent), hotelList],
-    providers: [calendarService, DateService],
+//    providers: [calendarService, DateService],
 //    pipes: [RoomsPipe, AdultChildPipe, FormatDatePipe]
 })
 

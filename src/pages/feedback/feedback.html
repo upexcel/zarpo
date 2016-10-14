@@ -67,7 +67,7 @@
             <div class="clear"></div>
             </form>
             <ion-row>
-                <button class="button button-block loginbtn marT20" primary type="submit" [class.greybg]="submit_button === 'Aguarde'" (click)="submit(submit_button)">
+                <button ion-button class="button button-block loginbtn marT20" color="primary" type="submit" [class.greybg]="submit_button === 'Aguarde'" (click)="submit(submit_button)">
                     <span>{{submit_button}}</span>
                     <ion-spinner name="bubbles" *ngIf="submit_button === 'Aguarde'"></ion-spinner>
                 </button>
