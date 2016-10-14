@@ -1,0 +1,198 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [customback]="customback"  [showBack]="zarpoIcon"></zarpo-nav-bar>
+
+<ion-content no-bounce>
+    <div class="wrapper product-detail vale-detail" *ngIf="itemObject">
+        <ion-grid class="no-padding marB20" [hidden]="ifPresentear">
+            <ion-row class="tabBar no-padding">
+                <ion-col tappable width-25 class="rb  no-padding"
+                         (click)="showOffer()">
+                    <ion-col [class.highlightedTab]="ifOffer === true ">
+                        <a>Vale</a>
+                    </ion-col>
+                </ion-col>
+                <ion-col tappable width-25 class="no-padding"
+                         (click)="showRules()">
+                    <ion-col class="" [class.highlightedTab]="ifRules === true">
+                             <a>Regras</a>
+                    </ion-col>
+                </ion-col>
+                <ion-col  width-50 class="padding-left15  datetab">
+                    <ion-col tappable primary class="primary-bg"
+                             (click)="showPresentear()">
+                        <a>Presentear</a>
+                    </ion-col>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div class="clear"></div>
+        <zarpo-slider class="marB20" [zarpoSlides]="itemObject.images" *ngIf="itemObject && ifOffer===true  " [zarpoCredit]="itemObject.automatic_credit" ></zarpo-slider>
+        <div class="clear"></div>
+        <!--        detail of product-->
+        <div class="msgboxalt custom-msgbox no-pos no-border"   [hidden]="!ifOffer">
+            <div>
+                <div id="hotelOfferScroll" #valeAnchor  *ngIf="ifOffer || ifRules">
+                     <h5 class="beCenter producttext mar"  >A partir de: <em class="">{{itemObject.min_ref}}</em></h5>
+                </div>
+                <div class="clear">
+                </div>
+                <div class="accordian-holder marT20" >
+                    <ion-list class="">
+                        <ion-item tappable class="border" 
+                                  [class.active]="isGroupShown('gift')" (click)="toggleGroup('gift')">
+                            <span class="accordion-header beLeft padL" 
+                                  style="width:100%">
+                                <label style="white-space: nowrap;">O Vale Presente</label>
+                                <ion-icon name="ios-arrow-forward-outline" *ngIf="isGroupShown('gift') === false"
+                                          class="pull-right padR25 calm">
+                            </ion-icon>
+                            <ion-icon name="ios-arrow-down-outline" *ngIf="isGroupShown('gift') === true"
+                                      class="pull-right padR25 calm">
+                        </ion-icon>
+                    </span>
+                    <div style="width: 100%;" class="item-accordion clear" [class.active]="isGroupShown(info)"
+                         [hidden]="!isGroupShown('gift')">
+                        <div *ngFor="let gift of itemObject.Vale | valekeys">
+                            <h3 class="valeoffertitle">{{gift.title}}</h3>
+                            <ul class="disc">
+                                <li *ngFor="let subgift of gift.description"
+                                    class="br subinfo greybg" [innerHTML]="subgift">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+</div>
+</div>
+<div class="msgboxalt custom-msgbox no-pos no-border">
+    <!--        rules tab data-->
+    <div class="hotel_rules" [hidden]="!ifRules">
+        <div class="rules gap">
+            <h4 class="gap-half default-font">
+                Regras do Vale Presente
+            </h4>
+            <div class="hotel_rules">
+                <ul class="disc">
+                    <li *ngFor="let rule0 of disclaimer[0]" [innerHTML]="rule0" class="br">
+
+                </li>
+            </ul>
+        </div>
+        <span class="br"></span>
+    </div>
+
+</div>
+</div>
+<div class="msgboxalt custom-msgbox no-pos no-border">
+    <div class="hotel_rules" [hidden]="!ifPresentear">
+        <div *ngIf="formsubmitted === true" style="margin-bottom: 18px;">
+            <p class="errormsg" *ngIf="!valeForm.controls.firstname.value.length >0||!valeForm.controls.firstname.valid||
+                !valeForm.controls.lname.value.length >0||!valeForm.controls.lname.valid||
+                !valeForm.controls.email.value.length >0||!valeForm.controls.email.valid||
+                !valeForm.controls.comment.value.length >0||!valeForm.controls.comment.valid||
+                !giftDate || giftDate==''">
+                Os campos abaixo estão incorretos!
+            </p>
+        </div>
+        <form class="valeform" novalidate name="valeForm" autocomplete="off"  [formGroup]="valeForm" >
+            <div class="list">
+
+                <input noSpace onReturn  type="text" placeholder="Nome do presenteado" name="fname" id="firstname"
+                       pattern="^[A-Za-z \-\'\ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]*$"
+                       (click)="modelChange()" required formControlName="firstname"
+                       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" 
+                       [ngClass]="{errormsgB:formsubmitted===true &&
+                       (valeForm.controls.firstname.value.trim().length < 1 || !valeForm.controls.firstname.valid)}"
+                       >
+                       <input noSpace onReturn type="text" placeholder="Sobrenome do presenteado" name="lname" (click)="modelChange()"
+                       pattern="^[A-Za-z \-\'\ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]*$" 
+                       id="surname" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" 
+                       formControlName="lname" required
+                       [ngClass]="{errormsgB:formsubmitted===true &&
+                       (valeForm.controls.lname.value.trim().length < 1 || !valeForm.controls.lname.valid)}"
+                       >
+                       <input noSpace onReturn type="email" placeholder="E-mail do presenteado" name="emailid" (click)="modelChange()"
+                       formControlName="email" id="email" required 
+                       [ngClass]="{errormsgB:formsubmitted===true &&
+                       (valeForm.controls.email.value.trim().length < 1 || !valeForm.controls.email.valid)}"
+                       pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$"
+                       >
+
+
+                       <div class='clear marB5' (click)="modelChange()" 
+                       [ngClass]="{errormsgB:formsubmitted===true && giftDate === ''}" >
+                    <my-date-picker [options]="myDatePickerOptions" [title]="dateTitle"  [showIcon]="showIcon"
+                        (dateChanged)="onDateChanged($event)"></my-date-picker>
+                </div>
+                <textarea  noSpace onReturn  placeholder="Seu recado" (click)="modelChange()" 
+                           [ngClass]="{errormsgB:formsubmitted===true &&
+                           (valeForm.controls.comment.value.trim().length < 1 || !valeForm.controls.comment.valid)}"
+                           name="comment" class="vale-textarea" id="comment"
+                           autocomplete="off" autocorrect="off" spellcheck="false"
+                           formControlName="comment">
+            </textarea>
+            <div class="formText vale-montante">
+                Montante do presente
+            </div>
+            <!--            <div class="padLR0 hr" style="padding-bottom: 25px;">
+                            <div class="item padLR0" style="height: 40px;">
+                                <ion-range class="no-padding" [(ngModel)]="itemObject.value"
+                                           min="itemObject.min" max="2200" step="itemObject.step" pin="false" id="pricerange">
+                                </ion-range>
+                            </div>			
+                        </div>-->
+            <div class="padLR0 hr" style="padding-bottom: 25px;">
+                <div class="item padLR0" style="height: 40px;">
+                    <input type="range" min="{{itemObject.min}}" id="pricerange" [ngModelOptions]="{standalone: true}" [(ngModel)]="itemObject.value"
+                           max="{{itemObject.max}}" value="{{itemObject.value}}"
+                           step="{{itemObject.step}}" (click)="update($event)"/>
+                </div>			
+            </div>
+            <!--            <div class="padLR0 hr" style="padding-bottom: 25px;">
+                            <div class="item padLR0" style="height: 40px;">
+                                <ion-item class="my-range-input">
+                                    <ion-range name="input111" min="{{itemObject.min}}" max="{{itemObject.max}}"
+                                               step="{{itemObject.step}}" [(ngModel)]="itemObject.value" primary>
+                                    </ion-range>
+                                </ion-item>
+            
+                            </div>			
+                        </div>-->
+
+            <div class="clear"></div>
+            <ion-grid class="no-padding marT20 marB20">
+                <ion-row >
+                    <ion-col width-50 class=" padLR0 padUD0">
+                        <div class="calms br giftlabel">R$ {{itemObject.value}}</div>
+                        <div class="giftlabelspan" style="">
+                            ou 12x R${{ calculateEMI(itemObject.value)}}
+                        </div>
+                    </ion-col>
+                    <ion-col width-50 class=" padLR0 padUD0">
+                        <div *ngIf="selectError" class="newtooltip3" style="display: block;">
+                        </div>
+                        <button class="button br button-calm beRight no-margin" primary type="submit" style="max-height: 32px;font-size: 1.1em;float: right;" 
+                                (click)="sendPresent(valeForm)">Comprar</button>
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </div>
+        <button class="button button-block marT20 marB20" primary [hidden]="ifPresentear"
+                type="submit" (click)="showPresentear()">
+                Presentear
+    </button>
+</form>
+
+</div>
+
+</div>
+
+<zarpo-footer *ngIf="itemObject"  [hidden]="ifPresentear"> </zarpo-footer>
+</div>
+
+
+
+</ion-content>

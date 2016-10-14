@@ -1,0 +1,117 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+
+<ion-content>
+    <div class="wrapper product-detail" *ngIf="itemObject">
+        <ion-grid class="no-padding marB20">
+            <ion-row class="tabBar no-padding">
+                <ion-col tappable width-25 class="rb  no-padding"
+                         (click)="showOffer()">
+                    <ion-col [class.highlightedTab]="ifOffer === true ">
+                        <a>Oferta</a>
+                    </ion-col>
+                </ion-col>
+                <ion-col tappable width-25 class="rb no-padding"
+                         (click)="showRules()">
+                    <ion-col class="" [class.highlightedTab]="ifRules === true">
+                             <a>Regras</a>
+                    </ion-col>
+                </ion-col>
+                <ion-col width-50 class="padding-left15  datetab">
+                    <ion-col tappable primary class="primary-bg"
+                             (click)="showCalender()">
+                        <a>Datas</a>
+                    </ion-col>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div class="clear"></div>
+        <zarpo-slider class="marB20" [zarpoSlides]="itemObject.images" *ngIf="itemObject && ifOffer===true  " [zarpoCredit]="itemObject.automatic_credit" ></zarpo-slider>
+        <div class="clear"></div>
+        <!--detail of product-->
+        <div class="msgboxalt custom-msgbox no-pos no-border" [hidden]="!ifOffer">
+            <div>
+                <div id="hotelOfferScroll" *ngIf="productClosed !== true && calenderClosed !== true && productDeactivated !== true">
+                     <h5 class="beCenter producttext mar">A partir de: <em class="strike">{{itemObject.min_ref}}</em></h5>
+                    <h4 class="beCenter producttext"><em class="calms big">{{itemObject.client_price}}</em> por diária / quarto</h4>
+                </div>
+                <div class="closeDate" [innerHTML]="itemObject.date_to_close"></div>
+                <div class="marB20" *ngIf="productClosed === true || calenderClosed === true || productDeactivated === true">
+                     <h5 class="beCenter producttext">OFERTA ENCERRADA</h5>
+
+                </div>
+                <div class="clear">
+                </div>
+                <zarpo-accordian [accContent]="content" [accData]="itemObject.Oferta"></zarpo-accordian>
+            </div>
+        </div>
+        <div class="msgboxalt custom-msgbox no-pos no-border">
+            <!--rules tab data-->
+            <div class="hotel_rules" [hidden]="!ifRules">
+                <div class="rules gap">
+                    <h4 class="gap-half default-font">Check-in & Check-out</h4>
+                    <ul class="disc" >
+                        <li class="arrTime whitebg">Check-in: {{itemObject.check_in}}</li>
+                        <li class="arrTime whitebg">Check-out: {{itemObject.check_out}}</li>
+                    </ul>
+                </div>
+                <div class="rules gap">
+                    <h4 class="gap-half default-font">
+                        Regras do Hotel
+                    </h4>
+                    <div class="hotel_rules">
+                        <ul class="disc">
+                            <li *ngFor="let rule0 of disclaimer[0]" [innerHTML]="rule0" class="br">
+
+                        </li>
+                    </ul>
+                </div>
+                <span class="br"></span>
+            </div>
+            <div class="rules gap">
+                <h4 class="gap-half">Política de cancelamento</h4>
+                <div class="hotel_rules">
+                    <ul class="disc">
+                        <li *ngFor="let rule1 of disclaimer[1]" [innerHTML]="rule1" class="br">
+
+                    </li>
+                </ul>
+                <span class="br"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="msgboxalt custom-msgbox no-pos no-border">
+    <!--map tab data-->
+    <div class="hotel_rules" *ngIf="ifMaps ===true">
+        <div id="map" class="imgloader"> 
+            <!-- this creates a google map on the page with the given lat/lng from -->
+            <!-- the component as the initial center of the map: -->
+
+            <sebm-google-map [zoom]="zoom"
+                [latitude]="gpsLocation[0].lat|StringToNumber" [longitude]="gpsLocation[0].lang|StringToNumber">
+                <sebm-google-map-marker *ngFor="let location of gpsLocation"
+                    [latitude]="location.lat|StringToNumber" [longitude]="location.lang|StringToNumber"
+                    [label]="''" [iconUrl]="iconUrl" [fitBounds]="true">
+            </sebm-google-map-marker>
+        </sebm-google-map>        
+    </div>
+    <div class="mapaddr marT20">
+        <label class=""><strong>{{itemObject.name}}</strong></label><br/>
+        <span class="br "></span>
+        <label class="" [innerHTML]="itemObject.Mapa.map_address"></label><br/><br/>
+        <span class="br marB10"></span>
+        <label class="" [innerHTML]="itemObject.Mapa.address_description"></label>
+    </div>
+
+</div>
+
+</div>
+<button class="button button-block marT20 marB20" primary type="button" (click)="showCalender()">
+    Reservar
+</button>
+<zarpo-footer *ngIf="itemObject"> </zarpo-footer>
+</div>
+
+
+
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header class="">
+    <ion-navbar  animation="false" hideBackButton class="navBar no-padding">
+        <ion-title showWhen="ios" class='mytitle'>
+            {{title}}
+        </ion-title>
+        <ion-title hideWhen="ios">
+            <button hideWhen="ios" class="bgtransparent">
+                <div  class="bar-button-bt startSpin " *ngIf="!loading && !showBack && !customback" (click)="goBack()"></div>
+                <div  class="bar-button-bt startSpin " *ngIf="customback" (click)="custom()"></div>
+                <div  class="bar-button-img bar-button-blank " *ngIf="loading">
+                    <div id="circularG">
+                                                <img src="assets/img/light_zarpo_spinner.gif" alt=""/>
+                        <!--<ion-spinner name="bubbles"></ion-spinner>-->
+                    </div>
+                </div>
+                <div  class="bar-button-logo" *ngIf="showBack && !loading" (click)="openHome()"></div>
+            </button>
+            <span class="titleAndroid">{{title}}</span>
+        </ion-title>
+        <ion-buttons start>
+            <button showWhen="ios" side="left" class="bgtransparent">
+                <div  class="bar-button-bt startSpin " *ngIf="!loading && !showBack && !customback" (click)="goBack()"></div>
+                <div  class="bar-button-bt startSpin " *ngIf="customback" (click)="custom()"></div>
+                <div  class="bar-button-img bar-button-blank " *ngIf="loading">
+                    <div id="circularG">
+                        <!--                        <div id="circularG_1" class="circularG"></div>
+                                                <div id="circularG_2" class="circularG"></div>
+                                                <div id="circularG_3" class="circularG"></div>
+                                                <div id="circularG_4" class="circularG"></div>
+                                                <div id="circularG_5" class="circularG"></div>
+                                                <div id="circularG_6" class="circularG"></div>
+                                                <div id="circularG_7" class="circularG"></div>
+                                                <div id="circularG_8" class="circularG"></div>-->
+                        <img src="assets/img/light_zarpo_spinner.gif" alt=""/>
+                        <!--<ion-spinner name="bubbles"></ion-spinner>-->
+                    </div>
+                </div>
+                <div  class="bar-button-logo" *ngIf="showBack && !loading" (click)="openHome()"></div>
+            </button>
+
+        </ion-buttons>
+
+        <button end tappable menuToggle class="showbt bgtransparent" *ngIf="title != 'Reenvio de senha'">
+                <ion-icon name="menu"></ion-icon>
+        </button>
+
+    </ion-navbar>
+</ion-header>

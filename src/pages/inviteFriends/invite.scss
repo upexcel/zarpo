@@ -1,0 +1,120 @@
+.invite{
+    .invite-msg {
+        border-bottom: 1px solid #ccc;
+        /* min-height: 50px; */
+        padding-bottom: 20px;
+        margin-top: 30px;
+        display: inline-block;
+        width: 100%;
+    }
+    .col {
+        padding: 0;
+    }
+    label.br.invite-labels {
+        margin-bottom: 10px;
+    }  
+    .friendEmail {
+        margin-top: 20px;
+    }
+    ion-col {
+        padding: 2px; 
+
+    }
+    .hr {
+        width: 100%;
+        border-bottom: 1px solid #e4e4e4;
+    }
+    .width20{
+        width: 20px;
+    }
+    .marginbt15{
+        margin-bottom: 15px;
+    }
+    .marginbt20{
+        margin-bottom: 20px;
+    }
+    .linkbox {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        margin-bottom: 30px;
+        height: auto;
+        display: block;
+        /* overflow: hidden; */
+    }
+    div.linkbox.wrap {
+        display: block;
+    }
+    .bigger {
+        color: #404040;
+        font-size: 113.5%;
+        line-height: 1.06;
+    }
+
+    label.br.invite-labels {
+        margin-bottom: 10px;
+    }
+    .invite-labels {
+        margin-top:3px;
+        color: #84807f;
+        font-size: 100%;
+        line-height: 1.2;
+    }
+    .br {
+        display: block;
+        clear: both;
+    }
+    form.friendEmail div.list input {
+        background: none repeat scroll 0 0 #fff !important;
+        border: 1px solid #bfbfbf;
+        color: #a6a6a6;
+        font-size: 15px;
+        height: 28px;
+        margin-bottom: 13px;
+        padding: 6px 6px 6px 10px;
+        width: 100%;
+        border-radius: 2px;
+    }
+    /*    ion-spinner.spinner-bubbles {
+            position: absolute;
+            right: 4px;
+            top:8px;
+        }*/
+    .colFb, .colTwitter {
+        height: 47px;
+    }
+    img.invitationIcon {
+        width: 100%;
+        height: auto;
+        max-height: 57px;
+        max-width: 228px;
+    }
+
+    .linkbox label {
+        padding-top: 30px;
+    }
+    .loginbtn.invitebtn {
+        margin-bottom: 30px;
+    }
+    .linkbox div.row {
+        background-color: #ffffff;
+        height: 57px;
+    }
+    .invitationLink {
+        border: 1px solid #ccc;
+        display: block;
+        height: 28px;
+        line-height: 1.5;
+        overflow: hidden;
+        white-space: nowrap;
+        text-align: center;
+        margin-top: 15px;
+    }
+    input.errormsg {
+        border: 1px solid red !important;
+    }
+    .button {
+     margin: 0px 0px; 
+    }
+    }

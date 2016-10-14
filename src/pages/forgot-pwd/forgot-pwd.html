@@ -1,0 +1,54 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="load"></zarpo-nav-bar>
+<ion-content class="forgotPwd" no-bounce>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="">
+                <p class="fgtpwdtext">Digite seu e-mail abaixo e lhe enviaremos sua nova senha: </p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class='no-padding'>
+                <form class="myform" novalidate name="myForm" #f="ngForm">
+                    <div class="list">
+                        <input name="emailField" class="inputArea" ngControl="email"
+                               #email="ngModel"  required
+                               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                               [class.errormsgF]="errorMsg && !username" type="email" placeholder="Seu e-mail"  (click)="modelChange()" [(ngModel)]="username">
+
+                        <button block primary class="marT20" type="submit"  (click)="sendpwd(email.errors)" [class.greybg]="buttonText == 'Aguarde'">
+                            {{buttonText}}
+                            <ion-spinner name="bubbles" [hidden]="buttonText == 'Enviar nova senha'"></ion-spinner>
+                        </button>
+
+                    </div>
+                    <div *ngIf="errorMsg" class="marT20">
+                        <p class="error-msg">
+                            Por favor informe um e-mail válido.
+                        </p>                    
+                    </div>
+                    <div *ngIf="wrongCredit" class="marT20">
+                        <p class="error-msg">
+                            Por favor informe um e-mail válido.
+                        </p>                    
+                    </div>                    
+                    <div *ngIf="successMsg" class="marT20">
+                        <p  class="grey">
+                            Você receberá sua senha em alguns minutos. Se não, verifique sua caixa de spam.
+                        </p>
+                    </div>
+
+                    <div class="marT20 underline center" (click)="closeForgotPwd()">
+                        <a class="center color"> Fazer login </a>
+                    </div>
+
+                    <fb-login></fb-login>
+                </form>
+            </ion-col>
+        </ion-row>
+        <div class='marT20 center'>
+            <a style="text-decoration: none;text-align:center; cursor: pointer; color: #00C8EE!important;"
+               target="_blank" href="http://www.zarpo.com.br/magazine/">Magazine</a>
+        </div>
+
+    </ion-grid> 
+</ion-content>

@@ -1,0 +1,227 @@
+ion-content.menu{
+    scroll-content{
+        padding-top: 0px;
+    }
+}
+.menu{
+
+    .parentSideTitle {
+        display: table;
+        width: 80%;
+        height: 70px;
+    }
+    .sideTitle {
+        color: #404040;
+        display: table-cell;
+        font-size: 1.5em;
+        line-height: 1.2;
+        margin-top: 10px;
+        padding-left: 20px;
+        vertical-align: middle;
+        white-space: normal;
+        width: 60%;
+    }
+    .beRight{
+        float: right;
+    }
+    ion-list{
+        margin:0px 0px 0px 0px;
+    }
+    ion-list > .item:first-child, ion-list > ion-item-sliding:first-child .item {
+        border-top: 0px; 
+    }
+    ion-list .item .item-inner{
+        border-width:0px !important;
+    }
+    .mymenu {
+        padding: 3px 20px;
+    }
+    .icon.marR10 {
+        margin-right: 10%;
+        /* font-size: 20px; */
+    }
+    .icon.side-ion {
+        font-size: 25px;
+        vertical-align: middle;
+    }
+    .divider {
+        width: 100%;
+        border-bottom: .1em solid #dddddd;
+    }
+    .marR10{
+        margin-right: 10px;
+    }
+    .marginleft{
+        margin-left:-2px;
+    }
+
+    .item.mymenu label {
+        color: #404040;
+    }
+    .item.filter label {
+        position: relative;
+        top: .5px;
+    }
+    .iconVal{
+        color: black;
+        font-size: 23px;
+        vertical-align: middle;
+    }
+    .margin30{
+        margin-left: 30px;
+    }
+    .menu .filterHolder.filtertag.item {
+        padding: 0 18px;
+    }
+    .filtertag button {
+        background: none;
+        font-size: 15px;
+        line-height: 1;
+        min-height: 34px;
+        border: 1px solid #bfbfbf;
+
+        width: 100%;
+
+    }
+    .button_dark {
+        border-color: transparent !important;
+        background-color: #444 !important;
+        color: #fff !important;
+    }
+    ion-list .item-inner {
+        border-bottom: 0px solid #dedede;
+        padding-right: 0;
+        background-image: none !important;
+    }
+    .item-inner {
+        border-bottom: 0px solid #dedede; 
+    }
+
+    ion-label {
+        margin: 13px 8px 13px 0; 
+    }
+    .fontColor{
+        color:#404040;
+    }
+    div.filtertag select {
+        padding: 4px 5px 5px 5px !important;
+        background: none;
+        width: 100%;
+        font-size: 15px;
+        line-height: 1;
+        height: 30px;
+        margin-bottom: 0px;
+        border: 1px solid #bfbfbf;
+        color: #a6a6a6;
+        border-radius:5px;
+    }
+    option {
+        background: #ffffff;
+        padding-left: 0.6rem;
+    }
+
+    .filtertag {
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    .extasapce{
+        ion-icon.rightArrow{
+            float: right;
+        }
+        padding: 10px 20px;
+
+    }
+    .extrabottom{
+        padding: 0 20px 10px 20px;
+    }
+    .filtertag .item {
+        padding: 0px 0px;
+    }
+    ion-label {
+        margin:0px; 
+    }
+    .bordernone{
+        border-bottom: 0px !important;
+    }
+    @media (max-width: 340px){
+        .margin30{
+            margin-left: 5px;
+        }
+        .menu .filterHolder.filtertag.item {
+            padding: 0 10px;
+        }
+
+    }
+    .manualinput{
+        border: 1px solid;
+        height: 28px;
+        padding: 3px 0 0 6px;
+    }
+    .tagfil{
+        margin-bottom:8px;
+    }
+    ion-item.tagnamelistItem.item {
+        min-height: 2.4rem;
+        margin: 2px 0 0 0px;
+        padding: 5px 0 5px 0;
+    }
+    .mar{
+        margin-left:10px !important;
+    }
+
+    ion-item.tagnames.item {
+        margin: 10px 0 0 0;
+    }
+    button.button.button-block.loginbtn.marT20.greybg.item-button.button-default {
+        width: 100%;
+        background-color:#35caee !important;
+        color:#fff !important;
+    }
+    .animationc{
+        animation-name:open;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+        animation-duration: 0.5s;
+        height:auto;
+    }
+
+    .datetime-text {
+        display: none;
+    }
+    .leftside{
+        float:left;
+        width:50%;
+    }
+    .rightside{
+        float:right;
+        width:50%;
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+    .labelstyle{
+        text-align: center;
+        width: 100%;
+        margin-left: 14%;
+        font-size: 13px;
+    }
+    ion-icon.myicon.ion-md-close-circle.item-icon {
+        position: absolute;
+        font-size: 26px;
+        /*left: 22px;*/
+        padding: 1px 10px 0 5px;
+    }
+    .padLeft{
+        padding-left:32px !important;
+    }
+
+}
+
+@keyframes open{
+    from{
+        min-height:0;
+        height:0;
+    }
+    to {
+        height:150px;
+    }
+}

@@ -1,0 +1,116 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+
+<ion-content no-bounce>
+    <div class="wrapper payment guest-detail" *ngIf="bookingRooms && bookingRooms.length >0">
+        <!--Order receipt with room details-->
+        <!--second box-->
+        <div  class="checkoutDivcard hotel-venda">
+            <form class="fl1 no-border" novalidate name="myForm" id="myFormID" >
+
+                <div *ngFor="let selectedroom of bookingRooms ; let key=index">
+                    <div *ngFor="let duplicate of selectedroom.rooms | adultChild ;let key1=index">
+                        <div class="check-title no-border ">{{selectedroom.name}}</div>
+                        <ion-grid class='no-margin no-padding'>
+                            <ion-row class='no-margin no-padding'>
+                                <ion-col class='no-margin no-padding'>
+                                    <input type="text"  name="first" class="username" on-tap="modelChange()"
+                                           *ngIf="(bookingRooms[key].selected[key1]) && key == 0 && key1 == 0" 
+                                           [(ngModel)]="bookingRooms[key].selected[key1].username" 
+                                           [ngClass]="{ 'errormsgB': (!bookingRooms[key].selected[key1].username) && (ifSubmitted)}"
+                                           pattern="^[A-Za-z \-\'\ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]*$"
+                                           placeholder="Informe 1 nome por quarto" [disabled]="disableMyForm == true" 
+                                           autocorrect="off" autocomplete="off" spellcheck="false"/>
+
+                                           <input type="text"  name="secondInput" class="username" on-tap="modelChange()"
+                                           *ngIf="(bookingRooms[key].selected[key1]) &&  (key > 0 || key1 > 0)" 
+                                    [(ngModel)]="bookingRooms[key].selected[key1].username" 
+                                    [ngClass]="{ 'errormsgB': (!bookingRooms[key].selected[key1].username) && (ifSubmitted)}"
+                                    pattern="^[A-Za-z \-\'\ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]*$"
+                                    placeholder="Informe um nome por quarto" [disabled]="disableMyForm == true"
+                                    autocorrect="off" autocomplete="off" spellcheck="false"/>
+
+
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class='no-margin no-padding  marT5 marB10'>
+                                <ion-col width-33 class='no-margin no-padding'>
+                                    <select 
+                                        [(ngModel)]="bookingRooms[key].selected[key1].adult"
+                                        name="adultroom" class="adultroom " (click)="modelChange()"
+                                        [ngClass]="{ 'errormsgB': (bookingRooms[key].selected[key1].adult == 0 || !bookingRooms[key].selected[key1].adult) && (ifSubmitted)}"
+                                        [disabled]="disableMyForm == true"  *ngIf="bookingRooms[key].selected[key1]">
+                                        <option
+                                            value="0">
+                                            Adultos 0
+                                        </option>
+                                        <option
+                                            *ngFor="let expectedAdult of selectedroom.adult|adultChild; let index=index"  value="{{index+1}}">
+                                            Adultos {{index+1}}
+                                    </option>
+                                </select>
+                            </ion-col>
+                            <ion-col width-33 class='no-margin no-padding' *ngIf="selectedroom.kid > 0">
+                                <select class="marL5" name="adultroom2"
+                                        [(ngModel)]="bookingRooms[key].selected[key1].child" (click)="modelChange()"
+                                        [disabled]="disableMyForm == true" *ngIf="bookingRooms[key].selected[key1]">
+                                        <option  
+                                        value="0">
+                                        Crianças 0
+                                    </option>
+                                    <option  
+                                        *ngFor="let expectedKid of selectedroom.kid|adultChild;let index=index" value="{{index+1}}">
+                                        Crianças {{index+1}}
+                                </option>
+                            </select>
+                        </ion-col>
+                        <ion-col width-33 class='no-margin no-padding' *ngIf="selectedroom.kid > 0">
+                            <ion-row class='no-margin no-padding'>
+                                <ion-col class='no-margin no-padding'>
+
+                                    <input type="text" name="inputguest"  [ngClass]="{ 'errormsgB': (!bookingRooms[key].selected[key1].childAge && bookingRooms[key].selected[key1].child > 0) && (ifSubmitted)}"
+
+                                           on-tap="modelChange()" placeholder="Idade(s)" class="marL5" [disabled]="bookingRooms[key].selected[key1].child < 1 || !bookingRooms[key].selected[key1].child"
+                                           [(ngModel)]="bookingRooms[key].selected[key1].childAge"
+                                           [disabled]="bookingRooms[key].selected[key1].child <1"  *ngIf="bookingRooms[key].selected[key1]">
+                                </ion-col>
+                            </ion-row>
+
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--		    third box-->
+<div  class="checkoutDivcard hotel-venda marT20">
+    <div class="check-title " style="padding-left: 10px;"> Solicitação especial (opcional)</div>
+    <div class="fl1 no-border" name="myForm" id="myFormID" style="padding-top: 0px;">
+        <textarea  name="textarea1" form="myFormID" type="text"  rows="5" placeholder="Sua solicitação será transmitida ao nosso parceiro junto com sua reserva." 
+                   class="vale-textarea comment" on-tap="modelChange()"
+                   [disabled]="disableMyForm == true"
+                   [(ngModel)]="comment" autocorrect="off" autocomplete="off" spellcheck="false">
+    </textarea>
+
+</div>
+
+
+</div>
+<div>
+    <div class="errormsg" style="margin-top: 20px;"
+         *ngIf="ifEmpty() && ifSubmitted">
+         <span>Os campos acima são obrigatórios.</span>
+    </div>
+    <button type="submit" class="button button-block button-calm marT20 productbtn" 
+            form="myFormID" on-tap="recordOrder()">
+        Salvar e continuar 
+    </button>
+</div>
+</div>
+
+</ion-content>
+
+
+

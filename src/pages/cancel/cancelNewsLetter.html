@@ -1,0 +1,41 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="cancelNewsLetter" no-bounce>
+    <div class="divcard checkout">
+        <!--		    third box-->
+        <div  class="approvalDivcard">
+            <div class="row marUD0">
+                <p class="marUD0">
+                    Pense mais uma vez! As newsletters do Zarpo estão sempre cheias de promoções 
+                    exclusivas em hotéis que geralmente não fazem promoções! Não é possível
+                    encontrar estas oportunidades em nenhum outro lugar…
+                </p>
+            </div>
+            <div class="clear"></div>
+            <div class="row marUD0 padT20" >
+                <p class="marUD0">
+                    Insira o e-mail da sua conta Zarpo caso realmente não queira
+                    mais receber as newsletters:
+                </p>
+            </div>
+            <div class="clear"></div>
+            <form name="myForm" class="marUD0" novalidate>
+                <input type="email" (keyup)="onKey($event)" [(ngModel)]='user_email'   [class.errormsgF]="Uemail && !user_email" class="inputArea marUD0" name="signupEmail" placeholder="email@examplo.com.br">
+                <button class="button button-block" primary (click)="submitCancel(user_email)" type="submit" [class.greybg]="button_value === 'Aguarde'" >
+                        <span>{{button_value}}</span>
+                    <ion-spinner name="bubbles" *ngIf="button_value === 'Aguarde'"></ion-spinner>   
+
+                </button>
+            </form>
+            <div class="row marUD0 errormsg padT20" *ngIf='errorShow'>
+                <span   *ngIf="Uemail && !user_email">
+                    E-mail incorreto!
+                </span>
+                <span *ngIf="resMsg">
+                    {{resMsg}}
+                </span>
+
+
+            </div>
+        </div>
+    </div>
+</ion-content>

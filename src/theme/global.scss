@@ -1,0 +1,579 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Shared Imports
+// --------------------------------------------------
+// These are the imports which make up the design of this app.
+// By default each design mode includes these shared imports.
+// App Shared Sass variables belong in app.variables.scss.
+@font-face {
+    font-family: 'HelveticaLight';
+    src:    
+        url('../../lib/HelveticaNeue-Light.woff') format('woff'), /* Pretty Modern Browsers */
+        url('../../lib/HelveticaNeue-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../../lib/HelveticaNeue-Light#svgFontName') format('svg'); /* Legacy iOS */
+
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+scroll-content {
+    padding-top: 70px;
+}
+input{
+    -webkit-appearance: none;
+    -webkit-user-select: text !important;
+}
+textarea{
+    -webkit-appearance: none;
+    -webkit-user-select: text !important;
+
+}
+ion-card {
+    box-shadow: none;
+}
+.wrapper{
+    padding: 12px;
+}
+.no-padding{
+    padding: 0;
+}
+.no-margin{
+    margin: 0;
+}
+.pull-right{
+    float: right;
+}
+.greybg {
+    background: none repeat scroll 0 0 #f5f5f5;
+    color: #404040;
+    border: 0 none;
+}
+.bold{
+    font-weight:600 !important;
+}
+.padR10{
+    padding-right: 10px; 
+}
+.bar-button-menutoggle ion-icon {
+    padding: 0 6px;
+    font-size: 40px;
+}
+.padR15{
+    padding-right: 15px; 
+}
+.alignRight{
+    text-align: right;
+}
+.text-input {
+    height: 34px;
+    border: 1px solid #bfbfbf;
+    padding-left: 5px;
+    border-radius:4px;
+    box-sizing:content-box;
+}
+.button{
+    font-weight: normal;
+    text-transform: none;
+    border-radius:0px; 
+}
+ion-col{
+    &.no-padding{
+        padding: 0;
+    }  
+}
+ion-navbar{
+    &.no-padding{
+        padding: 0;
+    }   
+}
+ion-col{
+    &.text-center{
+        text-align: center;
+    }  
+}
+p{
+    &.text-center{
+        text-align: center;
+    }  
+}
+p{
+    &.error-msg{
+        color: red;
+    }  
+}
+p {
+    margin: 0px;
+}
+.center{
+    text-align:center;
+}
+color{
+    color:#00c8ee;
+}
+.errormsgF{
+    border: 1px solid red !important;
+}
+.underline a:hover {
+    text-decoration: underline;
+}
+.greybg{
+    background: none repeat scroll 0 0 #f5f5f5 !important;
+    color:#404040 !important;
+    border: 0 none;
+}
+.marB5{
+    margin-bottom: 5px;
+}
+.marT20{
+    margin-top: 20px;
+}
+.matT30{
+    margin-top:30px;
+}
+.marB20{
+    margin-bottom: 20px;
+}
+.captalize{
+    text-transform: capitalize;
+}
+.inputArea{
+    -webkit-user-select: auto;
+    background-color: #fff;
+    padding: 4px 5px 5px 5px;
+    width: 100%;
+    /*font-size: $font15x;*/
+    line-height: 1.3;
+    height: 35px;
+    margin-bottom: 5px;
+    border: 1px solid #e4e4e4;
+    color: #a6a6a6;
+    border-radius: 4px;
+}
+.errormsg{
+    color:red !important;   
+}
+.bar-button-menutoggle.startSpin{
+    -webkit-animation-play-state: running;  /* Chrome, Safari, Opera */
+    -moz-animation-play-state: running;
+    -ms-animation-play-state: running;
+    animation-play-state: running;
+}
+.bgtransparent{
+    background-color:transparent !important;
+    color:black;
+}
+.divcard {
+    padding: 10px 0px 10px 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.upercase {
+    text-transform: uppercase;
+}
+
+.beLeft{
+    float: left;
+}
+.beRight{
+    float: right;
+}
+.errormsgB{
+    border: 1px solid red !important;
+}
+
+.clear{
+    clear: both;
+}
+.footerwidth{
+    width:96%;
+    margin:0 auto;
+}
+.closeDate{
+    padding: 0 0 10px 0;
+    color: #FF7918;
+}
+/*.infinite-loading {
+    display: none !important;
+    margin: 0 0 32px 0;
+    width: 100%;
+}*/
+/* Chrome, Safari, Opera */
+@-moz-keyframes example {
+
+    0%   {-moz-transform: rotate(0deg);}
+    10%  {-moz-transform: rotate(36deg);}
+    20%  {-moz-transform: rotate(72deg);}
+    30%  {-moz-transform: rotate(108deg);}
+    40%  {-moz-transform: rotate(144deg);}
+    50%  {-moz-transform: rotate(180deg);}
+    60%  {-moz-transform: rotate(216deg);}
+    70%  {-moz-transform: rotate(252deg);}
+    80%  {-moz-transform: rotate(288deg);}
+    90%  {-moz-transform: rotate(324deg);}
+    100%  {-moz-transform: rotate(360deg);}
+}
+@-ms-keyframes example {
+
+    0%   {-ms-transform: rotate(0deg);}
+    10%  {-ms-transform: rotate(36deg);}
+    20%  {-ms-transform: rotate(72deg);}
+    30%  {-ms-transform: rotate(108deg);}
+    40%  {-ms-transform: rotate(144deg);}
+    50%  {-ms-transform: rotate(180deg);}
+    60%  {-ms-transform: rotate(216deg);}
+    70%  {-ms-transform: rotate(252deg);}
+    80%  {-ms-transform: rotate(288deg);}
+    90%  {-ms-transform: rotate(324deg);}
+    100%  {-ms-transform: rotate(360deg);}
+}
+@-webkit-keyframes example {
+    0%   {-webkit-transform: rotate(0deg);}
+    10%  {-webkit-transform: rotate(36deg);}
+    20%  {-webkit-transform: rotate(72deg);}
+    30%  {-webkit-transform: rotate(108deg);}
+    40%  {-webkit-transform: rotate(144deg);}
+    50%  {-webkit-transform: rotate(180deg);}
+    60%  {-webkit-transform: rotate(216deg);}
+    70%  {-webkit-transform: rotate(252deg);}
+    80%  {-webkit-transform: rotate(288deg);}
+    90%  {-webkit-transform: rotate(324deg);}
+    100%  {-webkit-transform: rotate(360deg);}
+}
+
+/* Standard syntax */
+@keyframes example {
+    0%   {transform: rotate(0deg);}
+    10%  {transform: rotate(36deg);}
+    20%  {transform: rotate(72deg);}
+    30%  {transform: rotate(108deg);}
+    40%  {transform: rotate(144deg);}
+    50%  {transform: rotate(180deg);}
+    60%  {transform: rotate(216deg);}
+    70%  {transform: rotate(252deg);}
+    80%  {transform: rotate(288deg);}
+    90%  {transform: rotate(324deg);}
+    100%  {transform: rotate(360deg);}
+}
+
+/*datepicker css*/
+.imgloader {
+    width: 100%;
+    background: url('../../img/dark_zarpo_spinner.gif') no-repeat 50% 50% #ffffff;
+    background-size: 50px 50px;
+    background-color: #ffffff;
+    line-height: 1;
+}
+.hairlines ion-list .item .item-inner{
+    border-width:0px !important;
+}
+.mydp {
+    min-width: 100px;
+    border-radius: 2px;
+    line-height: 1.1;
+    display: inline-block;
+    /*    border: 1px solid #e4e4e4;*/
+}
+
+.mydp * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.mydp .selector {
+    margin-top: 2px;
+    margin-left: -1px;
+    position: absolute;
+    max-width: 262px;
+    padding: 3px;
+    border-radius: 2px;
+    z-index: 100;
+}
+
+.mydp .selectiongroup {
+    position: relative;
+    display: table;
+    border:1px solid #e4e4e4;
+    background-color: #FFF;
+}
+
+.mydp .selection {
+    background-color: #FFF;
+    display: table-cell;
+    position: absolute;
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0 0px 0 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.mydp .selbtngroup {
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1%;
+    display: table-cell;
+    text-align: right;
+    font-size: 0;
+}
+
+.mydp .btnpicker,
+.mydp .btnclear {
+    height: 100%;
+    width: 30px;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+    outline: 0;
+    font: inherit;
+    -moz-user-select: none;
+}
+.mydp .btnclear{
+    display: none;
+}
+.mydp .btnpicker,
+.mydp .btnclear,
+.mydp .headertodaybtn,
+.mydp .footerbtn {
+    background: transparent;
+    /*    background-image: -webkit-linear-gradient(#F0F0F0 30%, #AEC2E1 100%);
+        background-image: -moz-linear-gradient(#F0F0F0 30%, #AEC2E1 100%);
+        background-image: -o-linear-gradient(#F0F0F0 30%, #AEC2E1 100%);
+        background-image: -ms-linear-gradient(#F0F0F0 30%, #AEC2E1 100%);
+        background-image: linear-gradient(#F0F0F0 30%, #AEC2E1 100%);*/
+}
+
+.mydp .header {
+    width: 100%;
+    height: 36px;
+    margin-bottom: 1px;
+    background-color: #FAFAFA;
+}
+
+.mydp .header td {
+    vertical-align: middle;
+    border: none;
+}
+
+.mydp .header td:nth-child(1) {
+    font-size: 12px;
+    padding-left: 4px;
+}
+
+.mydp .header td:nth-child(2) {
+    text-align: center;
+}
+
+.mydp .header td:nth-child(3) {
+    font-size: 12px;
+    padding-right: 4px;
+}
+
+.mydp .caltable {
+    table-layout: fixed;
+    width: 100%;
+    background-color: #FFF;
+    font-size: 12px;
+}
+
+.mydp .caltable,
+.mydp .caltable td {
+    border-collapse: collapse;
+    color: #00c8ee;
+    line-height: 1.1;
+}
+
+.mydp .caltable th,
+.mydp .caltable td {
+    padding: 5px;
+    text-align: center;
+}
+
+.mydp .caltable th {
+    background-color: #00c8ee;
+    font-size: 11px;
+    vertical-align: middle;
+    color:#fff;
+}
+
+.mydp .caltable td {
+    cursor: pointer;
+    font-weight: bold;
+    height: 28px;
+}
+
+.mydp .prevmonth {
+    color: #CCC;
+}
+
+.mydp .nextmonth {
+    color: #CCC;
+}
+
+.mydp .disabled {
+    cursor: default !important;
+    color: #CCC !important;
+    background: #FFF0F0 !important;
+}
+
+.mydp .sunday {
+    color: #ccc;
+}
+
+.mydp .currmonth {
+    background-color: #fff;
+    font-weight: normal;
+}
+
+.mydp .currday div {
+    /*    border: 1px solid #00c8ee;
+        border-radius: 50%;*/
+    color: #ffffff;
+    background-color: #00c8ee !important;
+}
+
+.mydp .selectedday div {
+    background-color: #00c8ee !important;
+    color: #ffffff;
+
+}
+
+.mydp .caltable tbody .currmonth:hover {
+    background-color: #6AD0EB;
+}
+
+.mydp .selectmenu {
+    height: 24px;
+    width: 60px
+}
+
+.mydp .headerbtn {
+    background-color: #FAFAFA;
+    cursor: pointer;
+    display: table-cell;
+}
+.mydp .selector{
+    border-left: 1px solid #d5d5d5;
+    border-right: 1px solid #d5d5d5;
+    background: #f5f5f5;
+
+}
+.mydp,
+.mydp .selector,
+.mydp .header,
+.mydp .footerarea,
+.mydp .table,
+.mydp .table th,
+.mydp .table td,
+.mydp .headertodaybtn,
+.mydp .caltable tbody {
+
+}
+.mydp .headeryeartxt,
+.mydp .headermonthtxt,
+.mydp .headertodaybtn{
+    color: #00c8ee; 
+}
+.mydp .btnpicker,
+.mydp .btnclear,
+.mydp .headerbtn,
+.mydp .selection {
+    color: #a6a6a6;
+    font-weight: normal;
+}
+
+.mydp .headertodaybtn {
+    padding: 4px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.mydp button::-moz-focus-inner {
+    border: 0;
+}
+
+.mydp .headermonthtxt,
+.mydp .headeryeartxt {
+    width: 40px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+
+.mydp .icon-calendar,
+.mydp .icon-cross {
+    font-size: 16px;
+}
+
+.mydp .icon-left,
+.mydp .icon-right {
+    font-size: 14px;
+}
+
+.mydp .icon-left:hover,
+.mydp .icon-right:hover {
+    color: #63B2CC;
+}
+
+.mydp table {
+    display: table;
+}
+
+.mydp table td {
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'mydatepicker';
+    src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SAssAAAC8AAAAYGNtYXDMUczTAAABHAAAAGxnYXNwAAAAEAAAAYgAAAAIZ2x5ZmFQ1q4AAAGQAAABbGhlYWQGZuTFAAAC/AAAADZoaGVhB4IDyQAAAzQAAAAkaG10eBYAAnAAAANYAAAAIGxvY2EBdAE0AAADeAAAABJtYXhwABUAPgAAA4wAAAAgbmFtZQ5R9RkAAAOsAAABnnBvc3QAAwAAAAAFTAAAACAAAwOaAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADmBwPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAUAAAABAAEAADAAAAAQAg5gDmAuYF5gf//f//AAAAAAAg5gDmAuYF5gf//f//AAH/4xoEGgMaARoAAAMAAQAAAAAAAAAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAAMAEAAAAPAA4AABAAJAA4AEwAYAB0AIgAnACwAMQA2ADsAABMRMxEjFyE1IRUDITUhFQERMxEjJRUzNSMTFTM1IzMVMzUjMxUzNSMBFTM1IzMVMzUjMxUzNSMTFTM1I0Bzc0ADAP0AQAOA/IADDXNz/ZOAgCCAgMCAgMCAgP6AgIDAgIDAgIAggIADAP1AAsBzc3P9c3NzAwD9QALAgMDA/sCAgICAgID/AICAgICAgAJAwMAAAAAAAgBwADADkANQAAQACQAANwEnARcDATcBB+kCp3n9WXl5Aqd5/Vl5MAKnef1ZeQKn/Vl5Aqd5AAABAOAAAAMgA4AAAwAAAQMBJQMgA/3DASADgPyAAcPfAAEA4AAAAyADgAADAAA3EwEF4AMCPf7gAAOA/j3fAAAAAQAAAAEAAF0/BsNfDzz1AAsEAAAAAADRxFAkAAAAANHEUCQAAAAAA8ADgAAAAAgAAgAAAAAAAAABAAADwP/AAAAEAAAAAAADwAABAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAAAAAAAAIAAAAEAABABAAAcAQAAOAEAADgAAAAAAAKABQAHgB6AJYApgC2AAAAAQAAAAgAPAAMAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA4ArgABAAAAAAABAAkAAAABAAAAAAACAAcAcgABAAAAAAADAAkAPAABAAAAAAAEAAkAhwABAAAAAAAFAAsAGwABAAAAAAAGAAkAVwABAAAAAAAKABoAogADAAEECQABABIACQADAAEECQACAA4AeQADAAEECQADABIARQADAAEECQAEABIAkAADAAEECQAFABYAJgADAAEECQAGABIAYAADAAEECQAKADQAvHZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAclZlcnNpb24gMS4wAFYAZQByAHMAaQBvAG4AIAAxAC4AMHZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAcnZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAclJlZ3VsYXIAUgBlAGcAdQBsAGEAcnZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAckZvbnQgZ2VuZXJhdGVkIGJ5IEljb01vb24uAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.mydp .icon {
+    font-family: 'mydatepicker';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.mydp .icon-calendar:before {
+    content: "\e600";
+}
+
+.mydp .icon-cross:before {
+    content: "\e602";
+}
+
+.mydp .icon-left:before {
+    content: "\e605";
+}
+
+.mydp .icon-right:before {
+    content: "\e607";
+}
+.marginPadinng{
+    padding:0px !important;
+    margin:0px !important;
+    border:0px !important;
+}
+/*datepicker css end*/  

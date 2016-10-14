@@ -1,0 +1,43 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="newsLetter">
+    <div class="divcard" *ngIf="user_detail">
+        <div class="form-heading-text pad10">
+            <ion-grid>
+                <ion-row class=''>
+                    <ion-col class='no-margin no-padding'>
+                        <p style="font-size:18px !important; color: #84807F !important;">
+                            Alterar suas preferências de Newsletters
+                        </p>
+                    </ion-col>
+                </ion-row>
+                <ion-row class='marT20'>
+                    <ion-grid class='no-padding'>
+                        <ion-row class=''>
+                            <ion-col class='no-margin no-padding' width-20>
+                                <div class="togglebt">
+                                    <ion-toggle  (ionChange)="toggleChange($event)"  checked="{{subscribe}}" ></ion-toggle>
+                                </div>
+                            </ion-col> 
+                            <ion-col class='no-margin no-padding' width-80>
+                                <div class="">
+                                    Quero receber as newsletters semanais do Zarpo recheadas de novos destinos incríveis a tarifas exclusivas. 
+
+                                </div>
+                            </ion-col> 
+                        </ion-row>
+                    </ion-grid>
+                </ion-row>
+            </ion-grid>
+
+        </div>
+        <button class="button button-block loginbtn marT20" primary type="submit" [class.greybg]="bt_name === 'Aguarde'" (click)="newsletter(bt_name)">
+            <span>{{bt_name}}</span>
+            <ion-spinner name="bubbles" *ngIf="bt_name === 'Aguarde'"></ion-spinner>   
+
+        </button>
+        <div class="linkbox grey"  *ngIf="msg" style="margin-top: 20px;">
+            {{msg}}
+        </div>
+
+    </div>
+</ion-content>

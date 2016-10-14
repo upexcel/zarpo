@@ -1,0 +1,37 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="">
+    <div class="wrapper deactivated">
+        <!--		    third box-->
+        <ion-grid class="no-padding">
+            <ion-row class="no-padding">
+                <ion-col class="no-padding">
+                    <p class="marUD0">
+                        Lamentamos, mas o seu pagamento foi recusado. 
+                        <br/> 
+                        <br/>
+                        O que pode ter acontecido? Não se tratando de um erro
+                        no preenchimento dos dados ou limite insuficiente do
+                        seu cartão, poderá se tratar de um <em>bloqueio de segurança
+                        da operadora do cartão de crédito<em>, o que acontece algumas
+                        vezes em tentativas de compras pela internet.
+                        <br/> 
+                        <br/>
+                        Ligue no número 0800 que aparece no verso do seu cartão, 
+                        faça o pedido de desbloqueio do cartão e volte a efetuar
+                        a sua compra, com certeza a sua reserva será realizada com
+                        sucesso!
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="no-padding">
+                <ion-col class="no-padding">
+                    <button class="button serverBtn center marT20 marB20" primary type="button"
+                            (click)="backToFlash()">
+                        Voltar
+                    </button>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

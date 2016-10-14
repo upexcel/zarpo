@@ -1,0 +1,19 @@
+<zarpo-nav-bar class="upercase" [title]="pageTitle" [loading]="apiLoader" [showBack]="showBackButton"></zarpo-nav-bar>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)" (enabled)="true">
+        <ion-refresher-content
+            refreshingSpinner="none"
+            pullingIcon="none">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-list  *ngIf="true">
+        <zarpo-flash-card [items]="flashItems" [flashtype]="flashtype"> </zarpo-flash-card>
+    </ion-list >
+    <!--    <ion-infinite-scroll threshold="90%" (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>-->
+    <div class="footerwidth">
+        <zarpo-footer *ngIf="flashItems && flashItems.length >0"> </zarpo-footer>
+    </div>
+</ion-content>
+

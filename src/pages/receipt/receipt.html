@@ -1,0 +1,87 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content>
+    <div class="wrapper receipt"  >
+        <!--		    Order receipt with room details-->
+
+        <div  class="checkoutDivcard hotel-venda">
+            <!--                <div class="check-title">Sua reserva</div>-->
+            <div  class="giftReceiptDivcard hotel-venda">
+                <div class="fl1" *ngIf="hotelType!=='Vale'">
+                    <div class="title-fl1">{{name}}</div>
+                    <div class="title-fl1" style="margin-bottom:15px;">{{location}}</div>
+                    <div>
+                        <span class="checkinlabel">Check-in:</span>
+                        <span class="checkintext">{{checkInDate|formatDate}}, {{checkInDate|day}}</span>
+                    </div>
+                    <div>
+                        <span class="checkinlabel">Check-out:</span>
+                        <span class="checkintext">{{checkOutDate|formatDate}}, {{checkOutDate|day}}</span>
+                    </div>
+                    <div>
+                        <span class="checkinlabel">Para: </span>
+                        <span class="checkintext" style=""> {{totalNights}} noite(s), {{noOfRooms}} quarto(s) </span>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+                <div class="fl1" *ngIf="hotelType==='Vale'">
+                    <div class="title-fl1">{{giftName}}</div>
+                    <div class="title-fl1" style="margin-bottom:15px;">{{giftLocation}}</div>
+                    <div>
+                        <span class="checkinlabel">Para:</span>
+                        <span class="checkintext">
+                            {{firstname}} {{surname}}
+                        </span>
+                    </div>
+                    <div>
+                        <span class="checkinlabel">Entrega:</span>
+                        <span class="checkintext">{{giftDate}}</span>
+                    </div>
+
+                    <div style="clear:both;"></div>
+                </div>
+                <div class="fl1" style="padding: 0;padding-left: 10px;"  *ngIf="hotelType==='Vale'">
+                    <span class="calm">
+                        {{comment}}
+                    </span>
+                </div>
+                <div style="clear:both;"></div>
+                <div class="top-total">
+                    <div style="width:105%; height:10px; border-top:1px solid #CCCCCC;margin-top:7px; margin-left:-10px;"></div>
+                    <div class="fr">
+                        <div class="tsubtotal" style="width:40%; float:left;">Subtotal</div>
+                        <div class="preco-azul" style="width:60%; float:right;">
+                            <span>R$</span>
+                            <span style="float:right;">{{giftPrice}},00</span>
+                        </div>
+                    </div>
+                    <div class="fr" *ngIf="reward && reward > 0">
+                        <div class="tsubtotal" style="width:40%; float:left;">Créditos</div>
+                        <div class="preco-azul" style="width:60%; float:right;">
+                            <span>R$</span>
+                            <span style="float:right;">-{{reward}},00</span>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div style="width:105%; height:10px; border-top:1px solid #CCCCCC;margin-top:7px; margin-left:-10px;"></div>
+                    <div class="total" >
+                        <div class="fr" style="color:#404040 !important; font-size:18px;">
+                            <div class="tsubtotal" style="width:40%; float:left; color:#404040 !important; font-size:18px;">Total</div>
+                            <div class="preco-azul" style="width:60%; float:right;">
+                                <span>R$</span>
+                                <span class="right" style="float:right;">{{giftPrice - reward}},00</span>
+                              
+                            </div>
+                            <div style="clear:both"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="button button-block marT20 marB20"  primary
+                type="button" on-tap="redirect()">
+            Salvar e continuar
+        </button>
+
+    </div>
+
+</ion-content>

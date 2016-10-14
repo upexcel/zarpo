@@ -1,0 +1,81 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="feedback" no-bounce>
+    <div class="divcard">
+        <div  class="approvalDivcard">
+           
+            <form class="field padUD0 no-border" novalidate name="feedbackform">
+                <ion-row class="marB20 ">
+                    <p class="error-msg" *ngIf='dataerror'>
+                        É necessário preencher o nome do hotel e sua avaliação geral.
+                    </p>
+
+                    <p class="error-msg" *ngIf="errorMsg" [innerHtml]="errorMsg">
+                    </p>
+                </ion-row>
+                <div class="clear"></div>
+                <ion-row>
+                    <input  name="firstField" [class.errormsgB]="dataerror" type="text" (click)="modelChange()"  [(ngModel)]="hotelName" placeholder="Nome do hotel ou pacote">
+                </ion-row>
+            
+                <div class="clear"></div>
+                <ion-row class="marT20">
+                    <label class="paddingleft5">Avaliação geral</label>
+                </ion-row>
+                <ion-row class="rating">
+                    <ion-col class="star" width-10 [class.fill]="appStar>=1" id="star1" title="Um inferno" (mouseover)="fillStar(1)" (click)="fillStar(1)">
+
+                </ion-col>
+                <ion-col class="star" width-10 id="star2" [class.fill]="appStar>=2" title="Ruim é a palavra" (mouseover)="fillStar(2)" (click)="fillStar(2)">
+
+
+                </ion-col>
+                <ion-col class="star" width-10 id="star3" [class.fill]="appStar>=3" title="Mais do mesmo" (mouseover)="fillStar(3)" (click)="fillStar(3)">
+
+
+                </ion-col>
+                <ion-col class="star" width-10 id="star4" [class.fill]="appStar>=4" title="Gostinho de quero mais" (mouseover)="fillStar(4)" (click)="fillStar(4)">
+
+                </ion-col>
+                <ion-col class="star" width-10 id="star5" [class.fill]="appStar>=5" title="O paraíso" (mouseover)="fillStar(5)" (click)="fillStar(5)">
+
+                </ion-col>
+
+            </ion-row>
+            <ion-row>
+                <!--                <div class="col col-50">
+                                    <input class="swipeme" ng-model="feedback.myrange" ng-change="feedback.callFillStar(feedback.myrange)" type="range" min="0" max="5" step="1"/>
+                                </div>-->
+            </ion-row>
+            <div class="clear"></div>
+            <ion-row>
+                <textarea  name="txt3" class="textareaStyle" [(ngModel)]="textbox1"  placeholder="Do que mais gostou?"></textarea>
+
+            </ion-row>
+            <div class="clear"></div>
+            <ion-row>
+                <textarea name="text2" class="textareaStyle" [(ngModel)]="textbox2" placeholder="O que pode ser melhorado?"></textarea>
+
+            </ion-row>
+<!--            <ion-row>
+                <input name="secondField" type="text" class="textareaStyle" [(ngModel)]="textbox1"  placeholder="Do que mais gostou?" />
+
+            </ion-row>
+            <ion-row>
+                <textarea class="textareaStyle"  placeholder="O que pode ser melhorado?"></textarea>
+
+            </ion-row>-->
+            <div class="clear"></div>
+            </form>
+            <ion-row>
+                <button class="button button-block loginbtn marT20" primary type="submit" [class.greybg]="submit_button === 'Aguarde'" (click)="submit(submit_button)">
+                    <span>{{submit_button}}</span>
+                    <ion-spinner name="bubbles" *ngIf="submit_button === 'Aguarde'"></ion-spinner>
+                </button>
+
+            </ion-row>
+            <div class="clear"></div>
+        <!--</form>-->
+    </div>
+</div>
+
+</ion-content>

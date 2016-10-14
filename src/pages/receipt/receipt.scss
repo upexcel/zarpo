@@ -1,0 +1,48 @@
+.receipt{
+    .checkoutDivcard {
+        background: none repeat scroll 0 0 #f5f5f5;
+        border: 1px solid #cccccc;
+        color: #404040 !important;
+        /* margin-top: 20px; */
+        width: 100%;
+    }
+    .hotel-venda {
+        color: #404040;
+        .fl1 {
+            padding: 10px;
+        }
+        .top-total {
+            color: #84807f !important;
+            font-size: 16px;
+            padding: 10px;
+        }
+    }
+    .fl1 {
+        border-bottom: none;
+    }
+    .title-fl1 {
+        font-size: 16px;
+        line-height: 22px;
+        color: #404040;
+    }
+    .checkinlabel {
+        color: #84807f !important;
+        display: block;
+        float: left;
+        font-size: 16px;
+        line-height: 20px;
+        width: 40%;
+    }
+    .checkintext {
+        color: #84807f !important;
+        display: block;
+        float: left;
+        font-size: 16px;
+        line-height: 20px;
+        width: 60%;
+    }
+    .calm{
+        color: #11c1f3;
+    }
+}
+

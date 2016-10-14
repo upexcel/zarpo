@@ -1,0 +1,28 @@
+<div #anchor fullscreen="false" class="accordian-holder" id="zarpoHeader">
+    <ion-list class="">
+        <div *ngFor="let info of accData | keys ">
+            <ion-item class="border" *ngIf="hideTitle(info.title)"
+                [class.active]="isGroupShown(info.title)">
+                <span class="accordion-header beLeft padL" (click)="toggleGroup(info.title)"
+                      style="width:96%">
+                    <label [innerHTML]="info.title">
+                    </label>
+                    <ion-icon name="ios-arrow-forward-outline" *ngIf="isGroupShown(info.title) === false"
+                              class="pull-right padR25 calm">
+                </ion-icon>
+                <ion-icon name="ios-arrow-down-outline" *ngIf="isGroupShown(info.title) === true"
+                          class="pull-right padR25 calm">
+            </ion-icon>
+        </span>
+        <div style="width: 100%;" class="item-accordion clear" [class.active]="isGroupShown(info.title)"
+             [hidden]="!isGroupShown(info.title)">
+            <ul class="disc">
+                <li *ngFor="let subinfo of info.detail" 
+                    class="br subinfo productLi" [innerHTML]="subinfo">
+            </li>
+        </ul>
+    </div>
+</ion-item>
+</div>
+</ion-list>
+</div>

@@ -1,0 +1,47 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="reservation">
+    <div class="divcard myReservation" *ngIf="!showData">
+        <div>
+            <div class="form-heading-text" >
+                <p class="center myReservationText">Você não fez nenhuma reserva ainda.</p>
+            </div>
+            <div class="form-heading-text">
+                <p class="center myReservationText">Que tal planejar sua próxima viagem?</p>
+            </div>
+            <div class="form-heading-text beDown30">
+                <p class="center myReservationText "><a class="calm" (click)="redirect('flash')">Visitar as promoções atuais</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="divcard myReservation" *ngIf="showData">
+        <ion-list>
+            <ion-item class="no-border"  *ngFor="let reservation of list">
+                <div class="card">
+                    <div class="item item-text-wrap no-border flashdiv" >
+                        <a>
+                            
+                            <img src="{{reservation.image}}"/>
+                        </a>
+                    </div>
+                    <div class="pad-bot7">
+                        <label class="hotel-name"><a>{{reservation.hotel_name}}</a></label>
+                        <label class="hotel-location"><a>{{reservation.hotel_state}}</a></label>
+                    </div>
+                    <div class="">
+                        <div class="beLeft"> 
+                            <label class="br">Check-in: {{reservation.check_in}}</label>
+                            <label class="br">Check-out: {{reservation.check_out}}</label>
+                            <span *ngFor="let room of reservation.room_detail" class="br">
+                                <label class="br">{{room}}</label>
+                            </span>
+                        </div>
+                        <div class="beRight">
+                            <label class="br default-font">Total </label>
+                            <label class="br default-font" [innerHtml]="reservation.grand_total"></label>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

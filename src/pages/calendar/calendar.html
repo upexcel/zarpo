@@ -1,0 +1,210 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [customback]="customback" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="calendar" >
+    <div class="divcard checkout">
+        <div *ngIf="responseReady === false">
+            <p style="text-align: center;">
+                <!--<span><ion-spinner icon="bubbles"></ion-spinner></span>-->
+                Por favor, aguarde enquanto as datas são carregadas. 
+
+            </p>
+        </div>
+
+        <!--It will show when ajac firing get completed and data will available-->
+        <div *ngIf="bookingResponse" [hidden]="!responseReady" class="">
+            <div>
+
+                <!--Tabs for toggle b/w checkin and checkout calender-->
+                <div id="date_tab_holder">
+                    <ion-grid class="myform login-header no-padding">
+                        <ion-row class=" no-padding">
+                            <ion-col class=" no-padding greybg rb" [class.activetab]="!dateNotSelected">
+                                <a (click)="activateStep1()" >{{checkinDate|formatDate}}</a>
+                            </ion-col>
+                            <ion-col class="greybg  no-padding" [class.activetab]="checkinDate !== '1. Data de entrada' && step3 === false">
+                                     <a (click)="activateStep2()">{{checkoutDate|formatDate}}</a>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <!--Calender for checkout-date-->
+                    <div id="step1"  *ngIf="dateNotSelected && !step3" class="marU10">
+                        <div id="checkout_datepicker" >
+
+                        </div>
+                        <ion-row class="legend" *ngIf="bookingResponse.checkin.first_checkin">
+                            <ion-col width-45 class="textright">
+                                <img src="http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/ico-legenda.gif">
+                                Disponível			                            
+                            </ion-col>
+                            <ion-col width-45 class="margin10">
+                                <img src="http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/imgo.jpg">
+                                Melhor tarifa		
+                            </ion-col>
+                        </ion-row>
+
+                    </div>
+                    <!--Calender for checkin-date-->
+                    <div id="step2" class="marU10" *ngIf="!dateNotSelected">
+
+
+                        <div id="checkin_datepicker" >
+
+                        </div>
+                        <ion-row class="legend" *ngIf="responseReady===true">
+                            <ion-col width-45 class="textright">
+
+                                <img src="assets/img/blue-icon.gif">
+                                Disponível			                            
+                            </ion-col>
+                            <ion-col width-45 class="margin10">
+                                <img src="assets/img/orange-icon.jpg">
+
+                                Melhor tarifa		
+                            </ion-col>
+                        </ion-row>
+
+                    </div>
+                </div>
+            </div>
+            <!--<hotel-list *ngIf="step3" [flashType]="flashType" [checkindate]="checkinDate" [checkoutdate]="checkoutDate" [accContent]="content" [bookingResponse]="bookingResponse"></hotel-list>-->
+            <!--==============================================================================================-->
+            <ion-item *ngIf="step3">
+                <div   *ngFor="let rooms of bookingResponse.rooms_info.rooms | rooms">
+                    <ion-item class="br calendar border-bottom myhotel" id="room_{{rooms.room_id}}" 
+                          *ngIf="showAvailableRooms(rooms.room_id)"
+                          [class.avtive]="true"  >
+                        <div class="accordion-header1">
+                            <div (click)="toggleGroup(rooms)"> 
+                                <!--            <ion-grid>-->
+                                <ul class="parent">
+                                    <li class="rooms left_child listmain">
+                                        <ul class="left_col">
+                                            <li><strong>{{rooms.name}}</strong></li>
+                                            <li *ngFor="let roomDetail of rooms.description" [innerHtml]="roomDetail">
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="right_child rooms" style="width: 100px;
+                                    position:absolute;
+                                    right : 0px;
+                                    top: 0px;vertical-align: top;">
+                                    <ul class="right_col">
+                                        <li>
+                                            <label *ngIf="flashType=='Pacote'">
+                                                R${{getClientPrice(rooms.room_id)}}
+                                            </label>
+                                            <label *ngIf="flashType!='Pacote'">
+                                                R${{getClientPrice(rooms.room_id)}}/noite
+                                            </label>
+                                        </li>
+                                        <li>
+
+                                            <button primary class="calm-bg options fa" >
+                                                opções &nbsp;  
+                                                <span *ngIf="header[rooms.room_id] === false || !header[rooms.room_id]"> + </span>
+                                                <span *ngIf="header[rooms.room_id] === true"> - </span>
+
+                                            </button> 
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!--        </ion-grid>-->
+                        </div>
+
+                        <div class="clear"></div>
+                        <div class="clearfix"></div>
+                        <div style="width: 100%;display: none !important;" id="subroom_{{rooms.room_id}}" 
+                             class=" item-accordion1 roomDescription border-top clear" >
+                            <div *ngFor="let subrooms of rooms.subrooms|rooms" class="subroom">
+                                <table>
+                                    <tr>
+                                        <td style="vertical-align: top;">
+                                            <ul class="left_col">
+                                                <li><strong>{{subrooms.s_name}}</strong></li>
+                                                <li *ngFor="let subroomDetail of subrooms.s_description" [innerHtml]="subroomDetail"></li>
+                                            </ul>
+                                        </td>
+                                        <td style="vertical-align: top;" class="roomsDetail">
+                                            <ul class="right_col">
+                                                <li>
+                                                    <label>
+                                                        R${{getClientPrice(subrooms.s_room_id)}}/noite
+                                                    </label>
+                                                </li>
+                                                <li>
+
+                                                    <select id="{{subrooms.s_room_id}}" class="ion-android-arrow-down" [(ngModel)]="subroom[subrooms.s_room_id]"
+                                                            (ngModelChange)="getRoom(subrooms, subroom[subrooms.s_room_id], rooms.room_id, rooms.name, rooms.super_attribute)">
+                                                            <option value="0">0</option>
+                                                        <option *ngFor="let no of convertArray(getStock(subrooms.s_room_id)); let i = index" value="{{i + 1}}">{{i + 1}}</option>
+                                                    </select>
+                                                    <div class="select_label" *ngIf="attribute === 'Hotel'">Nº de aptos</div>
+                                                    <div class="select_label" *ngIf="attribute === 'Pacote'">Nº de pacotes</div>
+                                                </li>
+                                                <li>
+                                                    <div class="icon_holder">
+
+                                                        <div class="permitted_member_child" *ngFor="let child of subrooms.kids|adultChild" >
+                                                             <img src="assets/img/kid.png"/>
+                                                        </div>
+                                                        <div class="permitted_member_adult" *ngFor="let adult of subrooms.adults|adultChild" >
+                                                             <img src="assets/img/adult.png"/>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </ion-item>
+            </div>
+
+        </ion-item>
+
+        <!--===================================================================-->
+    </div>
+
+
+</div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar position="bottom" *ngIf="step3">
+        <ion-row class="no-margin no-padding" *ngIf="minError == true || maxError == true">
+                 <ion-col class="no-margin no-padding">
+                <p class="errormsg" *ngIf="minError" >
+                    Selecione uma opção acima!
+                </p>
+                <p  class="errormsg" *ngIf="maxError">
+                    Capacidade ultrapassada!
+                </p>
+            </ion-col>
+        </ion-row>
+        <ul class="no-margin no-padding">
+            <li width-50 class="no-margin no-padding">
+                <div class="calm br giftlabel">R${{selected_ClientPrice}}</div>
+                <div class="giftlabelspan">Em vez de <span class="strike">R${{selected_MRP}}</span></div>
+            </li >
+            <li width-50 class="no-margin no-padding" >
+                <div *ngIf="selectError" style="display: block;">
+                </div>
+                <button class="button br no-margin" primary type="button" 
+                        style="float: right;padding: 0 18px;height:37px;" [ngClass]="{'greybg':step3_btn == 'Aguarde'}"
+                        on-tap="addbookingRooms()">
+                    {{step3_btn}}                
+                </button>
+            </li>
+        </ul>
+    </ion-toolbar>
+    <ion-footer>
+
+        <!--if we leave flash page before all data ..its not get update after coming back to falsh.-->
+
+        <!--order on flash page is different-->
+
+        <!--prefetch caleder data-->

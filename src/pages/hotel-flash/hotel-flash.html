@@ -1,0 +1,54 @@
+<zarpo-nav-bar class="upercase" [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+
+<ion-content fullscreen="false">
+    <ion-refresher (ionRefresh)="doRefresh($event)" (enabled)="true">
+        <ion-refresher-content
+            refreshingSpinner="none"
+            pullingIcon="none"
+            >
+        </ion-refresher-content>
+    </ion-refresher>
+    <!--only for ja-->
+   
+    <div class="divcard checkout" *ngIf="data.is_ja===true && apiLoader === false && storeClosed === true" [hidden]="!storeClosed===true">
+         <div  class="approvalDivcard">
+            <div class="row marUD0 padT20" >
+                <p class="marUD0">
+                    Boa tarde!
+                    <br/> 
+                    <br/>
+                    O Zarpo Já encerra durante uma hora por semana, o tempo de 
+                    carregramos novas promoções e atualizar todas as tarifas dos
+                    hotéis participantes. Reabrimos às 16h, sem falta, com novas 
+                    promoções de última hora em hotéis no Brasil todo! 
+                    <br/> 
+                    <br/>
+                    Por enquanto, que tal visitar o Zarpo Hotéis?
+                </p>
+            </div>
+            <div class="clear"></div>
+            <button class="button button-block button-calm marT20"
+                    (click)="redirectToHotel()">
+                Ir ao Zarpo Hotéis
+            </button>
+
+        </div>
+    </div>
+
+    <ion-list  *ngIf="storeClosed !== true">
+<ion-item class="marginPadinng">
+        <zarpo-flash-card  *ngIf="!refresh"
+            [items]="flashItems" [flashtype]="flashtype"> 
+        </zarpo-flash-card>
+</ion-item>
+        <!--        <ion-infinite-scroll threshold="500px" (ionInfinite)="doInfinite($event)">
+                    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+                </ion-infinite-scroll>-->
+
+    </ion-list >
+    <div class="footerwidth" *ngIf="!refresh">
+        <zarpo-footer *ngIf="flashItems && flashItems.length >0"> </zarpo-footer>
+    </div>
+
+
+</ion-content>

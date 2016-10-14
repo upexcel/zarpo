@@ -1,0 +1,257 @@
+import {Events} from 'ionic-angular';
+import {Component, Input, OnChanges, Output, forwardRef} from '@angular/core';
+import {errorhandler} from '../../services/error';
+import { NavController, NavParams} from 'ionic-angular';
+import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
+import {FooterComponent} from '../../footer/footer.component';
+
+import {FlashCardComponent} from '../../flash-card/flash-card.component';
+import {HotelDetail} from '../hotel-detail/hotel-detail';
+//import {GoogleTagService} from '../../services/google-tag.service';
+import {Rxjs} from '../../services/Rxjs';
+import {LocalStorageService} from '../../services/local-storage.service';
+import {ZarpoHotelPipe} from '../../filters/hotel/zarpo-hotel.pipe';
+//import * as _ from 'lodash';
+import _ from 'lodash';
+@Component({
+    templateUrl: 'hotel-flash.html',
+//    directives: [FlashCardComponent, FooterComponent, forwardRef(() => ZarpoNavComponent)],
+//    pipes: [ZarpoHotelPipe]
+
+})
+
+export class HotelFlash {
+    pageTitle: string = "Hotéis";
+    zarpoIcon: boolean = true;
+    path: string = "flash";
+    flashtype: string = 'Hotel';
+    data: any = {
+        user_token: "",
+        group_id: "",
+        is_ja: false
+    };
+    storeClosed: boolean = false;
+    stopAjax: boolean = false;
+    nav: NavController;
+    navParams: NavParams;
+    api: Rxjs;
+
+    flashItems: any = [];
+    apiLoader: boolean = false;
+    flashRefresher: any;
+    itemss: any = [];
+    page = 1;
+    public refresh: boolean = false;
+    constructor(
+        private _nav: NavController,
+        private _navParams: NavParams,
+        public _events: Events,
+        public local: LocalStorageService,
+        private _ajaxRxjs: Rxjs,
+        private _errorhandler: errorhandler
+//        private _gtm: GoogleTagService
+    ) {
+//        this._gtm.setScript5('');
+  
+        this.nav = this._nav;
+        this.api = this._ajaxRxjs;
+        if (this._navParams.get('hotelType')) {
+            this.flashtype = this._navParams.get('hotelType');
+        }
+        this.local = this.local;
+        this.local.getValue('user_data').then((response) => {
+            if (response) {
+                this.data.user_token = response.data.user_token;
+                this.data.group_id = response.data.group_id;
+                this.data.page = this.page;
+                //set page type and is ja value according to link
+                if (this.flashtype == 'Hotel') {
+                    this.data.page_type = "Hotel or room";
+                    this.data.is_ja = false;
+                    this.pageTitle = 'Hotéis';
+                }
+                else if (this.flashtype == 'Pacote') {
+                    this.data.page_type = "Pacote";
+                    this.data.is_ja = false;
+                    this.pageTitle = 'Pacotes';
+                }
+                else {
+                    this.data.page_type = "Hotel or room";
+                    this.data.is_ja = true;
+                    this.pageTitle = 'ZARPO JÁ';
+                }
+
+                this.apiLoader = true;
+
+                let allData = {
+                    user_token: this.data.user_token,
+                    group_id: this.data.group_id,
+                    is_ja: false
+                }
+                this.alldata(allData);
+                let allDataja = {
+                    user_token: this.data.user_token,
+                    group_id: this.data.group_id,
+                    is_ja: true
+                }
+                this.alldata(allDataja);
+            }
+        });
+
+    }
+    doInfinite(infiniteScroll) {
+        let data = {
+            user_token: this.data.user_token,
+            group_id: this.data.group_id,
+            page: this.page,
+            page_type: "Hotel or room",
+            is_ja: false
+        }
+
+        this.getItems(data);
+        infiniteScroll.complete();
+
+    }
+    //calling to prefetch data to store in local-storege for filters
+    alldata(allData: any) {
+        this.local.getTimerStorage('allData').then((response) => {
+         
+//            if (response && response.length > 0) {
+//          
+//            } else {
+           console.log('data checking',response);
+                this.api.ajaxRequest(this.path, allData).subscribe((response: any) => {
+                    console.log(response);
+                    if (response.data && response.data.length > 0) {
+                        if (!allData.is_ja) {
+                            this.local.setTimerStorage("allData", response.data, 0.15);
+                        } else {
+                            this.local.setTimerStorage("allDataJa", response.data, 0.15);
+                        }
+                    }
+                }, (error) => {
+                    this._errorhandler.err(error);
+                });
+//            }
+        })
+    }
+    ionViewWillEnter() {
+        this.stopAjax = false;
+        this.data.page = this.page;
+        console.log('enter in view', this.page);
+        this.getItems(this.data);
+    }
+
+    getItems(data: any) {
+        this.local.getTimerStorage('flash_data').then((response) => {
+
+
+            //valresponseue fetched from local storage
+//            if (response && response.length > 0) {
+////                this.flashItems = response;
+////                this.apiLoader = false;
+////                this.refreshItems();
+//            }
+            //fire api for data
+//            else {
+                this.api.ajaxRequest(this.path, data).subscribe((response: any) => {
+                    if (data.page == 1) {
+                        console.log('yes');
+                        this.refresh = false;
+                        this.flashItems = [];
+                    }
+                    if (response.data && response.data.length > 0 && response.data !== 'ja store closed.') {
+                        this.page++;
+
+                        let data: any = {
+                            user_token: this.data.user_token,
+                            group_id: this.data.group_id,
+                            page: this.page
+                        }
+                        if (this.flashtype == 'Hotel') {
+                            data.page_type = "Hotel or room";
+                            data.is_ja = false;
+                        } else if (this.flashtype == 'Pacote') {
+                            data.page_type = "Pacote";
+                            data.is_ja = false;
+                        } else {
+                            data.page_type = "Hotel or room";
+                            data.is_ja = true;
+                        }
+                        if (!this.stopAjax) {
+                            this.getItems(data);
+                        }
+                        _.map(response.data, (response) => {
+                            this.flashItems.push(response);
+                          
+                        });
+                      
+                        if (this.refresh) {
+                            this.apiLoader = true
+                        } else {
+                            this.apiLoader = false;
+                            this.refresh = false;
+                        }
+                        this.refreshItems();
+                    }
+                    else {
+
+                        if (response.data && response.data === 'ja store closed.') {
+
+                            this.storeClosed = true;
+                        }
+                    }
+                }, (error) => {
+                    this._errorhandler.err(error);
+                });
+//
+//            }
+        });
+
+    }
+    ionViewWillLeave() {
+        this.stopAjax = true;
+    }
+    displayDetailItem(item: any) {
+        var paramData = {
+            id: item.hotel_id,
+            name: item.name,
+            location: item.location,
+        }
+        this.stopAjax = true;
+        this.nav.push(HotelDetail, paramData);
+    }
+    refreshItems() {
+        this.flashRefresher = setTimeout(() => {
+            //delete local data and fetch items
+            this.local.removeTimerStorage('flash_data');
+            this.getItems(this.data);
+        }, 18 * 60 * 1000);
+    }
+    doRefresh(refresher: any) {
+        console.log('hello i am refresing');
+        this.apiLoader = true;
+        this.flashItems = [];
+        this.refresh = true;
+        this.page = 1;
+        this.data.page = this.page;
+        //delete local data and fetch items
+        this.local.removeTimerStorage('flash_data');
+
+        this.getItems(this.data);
+        refresher.complete();
+    }
+
+    redirectToHotel() {
+        this.flashItems = [];
+        this.data.page_type = "Hotel or room";
+        this.data.is_ja = false;
+        this.pageTitle = 'Hotéis';
+        this.getItems(this.data);
+    }
+    onPageWillLeave() {
+        //stop refreshing of flash hotels 
+        clearTimeout(this.flashRefresher);
+    }
+
+}

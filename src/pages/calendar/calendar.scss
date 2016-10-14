@@ -1,0 +1,932 @@
+.calendar{
+    .toolbar-background{
+        border-bottom-width: 0;
+        border-color: #ccc;
+        border-style: none;
+    }
+    scroll-content{
+        padding-bottom: 72px;
+    }
+    .marU10 {
+        margin-top: 10px;
+    }
+    .toolbar {
+        min-height: 70px;
+        border-top: 1px solid #ddd;
+    }
+    .cont{
+        margin-bottom: 70px;
+    }
+    .greybg.rb{
+        border-right: 1px solid #ccc;
+    }
+    .login-header {
+        height: 50px;
+        background-color: transparent;
+        margin-bottom: 0;
+    }
+    ion-row{
+        height: 100%;
+    }
+    #date_tab_holder{
+        ion-col{
+            line-height: 3;
+            a{
+                color: #424242;
+            }
+            text-align: center;
+        }
+        ion-col.activetab {
+            line-height: 2;
+        }
+    }
+
+
+    ul {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    .activetab {
+        margin: 0;
+        padding-top: 0 !important;
+        border-top: 8px solid #00c8ee !important;
+        background-color: #ffffff !important;
+        transition: border ease-in;
+    }
+    .greybg {
+        background: none repeat scroll 0 0 #f5f5f5 ;
+        color: #404040 !important;
+        border: 0 none;
+    }
+
+    li {
+        /* background: none repeat scroll 0 0 #e5e5e5; */
+        display: inline-block;
+        text-align: center;
+        width: 50%;
+        position: relative;
+        float: left;
+        margin: 0;
+        padding: 0 5px;
+        padding-top: 8px;
+        /* background-color: #e5e5e5; */
+        /* border-bottom: 6px solid #e5e5e5; */
+    }
+    .legend img {
+        width: 13px;
+        height: 13px;
+    }
+    .strike{
+        text-decoration: line-through;
+        color: #919191;
+    }
+    ul li a {
+        cursor: pointer;
+        line-height: 2.8;
+        display: block;
+        color: #555555;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 100%;
+        /* line-height: 38px; */
+        padding: 0 1%;
+        vertical-align: baseline;
+        overflow: hidden;
+    }
+    .ui-datepicker-title {
+        text-align:center;
+    }
+
+    h3.loader-title{ 
+        font-size:17px;
+        color:#FDFAD0 !important;
+        font-weight: 600;
+    }
+    p.loader-body{ 
+        font-size:15px;
+        color: #fff;
+    }
+    .ui-datepicker td.ui-datepicker-current-day sapn, .ui-datepicker td.ui-datepicker-current-day a{
+        color:#fff !important;
+    }
+
+    #checkout_datepicker .ui-datepicker table.ui-datepicker-calendar tbody tr td.ui-datepicker-current-day{
+        border: 2px solid #404040;
+        line-height: 1.5em;
+    }
+    #checkout_datepicker .ui-datepicker table.ui-datepicker-calendar tbody tr td.ui-datepicker-current-day.unselectable{
+        border: none;
+    }
+    .ui-datepicker table tbody tr td.unselectable a{
+        color:grey !important;
+    }
+
+
+    #checkout_datepicker .ui-datepicker table.ui-datepicker-calendar tbody tr td.ui-datepicker-current-day span{
+        padding: 0;
+    }
+    .myclass{   
+        border: 2px solid red !important;
+        background-color: red !important;
+        background: none repeat scroll 0 0 red;
+    }
+    .unselectable{
+
+    }
+    .positive-border {
+        border-color: #0c63ee !important;
+    }
+    .energized-border {
+        border-color: #e6b400 !important;
+    }
+    .disable{
+        border: 2px solid red !important;
+        background-color: red !important;
+        background: none repeat scroll 0 0 red;
+    }
+    #checkout_datepicker table tr td.ui-datepicker-current-day{
+        border: 2px solid #404040;
+    }
+    /*#checkout_datepicker table tr td.ui-datepicker-current-day:after{
+        content:"check_in";
+        font-size: 10px;
+        color: yellow;
+        
+        
+    }*/
+    .tooltipsy:before {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: transparent transparent transparent #000;
+        border-image: none;
+        border-style: solid;
+        border-width: 10px;
+        content: "";
+        position: absolute;
+        right: 25%;
+        bottom: -10px;
+        z-index: -1;
+    }
+    .ui-datepicker td.ui-datepicker-current-day sapn, .ui-datepicker td.ui-datepicker-current-day.selectable a{
+        color: #fff !important;
+    }
+    .ui-datepicker td.ui-datepicker-current-day sapn, .ui-datepicker td.ui-datepicker-current-day a{
+        /*    color: #979291 !important;*/
+        /*    background-color: #e6e6e6 !important;*/
+        /*    background: none repeat scroll 0 0 #e6e6e6;*/
+    }
+    .tooltipsy {
+        background-color: #222;
+        border-radius: 2px;
+        box-shadow: 0 0 10px #000 inset;
+        color: #fff;
+        padding: 10px;
+        position: relative;
+        text-shadow: 0 0 3px #000;
+    }
+    .ui-widget-content .ui-state-active.ui-state-default{
+        /*    background-color: #00c8ee;*/
+        /*    border: 1px solid #00c8ee;*/
+        color: #ffffff;
+    }
+    .ui-widget-content .ui-state-highlight{
+        /*    background-color: #00c8ee !important;*/
+        border: 1px solid #00c8ee;
+        color: #ffffff;
+    }
+    .ui-datepicker{
+        width: 100%;
+        font-family: HelveticaLight;
+    }
+    .ui-datepicker .ui-datepicker-header{
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 1em;
+        padding-top: 1em;
+    }
+    .ui-datepicker .ui-datepicker-title{
+        line-height: 0.8;
+    }
+    .ui-datepicker-title span{
+        color: #404040;
+        font-family: HelveticaLight;
+        font-weight: 500;
+    }
+    .ui-datepicker th span {
+        color: #919191 !important;
+        font-size: 11px;
+        font-family: HelveticaLight;
+    }
+    .ui-datepicker table {
+        border-collapse: separate;
+        border-spacing: 2px;
+        width: 100%;
+    }
+    .ui-widget-header .ui-icon {
+        position:relative;
+
+        background-image: url("http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpando/booking/css/redmond/images/ui-icons_217bc0_256x240.png");
+    }
+    .ui-datepicker-next:hover,.ui-datepicker-prev:hover{
+        border: 0 none;
+        background: none;
+    }
+
+    .ui-datepicker-next span {
+        background: url("../../img/prox.png") no-repeat scroll right top 22px transparent !important;
+        display: block;
+        height: 35px;
+        width: 100%;
+    }
+    .ui-datepicker-prev{
+        position: absolute;
+        top: 136px;
+        width: 5em;
+        height: 3em; 
+        left:16px;
+    }
+    .ui-datepicker .ui-datepicker-next{
+        position: absolute;
+        top: 136px;
+        width: 5em;
+        height: 3em;
+        right:16px;
+    }
+    .ui-datepicker-prev span {
+        background: url('../../img/prev.png') no-repeat scroll right top 22px transparent !important;
+        display: block;
+        height: 35px;
+        width: 45px;
+    }
+    .ui-datepicker td {
+        background-color: #00c8ee;
+        border: 0 none;
+        line-height: 2.5em;
+        padding: 0;
+        text-align: center;
+        width: 2.5em;
+    }
+    a.ui-state-default{
+        background: inherit;
+    }
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+        background: none;
+        border: 0 none;
+        color: #979291;
+        font-weight: bolder;
+    }
+    .range-slider {
+        width: 100%;
+    }
+    .range-slider .ui-slider-handle{
+        background:#00c8ee;
+        border-radius: 50%;
+    }
+    .range-slider.ui-slider{
+        /*    background-color: #211713;*/
+        border-radius: 5px;
+    }
+    #checkout_datepicker .ui-datepicker td.ui-datepicker-current-day.selectable{
+        background-color:  #00c8ee !important;
+        /*    border: 2px solid #404040 !important;
+            background-color: #e6e6e6 !important;
+            background: none repeat scroll 0 0 #e6e6e6;*/
+    }
+    .selectable{
+        background-color:  #00c8ee !important;
+    }
+    .orange{
+        background-color:  rgb(255, 165, 5) !important;
+    }
+    .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+        background: none repeat scroll 0 0 #e6e6e6;
+        opacity: 1;
+    }
+    .ui-state-disabled{
+        border: 0 none;
+    }
+    /*ui-datepicker-unselectable ui-state-disabled*/
+    .ui-datepicker-other-month {
+        /*    display: none;*/
+        background: none repeat scroll 0 0 #fff !important;
+    }
+    .ui-datepicker-header .ui-state-disabled{
+        background: none;
+    }
+    .ui-datepicker tr{
+        line-height: 2;
+    }
+    .ui-datepicker td a {
+        color: #fff !important;
+        display: block;
+        font-size: 12px;
+        font-weight: bold;
+        text-decoration: none;
+        text-align: center;
+    }
+    .ui-datepicker td span{
+        color: #979291;
+        display: block;
+        font-size: 12px;
+        font-weight: bold;
+        /*    height: 18px;
+            text-decoration: none;*/
+        text-align: center;
+    }
+
+    .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+        border-radius: 0;
+        border: none;
+    }
+    .ui-widget-header{
+        background-color: #ffffff;
+    }
+    div.table-holder{
+        width: 100%;
+        background-color: #f5f5f5;
+    }
+    div.table-holder table{
+        width: 100%;
+        padding: 10px;
+    }
+    div.table-holder table tr{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    div.table-holder table tr td{
+        color: #919191;
+        font-size: 85%;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+    div.table-holder table tr td.rooms{
+        padding: 10px;
+    }
+    div.table-holder table tr td.roomsDetail{
+        padding: 0px 10px;
+    }
+
+    .table-holder table tr td.right_col{
+        float: right;
+    }
+    .curtain{
+        background-color: #404040;
+        width:100%;
+    }
+    .options .ion-plus{
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 1;
+        padding-left: 4px;
+    }
+    .options .ion-minus{
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 1;
+        padding-left: 4px;
+    }
+    .right_col button{
+        /*    background: url("http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/options-more1.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
+        border: 0 none;
+        color: #ffffff;
+        cursor: pointer;
+        display: block;
+        font-size: 15px;
+        height: 25px;
+        margin-top: 0 !important;
+        padding: 0 !important;
+        width: 82px;
+    }
+    .right_col button.active{
+        background: url("http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/options-less1.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+    .table-holder .item{
+        /*    background: none repeat scroll 0 0 #f5f5f5;*/
+    }
+    .item.border-bottom{
+        border-bottom: 1px solid #d9d9d9;
+    }
+    .border-top{
+        border-top: 1px solid #d9d9d9;
+    }
+
+    .item-accordion1 ul li{
+        width: 100%;
+        background: none repeat scroll 0 0 #ffffff;
+    }
+    .accordion-header1 {
+
+        background: none repeat scroll 0 0 #f5f5f5;
+        div{
+            background: none repeat scroll 0 0 #fff; 
+        }
+    }
+    .accordion-header1 table{
+        background: none repeat scroll 0 0 #f5f5f5;
+    }
+    .item-accordion1 table tr td{
+        background: none repeat scroll 0 0 #ffffff;
+    }
+    .icon_holder{
+        width: 100%;
+        height: 30px;
+        margin-top: 7px;
+        overflow: hidden;
+    }
+    .permitted_member_child{
+        float: right;
+        padding-top: 7px;
+    }
+    .permitted_member_child img{
+        width: 8px;
+        height: 18px;
+    }
+    .permitted_member_adult{
+        float: right;
+    }
+    .permitted_member_adult img{
+        width: 12px;
+        height: 25px;
+    }
+    ul.left_col li{
+        /*    background: none repeat scroll 0 0 #f5f5f5;*/
+        clear: both;
+        display:inline-table;
+        float: left;
+        line-height: 1.3;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        text-align: left;
+        width: 100%;
+        font-size: 12px;
+        word-break: break-word;
+        white-space: normal;
+    }
+    ul.left_col li:nth-of-type(1){
+        font-size: 1.1em;
+    }
+    ul.right_col li{
+        clear: both;
+        display: block;
+        float: right;
+        line-height: 1.3;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        text-align: left;
+        width: 100%;
+    }
+    ul.right_col li label{
+        float: right;
+        margin-bottom: 5px;
+    }
+    ul.right_col li select{
+        background-color: #fff;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        float: right;
+        height: 30px;
+        padding-left: 5px;
+        width: 40px;
+        background-image: url("../img/select-arrow1.png");
+        background-repeat: no-repeat;
+        background-position: 80% 50%;
+        background-size: 8px;
+    }
+    ul.right_col li select:before{
+        content: "\f35d";
+        font-family: Ionicons;
+    }
+    ul.right_col li button{
+        float: right;
+    }
+    .item-accordion1 table tr td:first-child{
+        width: 70%;
+    } 
+    .select_label {
+        font-size: 83%;
+        line-height: 1;
+        white-space: pre-wrap;
+        text-align: right;
+        margin-right: 50px;
+    }
+    .item-accordion1 .subroom{
+        border-bottom: 1px solid #d9d9d9;
+        height: auto;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    .item-accordion1:last-child{
+        border-bottom: 1px solid #ffffff;
+
+    }
+    .newtooltip {
+        background: url("http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/rsz_notif1.png") no-repeat scroll 0 0 transparent;
+        bottom: 58px;
+        display: none;
+        font-size: 10px;
+        height: 61px;
+        padding-left: 2px;
+        padding-top: 11px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        width: 169px;
+    }
+    .newtooltip1 {
+        background: url("http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/rsz_notif2.png") no-repeat scroll 0 0 transparent;
+        bottom: 58px;
+        display: none;
+        font-size: 10px;
+        height: 61px;
+        padding-left: 2px;
+        padding-top: 11px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        width: 169px;
+    }
+    .newtooltip2 {
+        background: url("http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/rsz_notif3.png") no-repeat scroll 0 0 transparent;
+        bottom: 58px;
+        display: none;
+        font-size: 10px;
+        height: 61px;
+        padding-left: 2px;
+        padding-top: 11px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        width: 169px;
+    }
+    .newtooltip3 {
+        background: url("http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/rsz_notif4.png") no-repeat scroll 0 0 transparent;
+        bottom: 48px;
+        display: none;
+        font-size: 10px;
+        height: 77px;
+        padding-left: 2px;
+        padding-top: 11px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        width: 169px;
+        z-index: 7;
+    }
+    .giftlabel{
+        padding-left: 5px;
+        text-align: left;
+    }
+    .giftlabelspan{
+        padding-left: 5px;
+
+        text-align: left;
+
+    }
+    @media only screen and (max-width: 200px){
+        .flash-title{
+            font-size: .8em;
+        }
+        .producttext,.accordion-header label,.serverDown p, .p.myaccLink a,.bigger,.corpo-padrao h3.h3-padrao{
+            font-size: .8em;
+        }
+        .hotel-name a,
+        .gap div ul li,.gap h4{
+            font-size: .8em;
+            font-weight: 500;
+        }
+        .hotel-location a{
+            font-size: .7em;
+            font-weight: 300;
+        } 
+        ul li a,.item-accordion ul li{
+            font-size: .8em;
+        }
+        .giftlabel{
+            font-size: .8em;
+            color:#0eb8e0;
+            text-align: left;
+        }
+        .giftlabelspan{
+            color:#919191;
+            font-size: .8em;
+            text-align: left;
+
+        }
+    }
+    @media only screen and (min-width: 200px)and (max-width: 299px){
+        .flash-title{
+            font-size: .9em;
+        }
+        .producttext,.accordion-header label,.serverDown p, .p.myaccLink a,.bigger,.corpo-padrao h3.h3-padrao{
+            font-size: .9em;
+        }
+        .hotel-name a,
+        .gap div ul li,.gap h4 {
+            font-size: .9em;
+            font-weight: 500;
+        }
+        .hotel-location a{
+            font-size: .8em;
+            font-weight: 300;
+        } 
+        ul li a,.item-accordion ul li{
+            font-size: .9em;
+        }
+        .giftlabel{
+            color:#0eb8e0;
+            font-size: .8em;
+            text-align: left;
+
+        }
+        .giftlabelspan{
+            color:#919191;
+            font-size: .8em;
+            text-align: left;
+
+        }
+    }
+    @media only screen and (min-width: 300px)and (max-width: 379px){
+        .flash-title{
+            font-size: 1em;
+        }
+        .producttext,.accordion-header label,.serverDown p, .p.myaccLink a,.bigger,.corpo-padrao h3.h3-padrao{
+            font-size: 1em;
+        }
+        .hotel-name a,
+        .gap div ul li,.gap h4 {
+            font-size: 1em;
+            font-weight: 500;
+        }
+        .hotel-location a{
+            font-size: .9em;
+            font-weight: 300;
+        } 
+        ul li a,.item-accordion ul li{
+            font-size: 1em;
+        }
+        .giftlabel{
+            color:#0eb8e0;
+            font-size: 1.1em;
+            text-align: left;
+
+        }
+        .giftlabelspan{
+            color:#919191;
+            font-size: .9em;
+            text-align: left;
+
+        }
+    }
+    @media only screen and (min-width: 380px)and (max-width: 510px){
+        .flash-title{
+            font-size: 1.2em;
+        }
+        .producttext,.accordion-header label,.serverDown p, .p.myaccLink a,.bigger,.corpo-padrao h3.h3-padrao{
+            font-size: 1.2em;
+        }
+        .hotel-name a,
+        .gap div ul li ,.gap h4{
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        .hotel-location a{
+            font-size: 1.1em;
+            font-weight: 400;
+        } 
+        ul li a,.item-accordion ul li{
+            font-size: 1.2em;
+        }
+        .giftlabel{
+            color:#0eb8e0;
+            font-size: 1.3em;
+            text-align: left;
+
+        }
+        .giftlabelspan{
+            color:#919191;
+            font-size: 1em;
+            text-align: left;
+
+        }
+    }
+    ionic-datepicker{
+        width: 100%;
+        max-height:35px;
+    }
+    ionic-datepicker .button.button-positive{
+        border-color: transparent;
+        background-color: transparent;
+        color: #a6a6a6;
+    }
+    #giftCalender ionic-datepicker button.button.button-positive{
+        margin: 0 auto;
+        right: 0px !important;
+        min-height: 35px !important;
+        line-height: 1.3;
+        font-size: 15px;
+        text-align: center;
+        padding-left: 23px;
+    }
+    ionic-datepicker button.button.button-positive{
+        float: left;
+        margin: 0;
+        right: 0px !important;
+        min-height: 35px !important;
+        line-height: 1.3;
+        font-size:15px;
+        text-align: left;
+        padding-left: 5px;
+    }
+    ionic-datepicker button.button.button-positive:hover{
+        color:#a6a6a6;
+    }
+    ionic-datepicker button.button.button-positive.active,
+    ionic-datepicker button.button.button-positive.activated{
+        border-color: transparent;
+        background-color: transparent;
+        color: #a6a6a6;
+        box-shadow: none;
+    }
+    .pickMonth .popup .calendar_grid{
+        display: none;
+    }
+
+    .popup .popup-head
+    {
+        display: none;
+    }
+    .popup .popup-buttons .button{
+        color: #fff;
+    }
+    .popup .popup-buttons:first-child{
+        background: red;
+    }
+    .popup .ionic_datepicker .selected_date_full{
+        color: #00c8ee;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 20px; 
+        padding-top: 15px; 
+        font-size:17px;
+    }
+    .popup .ionic_datepicker .color_blue{
+        color: #00c8ee;
+    }
+    .ionic_datepicker_modal .ionic_datepicker .row button.button-clear .ion-chevron-left{
+        font-size: 15px;
+        color:#00c8ee;
+        line-height:2;
+
+    }
+    .ionic_datepicker .row button.button-clear .ion-chevron-left{
+        font-size: 22px;
+        color:#00c8ee;
+
+    }
+    .ionic_datepicker_modal .ionic_datepicker .row button.button-clear .ion-chevron-right{
+        font-size: 15px;
+        color:#00c8ee;
+        line-height:2;
+    }
+    .ionic_datepicker .row button.button-clear .ion-chevron-right{
+        font-size: 22px;
+        color:#00c8ee;
+
+    }
+    .ionic_datepicker .select_section label{
+        height:35px;
+    }
+    .ionic_datepicker .select_section label.month_select{
+        max-width: 60%;
+        flex: 0 0 60%;
+    }
+    .ionic_datepicker .select_section label.year_select{
+        max-width: 40%;
+        flex: 0 0 40%;
+    }
+    .ionic_datepicker .select_section select{
+        font-size: 15px;
+        height:35px;
+    }
+    .ionic_datepicker .select_section select.month_select{
+        font-size: 15px;
+        padding: 2px 10px;
+    }
+
+    .ionic_datepicker .select_section select.year_select{
+        font-size: 15px;
+        padding-left: 15px;
+    }
+
+
+
+    .ionic_datepicker_modal.modal{
+        /*    width: 50%;*/
+        min-height: 50%;
+        /*    position: fixed;*/
+        top: 25%;
+        /*    left: 25%;*/
+    }
+    .modal-backdrop-bg {
+        pointer-events: none;
+        background-color: #424242;
+        opacity: .5;
+    }
+    .ionic_datepicker_modal_content{
+        padding-top: 20px;
+    }
+
+    .calendar_grid .col{
+        font-size: 12px;
+        text-align: center;
+        color: #00c8ee;
+    }
+    .date_cell{
+        padding: 2px !important;
+        font-size: 12px;
+    }
+    .col.date_col.date_selected .date_cell{
+        background-color: #00c8ee;
+    }
+    .col.date_col.date_selected .date_cell.activated{
+        background-color: #00c8ee;
+    }
+    .ionic_datepicker_modal ion-header-bar{
+        display: none;
+    }
+    .ionic_datepicker_modal_content.has-header{
+        top:10px;
+        padding-top: 0;
+    }
+    .ionic_datepicker_modal .bar-stable{
+        border-color: #e4e4e4;
+        background: none;
+    }
+    .ionic_datepicker_modal .bar-stable.bar-footer{
+        background-image: none;
+    }
+    .ionic_datepicker_modal .bar-stable .button.button-clear{
+        background: #00c8ee;
+        border-color: #00c8ee; 
+        color: #ffffff;
+    }
+    .popup .ionic_datepicker .left_arrow {
+        display:none;
+    }
+    .popup .ionic_datepicker .right_arrow {
+        display:none;
+    }
+
+    /*==============================*/
+
+    .item-accordion1 .subroom {
+        border-bottom: 1px solid #d9d9d9;
+        height: auto;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    .item-accordion1:last-child{
+            border-bottom:none;
+    }
+    table {
+        width: 100%;
+
+    }
+    .item {
+        padding-left: 0px; 
+        background-color: #ffffff;
+        .item-inner{
+            padding-right: 0px; 
+        }
+    }
+    div.table-holder table tr td.roomsDetail {
+        padding: 0px 10px;
+    }
+    .listmain{
+        width : 75%;
+        position: relative;
+        right: 100px;
+        left:0px;
+        padding:10px;
+    }
+    .textright{
+        text-align:right;
+    }
+    .margin10{
+        margin-left:10%;
+    }
+    .myfooter{
+        height:70px;
+    }
+    .padUD0 {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+}
+

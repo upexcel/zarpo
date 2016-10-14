@@ -1,0 +1,58 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="feedback">
+    <!--	    form for checkout-->
+    <div class="divcard checkout">
+        <!--		    third box-->
+        <div  class="approvalDivcard">
+            <div class="field padUD0 no-border">
+
+                <div class="clear"></div>
+                <ion-row>
+                    <p class="marUD0">
+                        Sua avaliação foi enviada com sucesso aos nossos mordomos 
+                        e será repassada ao nosso parceiro. Cada contribuição
+                        participará à avaliação geral do nosso parceiro e 
+                        decidirá se merece ser divulgado novamente no Zarpo. 
+                        Agradecemos muito por nos ajudar a lhe oferecer sempre
+                        as melhores experiências de viagem! 
+                    </p>
+                </ion-row>
+                <div class="clear"></div>
+                <ion-row class="marUD0 marT20">
+                    <p class="marUD0">
+                        <a (click)="goState('flash')" class="anchorcolor">Ir ao Zarpo Hotéis</a>
+                        <br>
+                        <a (click)="goState('pacote')" class="anchorcolor">Ir ao Zarpo Pacotes</a>
+                        <br>
+                        <a (click)="goState('zarpoja')" class="anchorcolor">Ir ao Zarpo Já</a>
+                        <br>
+
+                        <!--                            <a on-tap="feedback.goState('vale')" style="color:#00C8EE !important; text-decoration:none;">Ir ao Zarpo Vale</a>
+                                                    <br>-->
+                    </p>
+                </ion-row>
+                <div class="clear"></div>
+                <!--                    <div class="row marUD0 padT20" style="height:140px;">
+                                        <div style="height:120px;">
+                                            <img src="http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpando/images/reviews_success.jpg">
+                                        </div>
+                
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="row marUD0">
+                                        <strong>Sua opinião vale ouro!</strong>
+                                    </div>-->
+                <ion-row class="marUD0" >
+                    <p class="marT20">
+                        Zarpo é exigente. Selecionamos criteriosamente todos os 
+                        parceiros que divulgamos, mas são os nossos associados 
+                        quem decidem. Divulgamos novamente parceiros que atingem 
+                        uma média acima de 4 estrelas... Caso contrário, exigimos sérias 
+                        melhorias para que volte ao Zarpo!
+                    </p>
+                </ion-row>
+
+            </div>
+        </div>
+    </div>
+</ion-content>

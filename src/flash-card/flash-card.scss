@@ -1,0 +1,76 @@
+zarpo-flash-card{
+    background-color: #ffffff;
+    .client_price{
+        position: relative;
+        top: -4px;
+        right: 7px;
+        z-index: 3;
+        float: right;
+        .pacote-price{
+            text-align: center;
+            color: #ffffff;
+            line-height: 32px;
+            font-size: 1.2em;
+        }
+        .pacote-price-tag{
+            color: #ffffff;
+            line-height: 0px;
+            font-size: .9em;
+            text-align: center;
+        }
+    }
+    .img-holder{
+        width: 100%;
+        margin-bottom: 8px;
+        background-size: cover;
+    }
+    ion-card{
+        padding: 0px;
+    }
+    ion-card p{
+        &.hotel-name {
+            color: #404040;
+            font-weight: 300;
+            text-decoration: none;
+            width: inherit;
+            overflow: auto;
+            font-size: 18px;
+            line-height: 1.4;
+            white-space: normal;
+            width: 100%;
+        }
+        &.hotel-location {
+            color: #84807f;
+            font-weight: 300;
+            display: block;
+            line-height:1.1;
+            font-size: 15px;
+            white-space: normal;
+        }
+    }
+    div.automaticCredit {
+        position: relative;
+        top: 34.5%;
+        left: 64%;
+        z-index: 9;
+        width: 35%;
+        height: 63%;
+        background-image: url("../../img/credit.png");
+        background-size: cover;
+    }
+    div.automaticCredit div {
+        width: 100%;
+        height: 100%;
+        line-height: 5.4em;
+        font-size: 5vw;
+        color: #7E7E7E;
+        padding-left: 12%;
+        font-weight: normal;
+    }
+    .cl{
+        color: #FF7918;
+    }
+    .lin{
+        float:left;
+    }
+}

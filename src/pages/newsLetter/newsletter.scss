@@ -1,0 +1,45 @@
+.newsLetter{
+    .padding20{
+        padding-top:20px;
+    }
+    .togglebt{
+        float:left;
+    }
+    .marginleft{
+        margin-left:4%;
+    }
+    .toggle-icon {
+        position: relative;
+        display: block;
+        width: 51px;
+        height: 32px;
+        border-radius: 16px;
+        background-color: #e6e6e6;
+        -webkit-transition: background-color 300ms;
+        transition: background-color 300ms;
+        pointer-events: none;
+    }
+    .toggle-checked {
+        background-color: #00c8ee;
+    }
+
+    ion-spinner.spinner-bubbles {
+        position: absolute;
+        right: 4px;
+        top:8px;
+    }
+    .toggle-inner {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        background-color: #fff;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16), 0 3px 1px rgba(0, 0, 0, 0.1);
+        -webkit-transition: width 120ms ease-in-out 80ms, left 110ms ease-in-out 80ms, -webkit-transform 300ms;
+        transition: width 120ms ease-in-out 80ms, left 110ms ease-in-out 80ms, -webkit-transform 300ms;
+        transition: transform 300ms, width 120ms ease-in-out 80ms, left 110ms ease-in-out 80ms;
+        transition: transform 300ms, width 120ms ease-in-out 80ms, left 110ms ease-in-out 80ms, -webkit-transform 300ms;
+    }
+}

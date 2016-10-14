@@ -1,0 +1,32 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="">
+    <div class="wrapper success">
+        <!--		    third box-->
+        <ion-grid class="no-padding">
+            <ion-row class="no-padding">
+                <ion-col class="no-padding">
+                    <p class="marUD0">
+                        Seu pagamento está sendo finalizado e você receberá por e-mail, em breve, a confirmação da sua compra.
+                        <br/><br/>
+                        IMPORTANTE: Na sua fatura de cartão de crédito, seu pagamento será discriminado como ‘MOIP’, nosso parceiro em pagamentos online.
+                        <br/><br/>
+                        <span style="color: red !important; font-weight: bold; text-decoration: underline;font-family: arial,helvetica,freesans,sans-serif;">Próximo passo:</span> é necessário nos informar, no
+                        prazo de 2 horas após efetuar a compra, os dados
+                        de todos os passageiros que irão viajar. Clique no
+                        botão abaixo para acessar o formulário online e
+                        preencher suas informações.<br/><br/>
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="no-padding">
+                <ion-col class="no-padding">
+                    <button class="button serverBtn center marT20 marB20" primary type="button"
+                            (click)="backToFlash()">
+                        Informar dados dos passageiros
+                    </button>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

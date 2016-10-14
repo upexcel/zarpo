@@ -1,0 +1,78 @@
+
+
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+@import "ionic.globals";
+
+@import "global.scss";
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+$text-color:        #000;
+$background-color:  #fff;
+
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary:    #387ef5,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  favorite:   #69BB7B
+);
+$control-height: 70px;
+$button-md-box-shadow:none;
+$button-md-height:47px;
+$button-md-border-radius:0;
+$button-md-color:#ffffff;
+$button-md-font-size:18px;
+$button-md-hover-opacity:.5;
+$button-md-margin:10px 0px  ;
+$button-md-padding:9px 12px;
+
+$text-color:#a6a6a6;
+$text-input-md-background-color:#ffffff;
+$text-input-md-margin-top:10px;
+$text-input-md-margin-bottom:10px;  
+$text-input-md-margin-left:0;
+$text-input-md-margin-right:0;
+$font-family-base:"HelveticaNeue-Light", "HelveticaLight", "HelveticaNeue","Helvetica","Arial","sans-serif";
+$font-family-md-base:"HelveticaNeue-Light", "HelveticaLight", "HelveticaNeue","Helvetica","Arial","sans-serif";
+$font-path: "../fonts";
+$font-size-base:1.7rem;
+
+
+$font12x:12px;
+/*$font15x:15px;*/
+$font1m:1.2em;
+$font2m:2em;
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+$ionicons-font-path: "../assets/fonts";
+@import "ionicons";

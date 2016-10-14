@@ -1,0 +1,33 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="offline">
+        <!--	    form for checkout-->
+        <div class="divcard checkout">
+            <!--		    third box-->
+            <div  class="approvalDivcard ">
+                <div class="row marUD0 serverDown">
+                    <p class="marUD0 ">
+                        <i class="icon  ion-wifi "> </i>
+                    </p>
+                </div>
+                <div class="clear"></div>
+                <div class="row marUD0 serverDown">
+                    <p class="marUD0 padT20">
+                        Sem internet
+                    </p>
+                </div>
+                <div class="clear"></div>
+                <div class="row marUD0 serverDown padT20">
+                    <p class="marUD0">
+                        Por favor, verifique sua conexão à internet e atualize a página!
+                    </p>
+                </div>
+                <div class="clear"></div>
+                <button primary class="button br button-calm button-large serverBtn beCenter marT20" 
+                        (click)="backFlash()">
+                    Atualizar
+                </button>
+
+            </div>
+        </div>
+
+    </ion-content>

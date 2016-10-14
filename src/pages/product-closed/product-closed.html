@@ -1,0 +1,25 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="">
+    <div class="wrapper deactivated">
+        <!--		    third box-->
+        <ion-grid class="no-padding">
+            <ion-row class="no-padding">
+                <ion-col class="no-padding">
+                    <p class="marUD0">
+                        Essa oferta está indisponível no momento. 
+                        Mas fique atento a nossas newsletters, ela poderá voltar em breve!
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="no-padding">
+                <ion-col class="no-padding">
+                    <button class="button serverBtn center marT20 marB20" primary type="button"
+                            (click)="backToFlash()">
+                        Ver Ofertas Abertas
+                    </button>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

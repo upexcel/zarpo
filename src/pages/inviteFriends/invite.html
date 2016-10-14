@@ -1,0 +1,115 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content no-bounce>
+    <div class="divcard invite" *ngIf="dataShow">
+        <div class="invite-msg myform">
+            <ion-row>
+                <ion-col width50>
+                    <label class="br  bigger">Créditos disponíveis</label>
+                </ion-col>
+                <ion-col width50 class="alignRight">
+                    <label class="br bigger beRight" [innerHTML]="bindData"></label>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col width50>
+                    <label class="">Convites aceitos</label>
+                </ion-col>
+                <ion-col width50 class="alignRight">
+                    <label class="br  beRight">{{user_reward.Convites_aceitos}}</label>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col width50>
+                    <label class="br ">Convites convertidos</label>
+                </ion-col>
+                <ion-col width50 class="alignRight">
+                    <label class="br beRight" >{{user_reward.Convites_convertidos}}</label>
+                </ion-col>
+            </ion-row>
+
+
+        </div>
+        <div id="invite_seg" class="row marD10"></div>
+        
+        <!--	    take email from users to invite friends-->
+        <form class="myform friendEmail hr" novalidate name="myform" #f="ngForm">
+            <div class="list margintbt20">
+                <label class="br bigger">1. Convidar por e-mail</label>
+                <label class="br invite-labels">Ganhe R$60 em créditos no Zarpo na primeira reserva de uma indicação sua!</label>
+                <input type="email" name="emailField" placeholder="email@example.com" ngControl="email1"
+                       (click)="modelChange()"  #email1="ngModel"  required
+                       [class.errormsg]="invalidEmail=='email1' || invalidEmail=='blank'"    pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" [(ngModel)]='frndemail.emailone'>
+                       <input name="emailFieldtwo" type="email" ngControl="email2"
+                       (click)="modelChange()"  #email2="ngModel"  required
+                       [class.errormsg]="invalidEmail=='email2'"     pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" placeholder="email@example.com" [(ngModel)]='frndemail.emailtwo'>
+                       <input name="emailFieldthree" type="email" ngControl="email3"
+                       (click)="modelChange()"  #email3="ngModel"  required
+                       [class.errormsg]="invalidEmail=='email3'"       pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" placeholder="email@example.com" [(ngModel)]='frndemail.emailThree'>		  
+                       <button class="button button-block loginbtn invitebtn" primary type="submit" [class.greybg]="button_name === 'Aguarde'" (click)="inviteFrnd(frndemail,email1.errors,email2.errors,email3.errors)">
+                    <span>{{button_name}}</span>
+                    <ion-spinner name="bubbles" *ngIf="button_name === 'Aguarde'"></ion-spinner>   
+
+                </button>
+                <div class='marB20' *ngIf="invitationSubmit">
+
+                    <p class='errormsg' *ngIf="invalidEmail.length>0">
+                        Os campos acima estão incorretos.
+                    </p>
+                    <p  class="grey" *ngIf="success_msg===true">
+                        Convites enviados com sucesso!
+                    </p>
+                    <!--display error status and message-->
+                    <p *ngIf="error_msg" class="errormsg">
+                        Já são membros do Zarpo: <br/>
+                        {{error_msg}}
+
+                    </p>
+                </div>
+
+            </div>
+        </form>
+        <!--	    end of invite friend form               -->
+        <div class="linkbox ">
+            <label class="br bigger marginbt15" >2. Convidar via as redes sociais</label>
+            <ion-row class="row" style="">
+                <div class="colFb" style="">
+                    <!--<ion-spinner class="" ng-if="invitation.fb" icon="bubbles" style="color:#FFF;">-->
+
+                    <!--</ion-spinner>-->
+
+                    <a  (click)="share('fb')">
+                        <img  class="invitationIcon" src="assets/img/btn-facebook.jpg" ng-hide="invitation.fb"/>
+
+                    </a>
+                </div>
+                <div class="clear width20"></div>
+                <div class="colTwitter" >
+                    <!--<ion-spinner class="" ng-if="invitation.twitter" icon="bubbles" style="color:#FFF;">-->
+
+                    <!--</ion-spinner>-->
+                    <a ng-hide="invitation.twitter" (click)="share('twitter')">
+                        <img class="invitationIcon" src="assets/img/btn-twitter.jpg"/>
+                    </a>
+                </div>
+            </ion-row>
+        </div>
+        <div class="hr">
+
+        </div>
+        <div class="linkbox wrap">
+            <label class="br bigger">3. Convidar via seu link pessoal Zarpo</label>
+            <p>
+                Copie e cole este link dentro de um e-mail, nas redes sociais… A cada amigo que
+                se cadastra pelo link abaixo e compra no Zarpo,
+                você recebe R$60 em créditos para sua próxima reserva.
+            </p>
+            <p class="invitationLink" *ngIf="!copyUrl" (click)="zarpobT('copy',invite_url.invitation_url)">
+                segure para copiar
+            </p>
+            <p class="invitationLink" *ngIf="copyUrl"  (click)="zarpobT('code',invite_url.invitation_url)">
+                {{invite_url.invitation_url}}
+            </p>
+        </div>
+    </div>
+</ion-content>
+<zarpo-footer *ngIf="itemObject"  > </zarpo-footer>
