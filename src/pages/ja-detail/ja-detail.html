@@ -16,7 +16,14 @@
                              <a>Regras</a>
                     </ion-col>
                 </ion-col>
-                <ion-col width-50 class="padding-left15  datetab">
+                <ion-col tappable width-25 class="no-padding"
+                         (click)="showMap()">
+
+                    <ion-col [class.highlightedTab]="ifMaps === true ">
+                        <a>Mapa</a>
+                    </ion-col>
+                </ion-col>
+                <ion-col width-25 class="padding-left15  datetab">
                     <ion-col tappable primary class="primary-bg"
                              (click)="showCalender()">
                         <a>Datas</a>
@@ -86,14 +93,14 @@
         <div id="map" class="imgloader"> 
             <!-- this creates a google map on the page with the given lat/lng from -->
             <!-- the component as the initial center of the map: -->
-<!--
+
             <sebm-google-map [zoom]="zoom"
                 [latitude]="gpsLocation[0].lat|StringToNumber" [longitude]="gpsLocation[0].lang|StringToNumber">
                 <sebm-google-map-marker *ngFor="let location of gpsLocation"
                     [latitude]="location.lat|StringToNumber" [longitude]="location.lang|StringToNumber"
                     [label]="''" [iconUrl]="iconUrl" [fitBounds]="true">
             </sebm-google-map-marker>
-        </sebm-google-map>        -->
+        </sebm-google-map>        
     </div>
     <div class="mapaddr marT20">
         <label class=""><strong>{{itemObject.name}}</strong></label><br/>

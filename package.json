@@ -1,52 +1,55 @@
 {
-  "scripts": {
-    "build": "ionic-app-scripts build",
-    "watch": "ionic-app-scripts watch",
-    "serve:before": "watch",
-    "emulate:before": "build",
-    "deploy:before": "build",
-    "build:before": "build",
-    "run:before": "build"
-  },
-  "dependencies": {
-    "@angular/platform-browser": "~2.0.1",
-    "@ionic/storage": "1.1.2",
-    "angular2-google-maps": "^0.12.0",
-    "es6-shim": "^0.35.0",
-    "ionic-angular": "^2.0.0-rc.0",
-    "ionic-native": "^2.0.3",
-    "ionicons": "^3.0.0",
-    "lodash": "^4.13.1",
-    "moip": "^0.1.0",
-    "ng2-page-scroll": "^1.1.1",
-    "rangeslider.js": "^2.1.1",
-    "typings": "^1.4.0"
-  },
-  "devDependencies": {
-    "@ionic/app-scripts": "latest",
-    "@types/lodash": "4.14.37",
-    "typescript": "^2.0.3"
-  },
-  "name": "ionic2",
-  "description": "ionic2: An Ionic project",
-  "cordovaPlugins": [
-    "cordova-plugin-device",
-    "cordova-plugin-console",
-    "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen",
-    "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
-    {
-      "variables": {
-        "APP_ID": "852541798134845",
-        "APP_NAME": "zarpoApp"
-      },
-      "locator": "cordova-plugin-facebook4",
-      "id": "cordova-plugin-facebook4"
-    }
-  ],
-  "cordovaPlatforms": [
-    "android",
-    "ios"
-  ]
+    "config": {
+        "ionic_rollup": "roll/rollup.config.js"
+    },
+    "scripts": {
+        "build": "ionic-app-scripts build",
+        "watch": "ionic-app-scripts watch",
+        "serve:before": "watch",
+        "emulate:before": "build",
+        "deploy:before": "build",
+        "build:before": "build",
+        "run:before": "build"
+    },
+    "dependencies": {
+        "@angular/platform-browser": "~2.0.1",
+        "@ionic/storage": "1.1.2",
+        "angular2-google-maps": "^0.14.0",
+        "es6-shim": "^0.35.0",
+        "ionic-angular": "^2.0.0-rc.0",
+        "ionic-native": "^2.0.3",
+        "ionicons": "^3.0.0",
+        "lodash": "^4.13.1",
+        "moip": "^0.1.0",
+        "ng2-page-scroll": "^1.1.1",
+        "rangeslider.js": "^2.1.1",
+        "typings": "^1.4.0"
+    },
+    "devDependencies": {
+        "@ionic/app-scripts": "latest",
+        "@types/lodash": "4.14.37",
+        "typescript": "^2.0.3"
+    },
+    "name": "ionic2",
+    "description": "ionic2: An Ionic project",
+    "cordovaPlugins": [
+        "cordova-plugin-device",
+        "cordova-plugin-console",
+        "cordova-plugin-whitelist",
+        "cordova-plugin-splashscreen",
+        "cordova-plugin-statusbar",
+        "ionic-plugin-keyboard",
+        {
+            "variables": {
+                "APP_ID": "852541798134845",
+                "APP_NAME": "zarpoApp"
+            },
+            "locator": "cordova-plugin-facebook4",
+            "id": "cordova-plugin-facebook4"
+        }
+    ],
+    "cordovaPlatforms": [
+        "android",
+        "ios"
+    ]
 }

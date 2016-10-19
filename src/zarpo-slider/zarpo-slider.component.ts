@@ -1,4 +1,3 @@
-
 import {Slides} from 'ionic-angular';
 import {Component, Input, ViewChild} from '@angular/core';
 import {ImageHeightService} from '../services/image-height.service';
