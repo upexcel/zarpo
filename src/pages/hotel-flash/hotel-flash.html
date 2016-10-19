@@ -9,7 +9,7 @@
         </ion-refresher-content>
     </ion-refresher>
     <!--only for ja-->
-   
+
     <div class="divcard checkout" *ngIf="data.is_ja===true && apiLoader === false && storeClosed === true" [hidden]="!storeClosed===true">
          <div  class="approvalDivcard">
             <div class="row marUD0 padT20" >
@@ -28,7 +28,7 @@
             </div>
             <div class="clear"></div>
             <button  ion-button class="button button-block button-calm marT20"
-                    (click)="redirectToHotel()">
+                     (click)="redirectToHotel()">
                 Ir ao Zarpo Hotéis
             </button>
 
@@ -36,11 +36,9 @@
     </div>
 
     <ion-list  *ngIf="storeClosed !== true">
-<ion-item class="marginPadinng">
         <zarpo-flash-card  *ngIf="!refresh"
             [items]="flashItems" [flashtype]="flashtype"> 
         </zarpo-flash-card>
-</ion-item>
         <!--        <ion-infinite-scroll threshold="500px" (ionInfinite)="doInfinite($event)">
                     <ion-infinite-scroll-content></ion-infinite-scroll-content>
                 </ion-infinite-scroll>-->

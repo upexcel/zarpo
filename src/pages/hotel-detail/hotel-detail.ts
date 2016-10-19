@@ -1,6 +1,6 @@
 import {Events, NavParams, Content} from 'ionic-angular';
 //import {ANGULAR2_GOOGLE_MAPS_PROVIDERS, ANGULAR2_GOOGLE_MAPS_DIRECTIVES, GoogleMapsAPIWrapper, SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
-import {GOOGLE_MAPS_PROVIDERS, GOOGLE_MAPS_DIRECTIVES, GoogleMapsAPIWrapper, SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
+import {SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 import {Component, AfterViewChecked, forwardRef, ViewChild} from '@angular/core';
 import {errorhandler} from '../../services/error';
 import {NavController} from 'ionic-angular';
@@ -51,8 +51,9 @@ export class HotelDetail implements AfterViewChecked {
         group_id: "",
         is_ja: false
     };
-
-    iconUrl: string = "../img/marker.png";
+    lat: number = 51.678418;
+    lng: number = 7.809007;
+    iconUrl: string = "../assets/img/marker.png";
     zoom = 8;
     gpsLocation: any = [];
 
