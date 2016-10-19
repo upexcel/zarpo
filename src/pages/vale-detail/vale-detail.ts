@@ -1,6 +1,6 @@
 import {Events, NavParams} from 'ionic-angular';
-import {Component, ViewChild, ElementRef, forwardRef,Inject} from '@angular/core';
-import  {FormBuilder, FormGroup, Validators}  from '@angular/forms';
+import {Component, ViewChild, ElementRef, forwardRef, Inject} from '@angular/core';
+import {FormBuilder, FormGroup, Validators}  from '@angular/forms';
 import {errorhandler} from '../../services/error';
 import {Content, NavController} from 'ionic-angular';
 import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
@@ -21,10 +21,10 @@ import {DateService} from '../../services/date.service';
 
 @Component({
     templateUrl: 'vale-detail.html',
-//    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent, MyDatePicker,
-//        ZarpoSliderComponent, ZarpoAccordianComponent, NoSpaceDirective, OnReturnDirective],
-//    providers: [LocalStorageService, UserDetailService, Rxjs, DateService,],
-//    pipes: [ValeKeysPipe]
+    //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent, MyDatePicker,
+    //        ZarpoSliderComponent, ZarpoAccordianComponent, NoSpaceDirective, OnReturnDirective],
+    //    providers: [LocalStorageService, UserDetailService, Rxjs, DateService,],
+    //    pipes: [ValeKeysPipe]
 
 })
 
@@ -74,10 +74,10 @@ export class ValeDetail {
     minDate: string;
 
     customback: boolean = false;
-
+    num: number = 0;
     constructor(private _nav: NavController, private _navParams: NavParams,
         public _events: Events, private _localStorageService: LocalStorageService,
-        private _ajaxRxjs: Rxjs, 
+        private _ajaxRxjs: Rxjs,
         private _fb: FormBuilder,
         private _userData: UserDetailService, private _errorhandler: errorhandler,
         private _checkReceiptService: CheckReceiptService,
@@ -94,7 +94,7 @@ export class ValeDetail {
                     1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun',
                     7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez'
                 },
-                disableUntil: { year: res['year'], month:res['month'], day: res['date'] },
+                disableUntil: { year: res['year'], month: res['month'], day: res['date'] },
                 sunHighlight: false,
                 showIcon: true,
                 dateTitle: this.dateTitle,
@@ -167,7 +167,7 @@ export class ValeDetail {
         var anchorPos = this.valeAnchor.nativeElement['offsetTop'];
         this.content.scrollTo(0, anchorPos, 500);
     }
-   
+
     getProductDetail() {
         this.api.ajaxRequest(this.path, this.data).subscribe((response: any) => {
             if (response.data) {
@@ -218,10 +218,10 @@ export class ValeDetail {
     }
     update(e: any) {
         console.log(e);
-//        if (true) {
-//            var barProgress = (e.target.max / e.target.offsetWidth) * (e.gesture.touches[0].screenX - e.target.offsetLeft);
-//        }
-//        this.itemObject.value = Math.ceil(barProgress / this.itemObject.step) * this.itemObject.step;
+        //        if (true) {
+        //            var barProgress = (e.target.max / e.target.offsetWidth) * (e.gesture.touches[0].screenX - e.target.offsetLeft);
+        //        }
+        //        this.itemObject.value = Math.ceil(barProgress / this.itemObject.step) * this.itemObject.step;
         //        $("#pricerange").val(this.itemObject.value);
     }
 
@@ -274,12 +274,12 @@ export class ValeDetail {
         var comment = form.controls.comment;
         this.ifSubmitted = true;
         this.formsubmitted = true;
-        console.log(firstname,lname,email,comment)
+        console.log(firstname, lname, email, comment)
         // check the validation of fields
         if (firstname.value.trim().length < 1 || !firstname.valid ||
             lname.value.trim().length < 1 || !lname.valid ||
             email.value.trim().length < 1 || !email.valid ||
-            comment.value.trim().length < 1 || !this.giftDate || this.giftDate=='') {
+            comment.value.trim().length < 1 || !this.giftDate || this.giftDate == '') {
 
             return false;
         } else {
@@ -304,11 +304,12 @@ export class ValeDetail {
         }
     }
     messageRestrictions(event: any) {
+        var nums: number = 0;
         if (event.keyCode == 13 || event.KEYCODE_ENTER) {
             event.preventDefault();
             return false;
         } else if (event.keyCode == 32 || event.KEYCODE_SPACE) {
-            if (this.comment.length > 0) {
+            if (this.comment.length > nums) {
                 var last_char = this.comment.charAt(this.comment.length - 1);
                 if (last_char == " ") {
                     event.preventDefault();

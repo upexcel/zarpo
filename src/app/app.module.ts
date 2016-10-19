@@ -22,7 +22,7 @@ import {calendarService} from '../pages/calendar//calendar.servise';
 import {errorhandler} from '../services/error';
 import {facebookLogin} from '../services/fbLogin';
 
-import {GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
+import {GOOGLE_MAPS_PROVIDERS, provideLazyMapsAPILoaderConfig} from 'angular2-google-maps/core/index';
 //, provideLazyMapsAPILoaderConfig
 import {MoipService} from '../services/moip.service';
 import {GeocoderService} from '../services/geocoder.service';
@@ -114,17 +114,17 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         myReservation,
         nLetter,
         offline,
-        //        OrderFail,
+        OrderFail,
         OrderSuccess,
         PacoteDetail,
         privacy,
         ProductClosed,
         ProductDeactivated,
-        //        ProductPayment,
+        ProductPayment,
         Receipt,
         SuccessFeedback,
         terms,
-        //        Timeout,
+        Timeout,
         ValeCancel,
         ValeDetail,
         ValeFlash,
@@ -179,17 +179,17 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         myReservation,
         nLetter,
         offline,
-        //        OrderFail,
+        OrderFail,
         OrderSuccess,
         PacoteDetail,
         privacy,
         ProductClosed,
         ProductDeactivated,
-        //        ProductPayment,
+        ProductPayment,
         Receipt,
         SuccessFeedback,
         terms,
-        //        Timeout,
+        Timeout,
         ValeCancel,
         ValeDetail,
         ValeFlash,
@@ -205,10 +205,10 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         MyDatePicker
     ],
     providers: [Storage, Rxjs, ImageHeightService, GoogleTagService, facebookLogin, errorhandler, LocalStorageService, UserDetailService,
-        //        GOOGLE_MAPS_PROVIDERS,
-        //        provideLazyMapsAPILoaderConfig({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' }),
+        //                GOOGLE_MAPS_PROVIDERS,
+        //                provideLazyMapsAPILoaderConfig({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' }),
         GuestDetailService, CheckReceiptService, GeocoderService, DateService, CheckSelectedService, menuService, CalenderService, calendarService
-        , MoipService, SuperService,PaymentService]
+        , MoipService, SuperService, PaymentService]
 
 })
 export class AppModule { }

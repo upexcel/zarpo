@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/toPromise';
-
+import {Observable}     from 'rxjs/Observable';
 @Injectable()
 export class CalenderService implements OnInit {
     path = "booking";
@@ -27,7 +27,7 @@ export class CalenderService implements OnInit {
         this.data.website_code = 'zarpo';
         this.data.product_id = id;
         this.data.is_ja = is_ja;
-        this.api.ajaxRequest(this.path, this.data).subscribe((response: any) => {
+      return  this.api.ajaxRequest(this.path, this.data).map((response: any) => {
             if (response.data) {
                 this.calenderData = response.data;
                 this.id = id;

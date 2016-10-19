@@ -22,6 +22,7 @@ export class nLetter {
     public bt_name: string = 'Salvar preferências'
     public userToken: any; public msg: string;
     public subscribe: any; public user_detail: any;
+    zarpoIcon:boolean;
     constructor(
         private _nav: NavController, private _user: LocalStorageService, private _ajaxRxjs: Rxjs, private _errorhandler: errorhandler) {
         this._nav = _nav;

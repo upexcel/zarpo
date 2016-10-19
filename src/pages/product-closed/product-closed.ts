@@ -12,6 +12,7 @@ export class ProductClosed {
     public zarpoIcon: boolean = false;
     flashType: string;
     pageTitle: string = 'Opa!';
+    apiLoader:boolean;
     constructor(private _nav: NavController, private _navParams: NavParams) {
         this.flashType = this._navParams.get('flashType');
         console.log(this.flashType);

@@ -7,7 +7,7 @@ import {FooterComponent} from '../../footer/footer.component';
 
 import {FlashCardComponent} from '../../flash-card/flash-card.component';
 import {HotelDetail} from '../hotel-detail/hotel-detail';
-//import {GoogleTagService} from '../../services/google-tag.service';
+import {GoogleTagService} from '../../services/google-tag.service';
 import {Rxjs} from '../../services/Rxjs';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {ZarpoHotelPipe} from '../../filters/hotel/zarpo-hotel.pipe';
@@ -48,10 +48,10 @@ export class HotelFlash {
         public _events: Events,
         public local: LocalStorageService,
         private _ajaxRxjs: Rxjs,
-        private _errorhandler: errorhandler
-//        private _gtm: GoogleTagService
+        private _errorhandler: errorhandler,
+        private _gtm: GoogleTagService
     ) {
-//        this._gtm.setScript5('');
+        this._gtm.setScript5('');
   
         this.nav = this._nav;
         this.api = this._ajaxRxjs;
@@ -115,10 +115,10 @@ export class HotelFlash {
     //calling to prefetch data to store in local-storege for filters
     alldata(allData: any) {
         this.local.getTimerStorage('allData').then((response) => {
-         
-//            if (response && response.length > 0) {
-//          
-//            } else {
+        
+            if (response && response.length > 0) {
+          
+            } else {
            console.log('data checking',response);
                 this.api.ajaxRequest(this.path, allData).subscribe((response: any) => {
                     console.log(response);
@@ -132,7 +132,7 @@ export class HotelFlash {
                 }, (error) => {
                     this._errorhandler.err(error);
                 });
-//            }
+            }
         })
     }
     ionViewWillEnter() {
@@ -147,13 +147,13 @@ export class HotelFlash {
 
 
             //valresponseue fetched from local storage
-//            if (response && response.length > 0) {
-////                this.flashItems = response;
-////                this.apiLoader = false;
-////                this.refreshItems();
-//            }
+            if (response && response.length > 0) {
+                this.flashItems = response;
+                this.apiLoader = false;
+                this.refreshItems();
+            }
             //fire api for data
-//            else {
+            else {
                 this.api.ajaxRequest(this.path, data).subscribe((response: any) => {
                     if (data.page == 1) {
                         console.log('yes');
@@ -205,7 +205,7 @@ export class HotelFlash {
                     this._errorhandler.err(error);
                 });
 //
-//            }
+            }
         });
 
     }

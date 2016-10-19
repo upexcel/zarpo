@@ -14,6 +14,7 @@ export class Timeout {
     pageTitle: string = 'Opa!';
     giftName: string;
     giftLocation: string;
+    apiLoader:boolean;
     constructor(
         private _navParams: NavParams,
         private _nav: NavController

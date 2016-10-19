@@ -17,6 +17,7 @@ export class cancel {
     public user_email: string = '';
     public Uemail: boolean;
     resMsg: any; errorShow: boolean = false;
+    apiLoader:any;
     constructor(private _ajaxRxjs: Rxjs, private _errorhandler: errorhandler) { }
 
     submitCancel(user: any) {

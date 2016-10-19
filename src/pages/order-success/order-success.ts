@@ -7,13 +7,14 @@ import {HotelFlash} from '../hotel-flash/hotel-flash';
 
 @Component({
     templateUrl: 'order-success.html',
-//    directives: [forwardRef(() => ZarpoNavComponent)],
+    //    directives: [forwardRef(() => ZarpoNavComponent)],
 })
 
 export class OrderSuccess {
     public zarpoIcon: boolean = true;
     pageTitle: string = 'Sucesso!';
     platform: Platform;
+    apiLoader: boolean;
     constructor(private _nav: NavController,
         private _navParams: NavParams,
         private _platform: Platform) {

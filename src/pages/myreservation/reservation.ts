@@ -17,6 +17,7 @@ export class myReservation {
     public apiLoader = false;
     showData: boolean = false;
     list:any;
+    zarpoIcon:boolean;
     constructor(
         private _nav: NavController, private _ajaxRxjs: Rxjs, private _user: LocalStorageService) {
         this._nav = _nav;

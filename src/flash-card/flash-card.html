@@ -8,7 +8,7 @@
                 <div class="pacote-price">A partir de <span>{{item.gift_price}}</span><span *ngIf="flashtype ==='Pacote'&& item.pacote_price">{{item.pacote_price.clientprice}}</span></div>
                 <div class="pacote-price-tag" *ngIf="flashtype !=='Vale'">(por pessoa, em quarto duplo)</div>
             </div>-->
-            <div class="automaticCredit" [hidden]="!flashtype ==='Hotel' || !flashtype ==='Ja'" *ngIf="item.automatic_credit && item.automatic_credit != 0 ">
+            <div class="automaticCredit" [hidden]="flashtype !=='Hotel' || flashtype !=='Ja'" *ngIf="item.automatic_credit && item.automatic_credit != 0 ">
                  <div> R${{item.automatic_credit}}</div>
             </div>
         </div>

@@ -3,7 +3,7 @@ import {NgIf, NgFor, NgClass, NgStyle} from '@angular/common';
 import {IMyDate, IMyMonth, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyLocales, IMyOptions} from './interfaces/index';
 @Component({
     selector: 'my-date-picker',
-//    directives: [NgIf, NgFor, NgClass, NgStyle],
+    //    directives: [NgIf, NgFor, NgClass, NgStyle],
     templateUrl: 'my-date-picker.component.html'
 })
 export class MyDatePicker implements OnInit, OnChanges {
@@ -11,10 +11,10 @@ export class MyDatePicker implements OnInit, OnChanges {
     @Input() locale: string;
     @Input() defaultMonth: string;
     @Input() selDate: string;
-    @Input() title:string;
-    @Input() showIcon:boolean;
+    @Input() title: string;
+    @Input() showIcon: boolean;
     @Output() dateChanged: EventEmitter<Object> = new EventEmitter();
-
+    num: number = 0;
     showSelector: boolean = false;
     visibleMonth: IMyMonth = { monthTxt: '', monthNbr: 0, year: 0 };
     defaultDate: IMyDate = { year: 0, month: 0, day: 0 };

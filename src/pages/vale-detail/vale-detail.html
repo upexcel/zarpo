@@ -87,10 +87,10 @@
 <div class="msgboxalt custom-msgbox no-pos no-border">
     <div class="hotel_rules" [hidden]="!ifPresentear">
         <div *ngIf="formsubmitted === true" style="margin-bottom: 18px;">
-            <p class="errormsg" *ngIf="!valeForm.controls.firstname.value.length >0||!valeForm.controls.firstname.valid||
-                !valeForm.controls.lname.value.length >0||!valeForm.controls.lname.valid||
-                !valeForm.controls.email.value.length >0||!valeForm.controls.email.valid||
-                !valeForm.controls.comment.value.length >0||!valeForm.controls.comment.valid||
+            <p class="errormsg" *ngIf="!valeForm.controls.firstname.value.length >num||!valeForm.controls.firstname.valid||
+                !valeForm.controls.lname.value.length >num||!valeForm.controls.lname.valid||
+                !valeForm.controls.email.value.length >num||!valeForm.controls.email.valid||
+                !valeForm.controls.comment.value.length >num||!valeForm.controls.comment.valid||
                 !giftDate || giftDate==''">
                 Os campos abaixo estão incorretos!
             </p>

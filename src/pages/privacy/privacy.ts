@@ -16,6 +16,7 @@ export class privacy {
     public pageTitle = 'Política de privacidade';
     public showBack = false;
     public apiLoader=false;
+    zarpoIcon:boolean;
     constructor(
         private _nav: NavController) {
         this._nav = _nav;

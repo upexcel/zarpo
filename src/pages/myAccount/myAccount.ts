@@ -21,6 +21,8 @@ export class myAccount {
     public user_email: string = '';
     public user_name: string = ''
     public user_Lname:string='';
+    apiLoader:boolean;
+    showme:any;
     constructor(private _local: LocalStorageService, private _nav: NavController) {
         this._local.getValue('user_data').then((response: any) => {
             this.user_email = response.data.customer_email;

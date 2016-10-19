@@ -76,13 +76,13 @@ export class ValeFlash {
     getItems(data) {
         this.local.getTimerStorage('flash_data').then((response) => {
 //            //value fetched from local storage
-//            if (!response && response.length > 0) {
-//                this.flashItems = response;
-//                this.apiLoader = false;
-//                this.refreshItems();
-//            }
+            if (!response && response.length > 0) {
+                this.flashItems = response;
+                this.apiLoader = false;
+                this.refreshItems();
+            }
 //            //fire api for data
-//            else {
+            else {
                 this.api.ajaxRequest(this.path, data).subscribe((response: any) => {
                     if (data.page == 1) {
                         console.log('yes');
@@ -122,7 +122,7 @@ export class ValeFlash {
                     this._errorhandler.err(error);
                 });
 //
-//            }
+            }
         });
 
     }
