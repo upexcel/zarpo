@@ -1,10 +1,11 @@
 <div id="sliderHolder" [ngStyle]="{'height': imgHeight}">
-    <ion-slides let mySlider [options]="mySlideOptions" pager >
-                <ion-slide *ngFor="let slide of zarpoSlides">
+     <ion-slides let mySlider [options]="mySlideOptions" pager >
+            <ion-slide *ngFor="let slide of zarpoSlides">
             <img src="{{slide.image}}" > 
-            <div class="automaticCredit" *ngIf="zarpoCredit && zarpoCredit!=0">
-                <div> R${{zarpoCredit}},00</div>
-            </div>
+
         </ion-slide>
     </ion-slides>
+    <div class="automaticCredit" *ngIf="zarpoCredit && zarpoCredit!=0">
+         <div> R${{zarpoCredit}},00</div>
+    </div>
 </div>

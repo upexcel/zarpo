@@ -26,6 +26,7 @@ zarpo-flash-card{
     }
     ion-card{
         padding: 0px;
+        box-shadow: none !important;
     }
     ion-card p{
         &.hotel-name {
@@ -55,7 +56,7 @@ zarpo-flash-card{
         z-index: 9;
         width: 35%;
         height: 63%;
-        background-image: url("../../img/credit.png");
+        background-image: url("../../assets/img/credit.png");
         background-size: cover;
     }
     div.automaticCredit div {

@@ -17,7 +17,6 @@
                                            *ngIf="(bookingRooms[key].selected[key1]) && key == 0 && key1 == 0" 
                                            [(ngModel)]="bookingRooms[key].selected[key1].username" 
                                            [ngClass]="{ 'errormsgB': (!bookingRooms[key].selected[key1].username) && (ifSubmitted)}"
-                                         
                                            placeholder="Informe 1 nome por quarto" [disabled]="disableMyForm == true" 
                                            autocorrect="off" autocomplete="off" spellcheck="false"/>
 

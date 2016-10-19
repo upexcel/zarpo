@@ -1,6 +1,6 @@
 
 import {Events, NavParams, Content, NavController} from 'ionic-angular';
-import {GOOGLE_MAPS_PROVIDERS, GOOGLE_MAPS_DIRECTIVES, GoogleMapsAPIWrapper, SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
+import {SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 
 import {Component, ViewChild, forwardRef} from '@angular/core';
 

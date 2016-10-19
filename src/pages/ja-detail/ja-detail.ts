@@ -3,7 +3,7 @@ import {Events, NavParams, Content} from 'ionic-angular';
 import {Component, ViewChild, forwardRef} from '@angular/core';
 
 
-import {GOOGLE_MAPS_PROVIDERS, GOOGLE_MAPS_DIRECTIVES, GoogleMapsAPIWrapper, SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
+import {SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 
 import _ from 'lodash';
 
