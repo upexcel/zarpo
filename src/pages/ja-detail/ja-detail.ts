@@ -1,12 +1,6 @@
 import {Events, NavParams, Content} from 'ionic-angular';
-
 import {Component, ViewChild, forwardRef} from '@angular/core';
-
-
 import {SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
-
-import _ from 'lodash';
-
 import {errorhandler} from '../../services/error';
 import {NavController} from 'ionic-angular';
 import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
@@ -51,7 +45,7 @@ export class JaDetail {
         is_ja: true
     };
 
-    iconUrl: string = "../img/marker.png";
+    iconUrl: string = "../assets/img/marker.png";
     zoom = 8;
     gpsLocation: any = [];
 
