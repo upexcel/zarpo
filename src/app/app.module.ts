@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import {AgmCoreModule, SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
+
 
 import { MyApp } from './app.component';
 import { Storage } from '@ionic/storage';
 import {IonicApp, IonicModule, Platform, Nav, NavController, Events} from 'ionic-angular';
 import {GoogleTagService} from '../services/google-tag.service';
-
+import {AgmCoreModule, SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 //services
 import {menuService} from '../services/menu.service';
 import {Rxjs} from '../services/Rxjs';
@@ -154,7 +154,7 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
     ],
     imports: [
         IonicModule.forRoot(MyApp),
-        AgmCoreModule.forRoot({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' })
+//        AgmCoreModule.forRoot({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' })
     ],
     bootstrap: [IonicApp],
     entryComponents: [

@@ -14,6 +14,7 @@ export class ZarpoSliderComponent {
     mySlideOptions: any;
     imgHeight: string;
     @ViewChild('mySlider') slider: Slides;
+    num:any=0;
     constructor(private _img: ImageHeightService) {
         this.getFlashImgHeight();
         this.mySlideOptions = {
