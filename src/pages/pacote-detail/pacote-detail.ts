@@ -1,4 +1,3 @@
-
 import {Events, NavParams, Content, NavController} from 'ionic-angular';
 import {SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 
@@ -47,7 +46,7 @@ export class PacoteDetail {
         is_ja: false
     };
 
-    iconUrl: string = "../img/marker.png";
+    iconUrl: string = "../assets/img/marker.png";
     zoom = 8;
     gpsLocation: any = [];
 
