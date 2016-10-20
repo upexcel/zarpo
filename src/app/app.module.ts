@@ -148,13 +148,13 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         ZarpoAccordianComponent,
         ZarpoNavComponent,
         ZarpoSliderComponent,
-        //        OnReturnDirective,
+//        OnReturnDirective,
         //        NoSpaceDirective,
         MyDatePicker
     ],
     imports: [
         IonicModule.forRoot(MyApp),
-//        AgmCoreModule.forRoot({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' })
+        //        AgmCoreModule.forRoot({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -199,7 +199,7 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         ZarpoAccordianComponent,
         ZarpoNavComponent,
         ZarpoSliderComponent,
-        //        OnReturnDirective,
+//        OnReturnDirective,
         //        NoSpaceDirective,
         MyDatePicker
     ],

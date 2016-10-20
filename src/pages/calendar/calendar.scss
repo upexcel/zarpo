@@ -4,8 +4,9 @@
         border-color: #ccc;
         border-style: none;
     }
-    scroll-content{
+    .scroll-content{
         padding-bottom: 72px;
+
     }
     .marU10 {
         margin-top: 10px;
@@ -892,7 +893,7 @@
         padding-top: 10px;
     }
     .item-accordion1:last-child{
-            border-bottom:none;
+        border-bottom:none;
     }
     table {
         width: 100%;
@@ -927,6 +928,14 @@
     .padUD0 {
         padding-top: 0px;
         padding-bottom: 0px;
+    }
+
+}
+.footercalender{
+    li.no-margin.no-padding {
+        width: 50% !important;
+        float: left !important; 
+        list-style: none !important;
     }
 }
 
