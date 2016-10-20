@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {AgmCoreModule,SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
+//import {AgmCoreModule,SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 
 import { MyApp } from './app.component';
 import { Storage } from '@ionic/storage';
@@ -61,7 +61,7 @@ import {ValeCancel} from '../pages/vale-cancel/vale-cancel';
 import {ValeDetail} from '../pages/vale-detail/vale-detail';
 import {ValeFlash} from '../pages/vale-flash/vale-flash';
 
-//============================directives===================================
+//======================directives======================
 
 
 //=========================pipe==========================
@@ -111,7 +111,7 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         myReservation,
         nLetter,
         offline,
-        //        OrderFail,
+        OrderFail,
         OrderSuccess,
         PacoteDetail,
         privacy,
@@ -152,8 +152,8 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         MyDatePicker
     ],
     imports: [
-        IonicModule.forRoot(MyApp),
-        AgmCoreModule.forRoot({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' })
+        IonicModule.forRoot(MyApp)
+        //AgmCoreModule.forRoot({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -177,7 +177,7 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         myReservation,
         nLetter,
         offline,
-        //        OrderFail,
+        OrderFail,
         OrderSuccess,
         PacoteDetail,
         privacy,
@@ -191,7 +191,7 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         ValeCancel,
         ValeDetail,
         ValeFlash,
-        //        ==========================directive===========
+        // ==========================directive===========
         FacebookComponent,
         FlashCardComponent,
         FooterComponent,
