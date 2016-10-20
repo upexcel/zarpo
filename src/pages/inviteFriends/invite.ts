@@ -37,7 +37,8 @@ export class invite {
     }
     public success_msg: boolean = false;
      public invalidEmail: string="";
-    public bindData:any
+    public bindData:any;
+    itemObject:any;
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,

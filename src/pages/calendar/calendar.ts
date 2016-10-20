@@ -166,14 +166,14 @@ export class calendar {
                 this.initializeRoomVariable();
             }
             else {
-//                this._calender.fetchCalenderData(this._navParams.get('id'), this._navParams.get('is_ja')).subscribe((response: any) => {
-//                    this.apiLoader = false;
-//                    this.responseReady = true;
-//                    this.bookingResponse = response;
-//                    this.buildCheckinDatepicker();
-//                    //set subrooms variable to 0
-//                    this.initializeRoomVariable();
-//                });
+                this._calender.fetchCalenderData(this._navParams.get('id'), this._navParams.get('is_ja')).subscribe((response: any) => {
+                    this.apiLoader = false;
+                    this.responseReady = true;
+                    this.bookingResponse = response;
+                    this.buildCheckinDatepicker();
+                    //set subrooms variable to 0
+                    this.initializeRoomVariable();
+                });
             }
 
         });
@@ -334,7 +334,7 @@ export class calendar {
 
         });
     }
-    rulePacote(dmy, checkinTimestamp, minStayTimeStamp) {
+    rulePacote(dmy:any, checkinTimestamp:any, minStayTimeStamp:any) {
         var thisDateTimestamp = this.changePerTimeZone(dmy).getTime();
         //calender date should be greter than checkin date and 
         //on that date stocks should be available 
@@ -369,7 +369,7 @@ export class calendar {
 
         }
     }
-    ruleHotel(dmy, checkinTimestamp, minStayTimeStamp) {
+    ruleHotel(dmy:any, checkinTimestamp:any, minStayTimeStamp:any) {
         var thisDateTimestamp = this.changePerTimeZone(dmy).getTime();
         //calender date should be greter than checkin date and 
         //on that date stocks should be available 
@@ -634,7 +634,7 @@ export class calendar {
         jQuery(divdetail).slideToggle("fast");
 
     };
-    popOutRoom(id) {
+    popOutRoom(id:any) {
         for (var i = 0; i < this.selectedbookingRooms.length; i++) {
             if (this.selectedbookingRooms[i].id == id) {
                 this.selectedbookingRooms.splice(i, 1);
@@ -643,7 +643,7 @@ export class calendar {
         }
 
     }
-    getStock(id) {
+    getStock(id:any) {
         var availableStock;
         var key1 = id + "_" + this.checkinDate;
         var key2 = id + "_" + this.checkoutDate;
@@ -661,7 +661,7 @@ export class calendar {
         return new Array(parseInt(data));
     };
     //function after selecting room and recording its detail
-    getRoom(subroom, value, category, categoryNmae, superAttribute) {
+    getRoom(subroom:any, value:any, category:any, categoryNmae:any, superAttribute:any) {
         if (this.minError || this.maxError) {
             this.minError = false;
             this.maxError = false;
@@ -698,7 +698,7 @@ export class calendar {
         var key = id + "_" + this.checkinDate;
         return this.bookingResponse.checkout.priceRef[key];
     };
-    ifOldSelection(id) {
+    ifOldSelection(id:any) {
         var foundAt = -1;
         for (var i = 0; i < this.selectedbookingRooms.length; i++) {
             if (this.selectedbookingRooms[i].id === id) {
@@ -861,7 +861,7 @@ export class calendar {
         }
 
     };
-    calculateSubRoom(id) {
+    calculateSubRoom(id:any) {
         var total = 0;
         var roomData = this.selectedbookingRooms;
         for (var i = 0; i < Object.keys(roomData).length; i++) {
@@ -892,13 +892,13 @@ export class calendar {
         //        this.events.publish('rs:booking', { clientprice: this.selected_ClientPrice, mrp: this.selected_MRP, selectedRomm: this.selectedbookingRooms });
 
     }
-    splitId(rid, sid) {
+    splitId(rid:any, sid:any) {
         var cutLetter = rid.length;
         var result = sid.slice(cutLetter, sid.length);
         return result;
     }
     public da: any; public mo: any;
-    getHumanDate(timestamp) {
+    getHumanDate(timestamp:any) {
         var x = new Date(timestamp);
         this.da = x.getDate();
         if (this.da < 10) {

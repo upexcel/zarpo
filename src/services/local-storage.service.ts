@@ -44,15 +44,15 @@ export class LocalStorageService {
             var expire;
             //if value returned
             if (value) {
-                //                expire = value * 1;
-                //                if (new Date().getTime() > expire) {
-                //                    this.setValue(key, null);
-                //                    this.setValue(time_key, null);
-                //                    return false;
-                //                }
-                //                else {
-                //                    return value;
-                //                }
+                expire = value * 1;
+                if (new Date().getTime() > expire) {
+                    this.setValue(key, null);
+                    this.setValue(time_key, null);
+                    return false;
+                }
+                else {
+                    return value;
+                }
             }
             else {
                 return false;

@@ -4,7 +4,9 @@ ion-content.menu{
     }
 }
 .menu{
-
+    .button-ios {
+        border-radius: 0px !important;
+    }
     .parentSideTitle {
         display: table;
         width: 80%;
@@ -138,7 +140,7 @@ ion-content.menu{
         padding: 0px 0px;
     }
     ion-label {
-        margin:0px; 
+        margin: 0px 10px 0 0 !important;
     }
     .bordernone{
         border-bottom: 0px !important;
@@ -209,6 +211,7 @@ ion-content.menu{
         font-size: 26px;
         /*left: 22px;*/
         padding: 1px 10px 0 5px;
+        margin: -2px 0 0 0;
     }
     .padLeft{
         padding-left:32px !important;

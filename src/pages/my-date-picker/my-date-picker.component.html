@@ -2,8 +2,8 @@
 
      <div class="selectiongroup" *ngIf="!inline">
         <span class="selection" [ngStyle]="{'height': height, 'line-height': height}" (click)="openBtnClicked()">
-              <span *ngIf='!selectionDayTxt.length>0'>{{title}}</span> 
-            <span *ngIf='selectionDayTxt.length>0'>{{selectionDayTxt}}</span>
+              <span *ngIf='!selectionDayTxt.length>num'>{{title}}</span> 
+            <span *ngIf='selectionDayTxt.length>num'>{{selectionDayTxt}}</span>
         </span>
         <span class="selbtngroup" [style.height]="height">
             <button ion-button type="button" class="btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()"><span class="icon icon-cross"></span></button>

@@ -237,7 +237,7 @@
     }
 
     .ui-datepicker-next span {
-        background: url("../../img/prox.png") no-repeat scroll right top 22px transparent !important;
+        background: url("../../assets/img/prox.png") no-repeat scroll right top 22px transparent !important;
         display: block;
         height: 35px;
         width: 100%;
@@ -257,7 +257,7 @@
         right:16px;
     }
     .ui-datepicker-prev span {
-        background: url('../../img/prev.png') no-repeat scroll right top 22px transparent !important;
+        background: url('../../assets/img/prev.png') no-repeat scroll right top 22px transparent !important;
         display: block;
         height: 35px;
         width: 45px;
@@ -493,7 +493,7 @@
         height: 30px;
         padding-left: 5px;
         width: 40px;
-        background-image: url("../img/select-arrow1.png");
+        background-image: url("../assets/img/select-arrow1.png");
         background-repeat: no-repeat;
         background-position: 80% 50%;
         background-size: 8px;

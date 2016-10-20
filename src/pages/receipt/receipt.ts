@@ -38,6 +38,7 @@ export class Receipt {
     reward: number = 0;
     lastCheckOut: string;
     totalNights: number;
+    apiLoader:boolean;
     constructor(
         private _navParams: NavParams,
         private _nav: NavController,

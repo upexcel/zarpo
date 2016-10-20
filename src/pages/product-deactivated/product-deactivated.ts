@@ -11,6 +11,7 @@ import {HotelFlash} from '../hotel-flash/hotel-flash';
 export class ProductDeactivated {
     public zarpoIcon: boolean = true;
     pageTitle: string = 'Opa!';
+    apiLoader:boolean;
     constructor(private _nav: NavController) {
     }
     backToJaFlash() {

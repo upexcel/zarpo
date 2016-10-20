@@ -17,8 +17,8 @@ export class ZarpoAccordianComponent {
     shownGroup: string;
     constructor() {
     }
-    scrollToTop() {
-        this.accContent.scrollToTop();
+    scrollToTop(duration) {
+        this.accContent.scrollToTop(duration);
     }
     scrollToAnchor() {
         var anchorPos = this.anchor.nativeElement['offsetTop'];
@@ -26,7 +26,7 @@ export class ZarpoAccordianComponent {
 
         this.accContent.scrollTo(0, off, 500);
     }
-    toggleGroup(group: string) {
+    toggleGroup(group: any) {
         this.currentGroup = "xyz";
         if (this.isGroupShown(group)) {
             this.shownGroup = null;
@@ -34,7 +34,7 @@ export class ZarpoAccordianComponent {
             // the element you wish to scroll to.
             if (true) {
                 setTimeout(() => {
-                    this.scrollToTop();
+                    this.scrollToTop(400);
                 }, 100)
             }
         } else {
@@ -46,10 +46,10 @@ export class ZarpoAccordianComponent {
             }
         }
     }
-    isGroupShown(group: string) {
+    isGroupShown(group: any) {
         return this.shownGroup === group;
     };
-    hideTitle(title: string) {
+    hideTitle(title: any) {
         title = title.trim();
         if ((title === 'O que est&#225; incluso' || title === 'A Garantia Zarpo Pacote:' ||
             title === "O Pacote inclui:") && this.ifProductClosed === true) {

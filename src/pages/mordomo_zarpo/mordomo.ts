@@ -8,7 +8,8 @@ import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
 
 export class mordomo {
     public zarpoIcon = true;
-    public pageTitle = "Mordomo Zarpo"
+    public pageTitle = "Mordomo Zarpo";
+    apiLoader:boolean;
     constructor(private _navParams: NavParams) {
         this._navParams = _navParams;
         if(this._navParams.get('name')){

@@ -61,6 +61,7 @@ export class ProductPayment {
     checkSelected: any;
     checkReceipt: any;
     myDatePickerOptions: any;
+    apiLoader:boolean;
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,

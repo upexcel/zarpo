@@ -15,6 +15,7 @@ export class terms {
     public pageTitle = 'Condições Gerais de Uso';
     public showBack = false;
     public apiLoader=false;
+    zarpoIcon:boolean;
     constructor(
         private _nav: NavController) {
         this._nav = _nav;

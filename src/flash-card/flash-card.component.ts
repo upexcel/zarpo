@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, Output, EventEmitter} from '@angular/core';
 import {Events, NavController} from 'ionic-angular';
 import {ImageHeightService} from '../services/image-height.service';
-//import {GoogleTagService} from '../services/google-tag.service';
+import {GoogleTagService} from '../services/google-tag.service';
 import {LocalStorageService} from '../services/local-storage.service';
 
 import {HotelDetail} from '../pages/hotel-detail/hotel-detail';
@@ -14,7 +14,7 @@ import {JaDetail} from '../pages/ja-detail/ja-detail';
     selector: "zarpo-flash-card",
     templateUrl: 'flash-card.html',
     providers: [ImageHeightService]
-//    , GoogleTagService
+    //    , GoogleTagService
 })
 
 export class FlashCardComponent {
@@ -23,11 +23,12 @@ export class FlashCardComponent {
     @Input() tag: any;
     @Input() no_data: any
     public imgHeight: string;
+    itemObject:boolean=false;
     constructor(
         private _nav: NavController,
         public _events: Events,
         private _img: ImageHeightService,
-//        private _gtm: GoogleTagService,
+        public _gtm: GoogleTagService,
         private _localStorageService: LocalStorageService
     ) {
         this.getFlashImgHeight();
@@ -45,7 +46,7 @@ export class FlashCardComponent {
     public objtag: any = [];
     script() {
         if (this.flashtype !== 'Ja') {
-            this._localStorageService.getTimerStorage('allData').then((response:any) => {
+            this._localStorageService.getTimerStorage('allData').then((response: any) => {
 
                 if (!response) {
                     setTimeout(() => {
@@ -65,7 +66,7 @@ export class FlashCardComponent {
                                 }
                                 this.obj.push(data);
                             }
-                        } else if (this.flashtype === 'Pacote') {
+                        } else if (this.flashtype == 'Pacote') {
                             if (response[i].attribute == 'Pacote') {
                                 var data = {
                                     name: response[i].dl_name,
@@ -78,7 +79,7 @@ export class FlashCardComponent {
                                 this.obj.push(data);
                             }
                         }
-                        else if (this.flashtype === 'Vale') {
+                        else if (this.flashtype == 'Vale') {
                             if (response[i].attribute == 'Giftcard') {
                                 var data = {
                                     name: response[i].dl_name,
@@ -92,24 +93,24 @@ export class FlashCardComponent {
                             }
                         }
                     }
-//                    this._gtm.setScript6(this.obj);
+                    this._gtm.setScript6(this.obj);
                 }
             });
         } else {
-//            this._localStorageService.getTimerStorage('allDataJa').then((response) => {
-//                for (var i = 0; i < response.length; i++) {
-//                    var data = {
-//                        name: response[i].dl_name,
-//                        id: response[i].hotel_id,
-//                        brand: 'Zarpo Ja',
-//                        category: response[i].dl_category,
-//                        position: i,
-//                        list: 'flash'
-//                    }
-//                    this.obj.push(data);
-//                }
-//                this._gtm.setScript6(this.obj);
-//            });
+            this._localStorageService.getTimerStorage('allDataJa').then((response) => {
+                for (var i = 0; i < response.length; i++) {
+                    var data = {
+                        name: response[i].dl_name,
+                        id: response[i].hotel_id,
+                        brand: 'Zarpo Ja',
+                        category: response[i].dl_category,
+                        position: i,
+                        list: 'flash'
+                    }
+                    this.obj.push(data);
+                }
+                this._gtm.setScript6(this.obj);
+            });
         }
     }
     getFlashImgHeight() {
@@ -127,25 +128,25 @@ export class FlashCardComponent {
             location: item.location,
         }
         var name;
-        if (this.flashtype === 'Hotel') {
+        if (this.flashtype == 'Hotel') {
             console.log('Hotel')
             name = 'flash'
             this._localStorageService.setValue('is_ja', false);
             this._nav.push(HotelDetail, paramData);
         }
-        if (this.flashtype === 'Pacote') {
+        if (this.flashtype == 'Pacote') {
             console.log('pacote')
             name = 'flash'
             this._localStorageService.setValue('is_ja', false);
             this._nav.push(PacoteDetail, paramData);
         }
-        if (this.flashtype === 'Vale') {
+        if (this.flashtype == 'Vale') {
             console.log('vale')
             name = 'flash'
             this._localStorageService.setValue('is_ja', false);
             this._nav.push(ValeDetail, paramData);
         }
-        if (this.flashtype === 'Ja') {
+        if (this.flashtype == 'Ja') {
             console.log('ja')
             name = 'flash'
             this._localStorageService.setValue('is_ja', true);
@@ -173,20 +174,20 @@ export class FlashCardComponent {
         }
         console.log('hellosdfsdfsd', item, pos, name);
 
-//        this._gtm.setScript7(item, pos, name);
+        this._gtm.setScript7(item, pos, name);
 
     }
     tagLoaded(item: any) {
         console.log('tag items', item);
         var name; var brand;
-        if (this.flashtype === 'Hotel') {
+        if (this.flashtype == 'Hotel') {
             brand = 'Hotel'
         }
-        else if (this.flashtype === 'Pacote') {
+        else if (this.flashtype == 'Pacote') {
             brand = 'Pacote'
         }
 
-        else if (this.flashtype === 'Ja') {
+        else if (this.flashtype == 'Ja') {
             brand = 'Zarpo Ja'
         }
         if (this.tag) {
@@ -221,7 +222,7 @@ export class FlashCardComponent {
             this.objtag.push(data);
         }
         console.log('hellosdfsdfsd', this.objtag);
-//        this._gtm.setScript6(this.objtag);
+        this._gtm.setScript6(this.objtag);
     }
 }
 

@@ -7,7 +7,8 @@
                 <div class="pacote-price">A partir de <span>{{item.gift_price}}</span><span *ngIf="flashtype ==='Pacote'&& item.pacote_price">{{item.pacote_price.clientprice}}</span></div>
                 <div class="pacote-price-tag" *ngIf="flashtype !=='Vale'">(por pessoa, em quarto duplo)</div>
             </div>-->
-            <div class="automaticCredit" [hidden]="!flashtype ==='Hotel' || !flashtype ==='Ja'" *ngIf="item.automatic_credit && item.automatic_credit != 0 ">
+<!--[hidden]="flashtype !=='Hotel' || flashtype !=='Ja'"-->
+            <div class="automaticCredit"  *ngIf="item.automatic_credit && item.automatic_credit != 0 ">
                  <div> R${{item.automatic_credit}}</div>
             </div>
         </div>
@@ -25,7 +26,7 @@
           <div class="cl" *ngIf="flashtype !=='Vale'">
               <div class="lin" *ngIf="flashtype !== 'Ja' ">Último dia da promoção:</div><div *ngIf="flashtype !== 'Ja' " [innerHtml]="item.date_to_close"></div>
               <div *ngIf="flashtype == 'Ja'"> Encerra na segunda-feira às 15h</div> 
-              
+              {{flashtype}}
     </div>
 </ion-card>
 

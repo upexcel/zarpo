@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 //import {AgmCoreModule,SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
-
 import { MyApp } from './app.component';
 import { Storage } from '@ionic/storage';
 import {IonicApp, IonicModule, Platform, Nav, NavController, Events} from 'ionic-angular';
 import {GoogleTagService} from '../services/google-tag.service';
-
+//import {AgmCoreModule, SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 //services
 import {menuService} from '../services/menu.service';
 import {Rxjs} from '../services/Rxjs';
@@ -20,7 +19,8 @@ import {DateService} from '../services/date.service';
 import {calendarService} from '../pages/calendar//calendar.servise';
 import {errorhandler} from '../services/error';
 import {facebookLogin} from '../services/fbLogin';
-//, provideLazyMapsAPILoaderConfig
+
+
 import {MoipService} from '../services/moip.service';
 import {GeocoderService} from '../services/geocoder.service';
 import {SuperService} from '../services/super.service';
@@ -121,7 +121,7 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         Receipt,
         SuccessFeedback,
         terms,
-        //        Timeout,
+        Timeout,
         ValeCancel,
         ValeDetail,
         ValeFlash,
@@ -187,7 +187,7 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         Receipt,
         SuccessFeedback,
         terms,
-        //        Timeout,
+        Timeout,
         ValeCancel,
         ValeDetail,
         ValeFlash,
@@ -203,7 +203,6 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         MyDatePicker
     ],
     providers: [Storage, Rxjs, ImageHeightService, GoogleTagService, facebookLogin, errorhandler, LocalStorageService, UserDetailService,
-        //        provideLazyMapsAPILoaderConfig({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' }),
         GuestDetailService, CheckReceiptService, GeocoderService, DateService, CheckSelectedService, menuService, CalenderService, calendarService
         , MoipService, SuperService, PaymentService]
 

@@ -73,63 +73,63 @@ export class hotelTag {
         });
     }
     getItems() {
-//        if (this.filterdata.flashType == 'Ja') {
-//            this.local.getTimerStorage('allDataJa').then((response) => {
-//                //value fetched from local storage
-//                if (response && response.length > 0) {
-//                    this.flashItems = response;
-//                    this.apiLoader = false;
-//                    this.refreshItems();
-//                    this.pipedata();
-//
-//                }
-//                //fire api for data
-//                else {
-//                    this.data.is_ja = true;
-//                    this.api.ajaxRequest(this.path, this.data).subscribe((response: any) => {
-//                        if (response.data && response.data.length > 0) {
-//                            //response fetched
-//                            this.local.setTimerStorage("allData", response.data, 0.15);
-//                            this.flashItems = response.data;
-//                            this.apiLoader = false;
-//                            this.refreshItems();
-//                            this.pipedata();
-//                        }
-//                    }, (error) => {
-//                        this._errorhandler.err(error);
-//                    });
-//
-//                }
-//            });
-//        } else {
-//            this.local.getTimerStorage('allData').then((response) => {
-//                //value fetched from local storage
-//                if (response && response.length > 0) {
-//                    this.flashItems = response;
-//                    this.apiLoader = false;
-//                    this.refreshItems();
-//                    this.pipedata();
-//
-//                }
-//                //fire api for data
-//                else {
-//                    this.api.ajaxRequest(this.path, this.data).subscribe((response: any) => {
-//                        if (response.data && response.data.length > 0) {
-//                            //response fetched
-//                            this.local.setTimerStorage("allData", response.data, 0.15);
-//                            this.flashItems = response.data;
-//                            this.apiLoader = false;
-//                            this.refreshItems();
-//                            this.pipedata();
-//                        }
-//                    }, (error) => {
-//                        this._errorhandler.err(error);
-//                    });
-//
-//                }
-//            });
-//
-//        }
+        if (this.filterdata.flashType == 'Ja') {
+            this.local.getTimerStorage('allDataJa').then((response) => {
+                //value fetched from local storage
+                if (response && response.length > 0) {
+                    this.flashItems = response;
+                    this.apiLoader = false;
+                    this.refreshItems();
+                    this.pipedata();
+
+                }
+                //fire api for data
+                else {
+                    this.data.is_ja = true;
+                    this.api.ajaxRequest(this.path, this.data).subscribe((response: any) => {
+                        if (response.data && response.data.length > 0) {
+                            //response fetched
+                            this.local.setTimerStorage("allData", response.data, 0.15);
+                            this.flashItems = response.data;
+                            this.apiLoader = false;
+                            this.refreshItems();
+                            this.pipedata();
+                        }
+                    }, (error) => {
+                        this._errorhandler.err(error);
+                    });
+
+                }
+            });
+        } else {
+            this.local.getTimerStorage('allData').then((response) => {
+                //value fetched from local storage
+                if (response && response.length > 0) {
+                    this.flashItems = response;
+                    this.apiLoader = false;
+                    this.refreshItems();
+                    this.pipedata();
+
+                }
+                //fire api for data
+                else {
+                    this.api.ajaxRequest(this.path, this.data).subscribe((response: any) => {
+                        if (response.data && response.data.length > 0) {
+                            //response fetched
+                            this.local.setTimerStorage("allData", response.data, 0.15);
+                            this.flashItems = response.data;
+                            this.apiLoader = false;
+                            this.refreshItems();
+                            this.pipedata();
+                        }
+                    }, (error) => {
+                        this._errorhandler.err(error);
+                    });
+
+                }
+            });
+
+        }
 
     }
     public no_data: any; public tagType: any;

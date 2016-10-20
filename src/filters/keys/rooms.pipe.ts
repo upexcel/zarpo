@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'rooms' })
 export class RoomsPipe implements PipeTransform {
-    transform(value: any, args: string[]): any {
+    transform(value: any): any {
         let roomArray: any = [];
         var room = value;
 

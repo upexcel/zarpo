@@ -48,6 +48,7 @@ export class GuestDetail{
     creditCard: {};
     ifSubmitted: boolean;;
     disableMyForm: boolean
+    apiLoader:any;
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,

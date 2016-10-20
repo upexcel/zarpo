@@ -14,7 +14,7 @@ export class MyDatePicker implements OnInit, OnChanges {
     @Input() title: string;
     @Input() showIcon: boolean;
     @Output() dateChanged: EventEmitter<Object> = new EventEmitter();
-
+    num: number = 0;
     showSelector: boolean = false;
     visibleMonth: IMyMonth = { monthTxt: '', monthNbr: 0, year: 0 };
     defaultDate: IMyDate = { year: 0, month: 0, day: 0 };

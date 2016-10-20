@@ -15,6 +15,7 @@ export class CalenderClosed {
     pageTitle: string = 'Opa!';
     path: "booking";
     calenderRefresher: any;
+    apiLoader:any
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,
