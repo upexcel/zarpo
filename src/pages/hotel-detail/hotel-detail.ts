@@ -1,5 +1,4 @@
 import {Events, NavParams, Content} from 'ionic-angular';
-//import {ANGULAR2_GOOGLE_MAPS_PROVIDERS, ANGULAR2_GOOGLE_MAPS_DIRECTIVES, GoogleMapsAPIWrapper, SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 import {SebmGoogleMapMarker, SebmGoogleMap} from 'angular2-google-maps/core';
 import {Component, AfterViewChecked, forwardRef, ViewChild} from '@angular/core';
 import {errorhandler} from '../../services/error';
@@ -53,7 +52,7 @@ export class HotelDetail implements AfterViewChecked {
     };
     lat: number = 51.678418;
     lng: number = 7.809007;
-    iconUrl: string = "../assets/img/marker.png";
+    iconUrl: string = "../../assets/img/marker.png";
     zoom = 8;
     gpsLocation: any = [];
 
@@ -186,9 +185,9 @@ export class HotelDetail implements AfterViewChecked {
     fetchCalenderData() {
         console.log('dates for checkin and checkout')
         this._calenderService.fetchCalenderData(this.navParams.get('id'), this.data.is_ja)
-//            .subscribe((res: any) => {
-//
-//        });
+            .subscribe((res: any) => {
+
+            });
 
     }
     showOffer() {

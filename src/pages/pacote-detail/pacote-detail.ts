@@ -83,6 +83,7 @@ export class PacoteDetail {
         });
         this.location = this.navParams.get('location');
         this.pageTitle = this.navParams.get('name');
+        
     }
     ionViewWillEnter() {
         //stop refreshing of flash hotels 
