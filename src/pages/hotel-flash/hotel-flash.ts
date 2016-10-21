@@ -15,8 +15,8 @@ import {ZarpoHotelPipe} from '../../filters/hotel/zarpo-hotel.pipe';
 import _ from 'lodash';
 @Component({
     templateUrl: 'hotel-flash.html',
-//    directives: [FlashCardComponent, FooterComponent, forwardRef(() => ZarpoNavComponent)],
-//    pipes: [ZarpoHotelPipe]
+    //    directives: [FlashCardComponent, FooterComponent, forwardRef(() => ZarpoNavComponent)],
+    //    pipes: [ZarpoHotelPipe]
 
 })
 
@@ -37,7 +37,7 @@ export class HotelFlash {
     api: Rxjs;
 
     flashItems: any = [];
-    apiLoader: boolean = false;
+    apiLoader: boolean = true;
     flashRefresher: any;
     itemss: any = [];
     page = 1;
@@ -52,7 +52,7 @@ export class HotelFlash {
         private _gtm: GoogleTagService
     ) {
         this._gtm.setScript5('');
-  
+       console.log('testing testing')
         this.nav = this._nav;
         this.api = this._ajaxRxjs;
         if (this._navParams.get('hotelType')) {
@@ -61,6 +61,7 @@ export class HotelFlash {
         this.local = this.local;
         this.local.getValue('user_data').then((response) => {
             if (response) {
+                console.log('user data for testing',response);
                 this.data.user_token = response.data.user_token;
                 this.data.group_id = response.data.group_id;
                 this.data.page = this.page;
@@ -115,11 +116,11 @@ export class HotelFlash {
     //calling to prefetch data to store in local-storege for filters
     alldata(allData: any) {
         this.local.getTimerStorage('allData').then((response) => {
-        
+
             if (response && response.length > 0) {
-          
+
             } else {
-           console.log('data checking',response);
+                console.log('data checking', response);
                 this.api.ajaxRequest(this.path, allData).subscribe((response: any) => {
                     console.log(response);
                     if (response.data && response.data.length > 0) {
@@ -143,70 +144,70 @@ export class HotelFlash {
     }
 
     getItems(data: any) {
-        this.local.getTimerStorage('flash_data').then((response) => {
+        //        this.local.getTimerStorage('flash_data').then((response) => {
+        //
+        //
+        //            //valresponseue fetched from local storage
+        //            if (response && response.length > 0) {
+        //                this.flashItems = response;
+        //                this.apiLoader = false;
+        //                this.refreshItems();
+        //            }
+        //            //fire api for data
+        //            else {
+        this.api.ajaxRequest(this.path, data).subscribe((response: any) => {
+            if (data.page == 1) {
+                console.log('yes');
+                this.refresh = false;
+                this.flashItems = [];
+            }
+            if (response.data && response.data.length > 0 && response.data !== 'ja store closed.') {
+                this.page++;
 
+                let data: any = {
+                    user_token: this.data.user_token,
+                    group_id: this.data.group_id,
+                    page: this.page
+                }
+                if (this.flashtype == 'Hotel') {
+                    data.page_type = "Hotel or room";
+                    data.is_ja = false;
+                } else if (this.flashtype == 'Pacote') {
+                    data.page_type = "Pacote";
+                    data.is_ja = false;
+                } else {
+                    data.page_type = "Hotel or room";
+                    data.is_ja = true;
+                }
+                if (!this.stopAjax) {
+                    this.getItems(data);
+                }
+                _.map(response.data, (response) => {
+                    this.flashItems.push(response);
 
-            //valresponseue fetched from local storage
-            if (response && response.length > 0) {
-                this.flashItems = response;
-                this.apiLoader = false;
+                });
+
+                if (this.refresh) {
+                    this.apiLoader = true
+                } else {
+                    this.apiLoader = false;
+                    this.refresh = false;
+                }
                 this.refreshItems();
             }
-            //fire api for data
             else {
-                this.api.ajaxRequest(this.path, data).subscribe((response: any) => {
-                    if (data.page == 1) {
-                        console.log('yes');
-                        this.refresh = false;
-                        this.flashItems = [];
-                    }
-                    if (response.data && response.data.length > 0 && response.data !== 'ja store closed.') {
-                        this.page++;
 
-                        let data: any = {
-                            user_token: this.data.user_token,
-                            group_id: this.data.group_id,
-                            page: this.page
-                        }
-                        if (this.flashtype == 'Hotel') {
-                            data.page_type = "Hotel or room";
-                            data.is_ja = false;
-                        } else if (this.flashtype == 'Pacote') {
-                            data.page_type = "Pacote";
-                            data.is_ja = false;
-                        } else {
-                            data.page_type = "Hotel or room";
-                            data.is_ja = true;
-                        }
-                        if (!this.stopAjax) {
-                            this.getItems(data);
-                        }
-                        _.map(response.data, (response) => {
-                            this.flashItems.push(response);
-                          
-                        });
-                      
-                        if (this.refresh) {
-                            this.apiLoader = true
-                        } else {
-                            this.apiLoader = false;
-                            this.refresh = false;
-                        }
-                        this.refreshItems();
-                    }
-                    else {
+                if (response.data && response.data === 'ja store closed.') {
 
-                        if (response.data && response.data === 'ja store closed.') {
-
-                            this.storeClosed = true;
-                        }
-                    }
-                }, (error) => {
-                    this._errorhandler.err(error);
-                });
-//
+                    this.storeClosed = true;
+                }
             }
+        }, (error) => {
+            this._errorhandler.err(error);
         });
+        //
+        //            }
+        //        });
 
     }
     ionViewWillLeave() {
