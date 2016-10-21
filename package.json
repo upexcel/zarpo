@@ -1,9 +1,6 @@
 {
-    "config": {
-        "ionic_rollup": "roll/rollup.config.js"
-    },
     "scripts": {
-        "build": "ionic-app-scripts build",
+        "build": "ionic-app-scripts build --dev",
         "watch": "ionic-app-scripts watch",
         "serve:before": "watch",
         "emulate:before": "build",
@@ -12,13 +9,24 @@
         "run:before": "build"
     },
     "dependencies": {
-        "@angular/platform-browser": "~2.0.1",
-        "@ionic/storage": "1.1.2",
+        "@angular/common": "2.0.x",
+        "@angular/compiler": "2.0.x",
+        "@angular/compiler-cli": "0.6.2",
+        "@angular/core": "2.0.x",
+        "@angular/forms": "2.0.x",
+        "@angular/http": "2.0.x",
+        "@angular/platform-browser": "2.0.x",
+        "@angular/platform-browser-dynamic": "2.0.x",
+        "@angular/platform-server": "2.0.x",
+        "@angular/router": "3.0.x",
+        "@ionic/storage": "^1.0.3",
         "angular2-google-maps": "^0.14.0",
         "es6-shim": "^0.35.0",
-        "ionic-angular": "^2.0.0-rc.0",
-        "ionic-native": "^2.0.3",
+        "ionic-angular": "^2.0.0-rc.1",
+        "ionic-native": "^2.2.3",
         "ionicons": "^3.0.0",
+        "rxjs": "5.0.0-beta.12",
+        "zone.js": "^0.6.21",
         "lodash": "^4.13.1",
         "moip": "^0.1.0",
         "ng2-page-scroll": "^1.1.1",
@@ -26,7 +34,7 @@
         "typings": "^1.4.0"
     },
     "devDependencies": {
-        "@ionic/app-scripts": "latest",
+        "@ionic/app-scripts": "^0.0.34",
         "@types/lodash": "4.14.37",
         "typescript": "^2.0.3"
     },
