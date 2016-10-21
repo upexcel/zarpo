@@ -3,8 +3,8 @@ import {NgIf, NgFor, NgClass, NgStyle} from '@angular/common';
 import {IMyDate, IMyMonth, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyLocales, IMyOptions} from './interfaces/index';
 @Component({
     selector: 'my-date-picker',
-    //    directives: [NgIf, NgFor, NgClass, NgStyle],
     templateUrl: 'my-date-picker.component.html'
+    //    directives: [NgIf, NgFor, NgClass, NgStyle],
 })
 export class MyDatePicker implements OnInit, OnChanges {
     @Input() options: any;
