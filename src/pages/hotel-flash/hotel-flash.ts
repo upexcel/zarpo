@@ -1,7 +1,7 @@
 import {Events} from 'ionic-angular';
 import {Component, Input, OnChanges, Output, forwardRef} from '@angular/core';
 import {errorhandler} from '../../services/error';
-import { NavController, NavParams} from 'ionic-angular';
+import { NavController, NavParams, ViewController} from 'ionic-angular';
 import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
 import {FooterComponent} from '../../footer/footer.component';
 
@@ -15,8 +15,8 @@ import {ZarpoHotelPipe} from '../../filters/hotel/zarpo-hotel.pipe';
 import _ from 'lodash';
 @Component({
     templateUrl: 'hotel-flash.html',
-//    directives: [FlashCardComponent, FooterComponent, forwardRef(() => ZarpoNavComponent)],
-//    pipes: [ZarpoHotelPipe]
+    //    directives: [FlashCardComponent, FooterComponent, forwardRef(() => ZarpoNavComponent)],
+    //    pipes: [ZarpoHotelPipe]
 
 })
 
@@ -49,10 +49,11 @@ export class HotelFlash {
         public local: LocalStorageService,
         private _ajaxRxjs: Rxjs,
         private _errorhandler: errorhandler,
-        private _gtm: GoogleTagService
+        private _gtm: GoogleTagService,
+        public viewCtrl: ViewController
     ) {
         this._gtm.setScript5('');
-  
+
         this.nav = this._nav;
         this.api = this._ajaxRxjs;
         if (this._navParams.get('hotelType')) {
@@ -97,6 +98,10 @@ export class HotelFlash {
                 this.alldata(allDataja);
             }
         });
+        this._events.subscribe('user:logout', (user) => {
+            console.log("Logged out");
+            this.userLoggedout();
+        });
 
     }
     doInfinite(infiniteScroll) {
@@ -115,11 +120,11 @@ export class HotelFlash {
     //calling to prefetch data to store in local-storege for filters
     alldata(allData: any) {
         this.local.getTimerStorage('allData').then((response) => {
-        
+
             if (response && response.length > 0) {
-          
+
             } else {
-           console.log('data checking',response);
+                console.log('data checking', response);
                 this.api.ajaxRequest(this.path, allData).subscribe((response: any) => {
                     console.log(response);
                     if (response.data && response.data.length > 0) {
@@ -183,9 +188,9 @@ export class HotelFlash {
                         }
                         _.map(response.data, (response) => {
                             this.flashItems.push(response);
-                          
+
                         });
-                      
+
                         if (this.refresh) {
                             this.apiLoader = true
                         } else {
@@ -204,14 +209,12 @@ export class HotelFlash {
                 }, (error) => {
                     this._errorhandler.err(error);
                 });
-//
+                //
             }
         });
 
     }
-    ionViewWillLeave() {
-        this.stopAjax = true;
-    }
+
     displayDetailItem(item: any) {
         var paramData = {
             id: item.hotel_id,
@@ -249,8 +252,19 @@ export class HotelFlash {
         this.pageTitle = 'Hotéis';
         this.getItems(this.data);
     }
+
+    ionViewWillLeave() {
+        console.log("view");
+        this.userLoggedout();
+    }
     onPageWillLeave() {
+        console.log("page");
+        this.userLoggedout();
+    }
+    userLoggedout() {
+        console.log("Stopped");
         //stop refreshing of flash hotels 
+        this.stopAjax = true;
         clearTimeout(this.flashRefresher);
     }
 

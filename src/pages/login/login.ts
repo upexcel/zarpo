@@ -16,7 +16,7 @@ import {OnReturnDirective} from '../../directives/on-return.directive';
 
 @Component({
     templateUrl: 'login.html',
-//    directives: [FooterComponent, FacebookComponent, NoSpaceDirective, OnReturnDirective],
+    //    directives: [FooterComponent, FacebookComponent, NoSpaceDirective, OnReturnDirective],
 })
 
 export class Login {
@@ -26,7 +26,7 @@ export class Login {
     public fb_button: string = 'Ou entrar pelo Facebook';
     public placeholder: string = "Sua senha";
     public signupForm: boolean = false;
-    public user:{}={};
+    public user: {} = {};
     state: State[] = STATE;
     public userEmail: string;
     public ragerror: boolean = false;
@@ -42,6 +42,7 @@ export class Login {
         this._nav = _nav;
         this._platform = _platform;
         this.user['state'] = 'Escolha seu estado';
+        
     }
 
     signUp() {
@@ -101,7 +102,7 @@ export class Login {
                 website_id: config.websiteId
             }
             this._ajaxRxjs.ajaxRequest(api, data).subscribe((response: any) => {
-                console.log('login data',response);
+                console.log('login data', response);
                 if (response.data.registration_status == 'Y' || response.data.login_status == "INCOMPLETE") {
                     this._localStorage.setValue('last_login', { email: user.email, pass: user.password });
                     this.ifUserRegistered = false;
@@ -111,6 +112,7 @@ export class Login {
                 } else if (response.data.login_status == "Yes") {
                     this._localStorage.setValue('last_login', { email: user.email, pass: user.password });
                     this._localStorage.setValue('user_data', response);
+                    this._localStorage.setValue('user_token', response.user_token);
                     console.log('move to menu');
                     this._nav.push(menu);
                     //                    this._nav.push(HotelFlash);
@@ -166,5 +168,6 @@ export class Login {
         this.Upassword = false;
         this.ragerror = false;
     }
+
 }
 
