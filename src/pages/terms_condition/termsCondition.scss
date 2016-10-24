@@ -1,7 +1,7 @@
 .terms{
 
     .corpo-padrao h3.h3-padrao {
-        color: #444444;
+        color: #444444 !important;
         font-weight: normal;
         margin-bottom: 15px;
         /* padding: 0 15px; */
@@ -19,5 +19,8 @@
         margin-bottom: 17px;
         word-wrap: break-word;
     }
+    .corpo-padrao h3.h3-padrao.first {
+    color: #444444 !important;
+}
 
 }
