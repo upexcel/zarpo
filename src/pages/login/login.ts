@@ -112,7 +112,7 @@ export class Login {
                     this._localStorage.setValue('last_login', { email: user.email, pass: user.password });
                     this._localStorage.setValue('user_data', response);
                     console.log('move to menu');
-                    this._nav.push(menu);
+                    this._nav.push(menu, { userData: response });
                     //                    this._nav.push(HotelFlash);
                 } else {
                     this.wrongCredit = true;

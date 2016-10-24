@@ -52,54 +52,58 @@ export class HotelFlash {
         private _gtm: GoogleTagService
     ) {
         this._gtm.setScript5('');
-       console.log('testing testing')
+        console.log('testing testing')
         this.nav = this._nav;
         this.api = this._ajaxRxjs;
         if (this._navParams.get('hotelType')) {
             this.flashtype = this._navParams.get('hotelType');
         }
+        console.log('param data', this._navParams)
         this.local = this.local;
-        this.local.getValue('user_data').then((response) => {
-            if (response) {
-                console.log('user data for testing',response);
-                this.data.user_token = response.data.user_token;
-                this.data.group_id = response.data.group_id;
-                this.data.page = this.page;
-                //set page type and is ja value according to link
-                if (this.flashtype == 'Hotel') {
-                    this.data.page_type = "Hotel or room";
-                    this.data.is_ja = false;
-                    this.pageTitle = 'Hotéis';
-                }
-                else if (this.flashtype == 'Pacote') {
-                    this.data.page_type = "Pacote";
-                    this.data.is_ja = false;
-                    this.pageTitle = 'Pacotes';
-                }
-                else {
-                    this.data.page_type = "Hotel or room";
-                    this.data.is_ja = true;
-                    this.pageTitle = 'ZARPO JÁ';
-                }
+        setTimeout(() => {
+            this.local.getValue('user_data').then((response) => {
+                console.log('user response', response);
+                if (response) {
+                    console.log('user data for testing', response);
+                    this.data.user_token = response.data.user_token;
+                    this.data.group_id = response.data.group_id;
+                    this.data.page = this.page;
+                    //set page type and is ja value according to link
+                    if (this.flashtype == 'Hotel') {
+                        this.data.page_type = "Hotel or room";
+                        this.data.is_ja = false;
+                        this.pageTitle = 'Hotéis';
+                    }
+                    else if (this.flashtype == 'Pacote') {
+                        this.data.page_type = "Pacote";
+                        this.data.is_ja = false;
+                        this.pageTitle = 'Pacotes';
+                    }
+                    else {
+                        this.data.page_type = "Hotel or room";
+                        this.data.is_ja = true;
+                        this.pageTitle = 'ZARPO JÁ';
+                    }
 
-                this.apiLoader = true;
-
-                let allData = {
-                    user_token: this.data.user_token,
-                    group_id: this.data.group_id,
-                    is_ja: false
+                    this.apiLoader = true;
+                    console.log('this data for testing', this.data);
+                    let allData = {
+                        user_token: this.data.user_token,
+                        group_id: this.data.group_id,
+                        is_ja: false
+                    }
+                    this.alldata(allData);
+                    let allDataja = {
+                        user_token: this.data.user_token,
+                        group_id: this.data.group_id,
+                        is_ja: true
+                    }
+                    this.alldata(allDataja);
                 }
-                this.alldata(allData);
-                let allDataja = {
-                    user_token: this.data.user_token,
-                    group_id: this.data.group_id,
-                    is_ja: true
-                }
-                this.alldata(allDataja);
-            }
-        });
-
+            });
+        }, 100);
     }
+
     doInfinite(infiniteScroll) {
         let data = {
             user_token: this.data.user_token,
@@ -121,7 +125,7 @@ export class HotelFlash {
 
             } else {
                 console.log('data checking', response);
-                this.api.ajaxRequest(this.path, allData).subscribe((response: any) => {
+                this.api.ajaxRequest(this.path, allData).subscribe((response:any) => {
                     console.log(response);
                     if (response.data && response.data.length > 0) {
                         if (!allData.is_ja) {
@@ -139,8 +143,10 @@ export class HotelFlash {
     ionViewWillEnter() {
         this.stopAjax = false;
         this.data.page = this.page;
-        console.log('enter in view', this.page);
-        this.getItems(this.data);
+       
+        setTimeout(() => {
+            this.getItems(this.data);
+        }, 300);
     }
 
     getItems(data: any) {
