@@ -46,7 +46,7 @@ export class PacoteDetail {
         is_ja: false
     };
 
-    iconUrl: string = "../assets/img/marker.png";
+    iconUrl: string = "assets/img/marker.png";
     zoom = 8;
     gpsLocation: any = [];
 

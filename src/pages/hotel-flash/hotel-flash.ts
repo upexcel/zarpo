@@ -1,7 +1,7 @@
 import {Events} from 'ionic-angular';
 import {Component, Input, OnChanges, Output, forwardRef} from '@angular/core';
 import {errorhandler} from '../../services/error';
-import { NavController, NavParams} from 'ionic-angular';
+import { NavController, NavParams, ViewController} from 'ionic-angular';
 import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
 import {FooterComponent} from '../../footer/footer.component';
 
@@ -11,7 +11,6 @@ import {GoogleTagService} from '../../services/google-tag.service';
 import {Rxjs} from '../../services/Rxjs';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {ZarpoHotelPipe} from '../../filters/hotel/zarpo-hotel.pipe';
-//import * as _ from 'lodash';
 import _ from 'lodash';
 @Component({
     templateUrl: 'hotel-flash.html',
@@ -49,7 +48,8 @@ export class HotelFlash {
         public local: LocalStorageService,
         private _ajaxRxjs: Rxjs,
         private _errorhandler: errorhandler,
-        private _gtm: GoogleTagService
+        private _gtm: GoogleTagService,
+        public viewCtrl: ViewController
     ) {
         this._gtm.setScript5('');
         console.log('testing testing')
@@ -102,6 +102,10 @@ export class HotelFlash {
                 }
             });
         }, 100);
+        this._events.subscribe('user:logout', (user) => {
+            console.log("Logged out");
+            this.userLoggedout();
+        });
     }
 
     doInfinite(infiniteScroll) {
@@ -125,7 +129,7 @@ export class HotelFlash {
 
             } else {
                 console.log('data checking', response);
-                this.api.ajaxRequest(this.path, allData).subscribe((response:any) => {
+                this.api.ajaxRequest(this.path, allData).subscribe((response: any) => {
                     console.log(response);
                     if (response.data && response.data.length > 0) {
                         if (!allData.is_ja) {
@@ -143,7 +147,7 @@ export class HotelFlash {
     ionViewWillEnter() {
         this.stopAjax = false;
         this.data.page = this.page;
-       
+
         setTimeout(() => {
             this.getItems(this.data);
         }, 300);
@@ -203,6 +207,50 @@ export class HotelFlash {
             }
             else {
 
+                //<<<<<<< HEAD
+                //                let data: any = {
+                //                    user_token: this.data.user_token,
+                //                    group_id: this.data.group_id,
+                //                    page: this.page
+                //                }
+                //                if (this.flashtype == 'Hotel') {
+                //                    data.page_type = "Hotel or room";
+                //                    data.is_ja = false;
+                //                } else if (this.flashtype == 'Pacote') {
+                //                    data.page_type = "Pacote";
+                //                    data.is_ja = false;
+                //                } else {
+                //                    data.page_type = "Hotel or room";
+                //                    data.is_ja = true;
+                //                }
+                //                if (!this.stopAjax) {
+                //                    this.getItems(data);
+                //                }
+                //                _.map(response.data, (response) => {
+                //                    this.flashItems.push(response);
+                //
+                //                });
+                //
+                //                if (this.refresh) {
+                //                    this.apiLoader = true
+                //                } else {
+                //                    this.apiLoader = false;
+                //                    this.refresh = false;
+                //                }
+                //                this.refreshItems();
+                //            }
+                //                    else {
+                //
+                //                if (response.data && response.data === 'ja store closed.') {
+                //
+                //                    this.storeClosed = true;
+                //                }
+                //            }
+                //        }, (error) => {
+                //            this._errorhandler.err(error);
+                //        });
+                //        //
+                //=======
                 if (response.data && response.data === 'ja store closed.') {
 
                     this.storeClosed = true;
@@ -216,9 +264,7 @@ export class HotelFlash {
         //        });
 
     }
-    ionViewWillLeave() {
-        this.stopAjax = true;
-    }
+
     displayDetailItem(item: any) {
         var paramData = {
             id: item.hotel_id,
@@ -256,8 +302,19 @@ export class HotelFlash {
         this.pageTitle = 'Hotéis';
         this.getItems(this.data);
     }
+
+    ionViewWillLeave() {
+        console.log("view");
+        this.userLoggedout();
+    }
     onPageWillLeave() {
+        console.log("page");
+        this.userLoggedout();
+    }
+    userLoggedout() {
+        console.log("Stopped");
         //stop refreshing of flash hotels 
+        this.stopAjax = true;
         clearTimeout(this.flashRefresher);
     }
 
