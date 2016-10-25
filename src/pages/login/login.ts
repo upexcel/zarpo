@@ -42,7 +42,7 @@ export class Login {
         this._nav = _nav;
         this._platform = _platform;
         this.user['state'] = 'Escolha seu estado';
-        
+
     }
 
     signUp() {
@@ -114,7 +114,7 @@ export class Login {
                     this._localStorage.setValue('user_data', response);
                     this._localStorage.setValue('user_token', response.user_token);
                     console.log('move to menu');
-                    this._nav.push(menu);
+                    this._nav.push(menu, { userData: response });
                     //                    this._nav.push(HotelFlash);
                 } else {
                     this.wrongCredit = true;

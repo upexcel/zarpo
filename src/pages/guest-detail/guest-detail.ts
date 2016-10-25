@@ -1,4 +1,4 @@
-import {Events, NavParams} from 'ionic-angular';
+import {Events, NavParams, Content} from 'ionic-angular';
 import {Component, AfterViewChecked, forwardRef, ViewChild} from '@angular/core';
 import {errorhandler} from '../../services/error';
 import {NavController} from 'ionic-angular';
@@ -19,16 +19,17 @@ import {OnReturnDirective} from '../../directives/on-return.directive';
 
 @Component({
     templateUrl: 'guest-detail.html',
-//    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent],
-//    providers: [],
-//    pipes: [KeysPipe, AdultChildPipe]
+    //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent],
+    //    providers: [],
+    //    pipes: [KeysPipe, AdultChildPipe]
 })
-export class GuestDetail{
-//export class GuestDetail implements AfterViewChecked {
-//    @ViewChild(Content) content: Content;
-//    ngAfterViewChecked() {
-//
-//    }
+
+export class GuestDetail implements AfterViewChecked {
+    @ViewChild(Content) content: Content;
+    ngAfterViewChecked() {
+
+    }
+    pattern = "^[A-Za-z \-\'\ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]*$";
     pageTitle: string = "Informe quem vai viajar";
     zarpoIcon: boolean = false;
     path: string = "product";
@@ -48,7 +49,7 @@ export class GuestDetail{
     creditCard: {};
     ifSubmitted: boolean;;
     disableMyForm: boolean
-    apiLoader:any;
+    apiLoader: any;
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,
@@ -61,7 +62,7 @@ export class GuestDetail{
         private _checkSelected: CheckSelectedService
 
     ) {
-console.log('data enter')
+        console.log('data enter')
     }
     ionViewWillEnter() {
         this.ifSubmitted = false;

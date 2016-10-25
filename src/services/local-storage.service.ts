@@ -89,6 +89,7 @@ export class LocalStorageService {
 
     }
     remove(key: string) {
+        console.log('removing local storage',key)
         this.local.remove(key);
     }
 

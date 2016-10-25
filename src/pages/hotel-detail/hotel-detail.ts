@@ -52,7 +52,7 @@ export class HotelDetail implements AfterViewChecked {
     };
     lat: number = 51.678418;
     lng: number = 7.809007;
-    iconUrl: string = "../../assets/img/marker.png";
+    iconUrl: string = "assets/img/marker.png";
     zoom = 8;
     gpsLocation: any = [];
 

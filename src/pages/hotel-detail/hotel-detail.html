@@ -106,8 +106,6 @@
     <!--map tab data-->
 
     <div class="hotel_rules" *ngIf="ifMaps ===true && gpsLocation.length>0">
-
-
         <div id="map" class="imgloader"> 
             <!-- this creates a google map on the page with the given lat/lng from -->
             <!-- the component as the initial center of the map: -->
@@ -115,7 +113,7 @@
                 [latitude]="gpsLocation[0].lat|StringToNumber" [longitude]="gpsLocation[0].lang|StringToNumber">
                 <sebm-google-map-marker *ngFor="let location of gpsLocation"
                     [latitude]="location.lat|StringToNumber" [longitude]="location.lang|StringToNumber"
-                    [label]="''" [fitBounds]="true">
+                    [label]="''" [fitBounds]="true" [iconUrl]="iconUrl">
             </sebm-google-map-marker>
         </sebm-google-map> 
 
