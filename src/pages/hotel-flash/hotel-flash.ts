@@ -146,7 +146,7 @@ export class HotelFlash {
        
         setTimeout(() => {
             this.getItems(this.data);
-        }, 300);
+        }, 400);
     }
 
     getItems(data: any) {
@@ -217,6 +217,7 @@ export class HotelFlash {
 
     }
     ionViewWillLeave() {
+        console.log('curently leaving view need to check');
         this.stopAjax = true;
     }
     displayDetailItem(item: any) {
