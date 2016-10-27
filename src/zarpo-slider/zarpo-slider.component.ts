@@ -14,16 +14,16 @@ export class ZarpoSliderComponent {
     mySlideOptions: any;
     imgHeight: string;
     @ViewChild('mySlider') slider: Slides;
-    num:any=0;
+    num: any = 0;
     constructor(private _img: ImageHeightService) {
         this.getFlashImgHeight();
         this.mySlideOptions = {
-            autoplay: 300,
+            autoplay: 3000,//time on screen
             direction: 'horizontal',
             initialSlide: 0,
             pager: false,
             loop: true,
-            speed: 3000,
+            speed: 500,//speed of transititon from one slide to another
             onlyExternal: false,
             onInit: (slides: any) => {
                 this.slider = slides;
