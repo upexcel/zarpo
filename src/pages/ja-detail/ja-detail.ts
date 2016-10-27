@@ -45,7 +45,7 @@ export class JaDetail {
         is_ja: true
     };
 
-    iconUrl: string = "../assets/img/marker.png";
+    iconUrl: string = "assets/img/marker.png";
     zoom = 8;
     gpsLocation: any = [];
 

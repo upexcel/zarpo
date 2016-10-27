@@ -1,5 +1,5 @@
 <zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [customback]="customback" [showBack]="zarpoIcon"></zarpo-nav-bar>
-<ion-content class="calendar" >
+<ion-content class="calendar" [class.mbottom]="step3">
     <div class="divcard checkout">
         <div *ngIf="responseReady === false">
             <p style="text-align: center;">
@@ -32,11 +32,11 @@
                         </div>
                         <ion-row class="legend" *ngIf="bookingResponse.checkin.first_checkin">
                             <ion-col width-45 class="textright">
-                                <img src="http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/ico-legenda.gif">
+                                <img src="assets/img/blue-icon.gif" alt=""/>
                                 Disponível			                            
                             </ion-col>
                             <ion-col width-45 class="margin10">
-                                <img src="http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/imgo.jpg">
+                                <img src="assets/img/orange-icon.jpg" alt=""/>
                                 Melhor tarifa		
                             </ion-col>
                         </ion-row>

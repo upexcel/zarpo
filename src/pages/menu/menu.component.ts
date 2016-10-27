@@ -33,6 +33,7 @@ export class menu implements OnInit {
     tagPacoteLocation: string = "";
     tagPacoteThematic1: string = "";
     tagPacoteThematic2: string = "";
+    events: Events;
     //    local: Storage;
 
     public date_data: any;
@@ -40,10 +41,18 @@ export class menu implements OnInit {
     public Thematic: any;
     locationTag: any; tagHotelPensionList: any; tagHotelThematic1List: any; tagHotelThematic2List: any;
     tagPacoteLocationList: any; tagPacoteThematic1List: any; tagPacoteThematic2List: any;
-    constructor(private _nav: NavController, private _errorhandler: errorhandler, private _ajaxRxjs: Rxjs, private events: Events, private _menu: MenuController, private _localStorage: LocalStorageService, private _menuService: menuService) {
-                this.rootPage = HotelFlash;
-     
-        console.log('checking root nav',this._nav);
+    constructor(
+        private _nav: NavController,
+        private _errorhandler: errorhandler,
+        private _ajaxRxjs: Rxjs,
+        private _events: Events,
+        private _menu: MenuController,
+        private _localStorage: LocalStorageService,
+        private _menuService: menuService
+    ) {
+        this.rootPage = HotelFlash;
+        this.events = this._events;
+        console.log('checking root nav', this._nav);
         this._nav = _nav;
         //        this.local = new Storage(LocalStorage);
         if (this.pageT == 'Hotel') {
@@ -64,7 +73,7 @@ export class menu implements OnInit {
         this.start();
     }
     start() {
-        
+
         if (this.fname == 'Pacotes') {
 
             this._localStorage.getValue('tag_pacote').then((response) => {
@@ -160,8 +169,10 @@ export class menu implements OnInit {
 
     }
     logout() {
+        console.log("heeeeeeeee");
         this._localStorage.remove('flash_data');
         this._localStorage.remove('user_data');
+        this._localStorage.remove('user_token');
         if (Network.connection && Network.connection !== 'none') {
             console.log(Network.connection);
             this._nav.setRoot(Login);
@@ -170,28 +181,29 @@ export class menu implements OnInit {
             console.log(Network.connection);
             this._nav.setRoot(offline);
         }
+        this.events.publish('user:logout', {});
 
         Facebook.logout();
     }
-//        onChange(event, id, val) {
-//            if (this.ifHotelFilterOpen) {
-//    
-//                setTimeout(() => {
-//                    this[val] = "";
-//                }, 200);
-//                this.nav.push(hotelTag, { value: event, name: id, flashType: 'Hotel' });
-//    
-//            }
-//            else {
-//                setTimeout(() => {
-//                    this[val] = "";
-//                }, 200);
-//                this.nav.push(hotelTag, { value: event, name: id, flashType: 'Pacote' });
-//    
-//            }
-//    
-//            this._menu.close();
-//        }
+    //        onChange(event, id, val) {
+    //            if (this.ifHotelFilterOpen) {
+    //    
+    //                setTimeout(() => {
+    //                    this[val] = "";
+    //                }, 200);
+    //                this.nav.push(hotelTag, { value: event, name: id, flashType: 'Hotel' });
+    //    
+    //            }
+    //            else {
+    //                setTimeout(() => {
+    //                    this[val] = "";
+    //                }, 200);
+    //                this.nav.push(hotelTag, { value: event, name: id, flashType: 'Pacote' });
+    //    
+    //            }
+    //    
+    //            this._menu.close();
+    //        }
     public fname: any = 'Hoties'
     public pageT: any = 'Hotel';
     tnames(name, page) {
@@ -229,11 +241,13 @@ export class menu implements OnInit {
         if (this.tagename != 'Destino' && this.thematicName != 'Data de check-in') {
             if (this.myDate != '') {
                 let a = this.myDate;
-                console.log('data',this.date_data);
+                console.log('data', this.date_data);
                 var selectdate = _.find(this.date_data, function(val, key) { return key == a });
+                  console.log('selected date',selectdate);
 //                let da = _.intersection(this.tagparamdata.hotels, selectdate);
+            
                 this.nav.push(hotelTag, {
-//                    value: { hotels: da, location: this.tagparamdata.location },
+                    //                    value: { hotels: da, location: this.tagparamdata.location },
                     flashType: this.pageT,
                     type: {
                         tags: 'multiple',
