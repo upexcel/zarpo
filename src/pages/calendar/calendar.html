@@ -67,7 +67,7 @@
             </div>
             <!--<hotel-list *ngIf="step3" [flashType]="flashType" [checkindate]="checkinDate" [checkoutdate]="checkoutDate" [accContent]="content" [bookingResponse]="bookingResponse"></hotel-list>-->
             <!--==============================================================================================-->
-            <ion-item *ngIf="step3">
+            <ion-item *ngIf="step3" class="marU10">
                 <div   *ngFor="let rooms of bookingResponse.rooms_info.rooms | rooms">
                     <ion-item class="br calendar border-bottom myhotel" id="room_{{rooms.room_id}}" 
                           *ngIf="showAvailableRooms(rooms.room_id)"
@@ -188,7 +188,7 @@
         <ul class="no-margin no-padding">
             <li width-50 class="no-margin no-padding">
                 <div class="calm br giftlabel">R${{selected_ClientPrice}}</div>
-                <div class="giftlabelspan">Em vez de <span class="strike">R${{selected_MRP}}</span></div>
+                <div class="giftlabelspan marU10">Em vez de <span class="strike">R${{selected_MRP}}</span></div>
             </li >
             <li width-50 class="no-margin no-padding" >
                 <div *ngIf="selectError" style="display: block;">

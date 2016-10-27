@@ -1,4 +1,10 @@
+.button{
+    border-radius: 0px;
+}
 .calendar{
+    .item-inner{
+        border-bottom: none;
+    }
     .toolbar-background{
         border-bottom-width: 0;
         border-color: #ccc;
@@ -398,12 +404,14 @@
     .right_col button{
         /*    background: url("http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/options-more1.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
         border: 0 none;
+        font-family: "HelveticaLight";
+        border-radius: 0px;
         color: #ffffff;
         cursor: pointer;
         display: block;
         font-size: 15px;
         height: 25px;
-        margin-top: 0 !important;
+        margin: 0 !important;
         padding: 0 !important;
         width: 82px;
     }
@@ -590,7 +598,6 @@
     }
     .giftlabelspan{
         padding-left: 5px;
-
         text-align: left;
 
     }
@@ -620,9 +627,8 @@
         }
         .giftlabelspan{
             color:#919191;
-            font-size: .8em;
+            font-size: .7em;
             text-align: left;
-
         }
     }
     @media only screen and (min-width: 200px)and (max-width: 299px){
@@ -652,7 +658,7 @@
         }
         .giftlabelspan{
             color:#919191;
-            font-size: .8em;
+            font-size: .7em;
             text-align: left;
 
         }
