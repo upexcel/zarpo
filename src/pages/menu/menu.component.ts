@@ -243,11 +243,11 @@ export class menu implements OnInit {
                 let a = this.myDate;
                 console.log('data', this.date_data);
                 var selectdate = _.find(this.date_data, function(val, key) { return key == a });
-                  console.log('selected date',selectdate);
-//                let da = _.intersection(this.tagparamdata.hotels, selectdate);
-            
+                console.log('selected date', selectdate);
+                //                let da = _.intersection(this.tagparamdata.hotels, selectdate);
+                let da = [];
                 this.nav.push(hotelTag, {
-                    //                    value: { hotels: da, location: this.tagparamdata.location },
+                    value: { hotels: da, location: this.tagparamdata.location },
                     flashType: this.pageT,
                     type: {
                         tags: 'multiple',

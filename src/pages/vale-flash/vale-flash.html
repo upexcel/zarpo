@@ -6,7 +6,7 @@
             pullingIcon="none">
         </ion-refresher-content>
     </ion-refresher>
-    <ion-list  *ngIf="true">
+    <ion-list  *ngIf="flashItems.length>0">
         <zarpo-flash-card [items]="flashItems" [flashtype]="flashtype"> </zarpo-flash-card>
     </ion-list >
     <!--    <ion-infinite-scroll threshold="90%" (ionInfinite)="doInfinite($event)">

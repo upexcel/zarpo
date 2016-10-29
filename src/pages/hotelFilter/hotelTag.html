@@ -12,13 +12,16 @@
             <img src="assets/img/nodata.png" alt=""/>
 
         </div>
+
+
+    </ion-row>
+    <ion-row *ngIf="no_data=='true'">
         <ion-col class="noresultContent">
             Ops!
             Estamos sem ofertas abertas para a sua busca no momento.
             Por favor, tente novamente alterando um pouco os seus critérios
             acima ou <a class="link" (click)="contact()">solicite uma cotação</a> aos Mordomos Zarpo!
         </ion-col>
-
     </ion-row>
     <ion-list  *ngIf="true">
         <zarpo-flash-card *ngIf="flashItems"
@@ -27,7 +30,7 @@
 
     </ion-list>
     <div class="tag_footer"> 
-    <zarpo-footer *ngIf="flashItems && flashItems.length >0" > </zarpo-footer>
+        <zarpo-footer *ngIf="flashItems && flashItems.length >0" > </zarpo-footer>
     </div>
 </ion-content>
 

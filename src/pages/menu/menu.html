@@ -44,7 +44,8 @@
 
             </ion-list>
             <ion-list *ngIf="Thematictag && filterdate" class="tagnamelist rightside">
-                <ion-item>
+                <ion-item color='primary'>
+                    
                     <ion-label class="labelstyle">Datas especiais </ion-label>
                     <ion-datetime displayFormat="DD MMMM YYYY"  min="{{min}}" max="{{max}}" [(ngModel)]="myDate" (ionChange)="datePicker();Thematictag=false">
                     </ion-datetime>

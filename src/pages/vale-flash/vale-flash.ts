@@ -74,22 +74,22 @@ export class ValeFlash {
 
     }
     getItems(data) {
-        this.local.getTimerStorage('flash_data').then((response) => {
-//            //value fetched from local storage
-            if (!response && response.length > 0) {
-                this.flashItems = response;
-                this.apiLoader = false;
-                this.refreshItems();
-            }
-//            //fire api for data
-            else {
+//        this.local.getTimerStorage('flash_data').then((response) => {
+////            //value fetched from local storage
+//            if (!response && response.length > 0) {
+//                this.flashItems = response;
+//                this.apiLoader = false;
+//                this.refreshItems();
+//            }
+////            //fire api for data
+//            else {
                 this.api.ajaxRequest(this.path, data).subscribe((response: any) => {
                     if (data.page == 1) {
                         console.log('yes');
                         this.refresh = false;
                         this.flashItems = [];
                     }
-                    if (response.data && response.data.length > 0 && response.data.length <= 5) {
+                    if (response.data && response.data.length > 0) {
                         //response fetched
                         this.page++;
                         console.log(this.page);
@@ -102,6 +102,7 @@ export class ValeFlash {
                         }
 
                         if (!this.stopAjax) {
+                            console.log('asdasdasdasdasdasdasdasd');
                             this.getItems(data);
                         }
 
@@ -122,8 +123,8 @@ export class ValeFlash {
                     this._errorhandler.err(error);
                 });
 //
-            }
-        });
+//            }
+//        });
 
     }
     ionViewWillEnter() {

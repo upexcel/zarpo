@@ -41,6 +41,8 @@ export class HotelFlash {
     itemss: any = [];
     page = 1;
     public refresh: boolean = false;
+    data_button: any = ''
+    nodata: boolean = false;
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,
@@ -99,6 +101,7 @@ export class HotelFlash {
                         is_ja: true
                     }
                     this.alldata(allDataja);
+                    this.getItems(this.data);
                 }
             });
         }, 100);
@@ -147,7 +150,6 @@ export class HotelFlash {
     ionViewWillEnter() {
         this.stopAjax = false;
         this.data.page = this.page;
-
         setTimeout(() => {
             this.getItems(this.data);
         }, 400);
@@ -193,6 +195,7 @@ export class HotelFlash {
                     this.getItems(data);
                 }
                 _.map(response.data, (response) => {
+                    this.data_button = '';
                     this.flashItems.push(response);
 
                 });
@@ -206,51 +209,9 @@ export class HotelFlash {
                 this.refreshItems();
             }
             else {
-
-                //<<<<<<< HEAD
-                //                let data: any = {
-                //                    user_token: this.data.user_token,
-                //                    group_id: this.data.group_id,
-                //                    page: this.page
-                //                }
-                //                if (this.flashtype == 'Hotel') {
-                //                    data.page_type = "Hotel or room";
-                //                    data.is_ja = false;
-                //                } else if (this.flashtype == 'Pacote') {
-                //                    data.page_type = "Pacote";
-                //                    data.is_ja = false;
-                //                } else {
-                //                    data.page_type = "Hotel or room";
-                //                    data.is_ja = true;
-                //                }
-                //                if (!this.stopAjax) {
-                //                    this.getItems(data);
-                //                }
-                //                _.map(response.data, (response) => {
-                //                    this.flashItems.push(response);
-                //
-                //                });
-                //
-                //                if (this.refresh) {
-                //                    this.apiLoader = true
-                //                } else {
-                //                    this.apiLoader = false;
-                //                    this.refresh = false;
-                //                }
-                //                this.refreshItems();
-                //            }
-                //                    else {
-                //
-                //                if (response.data && response.data === 'ja store closed.') {
-                //
-                //                    this.storeClosed = true;
-                //                }
-                //            }
-                //        }, (error) => {
-                //            this._errorhandler.err(error);
-                //        });
-                //        //
-                //=======
+                console.log('no data');
+                this.stopAjax=true;
+                this.nodata = true;
                 if (response.data && response.data === 'ja store closed.') {
 
                     this.storeClosed = true;
@@ -264,8 +225,17 @@ export class HotelFlash {
         //        });
 
     }
+    //    newData() {
+    //        this.data_button = "Aguarde"
+    //        console.log('new data is calling');
+    //        this.stopAjax = false;
+    //        this.data.page = this.page;
+    //
+    //        setTimeout(() => {
+    //            this.getItems(this.data);
+    //        }, 400);
+    //    }
 
- 
     displayDetailItem(item: any) {
         var paramData = {
             id: item.hotel_id,
