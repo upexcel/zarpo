@@ -101,7 +101,7 @@ export class HotelFlash {
                         is_ja: true
                     }
                     this.alldata(allDataja);
-                    this.getItems(this.data);
+//                    this.getItems(this.data);
                 }
             });
         }, 100);
