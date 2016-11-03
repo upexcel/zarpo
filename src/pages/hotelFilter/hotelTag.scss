@@ -4,14 +4,20 @@
         font-weight: 600;
         font-size: 17px;   
         margin-top:10px;
+        margin-left:2%;
+        margin-right:2%;
     }
     .link{
         color:#35caee !important;
     }
-    .imgdiv{
-        max-width: 45%;
+    .imgdiv {
+        max-width: 100% !important;
         margin-top: 10px;
         /* min-width: 63px; */
+        text-align: center;
+    }
+    .imgdiv img{
+        max-width:45%;
     }
     .tag_footer{
         width: 94%;

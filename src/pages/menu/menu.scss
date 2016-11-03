@@ -80,7 +80,7 @@ ion-content.menu{
         font-size: 15px;
         line-height: 1;
         min-height: 34px;
-        border: 1px solid #bfbfbf;
+        /*border: 1px solid #bfbfbf;*/
 
         width: 100%;
 
@@ -204,7 +204,12 @@ ion-content.menu{
         text-align: center;
         width: 100%;
         margin-left: 14%;
-        font-size: 13px;
+        font-size: 18px;
+        margin: 0 auto !important;
+        white-space: pre-line;
+        padding: 0px !important;
+        line-height: 17px;
+        color:#fff;
     }
     ion-icon.myicon.ion-md-close-circle.item-icon {
         position: absolute;
@@ -212,6 +217,9 @@ ion-content.menu{
         /*left: 22px;*/
         padding: 1px 10px 0 5px;
         margin: -2px 0 0 0;
+    }
+    .datetime-ios{
+        padding:0px !important;
     }
     .padLeft{
         padding-left:32px !important;

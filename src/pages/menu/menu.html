@@ -44,7 +44,8 @@
 
             </ion-list>
             <ion-list *ngIf="Thematictag && filterdate" class="tagnamelist rightside">
-                <ion-item>
+                <ion-item color='primary'>
+                    
                     <ion-label class="labelstyle">Datas especiais </ion-label>
                     <ion-datetime displayFormat="DD MMMM YYYY"  min="{{min}}" max="{{max}}" [(ngModel)]="myDate" (ionChange)="datePicker();Thematictag=false">
                     </ion-datetime>
@@ -151,51 +152,55 @@
                 </div>-->
     </ion-item>
     <button   ion-item  menuClose style="border-top: .1em solid #dddddd;}"
-            (click)="redirect('Hotel')" class="marU10 hotel mymenu padT20">
+              (click)="redirect('Hotel')" class="marU10 hotel mymenu padT20">
         <ion-icon name="ios-star" class="marR10 iconVal"></ion-icon>
         <label class="marginleft">HOTÉIS</label>
     </button>
     <button  ion-item   menuClose (click)="redirect('Pacote')" class="pacote mymenu">
-            <ion-icon name="md-plane" class="marR10 iconVal"></ion-icon>
+             <ion-icon name="md-plane" class="marR10 iconVal"></ion-icon>
         <label>PACOTES</label>
     </button>
     <button   ion-item  menuClose (click)="redirect('Ja')" class=" vale  mymenu">
-            <ion-icon name="ios-clock" class="marR10 iconVal"></ion-icon>
+              <ion-icon name="ios-clock" class="marR10 iconVal"></ion-icon>
         <label>ZARPO JÁ</label>
     </button>
 
     <button   ion-item  menuClose (click)="redirect('vale')" class=" divider extrabottom marD10 padB20 vale  mymenu">
-            <ion-icon name="ios-bowtie" class="marR10 iconVal"></ion-icon>
+              <ion-icon name="ios-bowtie" class="marR10 iconVal"></ion-icon>
         <label>VALE PRESENTES</label>
     </button>
-
+    <button   ion-item menuClose (click)="redirect()" class="padB20 contact divider marD10 mymenu">
+              <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
+        <label>Live Chat</label>
+    </button>
+    <button   ion-item menuClose (click)="redirect('contact')" class="padB20 contact divider marD10 mymenu">
+              <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
+        <label>MORDOMO ZARPO</label>
+    </button>
     <button   ion-item  menuClose (click)="redirect('invitefriends')" class="marU10 invite mymenu">
-            <ion-icon name="logo-usd" class="marR10 iconVal"></ion-icon>
+              <ion-icon name="logo-usd" class="marR10 iconVal"></ion-icon>
         <label>CONVIDAR AMIGOS</label>
     </button>
     <button   ion-item menuClose (click)="redirect('myaccount')" class="myaccount mymenu">
-            <ion-icon name="ios-settings" class="marR10 iconVal"></ion-icon>
+              <ion-icon name="ios-settings" class="marR10 iconVal"></ion-icon>
         <label>MINHA CONTA</label>
     </button>
-    <button   ion-item  menuClose (click)="redirect('feedback')" class="padB20 contact divider marD10 mymenu">
-            <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
-        <label>FEEDBACK</label>
-    </button>
-    <button   ion-item  menuClose (click)="redirect('cancel')" class="padB20 contact divider marD10 mymenu">
-            <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
-        <label>CANCEL</label>
-    </button>
-    <button   ion-item menuClose (click)="redirect('contact')" class="padB20 contact divider marD10 mymenu">
-            <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
-        <label>MORDOMO ZARPO</label>
-    </button>
-<!--    <button ion-item menuClose (click)="redirect('success')" class="padB20 contact divider marD10 mymenu">
-            <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
-        <label>Success</label>
-    </button>-->
+    <!--    <button   ion-item  menuClose (click)="redirect('feedback')" class="padB20 contact divider marD10 mymenu">
+                <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
+            <label>FEEDBACK</label>
+        </button>
+        <button   ion-item  menuClose (click)="redirect('cancel')" class="padB20 contact divider marD10 mymenu">
+                <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
+            <label>CANCEL</label>
+        </button>-->
+
+    <!--    <button ion-item menuClose (click)="redirect('success')" class="padB20 contact divider marD10 mymenu">
+                <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
+            <label>Success</label>
+        </button>-->
 
     <button   ion-item  menuClose class="logout pad-top14 mymenu marU10 bordernone"
-            (click)="logout()">
+              (click)="logout()">
         <!--                    <a class="item-content" ng-hide="root.ifUserExist">Login</a>-->
         <ion-icon name="md-power" class="marR10 iconVal"></ion-icon>
         <label>SAIR</label>

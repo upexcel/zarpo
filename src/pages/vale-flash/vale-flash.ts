@@ -11,8 +11,8 @@ import {ZarpoValePipe} from '../../filters/vale/zarpo-vale.pipe';
 import {GoogleTagService} from '../../services/google-tag.service';
 @Component({
     templateUrl: 'vale-flash.html',
-//    directives: [ZarpoNavComponent, FooterComponent, FlashCardComponent],
-//    pipes: [ZarpoValePipe]
+    //    directives: [ZarpoNavComponent, FooterComponent, FlashCardComponent],
+    //    pipes: [ZarpoValePipe]
 })
 
 export class ValeFlash {
@@ -74,62 +74,65 @@ export class ValeFlash {
 
     }
     getItems(data) {
-        this.local.getTimerStorage('flash_data').then((response) => {
-//            //value fetched from local storage
-            if (!response && response.length > 0) {
-                this.flashItems = response;
-                this.apiLoader = false;
+        //        this.local.getTimerStorage('flash_data').then((response) => {
+        ////            //value fetched from local storage
+        //            if (!response && response.length > 0) {
+        //                this.flashItems = response;
+        //                this.apiLoader = false;
+        //                this.refreshItems();
+        //            }
+        ////            //fire api for data
+        //            else {
+        this.api.ajaxRequest(this.path, data).subscribe((response: any) => {
+            if (data.page == 1) {
+                console.log('yes');
+                this.refresh = false;
+                this.flashItems = [];
+            }
+            if (response.data && response.data.length > 0) {
+                //response fetched
+                this.page++;
+                console.log(this.page);
+                let data = {
+                    user_token: this.data.user_token,
+                    group_id: this.data.group_id,
+                    page: this.page,
+                    page_type: "Giftcard",
+                    is_ja: false
+                }
+
+                if (!this.stopAjax) {
+                    console.log('asdasdasdasdasdasdasdasd');
+                    this.getItems(data);
+                }
+
+                _.map(response.data, (response) => {
+                    this.flashItems.push(response);
+                });
+
+
+                if (this.refresh) {
+                    this.apiLoader = true
+                } else {
+                    this.apiLoader = false;
+                    this.refresh = false;
+                }
                 this.refreshItems();
             }
-//            //fire api for data
-            else {
-                this.api.ajaxRequest(this.path, data).subscribe((response: any) => {
-                    if (data.page == 1) {
-                        console.log('yes');
-                        this.refresh = false;
-                        this.flashItems = [];
-                    }
-                    if (response.data && response.data.length > 0 && response.data.length <= 5) {
-                        //response fetched
-                        this.page++;
-                        console.log(this.page);
-                        let data = {
-                            user_token: this.data.user_token,
-                            group_id: this.data.group_id,
-                            page: this.page,
-                            page_type: "Giftcard",
-                            is_ja: false
-                        }
-
-                        if (!this.stopAjax) {
-                            this.getItems(data);
-                        }
-
-                        _.map(response.data, (response) => {
-                            this.flashItems.push(response);
-                        });
-
-
-                        if (this.refresh) {
-                            this.apiLoader = true
-                        } else {
-                            this.apiLoader = false;
-                            this.refresh = false;
-                        }
-                        this.refreshItems();
-                    }
-                }, (error) => {
-                    this._errorhandler.err(error);
-                });
-//
-            }
+        }, (error) => {
+            this._errorhandler.err(error);
         });
+        //
+        //            }
+        //        });
 
     }
     ionViewWillEnter() {
         this.stopAjax = false;
         this.data.page = this.page;
-        this.getItems(this.data);
+        setTimeout(() => {
+            this.getItems(this.data);
+        }, 400);
     }
     ionViewWillLeave() {
         console.log("Looks like I'm about to leave :(");

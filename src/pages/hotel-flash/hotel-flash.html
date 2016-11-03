@@ -42,8 +42,13 @@
         <!--        <ion-infinite-scroll threshold="500px" (ionInfinite)="doInfinite($event)">
                     <ion-infinite-scroll-content></ion-infinite-scroll-content>
                 </ion-infinite-scroll>-->
-
-    </ion-list >
+      
+<!--        <button *ngIf="flashItems.length>0 && nodata" ion-button  class="button button-block loginbtn marT20 cardmaker" color="primary" type="button" 
+                [class.greybg]="data_button === 'Aguarde'" (click)="newData()">
+            <span class="mar15">Carregar mais ofertas</span>
+            <ion-spinner  name="bubbles" *ngIf="data_button === 'Aguarde'"></ion-spinner>
+        </button>-->
+    </ion-list>
     <div class="footerwidth" *ngIf="!refresh">
         <zarpo-footer *ngIf="flashItems && flashItems.length >0"> </zarpo-footer>
     </div>
