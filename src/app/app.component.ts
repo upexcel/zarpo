@@ -4,7 +4,7 @@ import {Component, ViewChild, Inject} from '@angular/core';
 import {Location, LocationStrategy, HashLocationStrategy} from '@angular/common';
 //import {DomSanitizationService} from '@angular/platform-browser';
 import {GoogleTagService} from '../services/google-tag.service';
-import {StatusBar, GoogleAnalytics} from 'ionic-native';
+import {StatusBar, GoogleAnalytics,BackgroundMode} from 'ionic-native';
 import {Login} from '../pages/login/login';
 import {menu} from '../pages/menu/menu.component';
 //import * as localforage from "localforage";
@@ -54,28 +54,30 @@ export class MyApp {
     ) {
         this.events = _events;
         //        this.local = new Storage(LocalStorage);
-//        this.rootPage = Login;
+        //        this.rootPage = Login;
         this.hotelTags();
         this.pacote();
         this.ja();
         this.date();
         platform.ready().then(() => {
             console.log('checking');
-                        this.local.get('user_data').then((data) => {
-                            if (Network.connection && Network.connection !== 'none') {
-                                console.log('checking2',data,Network.connection);
-                                if (data) {
-                                    this.rootPage = menu;
-                                } else {
-                                    this.rootPage = Login;
-                                }
-                            }
-                            else {
-                               console.log('checking3',Network.connection);
-                                this.rootPage = offline;
-                            }
+            BackgroundMode.enable();
             
-                        });
+            this.local.get('user_data').then((data) => {
+                if (Network.connection && Network.connection !== 'none') {
+                    console.log('checking2', data, Network.connection);
+                    if (data) {
+                        this.rootPage = menu;
+                    } else {
+                        this.rootPage = Login;
+                    }
+                }
+                else {
+                    console.log('checking3', Network.connection);
+                    this.rootPage = offline;
+                }
+
+            });
             //window.addEventListener('click', clickMe, false);
             function clickMe(e) {
                 e.preventDefault();
@@ -106,7 +108,7 @@ export class MyApp {
         });
         this.addConnectivityListeners();
         this.keyBoardListeners();
-
+        console.log(BackgroundMode.isEnabled());
 
     }
     ngAfterViewInit() {
@@ -163,7 +165,7 @@ export class MyApp {
             tag_site: "pacote"
         }
         this._ajaxRxjs.ajaxRequest(api, data).subscribe((response: any) => {
-                        this.local.set('tag_pacote', JSON.stringify(response.data))
+            this.local.set('tag_pacote', JSON.stringify(response.data))
         }, (error) => {
             this._errorhandler.err(error);
         });
@@ -174,7 +176,7 @@ export class MyApp {
             tag_site: "ja"
         }
         this._ajaxRxjs.ajaxRequest(api, data).subscribe((response: any) => {
-                        this.local.set('tag_ja', JSON.stringify(response.data))
+            this.local.set('tag_ja', JSON.stringify(response.data))
         }, (error) => {
             this._errorhandler.err(error);
         });
@@ -185,7 +187,7 @@ export class MyApp {
             date_site: "hotel"
         }
         this._ajaxRxjs.ajaxRequest(api, data).subscribe((response: any) => {
-                        this.local.set('date_Hotel', JSON.stringify(response))
+            this.local.set('date_Hotel', JSON.stringify(response))
         }, (error) => {
             this._errorhandler.err(error);
         });

@@ -32,7 +32,6 @@
         </div>
         <button  ion-button class="button button-block loginbtn marT20" color="primary" type="submit" [class.greybg]="bt_name === 'Aguarde'" (click)="newsletter(bt_name)">
             <span>{{bt_name}}</span>
-            <ion-spinner name="bubbles" *ngIf="bt_name === 'Aguarde'"></ion-spinner>   
 
         </button>
         <div class="linkbox grey"  *ngIf="msg" style="margin-top: 20px;">
