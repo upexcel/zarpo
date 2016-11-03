@@ -140,7 +140,9 @@ export class menu implements OnInit {
             this.i--;
         }
     }
-
+toggleChange(event){
+    console.log('toggle event',event)
+}
 
     redirect(componentName: string) {
         console.log('menu clikkkkk', componentName);
@@ -242,10 +244,13 @@ export class menu implements OnInit {
             if (this.myDate != '') {
                 let a = this.myDate;
                 console.log('data', this.date_data);
-                var selectdate = _.find(this.date_data, function(val, key) { return key == a });
+                var selectdate: any;
+                selectdate = _.find(this.date_data, function(val, key) { return key == a });
                 console.log('selected date', selectdate);
-                //                let da = _.intersection(this.tagparamdata.hotels, selectdate);
-                let da = [];
+                console.log('selected date', selectdate.length);
+                let da = _.intersection(this.tagparamdata.hotels, selectdate);
+                //                let da = [];
+                console.log('selected date', da);
                 this.nav.push(hotelTag, {
                     value: { hotels: da, location: this.tagparamdata.location },
                     flashType: this.pageT,

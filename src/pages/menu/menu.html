@@ -45,11 +45,13 @@
             </ion-list>
             <ion-list *ngIf="Thematictag && filterdate" class="tagnamelist rightside">
                 <ion-item color='primary'>
-                    
+
                     <ion-label class="labelstyle">Datas especiais </ion-label>
                     <ion-datetime displayFormat="DD MMMM YYYY"  min="{{min}}" max="{{max}}" [(ngModel)]="myDate" (ionChange)="datePicker();Thematictag=false">
                     </ion-datetime>
                 </ion-item>
+                <div class='tgclass'>Datas flexíveis (± 3 dias)</div>
+                <ion-toggle  (ionChange)="toggleChange($event)" checked="{{condition}}"></ion-toggle> 
             </ion-list>   
 
         </div>
