@@ -17,7 +17,6 @@
 
                         <button ion-button block color="primary" class="marT20" type="submit"  (click)="sendpwd(email.errors)" [class.greybg]="buttonText == 'Aguarde'">
                             {{buttonText}}
-                            <ion-spinner name="bubbles" [hidden]="buttonText == 'Enviar nova senha'"></ion-spinner>
                         </button>
 
                     </div>
@@ -46,8 +45,10 @@
             </ion-col>
         </ion-row>
         <div class='marT20 center'>
-            <a style="text-decoration: none;text-align:center; cursor: pointer; color: #00C8EE!important;"
-               target="_blank" href="http://www.zarpo.com.br/magazine/">Magazine</a>
+            <span style="text-decoration: none;text-align:center; cursor: pointer; color: #00C8EE!important;">
+                <a target="_blank" href="http://www.zarpo.com.br/magazine/">Magazine</a> | 
+                <a target="_blank" href="http://www.zarpo.com.br/?guia-de-hoteis=true">Guia de Hotéis</a>
+            </span>
         </div>
 
     </ion-grid> 

@@ -22,7 +22,6 @@
                 <input type="email" (keyup)="onKey($event)" [(ngModel)]='user_email'   [class.errormsgF]="Uemail && !user_email" class="inputArea marUD0" name="signupEmail" placeholder="email@examplo.com.br">
                 <button ion-button class="button button-block" color="primary" (click)="submitCancel(user_email)" type="submit" [class.greybg]="button_value === 'Aguarde'" >
                         <span>{{button_value}}</span>
-                    <ion-spinner name="bubbles" *ngIf="button_value === 'Aguarde'"></ion-spinner>   
 
                 </button>
             </form>

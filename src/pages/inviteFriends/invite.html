@@ -47,7 +47,6 @@
                        [class.errormsg]="invalidEmail=='email3'"       pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" placeholder="email@example.com" [(ngModel)]='frndemail.emailThree'>		  
                        <button  ion-button class="button button-block loginbtn invitebtn" color="primary" type="submit" [class.greybg]="button_name === 'Aguarde'" (click)="inviteFrnd(frndemail,email1.errors,email2.errors,email3.errors)">
                     <span>{{button_name}}</span>
-                    <ion-spinner name="bubbles" *ngIf="button_name === 'Aguarde'"></ion-spinner>   
 
                 </button>
                 <div class='marB20' *ngIf="invitationSubmit">

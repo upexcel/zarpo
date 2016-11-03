@@ -37,8 +37,6 @@
 
                                         *ngIf="signup_button === 'Aguarde'" on-tap="login(user,signup_button,email.errors)">
                                     <span>{{signup_button}}</span>
-                                    <ion-spinner name="bubbles"></ion-spinner>   
-
                                 </button>
 
                                 <div class="errormsg errorcolor marT20" >
@@ -86,7 +84,6 @@
                         <button ion-button  class="button button-block loginbtn marT20" color="primary" type="button" 
                                 [class.greybg]="signup_button === 'Aguarde'" (click)="register(user,regbt)">
                             <span>{{regbt}}</span>
-                            <ion-spinner name="bubbles" *ngIf="signup_button === 'Aguarde'"></ion-spinner>
                         </button>
                     </div>
                     <div class="errormsg errorcolor marT20" >
@@ -107,8 +104,10 @@
 
 </div>
 <div class='marT20 center'>
-    <a style="text-decoration: none;text-align:center; cursor: pointer; color: #00C8EE!important;"
-       target="_blank" href="http://www.zarpo.com.br/magazine/">Magazine</a>
+    <span style="text-decoration: none;text-align:center; cursor: pointer; color: #00C8EE!important;">
+          <a target="_blank" href="http://www.zarpo.com.br/magazine/">Magazine</a> | 
+        <a target="_blank" href="http://www.zarpo.com.br/?guia-de-hoteis=true">Guia de Hotéis</a>
+    </span>
 </div>
 <div class="footerwidth">
     <zarpo-footer></zarpo-footer>

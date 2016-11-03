@@ -1,10 +1,14 @@
 .button{
+    text-transform: none;
     border-radius: 0px;
 }
+.strike{
+    text-decoration: line-through;
+    color: #919191;
+}
+
 .calendar{
-    .item-inner{
-        border-bottom: none;
-    }
+
     .toolbar-background{
         border-bottom-width: 0;
         border-color: #ccc;
@@ -86,10 +90,7 @@
         width: 13px;
         height: 13px;
     }
-    .strike{
-        text-decoration: line-through;
-        color: #919191;
-    }
+
     ul li a {
         cursor: pointer;
         line-height: 2.8;
@@ -396,7 +397,7 @@
         line-height: 1;
         padding-left: 4px;
     }
-    .right_col button{
+    .right_col button.options{
         /*    background: url("http://cdn.zarpo.com.br/skin/frontend/enterprise/zarpomob/images/options-more1.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
         border: 0 none;
         font-family: "HelveticaLight";
@@ -910,6 +911,7 @@
         background-color: #ffffff;
         .item-inner{
             padding-right: 0px; 
+            border-bottom: none;
         }
     }
     div.table-holder table tr td.roomsDetail {

@@ -3,7 +3,6 @@
     <div class="divcard checkout">
         <div *ngIf="responseReady === false">
             <p style="text-align: center;">
-                <!--<span><ion-spinner icon="bubbles"></ion-spinner></span>-->
                 Por favor, aguarde enquanto as datas são carregadas. 
 
             </p>
@@ -173,7 +172,7 @@
 
 </div>
 </ion-content>
-<ion-footer class="footercalender" *ngIf="step3">
+<ion-footer class="footercalender calendar" *ngIf="step3">
     <ion-toolbar position="bottom" *ngIf="step3">
         <ion-row class="no-margin no-padding" *ngIf="minError == true || maxError == true">
                  <ion-col class="no-margin no-padding">
@@ -188,7 +187,7 @@
         <ul class="no-margin no-padding">
             <li width-50 class="no-margin no-padding">
                 <div class="calm br giftlabel">R${{selected_ClientPrice}}</div>
-                <div class="giftlabelspan marU10">Em vez de <span class="strike">R${{selected_MRP}}</span></div>
+                <div class="giftlabelspan">Em vez de <span class="strike">R${{selected_MRP}}</span></div>
             </li >
             <li width-50 class="no-margin no-padding" >
                 <div *ngIf="selectError" style="display: block;">

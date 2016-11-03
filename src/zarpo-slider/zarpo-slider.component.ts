@@ -33,7 +33,7 @@ export class ZarpoSliderComponent {
 
     }
     getFlashImgHeight() {
-        this._img.getImageHeight().then((response) => {
+        this._img.getSliderHeight().then((response) => {
             this.imgHeight = response + "px";
         });
     }

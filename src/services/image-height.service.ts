@@ -10,4 +10,10 @@ export class ImageHeightService {
         var roundHeight = Math.ceil(x);
         return Promise.resolve(roundHeight);
     }
+    getSliderHeight() {
+        var x = window.innerWidth * 53.4 / 100;
+        var roundHeight = Math.ceil(x);
+        console.log(roundHeight);
+        return Promise.resolve(roundHeight);
+    }
 }

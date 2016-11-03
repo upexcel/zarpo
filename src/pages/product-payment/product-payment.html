@@ -140,10 +140,8 @@
             <button ion-button class="button button-block button-calm " color="primary" type="button" [ngClass]="{'greybg': payment_btn === 'Aguarde'}"
                     (click)="payment_confirm(paymentForm)">
                 <span>{{payment_btn}}</span>
-                <ion-spinner class="waitloader" style="fill: #404040;position: relative;top:7px;"
-                             *ngIf="payment_btn === 'Aguarde'" name="bubbles">
 
-                </ion-spinner>
+
 
             </button>
             <div class="errormsg beCenter center"  *ngIf="ifPaymentConfirmed" style="margin-top: 7px;">
