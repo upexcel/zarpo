@@ -39,6 +39,7 @@ export class menu implements OnInit {
     public date_data: any;
 
     public Thematic: any;
+    public condition: boolean = false;
     locationTag: any; tagHotelPensionList: any; tagHotelThematic1List: any; tagHotelThematic2List: any;
     tagPacoteLocationList: any; tagPacoteThematic1List: any; tagPacoteThematic2List: any;
     constructor(
@@ -140,9 +141,11 @@ export class menu implements OnInit {
             this.i--;
         }
     }
-toggleChange(event){
-    console.log('toggle event',event)
-}
+
+    toggleChange(event: any) {
+        this.condition = event._checked;
+        console.log('toggle event', event._checked);
+    }
 
     redirect(componentName: string) {
         console.log('menu clikkkkk', componentName);
@@ -243,14 +246,31 @@ toggleChange(event){
         if (this.tagename != 'Destino' && this.thematicName != 'Data de check-in') {
             if (this.myDate != '') {
                 let a = this.myDate;
-                console.log('data', this.date_data);
+                var da: any = [];
                 var selectdate: any;
-                selectdate = _.find(this.date_data, function(val, key) { return key == a });
-                console.log('selected date', selectdate);
-                console.log('selected date', selectdate.length);
-                let da = _.intersection(this.tagparamdata.hotels, selectdate);
-                //                let da = [];
-                console.log('selected date', da);
+                if (!this.condition) {
+                    console.log(a);
+                    selectdate = _.find(this.date_data, function(val, key) { return key == a });
+                    console.log('tag param data', this.tagparamdata);
+                    console.log('date data', selectdate);
+                    da = _.intersection(this.tagparamdata.hotels, selectdate);
+                    console.log('no of hotels', da)
+                }
+                else {
+
+                    for (var i = -3; i <= 3; i++) {
+                        let prevDate = this.dateformate(a, i);
+                        selectdate = _.find(this.date_data, function(val, key) { return key == prevDate });
+                        console.log(selectdate);
+                        var alldate = _.intersection(this.tagparamdata.hotels, selectdate);
+                        console.log(alldate, alldate.length)
+                        for (var j = 0; j < alldate.length; j++) {
+                            da.push(alldate[j]);
+                        }
+                        console.log('no of hotels', da)
+                    }
+
+                }
                 this.nav.push(hotelTag, {
                     value: { hotels: da, location: this.tagparamdata.location },
                     flashType: this.pageT,
@@ -282,10 +302,31 @@ toggleChange(event){
         }
         else if (this.thematicName != 'Data de check-in') {
             if (this.myDate != '') {
-                this.thematicName = this.myDate;
                 let a = this.myDate;
-                let selectdate = _.find(this.date_data, function(val, key) { return key == a });
-                this.nav.push(hotelTag, { value: { hotels: selectdate }, flashType: this.pageT, type: { tags: 'chekin', name: this.myDate } });
+                var da: any = [];
+                var selectdate: any = [];
+                if (!this.condition) {
+                    this.thematicName = this.myDate;
+                    selectdate = _.find(this.date_data, function(val, key) { return key == a });
+                    this.nav.push(hotelTag, { value: { hotels: selectdate }, flashType: this.pageT, type: { tags: 'chekin', name: this.myDate } });
+                } else {
+                    for (var i = -3; i <= 3; i++) {
+                        let prevDate = this.dateformate(a, i);
+                        console.log(prevDate);
+                        if(!prevDate){
+                            console.log('break');
+                        }else
+                        selectdate = _.find(this.date_data, function(val, key) { return key == prevDate });
+                        for (var j = 0; j < selectdate.length; j++) {
+                            da.push(selectdate[j]);
+                        }
+
+
+                    }
+                    console.log('no of hotels', da)
+                    this.nav.push(hotelTag, { value: { hotels: da }, flashType: this.pageT, type: { tags: 'chekin', name: this.myDate } });
+                }
+
                 this._menu.close();
             } else {
                 this.nav.push(hotelTag, { value: this.thematicdata, flashType: this.pageT, type: { tags: 'thematictag', name: this.tagename } });
@@ -296,6 +337,24 @@ toggleChange(event){
         else if (this.fname) {
             this.nav.setRoot(HotelFlash, { hotelType: this.pageT });
             this._menu.close();
+        }
+    }
+    dateformate(a, i) {
+        let newdate = new Date(a);
+        let aa = newdate.setDate(newdate.getDate() - i);
+        var d: any = newdate.getDate();
+        if (d < 10)
+            d = "0" + d;
+        var m: any = newdate.getMonth() + 1;
+        if (m < 10)
+            m = "0" + m;
+        var y = newdate.getFullYear();
+        let prevDate: any = y + "-" + m + "-" + d;
+        console.log(prevDate,this.min)
+        if (this.min > prevDate) {
+            console.log('now min')
+        } else {
+            return prevDate;
         }
     }
     min: any;
