@@ -39,7 +39,7 @@ export class menu implements OnInit {
     public date_data: any;
 
     public Thematic: any;
-    public condition: boolean = false;
+    public condition: boolean=false;
     locationTag: any; tagHotelPensionList: any; tagHotelThematic1List: any; tagHotelThematic2List: any;
     tagPacoteLocationList: any; tagPacoteThematic1List: any; tagPacoteThematic2List: any;
     constructor(
@@ -65,6 +65,14 @@ export class menu implements OnInit {
 
             });
         }
+        this._localStorage.getValue('datePlusMinus').then((response) => {
+            console.log('for date plus minus', response);
+            if (!response) {
+            this.condition=false;
+            } else {
+                this.condition = response;
+            }
+        })
         console.log('sdsdds');
         this.dates('ja');
         this.dates('pacote');
@@ -144,6 +152,7 @@ export class menu implements OnInit {
 
     toggleChange(event: any) {
         this.condition = event._checked;
+        this._localStorage.setValue('datePlusMinus', this.condition)
         console.log('toggle event', event._checked);
     }
 
@@ -178,6 +187,7 @@ export class menu implements OnInit {
         this._localStorage.remove('flash_data');
         this._localStorage.remove('user_data');
         this._localStorage.remove('user_token');
+         this._localStorage.remove('datePlusMinus');
         if (Network.connection && Network.connection !== 'none') {
             console.log(Network.connection);
             this._nav.setRoot(Login);
@@ -313,10 +323,10 @@ export class menu implements OnInit {
                     for (var i = -3; i <= 3; i++) {
                         let prevDate = this.dateformate(a, i);
                         console.log(prevDate);
-                        if(!prevDate){
+                        if (!prevDate) {
                             console.log('break');
-                        }else
-                        selectdate = _.find(this.date_data, function(val, key) { return key == prevDate });
+                        } else
+                            selectdate = _.find(this.date_data, function(val, key) { return key == prevDate });
                         for (var j = 0; j < selectdate.length; j++) {
                             da.push(selectdate[j]);
                         }
@@ -350,7 +360,7 @@ export class menu implements OnInit {
             m = "0" + m;
         var y = newdate.getFullYear();
         let prevDate: any = y + "-" + m + "-" + d;
-        console.log(prevDate,this.min)
+        console.log(prevDate, this.min)
         if (this.min > prevDate) {
             console.log('now min')
         } else {

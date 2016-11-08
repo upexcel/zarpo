@@ -42,6 +42,11 @@ export class Login {
         this._nav = _nav;
         this._platform = _platform;
         this.user['state'] = 'Escolha seu estado';
+        //        this.user['email'] = 'si@si.com';
+        //        this.user['password'] = '123456';
+        //        setTimeout(() => {
+        //            this.login(this.user, 'Entrar no Zarpo', '');
+        //        }, 1000)
 
     }
 
@@ -82,8 +87,7 @@ export class Login {
         this.user['state'] = event;
     }
 
-    login(user: User, btn, error) {
-
+    login(user: any, btn, error) {
         if (!user.email || error) {
             this.Uemail = true;
             if (!user.password) {

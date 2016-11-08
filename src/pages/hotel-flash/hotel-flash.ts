@@ -152,7 +152,7 @@ export class HotelFlash {
         this.data.page = this.page;
         setTimeout(() => {
             this.getItems(this.data);
-        }, 400);
+        }, 700);
     }
 
     getItems(data: any) {
