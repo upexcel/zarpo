@@ -18,6 +18,7 @@ import {Facebook} from 'ionic-native';
 import {hotelTag} from '../hotelFilter/hotelTag';
 import {Rxjs} from '../../services/Rxjs';
 import {errorhandler} from '../../services/error';
+import {InAppBrowser} from 'ionic-native';
 @Component({
     templateUrl: 'menu.html',
 })
@@ -74,6 +75,7 @@ export class menu implements OnInit {
         console.log('sdsdds');
         this.dates('ja');
         this.dates('pacote');
+
     }
 
     ngOnInit() {
@@ -423,6 +425,13 @@ export class menu implements OnInit {
             this.thematicName = 'Data de check-in';
             this.myDate = '';
         }
+
+    }
+    livechat() {
+
+        let browser = new InAppBrowser('https://lc.chat/now/1081218/', '_system');
+
+        console.log(browser);
 
     }
 }
