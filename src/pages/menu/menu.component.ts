@@ -39,7 +39,7 @@ export class menu implements OnInit {
     public date_data: any;
 
     public Thematic: any;
-    public condition: boolean=false;
+    public condition: boolean = false;
     locationTag: any; tagHotelPensionList: any; tagHotelThematic1List: any; tagHotelThematic2List: any;
     tagPacoteLocationList: any; tagPacoteThematic1List: any; tagPacoteThematic2List: any;
     constructor(
@@ -60,15 +60,13 @@ export class menu implements OnInit {
             this._localStorage.getValue('date_Hotel').then((response) => {
                 this.min = response.first_checkin;
                 this.max = response.last_checkin
-
                 this.date_data = response.dates_collection;
-
             });
         }
         this._localStorage.getValue('datePlusMinus').then((response) => {
             console.log('for date plus minus', response);
             if (!response) {
-            this.condition=false;
+                this.condition = false;
             } else {
                 this.condition = response;
             }
@@ -187,7 +185,7 @@ export class menu implements OnInit {
         this._localStorage.remove('flash_data');
         this._localStorage.remove('user_data');
         this._localStorage.remove('user_token');
-         this._localStorage.remove('datePlusMinus');
+        this._localStorage.remove('datePlusMinus');
         if (Network.connection && Network.connection !== 'none') {
             console.log(Network.connection);
             this._nav.setRoot(Login);

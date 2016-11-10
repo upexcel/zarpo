@@ -53,6 +53,7 @@ export class HotelFlash {
         private _gtm: GoogleTagService,
         public viewCtrl: ViewController
     ) {
+        console.log('checking root nav', this._nav);
         this._gtm.setScript5('');
         console.log('testing testing')
         this.nav = this._nav;
@@ -101,7 +102,7 @@ export class HotelFlash {
                         is_ja: true
                     }
                     this.alldata(allDataja);
-//                    this.getItems(this.data);
+                    //                    this.getItems(this.data);
                 }
             });
         }, 100);
@@ -210,7 +211,7 @@ export class HotelFlash {
             }
             else {
                 console.log('no data');
-                this.stopAjax=true;
+                this.stopAjax = true;
                 this.nodata = true;
                 if (response.data && response.data === 'ja store closed.') {
 
