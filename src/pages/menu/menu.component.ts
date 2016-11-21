@@ -188,6 +188,7 @@ export class menu implements OnInit {
         this._localStorage.remove('user_data');
         this._localStorage.remove('user_token');
         this._localStorage.remove('datePlusMinus');
+        this._localStorage.remove('product');
         if (Network.connection && Network.connection !== 'none') {
             console.log(Network.connection);
             this._nav.setRoot(Login);
@@ -427,12 +428,30 @@ export class menu implements OnInit {
         }
 
     }
+
     livechat() {
 
-        let browser = new InAppBrowser('https://lc.chat/now/1081218/', '_system');
-
+        var browser = new InAppBrowser('https://lc.chat/now/1081218/', '_blank');
         console.log(browser);
 
+//        browser.on("loadstop")
+//            .subscribe(
+//            () => {
+//
+//                console.log(browser);
+//                browser.insertCss({
+//                    code:
+//                    "body{display:none}"
+//                })
+//            },
+//            err => {
+//                console.log("InAppBrowser Loadstop Event Error: " + err);
+//            });
+    }
+
+    public css = {
+        code:
+        "body{display:none}"
     }
 }
 

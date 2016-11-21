@@ -101,10 +101,11 @@ export class HotelDetail implements AfterViewChecked {
         });
         this.location = this.navParams.get('location');
         this.pageTitle = this.navParams.get('name');
+          this.local.setValue('product', 'detailPage');
     }
 
     ionViewWillEnter() {
-        console.log("enter");
+//        console.log("enter");
         //stop refreshing of flash hotels 
         this.showOffer();
     }
@@ -176,14 +177,14 @@ export class HotelDetail implements AfterViewChecked {
                 this.gpsLocation.push(obj);
             }
         }, (error) => {
-            console.log("Error occured in coirdinate fetching");
+//            console.log("Error occured in coirdinate fetching");
 
             this._errorhandler.err(error);
         });
     }
     //fetch data from booking api
     fetchCalenderData() {
-        console.log('dates for checkin and checkout')
+//        console.log('dates for checkin and checkout')
         this._calenderService.fetchCalenderData(this.navParams.get('id'), this.data.is_ja)
             .subscribe((res: any) => {
 

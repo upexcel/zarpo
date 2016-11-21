@@ -85,7 +85,7 @@ export class calendar {
         });
         this.flashType = this._navParams.get('flashType');
         this.update();
-        this._ajaxRxjs.liveChat();
+       
     }
     ionViewWillEnter() {
         this.activateStep1();

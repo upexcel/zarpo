@@ -69,21 +69,5 @@ export class Rxjs implements OnInit {
 
     }
 
-    liveChat() {
-        var __lc: any = {};
-        __lc.license = 1081218;
-        __lc.skill = 1;
-
-
-        var lc = document.createElement('script');
-        lc.type = 'text/javascript';
-        lc.async = true;
-        lc.defer = true;
-        lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(lc, s);
-
-    }
+   
 }
-//http://secure.livechatinc.com/licence/null/script_data.js?t=1478505112694&referrer=
-////http%3A%2F%2Flocalhost%3A8100%2F&url=http%3A%2F%2Flocalhost%3A8100%2F&params=&jsonp=__lc_data_879192

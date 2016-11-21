@@ -16,6 +16,7 @@ export class ZarpoSliderComponent {
     @ViewChild('mySlider') slider: Slides;
     num: any = 0;
     constructor(private _img: ImageHeightService) {
+        console.log('slider call');
         this.getFlashImgHeight();
         this.mySlideOptions = {
             autoplay: 3000,//time on screen
