@@ -11,8 +11,6 @@ import {errorhandler} from '../../services/error';
 import {FacebookComponent} from '../../facebookLogin/FacebookLogin';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {UserDetailService} from '../../services/user-detail.service';
-import {NoSpaceDirective} from '../../directives/no-space.directive';
-import {OnReturnDirective} from '../../directives/on-return.directive';
 
 @Component({
     templateUrl: 'login.html',
