@@ -51,18 +51,17 @@ export class GuestDetail implements AfterViewChecked {
     disableMyForm: boolean
     apiLoader: any;
     constructor(
-        private _nav: NavController,
-        private _navParams: NavParams,
-        public _events: Events,
-        private _localStorageService: LocalStorageService,
-        private _ajaxRxjs: Rxjs,
-        private _errorhandler: errorhandler,
+    private _nav: NavController,
+    private _navParams: NavParams,
+    public _events: Events,
+    private _localStorageService: LocalStorageService,
+    private _ajaxRxjs: Rxjs,
+    private _errorhandler: errorhandler,
         private _calenderService: CalenderService,
         private _guestDetailService: GuestDetailService,
         private _checkSelected: CheckSelectedService
 
-    ) {
-        console.log('data enter')
+    ) {console.log('data enter')
     }
     ionViewWillEnter() {
         this.ifSubmitted = false;
@@ -89,6 +88,9 @@ export class GuestDetail implements AfterViewChecked {
             }
 
         }
+        this._checkSelected.getData().then((data)=>{
+            console.log(data);
+        });
         console.log(data);
         return data;
     }
@@ -104,7 +106,7 @@ export class GuestDetail implements AfterViewChecked {
             selectedRoom: this.bookingRooms,
             specialMsg: this.comment
         };
-
+       console.log(CheckSelectedData);
         this._checkSelected.setData(CheckSelectedData);
         //        console.log(CheckSelected.get());
         for (var i = 0; i < Object.keys(this.bookingRooms).length; i++) {

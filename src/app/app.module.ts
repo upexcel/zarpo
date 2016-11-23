@@ -87,7 +87,7 @@ import {FooterComponent} from '../footer/footer.component';
 import {ZarpoAccordianComponent} from '../zarpo-accordian/zarpo-accordian.component';
 import {ZarpoNavComponent} from '../zarpo-nav/zarpo-nav.component';
 import {ZarpoSliderComponent} from '../zarpo-slider/zarpo-slider.component';
-import {NoSpaceDirective} from '../directives/no-space.directive';
+import {OnErrorDirective} from '../directives/on-error.directive';
 import {OnReturnDirective} from '../directives/on-return.directive';
 import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
 @NgModule({
@@ -149,7 +149,7 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         ZarpoNavComponent,
         ZarpoSliderComponent,
         OnReturnDirective,
-        //        NoSpaceDirective,
+        OnErrorDirective,
         MyDatePicker
     ],
     imports: [
@@ -199,8 +199,6 @@ import {MyDatePicker} from '../pages/my-date-picker/my-date-picker.component';
         ZarpoAccordianComponent,
         ZarpoNavComponent,
         ZarpoSliderComponent,
-        //        OnReturnDirective,
-        //        NoSpaceDirective,
         MyDatePicker
     ],
     providers: [Storage, Rxjs, ImageHeightService, GoogleTagService, facebookLogin, errorhandler, LocalStorageService, UserDetailService,
