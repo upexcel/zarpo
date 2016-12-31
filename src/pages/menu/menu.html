@@ -55,6 +55,33 @@
             </ion-list>   
 
         </div>
+        <button (click)="unfold()">add</button>
+        <ion-item *ngIf="fold">
+            <div class='tagfil'>
+                <div (click)="tname=true;tag=false;showFilters('hotels');Thematictag=false" class='manualinput'>{{fname}}</div>
+                <ion-list class="tagnamelist " *ngIf="tname && filters">
+                          <ion-item class="tagnamelistItem" (click)="tnames('Hoties','Hotel');tname=false">Hoties</ion-item>
+                    <ion-item class="tagnamelistItem" (click)="tnames('Pacotes','Pacote');tname=false">Pacotes</ion-item>
+                    <ion-item class="tagnamelistItem" (click)="tnames('Zarpo Ja','Ja');tname=false">Zarpo Ja</ion-item>
+                </ion-list>
+            </div>
+            <div class='tagfil'>
+                <div (click)="tname=true;tag=false;showFilters('hotels');Thematictag=false" class='manualinput'>{{fname}}</div>
+                <ion-list class="tagnamelist " *ngIf="tname && filters">
+                          <ion-item class="tagnamelistItem" (click)="tnames('Hoties','Hotel');tname=false">Hoties</ion-item>
+                    <ion-item class="tagnamelistItem" (click)="tnames('Pacotes','Pacote');tname=false">Pacotes</ion-item>
+                    <ion-item class="tagnamelistItem" (click)="tnames('Zarpo Ja','Ja');tname=false">Zarpo Ja</ion-item>
+                </ion-list>
+            </div>
+            <div class='tagfil'>
+                <div (click)="tname=true;tag=false;showFilters('hotels');Thematictag=false" class='manualinput'>{{fname}}</div>
+                <ion-list class="tagnamelist " *ngIf="tname && filters">
+                          <ion-item class="tagnamelistItem" (click)="tnames('Hoties','Hotel');tname=false">Hoties</ion-item>
+                    <ion-item class="tagnamelistItem" (click)="tnames('Pacotes','Pacote');tname=false">Pacotes</ion-item>
+                    <ion-item class="tagnamelistItem" (click)="tnames('Zarpo Ja','Ja');tname=false">Zarpo Ja</ion-item>
+                </ion-list>
+            </div>
+        </ion-item>
         <button  ion-button  color="primary" class="button button-block loginbtn marT20 greybg"  type="submit" (click)="tagselection()">
             <span><b>PROCURAR OFERTAS</b></span>
         </button>

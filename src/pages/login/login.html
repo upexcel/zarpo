@@ -21,11 +21,11 @@
 
                             <div *ngIf="!signupForm">
 
-                                <input  onError ifFormSubmitted="{{Uemail}}" noSpace onReturn type="email"  [(ngModel)]="user.email" ngControl="email"
+                                <input    noSpace onReturn type="email"  [(ngModel)]="user.email" ngControl="email"
                                           (click)="modelChange()"  #email="ngModel"  required
                                           pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$"
                                           [class.errormsg]="Uemail" class="inputArea " name="signupEmail" placeholder="Seu e-mail">
-                                <input  onError="true" noSpace onReturn type="password" (click)="modelChange()" [(ngModel)]="user.password" [class.errormsg]="Upassword && !user.password"   class="mypwd" name="signupPasswordR" placeholder="{{placeholder}}">
+                                <input  noSpace onReturn type="password" (click)="modelChange()" [(ngModel)]="user.password" [class.errormsg]="Upassword && !user.password"   class="mypwd" name="signupPasswordR" placeholder="{{placeholder}}">
 
                                 <button ion-button class="button button-block loginbtn marT20" color="primary" type="button"
                                         (click)="login(user,signup_button,email.errors)" *ngIf="signup_button !== 'Aguarde'"

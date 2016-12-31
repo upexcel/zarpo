@@ -1,24 +1,24 @@
-import {NavController, MenuController, Events, Nav} from 'ionic-angular';
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Network} from 'ionic-native';
-import {HotelFlash} from '../hotel-flash/hotel-flash';
-import {ValeFlash} from '../vale-flash/vale-flash';
-import {OrderSuccess} from '../order-success/order-success';
+import { NavController, MenuController, Events, Nav } from 'ionic-angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Network } from 'ionic-native';
+import { HotelFlash } from '../hotel-flash/hotel-flash';
+import { ValeFlash } from '../vale-flash/vale-flash';
+import { OrderSuccess } from '../order-success/order-success';
 import _ from 'lodash';
-import {offline} from '../offline/offline';
-import {Login} from '../login/login';
-import {LocalStorageService} from '../../services/local-storage.service';
-import {menuService} from '../../services/menu.service';
-import {cancel} from '../cancel/cancel'
-import {mordomo} from '../mordomo_zarpo/mordomo'
-import {myAccount} from '../myAccount/myAccount'
-import {invite} from '../inviteFriends/invite'
-import {feedBack} from '../feedback/feedback'
-import {Facebook} from 'ionic-native';
-import {hotelTag} from '../hotelFilter/hotelTag';
-import {Rxjs} from '../../services/Rxjs';
-import {errorhandler} from '../../services/error';
-import {InAppBrowser} from 'ionic-native';
+import { offline } from '../offline/offline';
+import { Login } from '../login/login';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { menuService } from '../../services/menu.service';
+import { cancel } from '../cancel/cancel'
+import { mordomo } from '../mordomo_zarpo/mordomo'
+import { myAccount } from '../myAccount/myAccount'
+import { invite } from '../inviteFriends/invite'
+import { feedBack } from '../feedback/feedback'
+import { Facebook } from 'ionic-native';
+import { hotelTag } from '../hotelFilter/hotelTag';
+import { Rxjs } from '../../services/Rxjs';
+import { errorhandler } from '../../services/error';
+import { InAppBrowser } from 'ionic-native';
 @Component({
     templateUrl: 'menu.html',
 })
@@ -434,24 +434,34 @@ export class menu implements OnInit {
         var browser = new InAppBrowser('https://lc.chat/now/1081218/', '_blank');
         console.log(browser);
 
-//        browser.on("loadstop")
-//            .subscribe(
-//            () => {
-//
-//                console.log(browser);
-//                browser.insertCss({
-//                    code:
-//                    "body{display:none}"
-//                })
-//            },
-//            err => {
-//                console.log("InAppBrowser Loadstop Event Error: " + err);
-//            });
+        //        browser.on("loadstop")
+        //            .subscribe(
+        //            () => {
+        //
+        //                console.log(browser);
+        //                browser.insertCss({
+        //                    code:
+        //                    "body{display:none}"
+        //                })
+        //            },
+        //            err => {
+        //                console.log("InAppBrowser Loadstop Event Error: " + err);
+        //            });
     }
 
-    public css = {
-        code:
-        "body{display:none}"
+    //    public css = {
+    //        code:
+    //        "body{display:none}"
+    //    }
+    a = 0; fold: boolean = false;
+    unfold() {
+        if (this.a == 0) {
+            this.fold = true
+            this.a++;
+        } else {
+            this.fold = false
+            this.a--;
+        }
     }
 }
 
