@@ -1,10 +1,11 @@
 import {App, Platform, Nav, NavController, Events} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Push } from 'ionic-native';
 import {Component, ViewChild, Inject} from '@angular/core';
 import {Location, LocationStrategy, HashLocationStrategy} from '@angular/common';
 //import {DomSanitizationService} from '@angular/platform-browser';
 import {GoogleTagService} from '../services/google-tag.service';
-import {StatusBar, GoogleAnalytics,BackgroundMode} from 'ionic-native';
+import {StatusBar, GoogleAnalytics, BackgroundMode} from 'ionic-native';
 import {Login} from '../pages/login/login';
 import {menu} from '../pages/menu/menu.component';
 //import * as localforage from "localforage";
@@ -62,8 +63,45 @@ export class MyApp {
         platform.ready().then(() => {
             console.log('checking');
             BackgroundMode.enable();
-            
+
+            var push = Push.init({
+                android: {
+                    senderID: "24148182452"
+                },
+                ios: {
+                    alert: "true",
+                    badge: "true",
+                    sound: "true"
+                },
+                windows: {}
+            });
+
+            Push.hasPermission().then((permission) => {
+                console.log("push", permission);
+            });
+
+//            push.on('registration', function(data) {
+//                // data.registrationId
+//                console.log(data);
+//            });
+//
+//            push.on('notification', function(data) {
+//                // data.message,
+//                // data.title,
+//                // data.count,
+//                // data.sound,
+//                // data.image,
+//                // data.additionalData
+//                console.log(data);
+//            });
+//
+//            push.on('error', function(e) {
+//                // e.message
+//                console.log("eror",e);
+//            });
+
             this.local.get('user_data').then((data) => {
+                console.log("push", push);
                 if (Network.connection && Network.connection !== 'none') {
                     console.log('checking2', data, Network.connection);
                     if (data) {

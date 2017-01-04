@@ -12,7 +12,7 @@ import {menu} from '../menu/menu.component'
 })
 
 export class terms {
-    public pageTitle = 'Condições Gerais de Uso';
+    public pageTitle = 'Termos de Uso';
     public showBack = false;
     public apiLoader=false;
     zarpoIcon:boolean;

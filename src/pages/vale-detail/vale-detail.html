@@ -116,11 +116,8 @@
                        formControlName="email" id="email" required 
                        [ngClass]="{errormsgB:formsubmitted===true &&
                        (valeForm.controls.email.value.trim().length < 1 || !valeForm.controls.email.valid)}"
-                    
                        >
-
-
-                       <div class='clear marB5' (click)="modelChange()" 
+                       <div class='clear marB5 overflow date-picker' (click)="modelChange()" 
                        [ngClass]="{errormsgB:formsubmitted===true && giftDate === ''}" >
                     <my-date-picker [options]="myDatePickerOptions" [title]="dateTitle"  [showIcon]="showIcon"
                         (dateChanged)="onDateChanged($event)"></my-date-picker>

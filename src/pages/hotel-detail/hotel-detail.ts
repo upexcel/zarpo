@@ -25,11 +25,11 @@ import {StringToNumberPipe} from '../../filters/keys/string-to-number.pipe';
 @Component({
     templateUrl: 'hotel-detail.html',
 
-//    providers: [GeocoderService],
-//    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent,
-//        ZarpoSliderComponent, ZarpoAccordianComponent, GOOGLE_MAPS_DIRECTIVES, SebmGoogleMap, SebmGoogleMapMarker],
-//
-//    pipes: [KeysPipe, StringToNumberPipe]
+    //    providers: [GeocoderService],
+    //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent,
+    //        ZarpoSliderComponent, ZarpoAccordianComponent, GOOGLE_MAPS_DIRECTIVES, SebmGoogleMap, SebmGoogleMapMarker],
+    //
+    //    pipes: [KeysPipe, StringToNumberPipe]
 
 })
 
@@ -90,6 +90,7 @@ export class HotelDetail implements AfterViewChecked {
         this.navParams = this._navParams;
         this.api = this._ajaxRxjs;
         this.local = this._localStorageService;
+        //stop refreshing of flash hotels 
         this.local.getValue('user_data').then((response) => {
             if (response) {
                 this.data.user_token = response.data.user_token;
@@ -101,14 +102,15 @@ export class HotelDetail implements AfterViewChecked {
         });
         this.location = this.navParams.get('location');
         this.pageTitle = this.navParams.get('name');
-          this.local.setValue('product', 'detailPage');
+        this.local.setValue('product', 'detailPage');
     }
 
+
     ionViewWillEnter() {
-//        console.log("enter");
-        //stop refreshing of flash hotels 
         this.showOffer();
+
     }
+
 
     scrollToBottom(): void {
     }
@@ -118,7 +120,7 @@ export class HotelDetail implements AfterViewChecked {
         this.api.ajaxRequest(this.path, this.data).subscribe((response: any) => {
             if (response.data) {
                 this.itemObject = response.data;
-
+                //save rules of product for further use on payment page
                 if (response.data.gps_coordinates) {
                     this.gpsLocation = response.data.gps_coordinates;
                 }
@@ -152,7 +154,8 @@ export class HotelDetail implements AfterViewChecked {
                 let regras = {
                     checkin: this.itemObject.check_in,
                     checkout: this.itemObject.check_out,
-                    rules: this.itemObject.Regras
+                    rules: this.itemObject.Regras,
+                    disclaimer: this.disclaimer
                 };
                 this.local.setValue('rules', regras);
             }
@@ -177,14 +180,14 @@ export class HotelDetail implements AfterViewChecked {
                 this.gpsLocation.push(obj);
             }
         }, (error) => {
-//            console.log("Error occured in coirdinate fetching");
+            //            console.log("Error occured in coirdinate fetching");
 
             this._errorhandler.err(error);
         });
     }
     //fetch data from booking api
     fetchCalenderData() {
-//        console.log('dates for checkin and checkout')
+        //        console.log('dates for checkin and checkout')
         this._calenderService.fetchCalenderData(this.navParams.get('id'), this.data.is_ja)
             .subscribe((res: any) => {
 
@@ -258,8 +261,10 @@ export class HotelDetail implements AfterViewChecked {
             this.nav.push(ProductDeactivated);
         }
     }
+
     ionViewWillLeave() {
         //stop refreshing of flash hotels 
+        this.showRules();
         clearTimeout(this.productRefresher);
     }
 }

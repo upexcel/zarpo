@@ -5,40 +5,47 @@
         <ion-grid class="no-padding">
             <ion-row class="no-padding">
                 <ion-col class="no-padding">
-                    <div class="valeCancel">
-                        <ul style='-webkit-margin-before: 0em;'>
-                            <li>
-                                O prazo para cancelamento é de 72 horas antes do dia de entrega 
-                                do Vale Presente, conforme definido pelo próprio cliente na hora
-                                da compra no site. Solicitando o cancelamento dentro desse prazo,
-                                o valor será devolvido na totalidade em créditos Zarpo ou via o
-                                mesmo modo de pagamento utilizado na compra. 
-                            </li>
-                            <li>
-                                Caso passar do prazo de 72 horas de antecedência com 
-                                a data da entrega do Vale Presente, não será mais possível 
-                                cancelar a compra. Neste caso, nenhum valor poderá ser
-                                devolvido para o cliente.
-                            </li>
-                            <li>
-                                É possível utilizar seu saldo de créditos Zarpo (caso houver) 
-                                para comprar Vale Presentes Zarpo. Note que quando seu saldo de
-                                créditos é maior que o valor da sua reserva, ainda é preciso pagar 
-                                o montante de R$ 15,00 para que seu pedido possa ser processado pelo 
-                                nosso sistema. O saldo restante ficará na sua conta Zarpo para uma 
-                                próxima compra no site.
-                            </li>
-                            <li>
-                                Os Vale Presentes não têm prazo limite de uso e podem ser utilizados 
-                                para qualquer reserva no site, fora os hotéis do "Zarpo Já". O montante 
-                                do Vale presente é automaticamente deduzido do valor total da reserva 
-                                efetuada pelo cliente.
-                            </li>
-                        </ul>
+                    <div class="valeCancel" *ngIf="cancelContent">
+                        <div class="hotel_rules">
+                            <div class="rules gap " *ngIf="cancelContent.checkin">
+                                <h4 class="gap-half default-font bold">Check-in & Check-out</h4>
+                                <ul class="disc" >
+                                    <li class="arrTime whitebg">Check-in: {{cancelContent.checkin}}</li>
+                                    <li class="arrTime whitebg">Check-out: {{cancelContent.checkout}}</li>
+                                </ul>
+                            </div>
+                            <div class="rules gap bold">
+                                <h4 class="gap-half default-font bold" *ngIf="!cancelContent.checkin">
+                                    Regras do Vale Presente
+                                </h4>
+                                <h4 class="gap-half default-font bold" *ngIf="cancelContent.checkin">
+                                    Regras da Oferta
+                                </h4>
+                                <div class="hotel_rules">
+                                    <ul class="disc">
+                                        <li  *ngFor="let rule0 of cancelContent.disclaimer[0]" [innerHTML]="rule0" class="br">
 
+                                    </li>
+                                </ul>
+                            </div>
+                            <span class="br"></span>
+                        </div>
+                        <div class="rules gap" *ngIf="cancelContent.checkin">
+                            <h4 class="gap-half bold" >Política de Alteração e Cancelamento</h4>
+                            <div class="hotel_rules">
+                                <ul class="disc">
+                                    <li *ngFor="let rule1 of cancelContent.disclaimer[1]" [innerHTML]="rule1" class="br">
+
+                                </li>
+                            </ul>
+                            <span class="br"></span>
+                        </div>
                     </div>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
+                </div>
+
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+</div>
 </ion-content>

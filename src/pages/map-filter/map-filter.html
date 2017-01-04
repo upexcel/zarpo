@@ -1,0 +1,13 @@
+<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<ion-content class="map-filter">
+    <div class="wrapper">
+        <div style="height:550px">
+            <sebm-google-map [zoom]="zoom" [latitude]="lat" [longitude]="lng">
+                <!--<sebm-google-map-marker *ngFor="let location of gpsLocation"
+                    [latitude]="location.lat|StringToNumber" [longitude]="location.lang|StringToNumber"
+                    [label]="''" [fitBounds]="true" [iconUrl]="iconUrl">-->
+                <!--</sebm-google-map-marker>-->
+            </sebm-google-map>
+        </div>
+    </div>
+</ion-content>

@@ -17,7 +17,7 @@ import {GoogleTagService} from '../../services/google-tag.service';
 
 export class ValeFlash {
     pageTitle: string = "Vale presentes";
-    showBackButton: boolean = true;
+    showBackButton: boolean = false;
     path: string = "flash";
     flashtype: string = 'Vale';
     data: any = {

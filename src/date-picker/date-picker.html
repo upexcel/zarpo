@@ -1,0 +1,19 @@
+<ion-row class="marT5 date-picker" no-margin>
+    <ion-col no-padding>
+        <ion-item no-padding class="" [ngClass]="{'errormsgB':ifFormSubmit && ifHasError==false}" *ngIf="monthLabels.length>0" >
+            <ion-select [placeholder]="'Month'" [(ngModel)]="selectedMonth"  (ionChange)="monthChanged($event)">
+                <ion-option value="{{mon.month}}" *ngFor="let mon of monthLabels">{{mon.label}}</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-col>
+    <ion-col no-padding>
+        {{ifHasError}}
+        <ion-row no-margin>
+            <ion-item no-padding class="marL10" [ngClass]="{'errormsgB':ifFormSubmit}"  *ngIf="years.length>0">
+                <ion-select [placeholder]="'Year'" [(ngModel)]="selectedYear" (ionChange)="yearChanged($event)">
+                    <ion-option value="{{year}}" *ngFor="let year of years">{{year}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-row>
+    </ion-col>
+</ion-row>

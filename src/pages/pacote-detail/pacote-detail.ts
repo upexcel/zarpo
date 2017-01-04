@@ -126,7 +126,8 @@ export class PacoteDetail {
                 let regras = {
                     checkin: this.itemObject.check_in,
                     checkout: this.itemObject.check_out,
-                    rules: this.itemObject.Regras
+                    rules: this.itemObject.Regras,
+                    disclaimer:this.disclaimer
                 };
                 this.local.setValue('rules', regras);
             }
@@ -219,6 +220,7 @@ export class PacoteDetail {
     }
     ionViewWillLeave() {
         //stop refreshing of flash hotels 
+        this.showRules();
         clearTimeout(this.productRefresher);
     }
 }

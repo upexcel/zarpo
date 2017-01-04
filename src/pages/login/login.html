@@ -22,9 +22,9 @@
                             <div *ngIf="!signupForm">
 
                                 <input  onError ifFormSubmitted="{{Uemail}}" noSpace onReturn type="email"  [(ngModel)]="user.email" ngControl="email"
-                                          (click)="modelChange()"  #email="ngModel"  required
-                                          pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$"
-                                          [class.errormsg]="Uemail" class="inputArea " name="signupEmail" placeholder="Seu e-mail">
+                                        (click)="modelChange()"  #email="ngModel"  required
+                                        pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$"
+                                        [class.errormsg]="Uemail" class="inputArea " name="signupEmail" placeholder="Seu e-mail">
                                 <input  onError="true" noSpace onReturn type="password" (click)="modelChange()" [(ngModel)]="user.password" [class.errormsg]="Upassword && !user.password"   class="mypwd" name="signupPasswordR" placeholder="{{placeholder}}">
 
                                 <button ion-button class="button button-block loginbtn marT20" color="primary" type="button"
@@ -38,7 +38,8 @@
                                         *ngIf="signup_button === 'Aguarde'" on-tap="login(user,signup_button,email.errors)">
                                     <span>{{signup_button}}</span>
                                 </button>
-
+                                <p text-center>
+                                </p>
                                 <div class="errormsg errorcolor marT20" >
 
                                     <p class="errormsg md-char-counter" *ngIf="Uemail">
@@ -61,6 +62,8 @@
 
 
                     </form>
+                    
+
                     <!--<form novalidate name="registerForm">--> 
 
                     <div *ngIf="signupForm">
@@ -105,7 +108,7 @@
 </div>
 <div class='marT20 center'>
     <span style="text-decoration: none;text-align:center; cursor: pointer; color: #00C8EE!important;">
-          <a target="_blank" href="http://www.zarpo.com.br/magazine/">Magazine</a> | 
+        <a target="_blank" href="http://www.zarpo.com.br/magazine/">Magazine</a> | 
         <a target="_blank" href="http://www.zarpo.com.br/?guia-de-hoteis=true">Guia de Hotéis</a>
     </span>
 </div>

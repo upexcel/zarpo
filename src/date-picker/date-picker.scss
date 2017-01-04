@@ -1,0 +1,27 @@
+date-picker{
+    ion-select{
+        max-width: 90%;
+    }
+    .select-icon{
+        display: none;
+    }
+    ion-select.select-md {
+        padding: 6px 8px 6px 0px;
+    }
+    .marL10{
+        margin-left: 10px;
+    }
+    .date-picker{
+        border: none;
+
+        ion-col{
+            ion-item{
+                padding-left: 0;
+                border:1px solid #e4e4e4;
+            }
+        }
+        ion-row{
+
+        }
+    } 
+}

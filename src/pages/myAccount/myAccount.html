@@ -1,32 +1,46 @@
 <zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
 <ion-content class="myAccount">
-   <div class="divcard">
-            <div class="hr marT0">
-                <p class="myaccLink"><a tappable (click)="redirect('myreservation')" >Minhas Reservas</a></p>
-            </div>
-            <div class="hr">
-                <p class="myaccLink"><a tappable (click)="redirect('invitefriends')" >Convidar Amigos</a></p>
-            </div>
-            <div class="hr">
-                <p class="myaccLink"><a tappable (click)="redirect('newsletters')">Newsletters</a></p>
-            </div>
-            <div class="hr">
-                <p class="myaccLink"><a tappable (click)="redirect('termsofuse')" >Termos de Uso</a></p>
-            </div>
-            <div class="hr">
-                <p class="myaccLink"><a tappable (click)="redirect('privacy')" >Política de Privacidade</a></p>
-            </div>
-            <div class="hr">
-                <p class="myaccLink"><a tappable (click)="redirect('contact')" >Mordomo Zarpo</a></p>
-            </div>
-            <div class="marT20">
-                <p class="myaccLink" ><a tappable (click)="showme=false;" class="fontweight">Meus dados</a></p>
-                <p>
-                    Nome: {{user_name}} {{user_Lname}}<br/>
-                    E-mail: {{user_email}} <br/>
-
-                </p>
-            </div>
-
+    <div class="divcard">
+        <div class="hr marT0">
+            <p class="myaccLink">
+                <a tappable (click)="redirect('myreservation')" >Minhas Reservas</a>
+            </p>
         </div>
+        <div class="hr">
+            <p class="myaccLink">
+                <a tappable (click)="redirect('invitefriends')" >Convidar Amigos</a>
+            </p>
+        </div>
+        <div class="hr">
+            <p class="myaccLink">
+                <a tappable (click)="redirect('newsletters')">Newsletters</a>
+            </p>
+        </div>
+        <div class="hr">
+            <p class="myaccLink">
+                <a tappable (click)="redirect('termsofuse')" >Termos de Uso</a>
+            </p>
+        </div>
+        <div class="hr">
+            <p class="myaccLink">
+                <a tappable (click)="redirect('privacy')" >Política de Privacidade</a>
+            </p>
+        </div>
+        <div class="hr">
+            <p class="myaccLink">
+                <a tappable (click)="redirect('contact')" >Mordomo Zarpo</a>
+            </p>
+        </div>
+        <div class="marT20">
+            <p class="myaccLink" >
+                <a tappable (click)="showme=false;" class="fontweight">Meus dados</a>
+            </p>
+            <p>
+                Nome: {{user_name}} {{user_Lname}}<br/>
+                E-mail: {{user_email}} <br/>
+
+            </p>
+        </div>
+
+    </div>
 </ion-content>

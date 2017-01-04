@@ -9,8 +9,7 @@
                 <div  class="bar-button-bt startSpin " *ngIf="customback" (click)="custom()"></div>
                 <div  class="bar-button-img bar-button-blank " *ngIf="loading">
                     <div id="circularG">
-                                                <img src="assets/img/light_zarpo_spinner.gif" alt=""/>
-                        <!--<ion-spinner name="bubbles"></ion-spinner>-->
+                        <img src="assets/img/light_zarpo_spinner.gif" alt=""/>
                     </div>
                 </div>
                 <div  class="bar-button-logo" *ngIf="showBack && !loading" (click)="openHome()"></div>
@@ -23,26 +22,14 @@
                 <div  class="bar-button-bt startSpin " *ngIf="customback" (click)="custom()"></div>
                 <div  class="bar-button-img bar-button-blank " *ngIf="loading">
                     <div id="circularG">
-                        <!--                        <div id="circularG_1" class="circularG"></div>
-                                                <div id="circularG_2" class="circularG"></div>
-                                                <div id="circularG_3" class="circularG"></div>
-                                                <div id="circularG_4" class="circularG"></div>
-                                                <div id="circularG_5" class="circularG"></div>
-                                                <div id="circularG_6" class="circularG"></div>
-                                                <div id="circularG_7" class="circularG"></div>
-                                                <div id="circularG_8" class="circularG"></div>-->
                         <img src="assets/img/light_zarpo_spinner.gif" alt=""/>
-                        <!--<ion-spinner name="bubbles"></ion-spinner>-->
                     </div>
                 </div>
                 <div  class="bar-button-logo" *ngIf="showBack && !loading" (click)="openHome()"></div>
             </button>
-
         </ion-buttons>
-
         <button end tappable menuToggle class="showbt bgtransparent" ion-button icon-only *ngIf="title != 'Reenvio de senha'">
                 <ion-icon name="menu"></ion-icon>
         </button>
-
     </ion-navbar>
 </ion-header>
