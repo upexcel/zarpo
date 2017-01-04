@@ -70,7 +70,7 @@ export class HotelDetail implements AfterViewChecked {
     navParams: NavParams;
     api: Rxjs;
     local: LocalStorageService;
-    itemObject: any
+    itemObject: any;
     offers: any = [];
     apiLoader: boolean = false;
     productRefresher: any;

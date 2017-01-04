@@ -20,6 +20,7 @@
 .scroll-content {
     padding-top: 70px;
 }
+
 .item-ios.item-block .item-inner {
     padding-right: 0px !important; 
 }
@@ -636,12 +637,13 @@ color{
 .inAppBrowserWrap menu li.disabled {
     color: #777;
 }
+
+
 /*=================================for 144 server*/
-/*ion-app {
+ion-app {
     width: 420px !important;
     position: relative !important;
     margin: 0px auto !important; }
-
 
 
 body {
@@ -666,4 +668,4 @@ div#livechat-full {
 zarpo-flash-card div.automaticCredit div {
     line-height: 4.1em !important;
     font-size: 28px !important; 
-}*/
+}

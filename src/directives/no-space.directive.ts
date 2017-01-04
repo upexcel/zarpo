@@ -9,16 +9,14 @@ export class NoSpaceDirective {
     @Input() noSpace: string;
     constructor(private _el: ElementRef) {
         this.el = this._el;
-        console.log(this.el);
+//        console.log(this.el);
     }
     @HostListener('keydown', ['$event']) onKeyDown(e) {
-//        console.log(e);
-//        console.log(this.el.nativeElement.value.slice(-1));
-//        if ((e.which == 32 || e.which == 229) && this.el.nativeElement.value.slice(-1) === " ") {
-//            e.preventDefault();
-//            console.log(this.el.nativeElement.value.length);
-//            return;
-//        }
+//          console.log(this.el.nativeElement.value.slice(-1));
+        if ((e.which == 32 || e.which == 229) && this.el.nativeElement.value.slice(-1) === " ") {
+            e.preventDefault();
+            return;
+        }
     }
 }
 

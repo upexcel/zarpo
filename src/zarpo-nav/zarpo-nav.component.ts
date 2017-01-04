@@ -1,11 +1,11 @@
-import {Events, NavController, MenuController} from 'ionic-angular';
-import {Component, OnInit, Input, OnChanges, Output, forwardRef} from '@angular/core';
-import {HotelFlash} from '../pages/hotel-flash/hotel-flash';
+import { Events, NavController, MenuController } from 'ionic-angular';
+import { Component, OnInit, Input, OnChanges, Output, forwardRef } from '@angular/core';
+import { HotelFlash } from '../pages/hotel-flash/hotel-flash';
 
 @Component({
     selector: "zarpo-nav-bar",
     templateUrl: 'zarpo-nav.html',
-//    directives: [HotelFlash]
+    //    directives: [HotelFlash]
 })
 
 export class ZarpoNavComponent {
@@ -22,7 +22,9 @@ export class ZarpoNavComponent {
     goBack() {
         this.loading = false;
         this.nav.pop().then((data) => {
-            console.log(data);
+            console.log("goBack", data);
+            this.events.publish('custom:pop', 'true');
+
         });
 
     }
