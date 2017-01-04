@@ -1,9 +1,10 @@
-import { NavController, MenuController, Events, Nav } from 'ionic-angular';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Network } from 'ionic-native';
-import { HotelFlash } from '../hotel-flash/hotel-flash';
-import { ValeFlash } from '../vale-flash/vale-flash';
-import { OrderSuccess } from '../order-success/order-success';
+import {NavController, MenuController, Events, Nav} from 'ionic-angular';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Network} from 'ionic-native';
+import {HotelFlash} from '../hotel-flash/hotel-flash';
+import {ValeFlash} from '../vale-flash/vale-flash';
+import {OrderSuccess} from '../order-success/order-success';
+import {MapFilter} from '../map-filter/map-filter';
 import _ from 'lodash';
 import { offline } from '../offline/offline';
 import { Login } from '../login/login';
@@ -149,6 +150,11 @@ export class menu implements OnInit {
             this.i--;
         }
     }
+    showMapFilter(){
+        console.log("push");
+        this._nav.push(MapFilter);
+        
+    }
 
     toggleChange(event: any) {
         this.condition = event._checked;
@@ -162,7 +168,8 @@ export class menu implements OnInit {
             this.nav.setRoot(HotelFlash, { hotelType: componentName });
         }
         else if (componentName == 'vale') {
-            this.nav.setRoot(ValeFlash);
+            //this.nav.setRoot(ValeFlash);
+            this.nav.push(ValeFlash);
         }
         else if (componentName == 'cancel') {
             this.nav.setRoot(cancel);

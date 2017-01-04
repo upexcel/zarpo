@@ -118,8 +118,13 @@
 
     .subinfo {
         text-align: left;
-        list-style: disc;
+        list-style: none;
         height: auto;
+        padding-right: 22px;
+    }
+    .redText{
+        font-size:30px;
+        padding-bottom: 17px;
     }
     @media screen and (max-width:370px){
        ion-list .item-accordion ul li {

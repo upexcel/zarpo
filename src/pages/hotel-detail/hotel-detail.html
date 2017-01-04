@@ -45,7 +45,10 @@
             </ion-row>
         </ion-grid>
         <div class="clear"></div>
-        <zarpo-slider class="marB20" [zarpoSlides]="itemObject.images" *ngIf="itemObject && ifOffer===true" [zarpoCredit]="itemObject.automatic_credit" ></zarpo-slider>
+        <zarpo-slider class="marB20" [zarpoSlides]="itemObject.images" 
+                      [zarpoBlackDays]="itemObject.product_slideshow_label"
+                      *ngIf="itemObject && ifOffer==true" 
+                      [zarpoCredit]="itemObject.automatic_credit" ></zarpo-slider>
         <div class="clear"></div>
         <!--detail of product-->
         <div class="msgboxalt custom-msgbox no-pos no-border" [hidden]="!ifOffer">
@@ -109,7 +112,7 @@
         <div id="map" class="imgloader"> 
             <!-- this creates a google map on the page with the given lat/lng from -->
             <!-- the component as the initial center of the map: -->
-        <sebm-google-map [zoom]="zoom"
+            <sebm-google-map [zoom]="zoom"
                 [latitude]="gpsLocation[0].lat|StringToNumber" [longitude]="gpsLocation[0].lang|StringToNumber">
                 <sebm-google-map-marker *ngFor="let location of gpsLocation"
                     [latitude]="location.lat|StringToNumber" [longitude]="location.lang|StringToNumber"
@@ -128,7 +131,7 @@
 
 </div>
 </div>
-<button ion-button class="button button-block marT20 marB20" color="primary" type="button" (click)="showCalender()">
+<button ion-button full color="primary" class="marT20 marB20"  (click)="showCalender()">
     Reservar
 </button>
 <zarpo-footer *ngIf="itemObject"  > </zarpo-footer>

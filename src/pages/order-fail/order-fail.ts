@@ -10,11 +10,11 @@ import {HotelFlash} from '../hotel-flash/hotel-flash';
 
 export class OrderFail {
     public zarpoIcon: boolean = true;
-    pageTitle: string = 'Problema com o seu pagamento';
+    pageTitle: string = 'Pagamento recusado';
     apiLoader: boolean;
     constructor(private _nav: NavController, private _navParams: NavParams) {
     }
     backToFlash() {
-        this._nav.push(HotelFlash);
+        this._nav.pop();
     }
 }

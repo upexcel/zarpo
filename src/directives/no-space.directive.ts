@@ -13,6 +13,7 @@ export class NoSpaceDirective {
     }
     @HostListener('keydown', ['$event']) onKeyDown(e) {
 //          console.log(this.el.nativeElement.value.slice(-1));
+        console.log("press")
         if ((e.which == 32 || e.which == 229) && this.el.nativeElement.value.slice(-1) === " ") {
             e.preventDefault();
             return;

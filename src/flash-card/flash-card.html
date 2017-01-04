@@ -8,7 +8,11 @@
                 <div class="pacote-price-tag" *ngIf="flashtype !=='Vale'">(por pessoa, em quarto duplo)</div>
             </div>-->
 <!--[hidden]="flashtype !=='Hotel' || flashtype !=='Ja'"-->
-            <div class="automaticCredit"  *ngIf="item.automatic_credit && item.automatic_credit != 0 ">
+
+            <div class="blackDays" *ngIf="item.flash_image_label">
+                 <img src="{{item.flash_image_label}}" />
+            </div>
+            <div [ngClass]="{'automaticBlackOut':item.flash_image_label,'automaticCredit':!item.flash_image_label}" class=""  *ngIf="item.automatic_credit && item.automatic_credit != 0 ">
                  <div> R${{item.automatic_credit}}</div>
             </div>
         </div>

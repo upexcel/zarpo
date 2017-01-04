@@ -19,9 +19,6 @@ import {OnReturnDirective} from '../../directives/on-return.directive';
 
 @Component({
     templateUrl: 'guest-detail.html',
-    //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent],
-    //    providers: [],
-    //    pipes: [KeysPipe, AdultChildPipe]
 })
 
 export class GuestDetail implements AfterViewChecked {
@@ -66,13 +63,23 @@ export class GuestDetail implements AfterViewChecked {
     }
     ionViewWillEnter() {
         this.ifSubmitted = false;
-        this._guestDetailService.getData().then((response: any) => {
-            this.bookingRooms = this.reConstructObject(response.selectedRoom);
-            console.log(this.bookingRooms);
-            //fetch login user and set as 1 guest
-            this._localStorageService.getValue('user_data').then((response) => {
-                this.bookingRooms[0].selected[0].username = response.data.customer_firstname + " " + response.data.customer_lastname;
-            });
+        this._checkSelected.getData().then((data) => {
+            if (Object.keys(data).length > 1) {
+                console.log("try", data);
+                this.bookingRooms = data['selectedRoom'];
+            }
+            else {
+                this._guestDetailService.getData().then((response: any) => {
+                    this.bookingRooms = this.reConstructObject(response.selectedRoom);
+                    console.log("booking", this.bookingRooms);
+                    //fetch login user and set as 1 guest
+                    this._localStorageService.getValue('user_data').then((response) => {
+                        this.bookingRooms[0].selected[0].username = response.data.customer_firstname + " " + response.data.customer_lastname;
+                    });
+
+                });
+
+            }
 
         });
 
@@ -89,7 +96,7 @@ export class GuestDetail implements AfterViewChecked {
             }
 
         }
-        console.log(data);
+        console.log("return", data);
         return data;
     }
     scrollToBottom(): void {
@@ -104,8 +111,8 @@ export class GuestDetail implements AfterViewChecked {
             selectedRoom: this.bookingRooms,
             specialMsg: this.comment
         };
-
         this._checkSelected.setData(CheckSelectedData);
+
         //        console.log(CheckSelected.get());
         for (var i = 0; i < Object.keys(this.bookingRooms).length; i++) {
             console.log(this.bookingRooms[0]);
@@ -150,7 +157,7 @@ export class GuestDetail implements AfterViewChecked {
         };
         //send to payment
         this._nav.push(ProductPayment, PaymentData);
-    };
+    }
     ifEmpty() {
         var empty = false;
         for (var i = 0; i < Object.keys(this.bookingRooms).length; i++) {
@@ -180,11 +187,11 @@ export class GuestDetail implements AfterViewChecked {
         }
 
         return empty;
-    };
+    }
     convertArray(data: any) {
         console.log(new Array(parseInt(data)));
         return new Array(parseInt(data));
-    };
+    }
     modelChange() {
         this.ifSubmitted = false;
         this.creditCard = {};
@@ -194,7 +201,7 @@ export class GuestDetail implements AfterViewChecked {
         }
 
         this.ifPaymentConfirmed = false;
-    };
+    }
 
 }
 

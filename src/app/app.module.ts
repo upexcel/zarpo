@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SebmGoogleMapMarker, SebmGoogleMap } from 'angular2-google-maps/core';
 import { AgmCoreModule } from 'angular2-google-maps/core/core-module';
-
+import { FormsModule } from '@angular/forms';
 import { MyApp } from './app.component';
 import { Storage } from '@ionic/storage';
 import { IonicApp, IonicModule, Platform, Nav, NavController, Events } from 'ionic-angular';
@@ -20,14 +20,11 @@ import { DateService } from '../services/date.service';
 import { calendarService } from '../pages/calendar//calendar.servise';
 import { errorhandler } from '../services/error';
 import { facebookLogin } from '../services/fbLogin';
-
-
 import { MoipService } from '../services/moip.service';
 import { GeocoderService } from '../services/geocoder.service';
 import { SuperService } from '../services/super.service';
 import { PaymentService } from '../services/payment.service';
 //COMPONENTS
-
 import { calendar } from '../pages/calendar/calendar';
 import { CalenderClosed } from '../pages/calender-closed/calender-closed';
 import { cancel } from '../pages/cancel/cancel';
@@ -61,6 +58,7 @@ import { Timeout } from '../pages/timeout/timeout';
 import { ValeCancel } from '../pages/vale-cancel/vale-cancel';
 import { ValeDetail } from '../pages/vale-detail/vale-detail';
 import { ValeFlash } from '../pages/vale-flash/vale-flash';
+import { MapFilter } from '../pages/map-filter/map-filter';
 
 //======================directives======================
 
@@ -88,6 +86,8 @@ import { ZarpoAccordianComponent } from '../zarpo-accordian/zarpo-accordian.comp
 import { ZarpoNavComponent } from '../zarpo-nav/zarpo-nav.component';
 import { ZarpoSliderComponent } from '../zarpo-slider/zarpo-slider.component';
 import { NoSpaceDirective } from '../directives/no-space.directive';
+import { DatePickerComponent } from '../date-picker/date-picker.component';
+import { OnErrorDirective } from '../directives/on-error.directive';
 import { OnReturnDirective } from '../directives/on-return.directive';
 import { MyDatePicker } from '../pages/my-date-picker/my-date-picker.component';
 @NgModule({
@@ -140,22 +140,27 @@ import { MyDatePicker } from '../pages/my-date-picker/my-date-picker.component';
         ZarpoPacotePipe,
         tagPipe,
         ZarpoValePipe,
-
         //        ==========================directive===========
         FacebookComponent,
         FlashCardComponent,
         FooterComponent,
         ZarpoAccordianComponent,
+        DatePickerComponent,
         ZarpoNavComponent,
         ZarpoSliderComponent,
         OnReturnDirective,
         NoSpaceDirective,
-        MyDatePicker
+        MyDatePicker,
+        OnErrorDirective,
+        MyDatePicker,
+        MapFilter
     ],
     imports: [
-        AgmCoreModule.forRoot({ apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc' }),
-        IonicModule.forRoot(MyApp)
-    ],
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyA94HTT_HUIQZjKN2ZOFmHVCWblejrQUfc'
+        }),
+        IonicModule.forRoot(MyApp),
+        FormsModule],
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
@@ -197,11 +202,11 @@ import { MyDatePicker } from '../pages/my-date-picker/my-date-picker.component';
         FlashCardComponent,
         FooterComponent,
         ZarpoAccordianComponent,
+        DatePickerComponent,
         ZarpoNavComponent,
         ZarpoSliderComponent,
-        //        OnReturnDirective,
-        //        NoSpaceDirective,
-        MyDatePicker
+        MyDatePicker,
+        MapFilter
     ],
     providers: [Storage, Rxjs, ImageHeightService, GoogleTagService, facebookLogin, errorhandler, LocalStorageService, UserDetailService,
         GuestDetailService, CheckReceiptService, GeocoderService, DateService, CheckSelectedService, menuService, CalenderService, calendarService

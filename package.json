@@ -49,6 +49,12 @@
         "ionic-plugin-keyboard",
         {
             "variables": {
+                "SENDER_ID": "24148182452"
+            },
+            "locator": "phonegap-plugin-push"
+        },
+        {
+            "variables": {
                 "APP_ID": "852541798134845",
                 "APP_NAME": "zarpoApp"
             },

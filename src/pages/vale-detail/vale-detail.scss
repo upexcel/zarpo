@@ -7,6 +7,9 @@
 input[type=range]{
     -webkit-appearance: none;
 }
+.date-picker{
+    border:1px solid #e4e4e4;
+}
 input[type=range]::-webkit-slider-thumb{
     -webkit-appearance: none;
     border: 6px solid #00c8ee;
@@ -28,6 +31,9 @@ input[type=range]::-webkit-slider-runnable-track {
     border: none;
     border-radius: 4px;
 }
+input[type=text]::placeholder{
+    text-transform: none;
+}
 .vale-detail{
     .my-range-input{
         padding-left: 0px;
@@ -41,8 +47,12 @@ input[type=range]::-webkit-slider-runnable-track {
     my-date-picker{
         .mydp{
             font-family: "HelveticaNeue-Light", "HelveticaLight", "HelveticaNeue", "Helvetica", "Arial", "sans-serif" !important;
+        
         }
         .mydp{
+            .selectiongroup{
+                border: none;
+            }
             .headertodaybtn{
                 display: none;
             }

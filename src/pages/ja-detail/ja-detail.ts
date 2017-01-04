@@ -228,6 +228,7 @@ export class JaDetail {
     }
     ionViewWillLeave() {
         //stop refreshing of flash hotels 
+        this.showRules();
         clearTimeout(this.productRefresher);
     }
 }

@@ -11,6 +11,7 @@ import {ImageHeightService} from '../services/image-height.service';
 export class ZarpoSliderComponent {
     @Input() zarpoSlides: any;
     @Input() zarpoCredit: string;
+    @Input() zarpoBlackDays: string;
     mySlideOptions: any;
     imgHeight: string;
     @ViewChild('mySlider') slider: Slides;
@@ -19,7 +20,7 @@ export class ZarpoSliderComponent {
         console.log('slider call');
         this.getFlashImgHeight();
         this.mySlideOptions = {
-            autoplay: 3000,//time on screen
+            autoplay: 1000,//time on screen
             direction: 'horizontal',
             initialSlide: 0,
             pager: false,
@@ -33,6 +34,7 @@ export class ZarpoSliderComponent {
         };
 
     }
+    
     getFlashImgHeight() {
         this._img.getSliderHeight().then((response) => {
             this.imgHeight = response + "px";

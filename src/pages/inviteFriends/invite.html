@@ -1,10 +1,11 @@
-<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<zarpo-nav-bar class="upercase" [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+
 <ion-content no-bounce>
     <div class="divcard invite" *ngIf="dataShow">
         <div class="invite-msg myform">
             <ion-row>
                 <ion-col width50>
-                    <label class="br  bigger">Créditos disponíveis</label>
+                    <label class="br  bigger">Créditos disponíveis{{apiLoader}}</label>
                 </ion-col>
                 <ion-col width50 class="alignRight">
                     <label class="br bigger beRight" [innerHTML]="bindData"></label>
@@ -31,7 +32,7 @@
         </div>
         <div id="invite_seg" class="row marD10"></div>
         
-        <!--	    take email from users to invite friends-->
+        	    take email from users to invite friends
         <form class="myform friendEmail hr" novalidate name="myform" #f="ngForm">
             <div class="list margintbt20">
                 <label class="br bigger">1. Convidar por e-mail</label>
@@ -44,7 +45,7 @@
                        [class.errormsg]="invalidEmail=='email2'"     pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" placeholder="email@example.com" [(ngModel)]='frndemail.emailtwo'>
                        <input name="emailFieldthree" type="email" ngControl="email3"
                        (click)="modelChange()"  #email3="ngModel"  required
-                       [class.errormsg]="invalidEmail=='email3'"       pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" placeholder="email@example.com" [(ngModel)]='frndemail.emailThree'>		  
+                       [class.errormsg]="invalidEmail=='email3'"  pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" placeholder="email@example.com" [(ngModel)]='frndemail.emailThree'>		  
                        <button  ion-button class="button button-block loginbtn invitebtn" color="primary" type="submit" [class.greybg]="button_name === 'Aguarde'" (click)="inviteFrnd(frndemail,email1.errors,email2.errors,email3.errors)">
                     <span>{{button_name}}</span>
 
@@ -57,7 +58,7 @@
                     <p  class="grey" *ngIf="success_msg===true">
                         Convites enviados com sucesso!
                     </p>
-                    <!--display error status and message-->
+                    display error status and message
                     <p *ngIf="error_msg" class="errormsg">
                         Já são membros do Zarpo: <br/>
                         {{error_msg}}
@@ -67,26 +68,24 @@
 
             </div>
         </form>
-        <!--	    end of invite friend form               -->
+        	    end of invite friend form               
         <div class="linkbox ">
             <label class="br bigger marginbt15" >2. Convidar via as redes sociais</label>
             <ion-row class="row" style="">
                 <div class="colFb" style="">
-                    <!--<ion-spinner class="" ng-if="invitation.fb" icon="bubbles" style="color:#FFF;">-->
+<!--                    <ion-spinner class="" *ngIf="invitation.fb" icon="bubbles" style="color:#FFF;">
 
-                    <!--</ion-spinner>-->
-
+                    </ion-spinner>-->
+<!--[hidden]="invitation.fb"[hidden]="!invitation.twitter"--> 
                     <a  (click)="share('fb')">
-                        <img  class="invitationIcon" src="assets/img/btn-facebook.jpg" ng-hide="invitation.fb"/>
-
+                        <img  class="invitationIcon" src="assets/img/btn-facebook.jpg" />
                     </a>
                 </div>
                 <div class="clear width20"></div>
                 <div class="colTwitter" >
-                    <!--<ion-spinner class="" ng-if="invitation.twitter" icon="bubbles" style="color:#FFF;">-->
-
-                    <!--</ion-spinner>-->
-                    <a ng-hide="invitation.twitter" (click)="share('twitter')">
+<!--                    <ion-spinner class="" *ngIf="invitation.twitter" icon="bubbles" style="color:#FFF;">
+                    </ion-spinner>-->
+                    <a (click)="share('twitter')">
                         <img class="invitationIcon" src="assets/img/btn-twitter.jpg"/>
                     </a>
                 </div>

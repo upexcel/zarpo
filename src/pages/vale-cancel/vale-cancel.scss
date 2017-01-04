@@ -17,5 +17,118 @@
         margin-right: auto;
         padding: 0 1em;
     }
+    .msgboxalt {
+        text-align: center;
+        padding-top: 0px;
+        margin-top: 0px;
+        margin-bottom: 0;
+    }
+    .custom-msgbox {
+        line-height: 15px !important;
+    }
+    .beCenter {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .producttext {
+        color: #404040;
+        font-weight: 400;
+        font-size: 1em;
+        line-height: 1.7;
+        font-style: normal;
+    } 
+    h5.producttext {
+        margin-bottom: 0;
+        font-style: normal;
+    }
+    h4.producttext {
+        margin-top: 0;
+        font-style: normal;
+    }
+    .strike {
+        text-decoration: line-through;
+        font-style: normal;
+    }
+    .big {
+        font-size: 130%;
+        font-style: normal;
+    }
+    .calm{
+        color: #00c8ee !important;
+        top: 10px;
+        position: absolute;
+        right: -8px;
+    }
+    .calms{
+        color: #00c8ee !important;
+        top: 10px;
+        /*position: absolute;*/
+        right: -8px;
+    }
+    a.calm {
+        color: #00c8ee !important;
+        top: 10px;
+        /*position: absolute;*/
+        right: -8px;
+    }
+    .hotel_rules{
+        display: block;
+        margin-top: 20px;
+    }
+    .gap {
+        margin-top: 25px; 
+        margin-bottom: 25px;
+    }
+    .gap{
+        h4{
+            color: #404040;
+            margin-top: 0px;
+            margin-bottom: 15px;
+            font-size: 1em;
+            line-height: 1;
+            font-weight: 500;
+            clear: both;
+        }
+
+    }
+    .gap-half {
+        margin-bottom: 25px;
+    }
+    .rules {
+        text-align: left;
+        font-weight: normal;
+    }
+    ul.disc {
+        list-style: disc;
+        -webkit-padding-start: 0;
+    }
+    .rules{
+        ul.disc{
+            li{
+                background-color: #ffffff;
+                color: #84807f;
+                font-size: 16px;
+                line-height: 1.8;
+                font-weight: 400;
+                line-height: 1.2;
+                /* padding-left: 5px; */
+                padding-right: 25px;
+                margin-left: 16px;
+            }
+        }
+
+    }
+    .arrTime {
+        margin-left: 28px;
+        text-align: left;
+        list-style: disc;
+        height: auto;
+        font-size: 15px;
+        height: 25px;
+    }
+    .width100{
+        width:100%;
+    }
 }
 

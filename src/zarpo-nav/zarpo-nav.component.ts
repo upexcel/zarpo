@@ -1,6 +1,7 @@
-import { Events, NavController, MenuController } from 'ionic-angular';
-import { Component, OnInit, Input, OnChanges, Output, forwardRef } from '@angular/core';
-import { HotelFlash } from '../pages/hotel-flash/hotel-flash';
+
+import {Events, NavController, MenuController} from 'ionic-angular';
+import {Component, OnInit, Input, OnChanges, Output, EventEmitter, forwardRef} from '@angular/core';
+import {HotelFlash} from '../pages/hotel-flash/hotel-flash';
 
 @Component({
     selector: "zarpo-nav-bar",
@@ -13,11 +14,13 @@ export class ZarpoNavComponent {
     @Input() loading: boolean;
     @Input() showBack: boolean = false;
     @Input() customback: boolean = false;
-
+    @Output() userUpdated = new EventEmitter();
     constructor(private nav: NavController, private _menu: MenuController, public events: Events) {
+       
     }
     openHome() {
-        this.nav.setRoot(HotelFlash);
+        //this.nav.setRoot(HotelFlash);
+         this.userUpdated.emit({name:'Anisha'});
     }
     goBack() {
         this.loading = false;

@@ -11,12 +11,9 @@ import {errorhandler} from '../../services/error';
 import {FacebookComponent} from '../../facebookLogin/FacebookLogin';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {UserDetailService} from '../../services/user-detail.service';
-import {NoSpaceDirective} from '../../directives/no-space.directive';
-import {OnReturnDirective} from '../../directives/on-return.directive';
 
 @Component({
-    templateUrl: 'login.html',
-    //    directives: [FooterComponent, FacebookComponent, NoSpaceDirective, OnReturnDirective],
+    templateUrl: 'login.html'
 })
 
 export class Login {
@@ -32,7 +29,6 @@ export class Login {
     public ragerror: boolean = false;
     public registerSubmit: boolean = false;
     public Uemail: Boolean; public Upassword: Boolean; public wrongCredit: Boolean = false;
-
     constructor(private _ajaxRxjs: Rxjs,
         private _platform: Platform,
         private _nav: NavController, private _userData: UserDetailService,
@@ -49,7 +45,7 @@ export class Login {
         //        }, 1000)
 
     }
-
+   
     signUp() {
         this.placeholder = "Criar uma senha"
         this.ifUserRegistered = false;
