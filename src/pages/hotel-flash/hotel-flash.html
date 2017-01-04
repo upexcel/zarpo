@@ -1,4 +1,4 @@
-<zarpo-nav-bar class="upercase" [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<zarpo-nav-bar class="upercase" [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon" (userUpdated)="userUpdated($event)"></zarpo-nav-bar>
 
 <ion-content fullscreen="false">
     <ion-refresher (ionRefresh)="doRefresh($event)" (enabled)="true">

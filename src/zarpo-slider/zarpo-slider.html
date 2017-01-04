@@ -5,7 +5,10 @@
 
         </ion-slide>
     </ion-slides>
-    <div class="automaticCredit" *ngIf="zarpoCredit && zarpoCredit!=num">
+     <div class="blackDays" *ngIf="zarpoBlackDays">
+         <img src="{{zarpoBlackDays}}"/>
+    </div>
+    <div [ngClass]="{'automaticCredit':!zarpoBlackDays,'blackAutoCredit':zarpoBlackDays}" class="" *ngIf="zarpoCredit && zarpoCredit!=num">
          <div> R${{zarpoCredit}},00</div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <ion-menu type="reveal" side="right" [content]="mycontent">
-    <ion-content class="menu" >
+    <ion-content class="menu">
         <div class="parentSideTitle">
             <div class="sideTitle ">
                 Menu Principal
@@ -7,59 +7,61 @@
         </div>
         <div class=" divider"></div>
         <ion-list>
-            <ion-item  tappable (click)="showFilter()" class=" marU10 mymenu filter extasapce">
-                       <ion-icon name="ios-funnel" class="marR10 iconVal"></ion-icon>
+            <ion-item tappable (click)="showMapFilter()" class=" marU10 divider mymenu filter extasapce">
+                <ion-icon name="map" class="marR10 iconVal"></ion-icon>
+                <label class="marginleft">Zarpo Map</label>
+            </ion-item>
+            <ion-item tappable (click)="showFilter()" class=" marU10 mymenu filter extasapce">
+                <ion-icon name="ios-funnel" class="marR10 iconVal"></ion-icon>
                 <label class="marginleft">FILTRAR OFERTAS</label>
                 <ion-icon *ngIf="!filter" name="ios-arrow-forward" class="margin30 iconVal rightArrow"></ion-icon>
                 <ion-icon *ngIf="filter" name="ios-arrow-down" class="margin30 iconVal rightArrow"></ion-icon>
             </ion-item>
-
-            <ion-item id="myfilterHolder"  class="filtertag filterHolder animationc" style="color: #545353" *ngIf="filter">
+            <ion-item id="myfilterHolder" class="filtertag filterHolder animationc" style="color: #545353" *ngIf="filter">
                 <div class='tagfil'>
                     <div (click)="tname=true;tag=false;showFilters('hotels');Thematictag=false" class='manualinput'>{{fname}}</div>
                     <ion-list class="tagnamelist " *ngIf="tname && filters">
-                              <ion-item class="tagnamelistItem" (click)="tnames('Hoties','Hotel');tname=false">Hoties</ion-item>
+                        <ion-item class="tagnamelistItem" (click)="tnames('Hoties','Hotel');tname=false">Hoties</ion-item>
                         <ion-item class="tagnamelistItem" (click)="tnames('Pacotes','Pacote');tname=false">Pacotes</ion-item>
                         <ion-item class="tagnamelistItem" (click)="tnames('Zarpo Ja','Ja');tname=false">Zarpo Ja</ion-item>
                     </ion-list>
                 </div>
                 <div class='tagfil'>
-                    <ion-icon (click)="cancelbt('tag')" *ngIf="tagename != 'Destino'" class="myicon" name="md-close-circle"></ion-icon><div [class.padLeft]="tagename != 'Destino'" (click)="tag=true;tname=false;Thematictag=false;showFilters('tags')" class='manualinput'> {{tagename}}</div>
+                    <ion-icon (click)="cancelbt('tag')" *ngIf="tagename != 'Destino'" class="myicon" name="md-close-circle"></ion-icon>
+                    <div [class.padLeft]="tagename != 'Destino'" (click)="tag=true;tname=false;Thematictag=false;showFilters('tags')"
+                        class='manualinput'> {{tagename}}</div>
                     <ion-list *ngIf="tag && filtertag" class="tags tagnamelist ">
-                        <ion-item class="tagnames" (click)="tags(locationtag,locationtag.location);tag=false" *ngFor="let locationtag of locationTag"> <b>{{locationtag.location}}</b>
-                            <ion-item class="tagnamelistItem mar" (click)="tags(sub1,sub1.location);tag=false" *ngFor="let sub1 of locationtag.sub">  
-                                      {{sub1.location}}
+                        <ion-item class="tagnames" (click)="tags(locationtag,locationtag.location);tag=false" *ngFor="let locationtag of locationTag">
+                        <b>{{locationtag.location}}</b>
+                            <ion-item class="tagnamelistItem mar" (click)="tags(sub1,sub1.location);tag=false" *ngFor="let sub1 of locationtag.sub">
+                                {{sub1.location}}
+                            </ion-item>
                         </ion-item>
-                    </ion-item>
-
-                </ion-list>
-            </div>
-            <div class='tagfil'>
-                <ion-icon (click)="cancelbt('date')" *ngIf="thematicName != 'Data de check-in'" class="myicon" name="md-close-circle"></ion-icon><div [class.padLeft]="thematicName != 'Data de check-in'" (click)="tag=false;tname=false;Thematictag=true;showFilters('dates')" class='manualinput'>{{thematicName}}</div>
-
-                <ion-list *ngIf="Thematictag && filterdate" class="tagnamelist leftside">
-                    <ion-item class="tagnamelistItem" (click)="thematic(thematicTag,thematicTag.location);Thematictag=false" *ngFor="let thematicTag of Thematic">   {{thematicTag.location}}
-
-                </ion-item>
-
-            </ion-list>
-            <ion-list *ngIf="Thematictag && filterdate" class="tagnamelist rightside">
-                <ion-item color='primary'>
-
-                    <ion-label class="labelstyle">Datas especiais </ion-label>
-                    <ion-datetime displayFormat="DD MMMM YYYY"  min="{{min}}" max="{{max}}" [(ngModel)]="myDate" (ionChange)="datePicker();Thematictag=false">
-                    </ion-datetime>
-                </ion-item>
-                <div class='tgclass'>Datas flexíveis (± 3 dias)</div>
-                <ion-toggle  (ionChange)="toggleChange($event)" checked="{{condition}}"></ion-toggle> 
-            </ion-list>   
-
-        </div>
-        <button  ion-button  color="primary" class="button button-block loginbtn marT20 greybg"  type="submit" (click)="tagselection()">
+                    </ion-list>
+                </div>
+                <div class='tagfil'>
+                    <ion-icon (click)="cancelbt('date')" *ngIf="thematicName != 'Data de check-in'" class="myicon" name="md-close-circle"></ion-icon>
+                    <div [class.padLeft]="thematicName != 'Data de check-in'" (click)="tag=false;tname=false;Thematictag=true;showFilters('dates')"
+                        class='manualinput'>{{thematicName}}</div>
+                    <ion-list *ngIf="Thematictag && filterdate" class="tagnamelist leftside">
+                        <ion-item class="tagnamelistItem" (click)="thematic(thematicTag,thematicTag.location);Thematictag=false" *ngFor="let thematicTag of Thematic">
+                        {{thematicTag.location}}
+                        </ion-item>
+                    </ion-list>
+                    <ion-list *ngIf="Thematictag && filterdate" class="tagnamelist rightside">
+                        <ion-item color='primary'>
+                            <ion-label class="labelstyle">Datas especiais </ion-label>
+                            <ion-datetime displayFormat="DD MMMM YYYY" min="{{min}}" max="{{max}}" [(ngModel)]="myDate" (ionChange)="datePicker();Thematictag=false">
+                            </ion-datetime>
+                        </ion-item>
+                        <div class='tgclass'>Datas flexíveis (± 3 dias)</div>
+                        <ion-toggle (ionChange)="toggleChange($event)" checked="{{condition}}"></ion-toggle>
+                    </ion-list>
+                </div>
+                <button ion-button color="primary" class="button button-block loginbtn marT20 greybg" type="submit" (click)="tagselection()">
             <span><b>PROCURAR OFERTAS</b></span>
         </button>
-
-        <!--        <ion-grid class="no-padding">
+                <!--        <ion-grid class="no-padding">
                                     <ion-row class="row padLR0 padUD0">
         
         
@@ -152,42 +154,40 @@
                 </ion-item>
                 
                 </div>-->
-    </ion-item>
-    <button   ion-item  menuClose style="border-top: .1em solid #dddddd;}"
-              (click)="redirect('Hotel')" class="marU10 hotel mymenu padT20">
+            </ion-item>
+            <button ion-item menuClose style="border-top: .1em solid #dddddd;}" (click)="redirect('Hotel')" class="marU10 hotel mymenu padT20">
         <ion-icon name="ios-star" class="marR10 iconVal"></ion-icon>
         <label class="marginleft">HOTÉIS</label>
     </button>
-    <button  ion-item   menuClose (click)="redirect('Pacote')" class="pacote mymenu">
+            <button ion-item menuClose (click)="redirect('Pacote')" class="pacote mymenu">
              <ion-icon name="md-plane" class="marR10 iconVal"></ion-icon>
         <label>PACOTES</label>
     </button>
-    <button   ion-item  menuClose (click)="redirect('Ja')" class=" vale  mymenu">
+            <button ion-item menuClose (click)="redirect('Ja')" class=" vale  mymenu">
               <ion-icon name="ios-clock" class="marR10 iconVal"></ion-icon>
         <label>ZARPO JÁ</label>
     </button>
-
-    <button   ion-item  menuClose (click)="redirect('vale')" class=" divider extrabottom marD10 padB20 vale  mymenu">
+            <button ion-item menuClose (click)="redirect('vale')" class=" divider extrabottom marD10 padB20 vale  mymenu">
               <ion-icon name="ios-bowtie" class="marR10 iconVal"></ion-icon>
         <label>VALE PRESENTES</label>
     </button>
-    <button   ion-item menuClose (click)="livechat()" class="padB20 contact divider marD10 mymenu">
+            <button ion-item menuClose (click)="livechat()" class="padB20 contact divider marD10 mymenu">
               <ion-icon name="ios-chatbubbles" class="marR10 iconVal"></ion-icon>
         <label>ZARPO CHAT</label>
     </button>
-    <button   ion-item menuClose (click)="redirect('contact')" class="padB20 contact divider marD10 mymenu">
+            <button ion-item menuClose (click)="redirect('contact')" class="padB20 contact divider marD10 mymenu">
               <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
         <label>MORDOMO ZARPO</label>
     </button>
-    <button   ion-item  menuClose (click)="redirect('invitefriends')" class="marU10 invite mymenu">
+            <button ion-item menuClose (click)="redirect('invitefriends')" class="marU10 invite mymenu">
               <ion-icon name="logo-usd" class="marR10 iconVal"></ion-icon>
         <label>CONVIDAR AMIGOS</label>
     </button>
-    <button   ion-item menuClose (click)="redirect('myaccount')" class="myaccount mymenu">
+            <button ion-item menuClose (click)="redirect('myaccount')" class="myaccount mymenu">
               <ion-icon name="ios-settings" class="marR10 iconVal"></ion-icon>
         <label>MINHA CONTA</label>
     </button>
-    <!--    <button   ion-item  menuClose (click)="redirect('feedback')" class="padB20 contact divider marD10 mymenu">
+            <!--    <button   ion-item  menuClose (click)="redirect('feedback')" class="padB20 contact divider marD10 mymenu">
                 <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
             <label>FEEDBACK</label>
         </button>
@@ -195,21 +195,16 @@
                 <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
             <label>CANCEL</label>
         </button>-->
-
-    <!--    <button ion-item menuClose (click)="redirect('success')" class="padB20 contact divider marD10 mymenu">
+            <!--    <button ion-item menuClose (click)="redirect('success')" class="padB20 contact divider marD10 mymenu">
                 <ion-icon name="md-call" class="marR10 iconVal"></ion-icon>
             <label>Success</label>
         </button>-->
-
-    <button   ion-item  menuClose class="logout pad-top14 mymenu marU10 bordernone"
-              (click)="logout()">
+            <button ion-item menuClose class="logout pad-top14 mymenu marU10 bordernone" (click)="logout()">
         <!--                    <a class="item-content" ng-hide="root.ifUserExist">Login</a>-->
         <ion-icon name="md-power" class="marR10 iconVal"></ion-icon>
         <label>SAIR</label>
     </button>
-
-</ion-list>
-</ion-content>
-
+        </ion-list>
+    </ion-content>
 </ion-menu>
 <ion-nav id="nav" [root]="rootPage" #mycontent swipe-back-enabled="false"></ion-nav>

@@ -1,16 +1,16 @@
-import {NavController, Platform} from 'ionic-angular'
-import {Component} from '@angular/core';
-import {ForgotPwd} from '../forgot-pwd/forgot-pwd';
-import {FooterComponent} from '../../footer/footer.component';
-import {config} from '../../config'
-import {Rxjs} from '../../services/Rxjs'
-import {menu} from '../menu/menu.component'
-import {HotelFlash} from '../hotel-flash/hotel-flash';
-import {STATE, State, User} from './state.data'
-import {errorhandler} from '../../services/error';
-import {FacebookComponent} from '../../facebookLogin/FacebookLogin';
-import {LocalStorageService} from '../../services/local-storage.service';
-import {UserDetailService} from '../../services/user-detail.service';
+import { NavController, Platform } from 'ionic-angular'
+import { Component } from '@angular/core';
+import { ForgotPwd } from '../forgot-pwd/forgot-pwd';
+import { FooterComponent } from '../../footer/footer.component';
+import { config } from '../../config'
+import { Rxjs } from '../../services/Rxjs'
+import { menu } from '../menu/menu.component'
+import { HotelFlash } from '../hotel-flash/hotel-flash';
+import { STATE, State, User } from './state.data'
+import { errorhandler } from '../../services/error';
+import { FacebookComponent } from '../../facebookLogin/FacebookLogin';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { UserDetailService } from '../../services/user-detail.service';
 
 @Component({
     templateUrl: 'login.html',
@@ -30,7 +30,6 @@ export class Login {
     public ragerror: boolean = false;
     public registerSubmit: boolean = false;
     public Uemail: Boolean; public Upassword: Boolean; public wrongCredit: Boolean = false;
-
     constructor(private _ajaxRxjs: Rxjs,
         private _platform: Platform,
         private _nav: NavController, private _userData: UserDetailService,
@@ -47,7 +46,7 @@ export class Login {
         //        }, 1000)
 
     }
-
+   
     signUp() {
         this.placeholder = "Criar uma senha"
         this.ifUserRegistered = false;

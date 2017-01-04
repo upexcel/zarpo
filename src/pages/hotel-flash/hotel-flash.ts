@@ -53,9 +53,9 @@ export class HotelFlash {
         private _gtm: GoogleTagService,
         public viewCtrl: ViewController
     ) {
-//        console.log('checking root nav', this._nav);
+        //        console.log('checking root nav', this._nav);
         this._gtm.setScript5('');
-//        console.log('testing testing')
+        //        console.log('testing testing')
         this.nav = this._nav;
         this.api = this._ajaxRxjs;
         if (this._navParams.get('hotelType')) {
@@ -65,9 +65,9 @@ export class HotelFlash {
         this.local = this.local;
         setTimeout(() => {
             this.local.getValue('user_data').then((response) => {
-//                console.log('user response', response);
+                //                console.log('user response', response);
                 if (response) {
-//                    console.log('user data for testing', response);
+                    //                    console.log('user data for testing', response);
                     this.data.user_token = response.data.user_token;
                     this.data.group_id = response.data.group_id;
                     this.data.page = this.page;
@@ -89,7 +89,7 @@ export class HotelFlash {
                     }
 
                     this.apiLoader = true;
-//                    console.log('this data for testing', this.data);
+                    //                    console.log('this data for testing', this.data);
                     let allData = {
                         user_token: this.data.user_token,
                         group_id: this.data.group_id,
@@ -103,10 +103,10 @@ export class HotelFlash {
                     }
                     this.alldata(allDataja);
                     this.local.getValue('product').then((response) => {
-//                        console.log("thissadddddddddddddasd", response)
+                        //                        console.log("thissadddddddddddddasd", response)
                         if (!response) {
-                         
-//                            console.log("this is constructor", response)
+
+                            //                            console.log("this is constructor", response)
                             this.getItems(this.data);
 
                         }
@@ -116,11 +116,14 @@ export class HotelFlash {
         }, 300);
 
         this._events.subscribe('user:logout', (user) => {
-//            console.log("Logged out");
+            //            console.log("Logged out");
             this.userLoggedout();
         });
     }
-
+    userUpdated(user) {
+        // Handle the event
+        console.log(user);
+    }
     doInfinite(infiniteScroll) {
         let data = {
             user_token: this.data.user_token,
@@ -141,9 +144,9 @@ export class HotelFlash {
             if (response && response.length > 0) {
 
             } else {
-//                console.log('data checking', response);
+                //                console.log('data checking', response);
                 this.api.ajaxRequest(this.path, allData).subscribe((response: any) => {
-//                    console.log(response);
+                    //                    console.log(response);
                     if (response.data && response.data.length > 0) {
                         if (!allData.is_ja) {
                             this.local.setTimerStorage("allData", response.data, 0.15);
@@ -161,7 +164,7 @@ export class HotelFlash {
         this.stopAjax = false;
         this.data.page = this.page;
         this.local.getValue('product').then((response) => {
-//            console.log('checking for response', response)
+            //            console.log('checking for response', response)
             if (response == 'detailPage') {
                 this.getItems(this.data);
                 this.local.remove('product');
@@ -183,7 +186,7 @@ export class HotelFlash {
         //            else {
         this.api.ajaxRequest(this.path, data).subscribe((response: any) => {
             if (data.page == 1) {
-//                console.log('yes');
+                //                console.log('yes');
                 this.refresh = false;
                 this.flashItems = [];
             }
@@ -267,7 +270,7 @@ export class HotelFlash {
         }, 18 * 60 * 1000);
     }
     doRefresh(refresher: any) {
-//        console.log('hello i am refresing');
+        //        console.log('hello i am refresing');
         this.apiLoader = true;
         this.flashItems = [];
         this.refresh = true;
@@ -289,15 +292,15 @@ export class HotelFlash {
     }
 
     ionViewWillLeave() {
-//        console.log("view");
+        //        console.log("view");
         this.userLoggedout();
     }
     onPageWillLeave() {
-//        console.log("page");
+        //        console.log("page");
         this.userLoggedout();
     }
     userLoggedout() {
-//        console.log("Stopped");
+        //        console.log("Stopped");
         //stop refreshing of flash hotels 
         this.stopAjax = true;
 

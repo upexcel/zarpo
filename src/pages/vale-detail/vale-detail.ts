@@ -1,6 +1,6 @@
 import {Events, NavParams} from 'ionic-angular';
 import {Component, ViewChild, ElementRef, forwardRef, Inject} from '@angular/core';
-import {FormBuilder, FormGroup, Validators}  from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormControl}  from '@angular/forms';
 import {errorhandler} from '../../services/error';
 import {Content, NavController} from 'ionic-angular';
 import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
@@ -18,6 +18,8 @@ import {ValeKeysPipe} from '../../filters/keys/vale-keys.pipe';
 import {MyDatePicker} from '../my-date-picker/my-date-picker.component';
 import {CheckReceiptService} from '../../services/check-receipt.service';
 import {DateService} from '../../services/date.service';
+import {EmailValidator} from '../../validators/email.validator';
+import {DateValidator} from '../../validators/date.validator';
 
 @Component({
     templateUrl: 'vale-detail.html',
@@ -87,7 +89,6 @@ export class ValeDetail {
         this.minDate = "2016-09-09";
         this.giftDate = "";
         this._dateService.getTomorrow().then((res) => {
-            console.log(res);
             this.myDatePickerOptions = {
                 dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sáb' },
                 monthLabels: {
@@ -108,12 +109,37 @@ export class ValeDetail {
             console.log("custom back");
             this.backbutton();
         });
-        this.valeForm = this._fb.group({
-            firstname: ["", Validators.required],
-            lname: ["", Validators.required],
-            email: ["", Validators.required],
-            giftDate: ["", Validators.required],
-            comment: ["", Validators.required]
+//        this.valeForm = this._fb.group({
+//            firstname: ["", Validators.required],
+//            lname: ["", Validators.required],
+//            email: ["", Validators.required],
+//            giftDate: ["", Validators.required],
+//            comment: ["", Validators.required]
+//        });
+
+        this.valeForm = new FormGroup({
+            firstname: new FormControl('', [
+                Validators.maxLength(30),
+                Validators.pattern('[a-zA-Z]*'),
+                Validators.required
+            ]),
+            lname: new FormControl('', [
+                Validators.maxLength(30),
+                Validators.pattern('[a-zA-Z]*'),
+                Validators.required
+            ]),
+            email: new FormControl('', [
+                Validators.maxLength(50),
+                EmailValidator.isValidMailFormat,
+                Validators.required
+            ]),
+            giftDate: new FormControl('', [
+                DateValidator.isValidDate,
+                Validators.required
+            ]),
+            comment: new FormControl('', [
+                Validators.required
+            ]),
         });
 
         this._userData.fetchUserData().then((result: any) => {
@@ -138,16 +164,13 @@ export class ValeDetail {
         this.pageTitle = this.navParams.get('name');
     }
     onDateChanged(e: any) {
-        console.log(e);
         this.giftDate = e.formatted;
     }
     showCalender() {
         console.log("show calender");
     }
     backbutton() {
-        console.log("vale back");
         if (this.ifPresentear === true) {
-            console.log("same page");
 
             this.toggleGroup(this.currentGroup);
             this.ifRules = false;
@@ -185,7 +208,8 @@ export class ValeDetail {
                 let regras = {
                     checkin: this.itemObject.check_in,
                     checkout: this.itemObject.check_out,
-                    rules: this.itemObject.Regras
+                    rules: this.itemObject.Regras,
+                    disclaimer:this.disclaimer
                 };
                 this.local.setValue('rules', regras);
             }
@@ -321,6 +345,7 @@ export class ValeDetail {
     };
     ionViewWillLeave() {
         //stop refreshing of flash hotels 
+        this.showRules();
         clearTimeout(this.productRefresher);
     }
 }

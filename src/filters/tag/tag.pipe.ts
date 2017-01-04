@@ -11,7 +11,7 @@ export class tagPipe implements PipeTransform {
         };
         var filter = []
         if (exponent.value.hotels) {
-            console.log('hrllo', exponent);
+            console.log('hello', exponent);
             if (list) {
                 for (var i = 0; i < list.length; i++) {
                     console.log(list[i].hotel_id);
@@ -60,7 +60,6 @@ export class tagPipe implements PipeTransform {
                 return filterdata;
             } else if (exponent.flashType == 'Pacote') {
                 for (var i = 0; i < list.length; i++) {
-
                     if (list[i].attribute == "Pacote") {
                         if (filter.length < 20) {
                             filter.push(list[i]);

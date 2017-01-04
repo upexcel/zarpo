@@ -14,8 +14,7 @@ import {AppAvailability} from 'ionic-native';
 import {Clipboard} from 'ionic-native';
 
 @Component({
-    templateUrl: 'invite.html',
-//    directives: [FooterComponent, ZarpoNavComponent,FooterComponent],
+    templateUrl: 'invite.html'
 })
 
 export class invite {
@@ -29,16 +28,16 @@ export class invite {
     public dataShow: boolean = false;
     public copyUrl: boolean = false;
     public invitationSubmit: boolean = false;
-    public error_msg:string;
+    public error_msg: string;
     public frndemail: {} = {
         emailone: '',
         emailtwo: '',
         emailthree: ''
     }
     public success_msg: boolean = false;
-     public invalidEmail: string="";
-    public bindData:any;
-    itemObject:any;
+    public invalidEmail: string = "";
+    public bindData: any;
+    itemObject: any;
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,
@@ -55,9 +54,7 @@ export class invite {
         }
 
     }
-    redirect(page) {
-        this._nav.push(privacy)
-    }
+
     ionViewWillEnter() {
         this._user.getValue('user_data').then((response) => {
             if (response) {
@@ -69,6 +66,9 @@ export class invite {
             }
         })
 
+    }
+    redirect(page) {
+        this._nav.push(privacy)
     }
     inviteFrnd(email: any, email1, email2, email3) {
         this.invitationSubmit = true
@@ -95,12 +95,12 @@ export class invite {
             this._ajaxRxjs.ajaxRequest(api, data).subscribe((response: any) => {
                 console.log(response);
                 this.button_name = 'Enviar Convites';
-                if(response.error==1){
-                    this.error_msg=response.error_status_message;
+                if (response.error == 1) {
+                    this.error_msg = response.error_status_message;
                 }
                 else if (response.data.status && response.data.status == 'Y') {
                     this.success_msg = true;
-                }    
+                }
             }, (error) => {
                 this._errorhandler.err(error);
             });
@@ -108,8 +108,8 @@ export class invite {
     }
     modelChange() {
         this.invitationSubmit = false
-        this.invalidEmail='';
-        this.error_msg='';
+        this.invalidEmail = '';
+        this.error_msg = '';
     }
     loadRewards(token) {
         let api = "reward";
@@ -121,8 +121,9 @@ export class invite {
             is_ja: false
         };
         this._ajaxRxjs.ajaxRequest(api, myrewarddata).subscribe((response: any) => {
+            console.log(response);
             this.user_reward = response.data;
-            let str=response.data.Créditos_disponíveis;
+            let str = response.data.Créditos_disponíveis;
             let res = str.replace(",00", "");
             this.bindData = res;
             this.invitation_url(this.userToken);
@@ -143,6 +144,7 @@ export class invite {
             this.apiLoader = false;
             this.dataShow = true;
         }, (error) => {
+            this.apiLoader = false;
             this._errorhandler.err(error);
         });
     }

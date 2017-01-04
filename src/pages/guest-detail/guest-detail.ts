@@ -19,9 +19,6 @@ import {OnReturnDirective} from '../../directives/on-return.directive';
 
 @Component({
     templateUrl: 'guest-detail.html',
-    //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent],
-    //    providers: [],
-    //    pipes: [KeysPipe, AdultChildPipe]
 })
 
 export class GuestDetail implements AfterViewChecked {
@@ -51,27 +48,36 @@ export class GuestDetail implements AfterViewChecked {
     disableMyForm: boolean
     apiLoader: any;
     constructor(
-    private _nav: NavController,
-    private _navParams: NavParams,
-    public _events: Events,
-    private _localStorageService: LocalStorageService,
-    private _ajaxRxjs: Rxjs,
-    private _errorhandler: errorhandler,
+        private _nav: NavController,
+        private _navParams: NavParams,
+        public _events: Events,
+        private _localStorageService: LocalStorageService,
         private _calenderService: CalenderService,
         private _guestDetailService: GuestDetailService,
         private _checkSelected: CheckSelectedService
 
-    ) {console.log('data enter')
+    ) {
+        console.log('data enter')
     }
     ionViewWillEnter() {
         this.ifSubmitted = false;
-        this._guestDetailService.getData().then((response: any) => {
-            this.bookingRooms = this.reConstructObject(response.selectedRoom);
-            console.log(this.bookingRooms);
-            //fetch login user and set as 1 guest
-            this._localStorageService.getValue('user_data').then((response) => {
-                this.bookingRooms[0].selected[0].username = response.data.customer_firstname + " " + response.data.customer_lastname;
-            });
+        this._checkSelected.getData().then((data) => {
+            if (Object.keys(data).length > 1) {
+                console.log("try", data);
+                this.bookingRooms = data['selectedRoom'];
+            }
+            else {
+                this._guestDetailService.getData().then((response: any) => {
+                    this.bookingRooms = this.reConstructObject(response.selectedRoom);
+                    console.log("booking", this.bookingRooms);
+                    //fetch login user and set as 1 guest
+                    this._localStorageService.getValue('user_data').then((response) => {
+                        this.bookingRooms[0].selected[0].username = response.data.customer_firstname + " " + response.data.customer_lastname;
+                    });
+
+                });
+
+            }
 
         });
 
@@ -88,10 +94,8 @@ export class GuestDetail implements AfterViewChecked {
             }
 
         }
-        this._checkSelected.getData().then((data)=>{
-            console.log(data);
-        });
-        console.log(data);
+
+        console.log("return", data);
         return data;
     }
     scrollToBottom(): void {
@@ -106,8 +110,9 @@ export class GuestDetail implements AfterViewChecked {
             selectedRoom: this.bookingRooms,
             specialMsg: this.comment
         };
-       console.log(CheckSelectedData);
+        console.log(CheckSelectedData);
         this._checkSelected.setData(CheckSelectedData);
+
         //        console.log(CheckSelected.get());
         for (var i = 0; i < Object.keys(this.bookingRooms).length; i++) {
             console.log(this.bookingRooms[0]);
