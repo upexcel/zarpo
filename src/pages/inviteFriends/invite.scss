@@ -76,11 +76,13 @@
         width: 100%;
         border-radius: 2px;
     }
-    /*    ion-spinner.spinner-bubbles {
-            position: absolute;
-            right: 4px;
-            top:8px;
-        }*/
+    ion-spinner{
+        top:23%;
+
+    }
+    .outline{
+        border:1px solid #ccc;
+    }
     .colFb, .colTwitter {
         height: 47px;
     }
@@ -115,6 +117,6 @@
         border: 1px solid red !important;
     }
     .button {
-     margin: 0px 0px; 
+        margin: 0px 0px; 
     }
-    }
+}

@@ -60,30 +60,10 @@
                         </ion-col>
                     </ion-row>
                     <div class="clear"></div>
-                   
+
                     <ion-row>
                         <ion-col id="giftCalender" class="no-padding" width-60 >
-                             <date-picker [ifFormSubmit]="ifPaymentConfirmed"  [ifHasError]="creditCard.payee_card_month" (monthSelected)="monthSelected($event)" (yearSelected)="yearSelected($event)"></date-picker>
-<!--                            <div class='clear marB5'
-                                 [ngClass]="{'errormsgB': ifPaymentConfirmed && (!payee_card_month || creditCard.payee_card_month == false)}">
-                                 <my-date-picker [options]="myDatePickerOptions" [title]="dateTitle"
-                                    (dateChanged)="onDateChanged($event)"></my-date-picker>
-                            </div>-->
-                            <!--                             <ion-item>
-                          <ion-label>Date</ion-label>
-                          <ion-datetime displayFormat="MM/YYYY" (ionChange)="onDateChanged(myDate)" min="2018" max="2040" [(ngModel)]="myDate" [ngModelOptions]="{standalone: true}"></ion-datetime>
-                      </ion-item>
-                 
-                            <!--                            <ion-item id="giftCalender" 
-                                                                  class="item item-input"  style="border: 1px solid #e4e4e4;max-height: 35px;">
-                                                                  <ion-label *ngIf="!payee_card_month">
-                                                                Válido até
-                                                            </ion-label>
-                                                            <ion-datetime displayFormat="MM-YYYY" pickerFormat="MM/YYYY" 
-                                                                          cancelText="Cancelar" doneText="Confirmar" min="{{todayDate}}" max="2099-12-31"
-                                                                          >
-                                                            </ion-datetime>
-                                                        </ion-item>-->
+                            <date-picker [ifFormSubmit]="ifPaymentConfirmed"  [ifHasError]="creditCard.payee_card_month" (monthSelected)="monthSelected($event)" (yearSelected)="yearSelected($event)"></date-picker>
                         </ion-col>
                         <ion-col  class="no-padding" width-40>
                             <ion-row>

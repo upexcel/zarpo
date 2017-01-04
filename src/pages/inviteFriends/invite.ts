@@ -34,6 +34,10 @@ export class invite {
         emailtwo: '',
         emailthree: ''
     }
+    public sharing:{}={
+        twitter:false,
+        fb:false
+    };
     public success_msg: boolean = false;
     public invalidEmail: string = "";
     public bindData: any;
@@ -141,6 +145,7 @@ export class invite {
         };
         this._ajaxRxjs.ajaxRequest(api, myrewarddata).subscribe((response: any) => {
             this.invite_url = response.data;
+            console.log(this.invite_url );
             this.apiLoader = false;
             this.dataShow = true;
         }, (error) => {
@@ -152,7 +157,7 @@ export class invite {
 
         if (btn == 'fb') {
             var app;
-
+            this.sharing['fb']=true;
             if (this.platform.is('ios')) {
                 app = 'fb://'
             } else {
@@ -164,12 +169,13 @@ export class invite {
 
                 },
                 no => {
-
-                    open(this.invite_url.invitation_url_fb, '_system', 'location=yes')
+                    open(this.invite_url.invitation_url_fb, '_system', 'location=yes');
+                    setTimeout(()=>{this.sharing['fb']=false;},500);
                 });
 
         }
         else if (btn == 'twitter') {
+            this.sharing['twitter']=true;
             var app;
             if (this.platform.is('ios')) {
                 app = 'twitter://'
@@ -182,7 +188,8 @@ export class invite {
 
                 },
                 no => {
-                    open(this.invite_url.invitation_url_twitter, '_system', 'location=yes')
+                    open(this.invite_url.invitation_url_twitter, '_system', 'location=yes');
+                    setTimeout(()=>{this.sharing['twitter']=false;},500);
                 });
 
         }

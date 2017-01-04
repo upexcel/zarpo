@@ -8,7 +8,7 @@ import {Events, NavController} from 'ionic-angular';
 
 export class DatePickerComponent {
     @Input() ifFormSubmit: boolean = false;
-    @Input() ifHasError: boolean = true;
+    @Input() ifHasError: boolean;
     @Output() monthSelected: EventEmitter<Object> = new EventEmitter();
     @Output() yearSelected: EventEmitter<Object> = new EventEmitter();
 

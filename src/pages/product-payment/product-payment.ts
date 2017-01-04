@@ -33,7 +33,8 @@ export class ProductPayment {
     ifPaymentConfirmed: boolean;
     payment_btn = "Finalizr a reserva"
     creditCard: {} = {
-        hasError: false
+        hasError: false,
+        payee_card_month:true
     };
     payment_emi: any = [];
     payee_emi: any = "-1";

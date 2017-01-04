@@ -1,7 +1,7 @@
 <ion-header class="">
     <ion-navbar  animation="false" hideBackButton class="navBar no-padding">
         <ion-title showWhen="ios" class='mytitle'>
-            {{title}}
+            {{title}}{{loading}}
         </ion-title>
         <ion-title hideWhen="ios">
             <button ion-button hideWhen="ios" class="bgtransparent">
@@ -14,7 +14,7 @@
                 </div>
                 <div  class="bar-button-logo" *ngIf="showBack && !loading" (click)="openHome()"></div>
             </button>
-            <span class="titleAndroid">{{title}}</span>
+            <span class="titleAndroid">{{title}}{{loading}}</span>
         </ion-title>
         <ion-buttons start>
             <button ion-button showWhen="ios" side="left" class="bgtransparent">

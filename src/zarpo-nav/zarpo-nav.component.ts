@@ -10,7 +10,7 @@ import {HotelFlash} from '../pages/hotel-flash/hotel-flash';
 
 export class ZarpoNavComponent {
     @Input() title: string = '';
-    @Input() loading: boolean;
+    @Input() loading: boolean=false;
     @Input() showBack: boolean = false;
     @Input() customback: boolean = false;
     @Output() userUpdated = new EventEmitter();
