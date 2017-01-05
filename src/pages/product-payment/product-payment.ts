@@ -74,20 +74,6 @@ export class ProductPayment {
         private loadingCtrl: LoadingController
 
     ) {
-        //        this.myDatePickerOptions = {
-        //            dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sáb' },
-        //            monthLabels: {
-        //                1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun',
-        //                7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez'
-        //            },
-        //            showIcon: false,
-        //            dateTitle: this.dateTitle,
-        //            sunHighlight: false,
-        //            dateFormat: 'dd-mm-yyyy',
-        //            height: '34px',
-        //            width: '100%'
-        //        }
-        console.log(this._navParams);
         this._localStorageService.getValue('user_data').then((response) => {
             this.payee_email = response.data.customer_email;
             this.paymentForm = new FormGroup({
@@ -132,14 +118,11 @@ export class ProductPayment {
 
         this._checkSelected.getData().then((response) => {
             this.checkSelected = response;
-            console.log("fetched", this.checkSelected);
         });
         this._checkReceipt.getData().then((response) => {
             this.checkReceipt = response;
             //populate emi of given amount
-            console.log(this.checkReceipt);
             this.findInstallment(this.checkReceipt.giftPrice);
-            console.log(this.checkReceipt.giftPrice);
         });
         //ftech user email and token
         this._local.getValue('user_data').then((result: any) => {
@@ -155,38 +138,29 @@ export class ProductPayment {
     }
     public myDate: any;
     monthSelected(e) {
-        console.log(e.month);
         this.card_month = e.month;
         this.modelChange();
     }
     yearSelected(e) {
-        console.log(e.year);
         this.card_year = e.year;
         this.modelChange();
     }
     onDateChanged(e: any) {
-        console.log('expiry date', e);
         this.payee_card_month = e.formatted;
     }
     emailChange() {
-        console.log("event");
         this._localStorageService.getValue('user_data').then((response) => {
-            console.log(response);
             response.data.customer_email = this.paymentForm.controls.payee_email.value;
-            console.log(response);
             this._localStorageService.setValue('user_data', response);
         });
     }
     findInstallment(amount: number) {
         this._payment.installment(amount).then((response) => {
-            console.log(response);
             this.emiSet = response;
-            console.log(this.emiSet);
         });
     }
     getCurrentMonth() {
         this._date.currentHumanDate().then((response) => {
-            console.log(response);
             this.todayDate = response;
             this.payee_card_month = response;
         });
@@ -232,7 +206,6 @@ export class ProductPayment {
     }
     //rules to cancel vale product
     payCancel() {
-        console.log("show cancel");
         this._nav.push(ValeCancel);
     }
     // after final submit button clicked
@@ -266,7 +239,6 @@ export class ProductPayment {
     }
     payment_confirm(myForm: any) {
         var cardMonth;
-        console.log('sdf', this.paymentForm);
         this.ifPaymentConfirmed = true
         if (myForm.controls.payee_name.value) var payee_name = myForm.controls.payee_name.value.trim();
         if (myForm.controls.payee_card_no.value) var payee_card_no = myForm.controls.payee_card_no.value.trim();
@@ -285,9 +257,7 @@ export class ProductPayment {
             };
             userCard['expiryYY'] = parseInt(this.card_year);
             userCard['expiryMM'] = parseInt(this.card_month);
-            console.log(userCard);
             this._moip.validateCreditCard(userCard).then((processedCard) => {
-                console.log(processedCard);
                 //if card number is somethind brancd is no getting fetched from
                 if (!processedCard['cardBrand']) {
                     this.creditCard['hasError'] = true;
@@ -402,7 +372,6 @@ export class ProductPayment {
                                     _.forEach(superAttrib, function(value, key) {
                                         su_key = key;
                                         su_value = value;
-                                        console.log(su_key);
                                     });
 
                                     if (orderData['super_attribute[su_key]']) {
@@ -484,7 +453,6 @@ export class ProductPayment {
                             }
                             orderData['customer_email_field_cc'] = this.payee_email;
 
-                            console.log(orderData);
                             this._api.ajaxRequest(this.path, orderData).subscribe((response) => {
                                 this.payment_btn = 'Finalizr a reserva';
                                 if (response && response['success'] == true && response['error'] == false) {
@@ -503,7 +471,6 @@ export class ProductPayment {
                                     //                        $ionicLoading.hide();
                                     //                        $ionicBackdrop.release();
                                     //                    } else {
-                                    //                        console.log("fail");
                                     //                        this.giftPayment_btn = 'Comprar o presente';
                                     //                        $ionicLoading.hide();
                                     //                        $ionicBackdrop.release();
