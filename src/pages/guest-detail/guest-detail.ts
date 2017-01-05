@@ -59,19 +59,16 @@ export class GuestDetail implements AfterViewChecked {
         private _checkSelected: CheckSelectedService
 
     ) {
-        console.log('data enter')
     }
     ionViewWillEnter() {
         this.ifSubmitted = false;
         this._checkSelected.getData().then((data) => {
             if (Object.keys(data).length > 1) {
-                console.log("try", data);
                 this.bookingRooms = data['selectedRoom'];
             }
             else {
                 this._guestDetailService.getData().then((response: any) => {
                     this.bookingRooms = this.reConstructObject(response.selectedRoom);
-                    console.log("booking", this.bookingRooms);
                     //fetch login user and set as 1 guest
                     this._localStorageService.getValue('user_data').then((response) => {
                         this.bookingRooms[0].selected[0].username = response.data.customer_firstname + " " + response.data.customer_lastname;
@@ -96,44 +93,31 @@ export class GuestDetail implements AfterViewChecked {
             }
 
         }
-        console.log("return", data);
         return data;
     }
     scrollToBottom(): void {
     }
     recordOrder() {
-        //        var res = this.ifEmpty();
         this.ifSubmitted = true;
-        //        $localStorage["registerRoom"] = this.bookingRooms;
-        //        console.log($localStorage["registerRoom"]);
-
         var CheckSelectedData = {
             selectedRoom: this.bookingRooms,
             specialMsg: this.comment
         };
         this._checkSelected.setData(CheckSelectedData);
-
-        //        console.log(CheckSelected.get());
         for (var i = 0; i < Object.keys(this.bookingRooms).length; i++) {
-            console.log(this.bookingRooms[0]);
-            console.log(this.bookingRooms[i].selected);
             for (var j = 0; j < Object.keys(this.bookingRooms[i].selected).length; j++) {
-                console.log("innerloop");
                 //if username for selected rooms are not mentioned
                 if (!this.bookingRooms[i].selected[j].username || this.bookingRooms[i].selected[j].username == "") {
-                    console.log("username not avl");
                     return false;
                 }
                 //no. of adult must be selcted i.e should > 0
                 if (!this.bookingRooms[i].selected[j].adult || parseInt(this.bookingRooms[i].selected[j].adult) < 1) {
-                    console.log("no of adult not avl");
                     return false;
                 }
                 //no. of kid is allowed and user selected kids arrival
                 // kids age must be there
                 if (this.bookingRooms[i].kid && parseInt(this.bookingRooms[i].selected[j].child) > 0) {
                     if (!this.bookingRooms[i].selected[j].childAge) {
-                        console.log("child without childage");
                         return false;
                     }
                 }
@@ -189,7 +173,6 @@ export class GuestDetail implements AfterViewChecked {
         return empty;
     }
     convertArray(data: any) {
-        console.log(new Array(parseInt(data)));
         return new Array(parseInt(data));
     }
     modelChange() {

@@ -10,7 +10,7 @@
         <ion-row no-margin>
             <ion-item no-padding class="marL10" [ngClass]="{'errormsgB':ifFormSubmit && ifHasError==false}"  *ngIf="years.length>0">
                 <ion-select [placeholder]="'Year'" [(ngModel)]="selectedYear" (ionChange)="yearChanged($event)">
-                    <ion-option value="{{year}}" *ngFor="let year of years">{{year}}</ion-option>
+                    <ion-option value="{{year}}" *ngFor="let year of years" ><ion-label no-lines>{{year}}</ion-label></ion-option>
                 </ion-select>
             </ion-item>
         </ion-row>

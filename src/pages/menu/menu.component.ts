@@ -55,7 +55,6 @@ export class menu implements OnInit {
     ) {
         this.rootPage = HotelFlash;
         this.events = this._events;
-        console.log('checking root nav', this._nav);
         this._nav = _nav;
         //        this.local = new Storage(LocalStorage);
         if (this.pageT == 'Hotel') {
@@ -66,14 +65,12 @@ export class menu implements OnInit {
             });
         }
         this._localStorage.getValue('datePlusMinus').then((response) => {
-            console.log('for date plus minus', response);
             if (!response) {
                 this.condition = false;
             } else {
                 this.condition = response;
             }
         })
-        console.log('sdsdds');
         this.dates('ja');
         this.dates('pacote');
 
@@ -90,9 +87,6 @@ export class menu implements OnInit {
 
                 this.locationTag = this._menuService.loadTags(response.location_tag);
                 this.Thematic = this._menuService.loadTags(response.thematic_tag);
-                console.log(this.locationTag)
-                console.log(this.Thematic);
-
             });
 
             this._localStorage.getValue('date_pacote').then((response) => {
@@ -105,7 +99,6 @@ export class menu implements OnInit {
             this._localStorage.getValue('tag_hotel').then((response) => {
                 this.locationTag = this._menuService.loadTags(response.location_tag);
                 this.Thematic = this._menuService.loadTags(response.thematic_tag);
-                console.log(this.Thematic);
             });
 
             this._localStorage.getValue('date_Hotel').then((response) => {
@@ -151,7 +144,6 @@ export class menu implements OnInit {
         }
     }
     showMapFilter(){
-        console.log("push");
         this._nav.push(MapFilter);
         
     }
@@ -159,11 +151,9 @@ export class menu implements OnInit {
     toggleChange(event: any) {
         this.condition = event._checked;
         this._localStorage.setValue('datePlusMinus', this.condition)
-        console.log('toggle event', event._checked);
     }
 
     redirect(componentName: string) {
-        console.log('menu clikkkkk', componentName);
         if (componentName == 'Hotel' || componentName == 'Pacote' || componentName == 'Ja') {
             this.nav.setRoot(HotelFlash, { hotelType: componentName });
         }
@@ -190,43 +180,21 @@ export class menu implements OnInit {
 
     }
     logout() {
-        console.log("heeeeeeeee");
         this._localStorage.remove('flash_data');
         this._localStorage.remove('user_data');
         this._localStorage.remove('user_token');
         this._localStorage.remove('datePlusMinus');
         this._localStorage.remove('product');
         if (Network.connection && Network.connection !== 'none') {
-            console.log(Network.connection);
             this._nav.setRoot(Login);
         }
         else {
-            console.log(Network.connection);
             this._nav.setRoot(offline);
         }
         this.events.publish('user:logout', {});
 
         Facebook.logout();
     }
-    //        onChange(event, id, val) {
-    //            if (this.ifHotelFilterOpen) {
-    //    
-    //                setTimeout(() => {
-    //                    this[val] = "";
-    //                }, 200);
-    //                this.nav.push(hotelTag, { value: event, name: id, flashType: 'Hotel' });
-    //    
-    //            }
-    //            else {
-    //                setTimeout(() => {
-    //                    this[val] = "";
-    //                }, 200);
-    //                this.nav.push(hotelTag, { value: event, name: id, flashType: 'Pacote' });
-    //    
-    //            }
-    //    
-    //            this._menu.close();
-    //        }
     public fname: any = 'Hoties'
     public pageT: any = 'Hotel';
     tnames(name, page) {
@@ -267,25 +235,18 @@ export class menu implements OnInit {
                 var da: any = [];
                 var selectdate: any;
                 if (!this.condition) {
-                    console.log(a);
                     selectdate = _.find(this.date_data, function(val, key) { return key == a });
-                    console.log('tag param data', this.tagparamdata);
-                    console.log('date data', selectdate);
                     da = _.intersection(this.tagparamdata.hotels, selectdate);
-                    console.log('no of hotels', da)
                 }
                 else {
 
                     for (var i = -3; i <= 3; i++) {
                         let prevDate = this.dateformate(a, i);
                         selectdate = _.find(this.date_data, function(val, key) { return key == prevDate });
-                        console.log(selectdate);
                         var alldate = _.intersection(this.tagparamdata.hotels, selectdate);
-                        console.log(alldate, alldate.length)
                         for (var j = 0; j < alldate.length; j++) {
                             da.push(alldate[j]);
                         }
-                        console.log('no of hotels', da)
                     }
 
                 }
@@ -299,7 +260,6 @@ export class menu implements OnInit {
                 });
                 this._menu.close();
             } else {
-                console.log(this.thematicdata);
                 let da = _.intersection(this.tagparamdata.hotels, this.thematicdata.hotels);
                 this.nav.push(hotelTag, {
                     value: { 'hotels': da, location: this.thematicdata.location },
@@ -330,9 +290,7 @@ export class menu implements OnInit {
                 } else {
                     for (var i = -3; i <= 3; i++) {
                         let prevDate = this.dateformate(a, i);
-                        console.log(prevDate);
                         if (!prevDate) {
-                            console.log('break');
                         } else
                             selectdate = _.find(this.date_data, function(val, key) { return key == prevDate });
                         for (var j = 0; j < selectdate.length; j++) {
@@ -341,7 +299,6 @@ export class menu implements OnInit {
 
 
                     }
-                    console.log('no of hotels', da)
                     this.nav.push(hotelTag, { value: { hotels: da }, flashType: this.pageT, type: { tags: 'chekin', name: this.myDate } });
                 }
 
@@ -368,9 +325,7 @@ export class menu implements OnInit {
             m = "0" + m;
         var y = newdate.getFullYear();
         let prevDate: any = y + "-" + m + "-" + d;
-        console.log(prevDate, this.min)
         if (this.min > prevDate) {
-            console.log('now min')
         } else {
             return prevDate;
         }
@@ -439,13 +394,11 @@ export class menu implements OnInit {
     livechat() {
 
         var browser = new InAppBrowser('https://lc.chat/now/1081218/', '_blank');
-        console.log(browser);
 
         //        browser.on("loadstop")
         //            .subscribe(
         //            () => {
         //
-        //                console.log(browser);
         //                browser.insertCss({
         //                    code:
         //                    "body{display:none}"
