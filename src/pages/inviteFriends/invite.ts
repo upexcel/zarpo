@@ -1,17 +1,17 @@
-import {NavController, NavParams, Platform} from 'ionic-angular'
-import {Component} from '@angular/core';
-import {ForgotPwd} from '../forgot-pwd/forgot-pwd';
-import {FooterComponent} from '../../footer/footer.component';
-import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
-import {privacy} from '../privacy/privacy'
-import {menu} from '../menu/menu.component'
-import {errorhandler} from '../../services/error';
-import {config} from '../../config'
-import {Rxjs} from '../../services/Rxjs';
-import {LocalStorageService} from '../../services/local-storage.service';
-import {SocialSharing} from 'ionic-native';
-import {AppAvailability} from 'ionic-native';
-import {Clipboard} from 'ionic-native';
+import { NavController, NavParams, Platform } from 'ionic-angular'
+import { Component } from '@angular/core';
+import { ForgotPwd } from '../forgot-pwd/forgot-pwd';
+import { FooterComponent } from '../../footer/footer.component';
+import { ZarpoNavComponent } from '../../zarpo-nav/zarpo-nav.component';
+import { privacy } from '../privacy/privacy'
+import { menu } from '../menu/menu.component'
+import { errorhandler } from '../../services/error';
+import { config } from '../../config'
+import { Rxjs } from '../../services/Rxjs';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { SocialSharing } from 'ionic-native';
+import { AppAvailability } from 'ionic-native';
+import { Clipboard } from 'ionic-native';
 
 @Component({
     templateUrl: 'invite.html'
@@ -20,7 +20,7 @@ import {Clipboard} from 'ionic-native';
 export class invite {
     public pageTitle = 'Convidar Amigos';
     public zarpoIcon = true;
-    public apiLoader = true;
+    apiLoader = false;
     public button_name: string = 'Enviar Convites'
     public userToken: any;
     public user_reward: {} = {};
@@ -45,6 +45,7 @@ export class invite {
         private _errorhandler: errorhandler,
         private _user: LocalStorageService,
         private platform: Platform) {
+        this.apiLoader = true;
         this._nav = _nav;
         this._user = _user;
         this._navParams = _navParams;
@@ -126,8 +127,10 @@ export class invite {
             let str = response.data.Créditos_disponíveis;
             let res = str.replace(",00", "");
             this.bindData = res;
+            //            this.apiLoader = false;
             this.invitation_url(this.userToken);
         }, (error) => {
+            this.apiLoader = false;
             this._errorhandler.err(error);
         });
     }

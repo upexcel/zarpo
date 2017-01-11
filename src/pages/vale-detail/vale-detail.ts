@@ -7,9 +7,6 @@ import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
 import {FooterComponent} from '../../footer/footer.component';
 import {ZarpoSliderComponent} from '../../zarpo-slider/zarpo-slider.component';
 import {ZarpoAccordianComponent} from '../../zarpo-accordian/zarpo-accordian.component';
-import {NoSpaceDirective} from '../../directives/no-space.directive';
-import {OnReturnDirective} from '../../directives/on-return.directive';
-
 import {Receipt} from '../receipt/receipt';
 import {Rxjs} from '../../services/Rxjs';
 import {UserDetailService} from '../../services/user-detail.service';
@@ -22,12 +19,7 @@ import {EmailValidator} from '../../validators/email.validator';
 import {DateValidator} from '../../validators/date.validator';
 
 @Component({
-    templateUrl: 'vale-detail.html',
-    //    directives: [forwardRef(() => ZarpoNavComponent), FooterComponent, MyDatePicker,
-    //        ZarpoSliderComponent, ZarpoAccordianComponent, NoSpaceDirective, OnReturnDirective],
-    //    providers: [LocalStorageService, UserDetailService, Rxjs, DateService,],
-    //    pipes: [ValeKeysPipe]
-
+    templateUrl: 'vale-detail.html'
 })
 
 export class ValeDetail {

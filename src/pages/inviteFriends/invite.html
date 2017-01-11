@@ -1,10 +1,11 @@
-<zarpo-nav-bar [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+<zarpo-nav-bar class="upercase" [title]="pageTitle" [loading]="apiLoader" [showBack]="zarpoIcon"></zarpo-nav-bar>
+
 <ion-content no-bounce>
     <div class="divcard invite" *ngIf="dataShow">
         <div class="invite-msg myform">
             <ion-row>
                 <ion-col width50>
-                    <label class="br  bigger">Créditos disponíveis</label>
+                    <label class="br  bigger">Créditos disponíveis{{apiLoader}}</label>
                 </ion-col>
                 <ion-col width50 class="alignRight">
                     <label class="br bigger beRight" [innerHTML]="bindData"></label>
@@ -31,7 +32,7 @@
         </div>
         <div id="invite_seg" class="row marD10"></div>
         
-        <!--	    take email from users to invite friends-->
+        	    take email from users to invite friends
         <form class="myform friendEmail hr" novalidate name="myform" #f="ngForm">
             <div class="list margintbt20">
                 <label class="br bigger">1. Convidar por e-mail</label>
@@ -57,7 +58,7 @@
                     <p  class="grey" *ngIf="success_msg===true">
                         Convites enviados com sucesso!
                     </p>
-                    <!--display error status and message-->
+                    display error status and message
                     <p *ngIf="error_msg" class="errormsg">
                         Já são membros do Zarpo: <br/>
                         {{error_msg}}
@@ -67,24 +68,18 @@
 
             </div>
         </form>
-        <!--	    end of invite friend form               -->
+        	    end of invite friend form               
         <div class="linkbox ">
             <label class="br bigger marginbt15" >2. Convidar via as redes sociais</label>
             <ion-row class="row" style="">
                 <div class="colFb" style="">
-<!--                    <ion-spinner class="" *ngIf="invitation.fb" icon="bubbles" style="color:#FFF;">
-
-                    </ion-spinner>-->
-
                     <a  (click)="share('fb')">
-                        <img  class="invitationIcon" src="assets/img/btn-facebook.jpg" [hidden]="invitation.fb"/>
+                        <img  class="invitationIcon" src="assets/img/btn-facebook.jpg" />
                     </a>
                 </div>
                 <div class="clear width20"></div>
                 <div class="colTwitter" >
-<!--                    <ion-spinner class="" *ngIf="invitation.twitter" icon="bubbles" style="color:#FFF;">
-                    </ion-spinner>-->
-                    <a [hidden]="!invitation.twitter" (click)="share('twitter')">
+                    <a (click)="share('twitter')">
                         <img class="invitationIcon" src="assets/img/btn-twitter.jpg"/>
                     </a>
                 </div>

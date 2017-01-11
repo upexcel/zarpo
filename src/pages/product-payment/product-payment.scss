@@ -8,7 +8,7 @@
                 display: none;
             }
             .caltable{
-/*                display: none;*/
+                /*                display: none;*/
             }
             .selection{
                 span{
@@ -21,7 +21,7 @@
             } 
         } 
         .selectiongroup{
-/*            border: none;*/
+            /*            border: none;*/
         }
 
     }
@@ -46,6 +46,9 @@
         .field {
             padding: 10px;
         }
+    }
+    .padL0{
+        padding-left: 0px !important;
     }
     .field {
         border-bottom: 1px solid #cccccc;

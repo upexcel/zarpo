@@ -84,8 +84,9 @@ import { FlashCardComponent } from '../flash-card/flash-card.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ZarpoAccordianComponent } from '../zarpo-accordian/zarpo-accordian.component';
 import { ZarpoNavComponent } from '../zarpo-nav/zarpo-nav.component';
-import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { ZarpoSliderComponent } from '../zarpo-slider/zarpo-slider.component';
+import { NoSpaceDirective } from '../directives/no-space.directive';
+import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { OnErrorDirective } from '../directives/on-error.directive';
 import { OnReturnDirective } from '../directives/on-return.directive';
 import { MyDatePicker } from '../pages/my-date-picker/my-date-picker.component';
@@ -148,6 +149,8 @@ import { MyDatePicker } from '../pages/my-date-picker/my-date-picker.component';
         ZarpoNavComponent,
         ZarpoSliderComponent,
         OnReturnDirective,
+        NoSpaceDirective,
+        MyDatePicker,
         OnErrorDirective,
         MyDatePicker,
         MapFilter

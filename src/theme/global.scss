@@ -23,6 +23,7 @@
 .scroll-content {
     padding-top: 70px;
 }
+
 .item-ios.item-block .item-inner {
     padding-right: 0px !important; 
 }
@@ -617,34 +618,35 @@ color{
     margin-right: 15px;
 }
 .inAppBrowserWrap {
-  background-color: rgba(0,0,0,0.75);
-  color: rgba(235,235,235,1.0);
+    background-color: rgba(0,0,0,0.75);
+    color: rgba(235,235,235,1.0);
 }
 .inAppBrowserWrap menu {
-  overflow: auto;
-  list-style-type: none;
-  padding-left: 0;
+    overflow: auto;
+    list-style-type: none;
+    padding-left: 0;
 }
 .inAppBrowserWrap menu li {
-  font-size: 25px;
-  height: 25px;
-  float: left;
-  margin: 0 10px;
-  padding: 3px 10px;
-  text-decoration: none;
-  color: #ccc;
-  display: block;
-  background: rgba(30,30,30,0.50);
+    font-size: 25px;
+    height: 25px;
+    float: left;
+    margin: 0 10px;
+    padding: 3px 10px;
+    text-decoration: none;
+    color: #ccc;
+    display: block;
+    background: rgba(30,30,30,0.50);
 }
 .inAppBrowserWrap menu li.disabled {
     color: #777;
 }
+
+
 /*=================================for 144 server*/
-/*ion-app {
+ion-app {
     width: 420px !important;
     position: relative !important;
     margin: 0px auto !important; }
-
 
 
 body {
@@ -669,4 +671,4 @@ div#livechat-full {
 zarpo-flash-card div.automaticCredit div {
     line-height: 4.1em !important;
     font-size: 28px !important; 
-}*/
+}
