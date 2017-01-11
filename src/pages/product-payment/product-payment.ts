@@ -1,12 +1,10 @@
 import { NavParams, NavController, LoadingController } from 'ionic-angular';
 import { Component, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
 import { ValeCancel } from '../vale-cancel/vale-cancel';
 import { OrderSuccess } from '../order-success/order-success';
 import { OrderFail } from '../order-fail/order-fail';
 import { Timeout } from '../timeout/timeout';
-
 import { MoipService } from '../../services/moip.service';
 import { PaymentService } from '../../services/payment.service';
 import { DateService } from '../../services/date.service';
@@ -17,6 +15,7 @@ import { CheckSelectedService } from '../../services/check-selected.service';
 import { CheckReceiptService } from '../../services/check-receipt.service';
 import { EmailValidator } from '../../validators/email.validator';
 import { DateValidator } from '../../validators/date.validator';
+import _ from 'lodash';
 
 @Component({
     templateUrl: 'product-payment.html'
@@ -25,7 +24,7 @@ import { DateValidator } from '../../validators/date.validator';
 export class ProductPayment {
     public zarpoIcon: boolean = false;
     pageTitle: string = 'Finalize seu pagamento';
-    hotelType: string = "HOTEL";
+    hotelType: string;
     path: string = "payment";
     installmentAmount: number = 100;
     dateTitle: string = "Válido até";
@@ -44,8 +43,8 @@ export class ProductPayment {
     payee_card_no: string;
     payee_card_cvv: string;
     payee_card_month: string;
-    card_month: string;
-    card_year: string;
+    card_month: any;
+    card_year: any;
     payee_cpf: string;
     payee_contact_no: string;
     payee_contact_code: string;
@@ -58,6 +57,7 @@ export class ProductPayment {
     checkSelected: any;
     checkReceipt: any;
     apiLoader: boolean;
+    loading:any;
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,
@@ -74,6 +74,7 @@ export class ProductPayment {
         private loadingCtrl: LoadingController
 
     ) {
+        this.hotelType = this._navParams.get('hotelType');
         this._localStorageService.getValue('user_data').then((response) => {
             this.payee_email = response.data.customer_email;
             this.paymentForm = new FormGroup({
@@ -122,6 +123,9 @@ export class ProductPayment {
         this._checkReceipt.getData().then((response) => {
             this.checkReceipt = response;
             //populate emi of given amount
+            this._super.convert(this.checkReceipt.super_attribute).then((res) => {// do by mohit
+                this.super_attribute = res;
+            });
             this.findInstallment(this.checkReceipt.giftPrice);
         });
         //ftech user email and token
@@ -130,11 +134,12 @@ export class ProductPayment {
             this.user_token = result.data.user_token;
         });
         //convert super attribute to desired structure
-        this._super.convert(this._navParams.get('super_attribute')).then((res) => {
-            this.super_attribute = res;
-        });
-        this.creditCard['hasError'] = false;
 
+        //        this._super.convert(this.checkReceipt.super_attribute).then((res) => {
+        //            this.super_attribute = res;
+        //            console.log("this.super_attribute",this.super_attribute)
+        //        });
+        this.creditCard['hasError'] = false;
     }
     public myDate: any;
     monthSelected(e) {
@@ -239,7 +244,7 @@ export class ProductPayment {
     }
     payment_confirm(myForm: any) {
         var cardMonth;
-        this.ifPaymentConfirmed = true
+        this.ifPaymentConfirmed = true;
         if (myForm.controls.payee_name.value) var payee_name = myForm.controls.payee_name.value.trim();
         if (myForm.controls.payee_card_no.value) var payee_card_no = myForm.controls.payee_card_no.value.trim();
         if (myForm.controls.payee_card_cvv.value) var payee_card_cvv = myForm.controls.payee_card_cvv.value.trim();
@@ -255,23 +260,23 @@ export class ProductPayment {
                 expiryYY: '',
                 security: payee_card_cvv
             };
-            userCard['expiryYY'] = parseInt(this.card_year);
-            userCard['expiryMM'] = parseInt(this.card_month);
+            userCard['expiryYY'] = this.card_year * 1;
+            userCard['expiryMM'] = this.card_month * 1;
             this._moip.validateCreditCard(userCard).then((processedCard) => {
                 //if card number is somethind brancd is no getting fetched from
                 if (!processedCard['cardBrand']) {
                     this.creditCard['hasError'] = true;
                     this.creditCard['payee_card_no'] = false;
                 }
-                else if (processedCard['cardBrand'].toUpperCase() == this.payee_cardname.toUpperCase()) {
+                else if (processedCard['cardBrand'].toUpperCase() != this.payee_cardname.toUpperCase()) {
                     this.creditCard['hasError'] = true;
+                    this.creditCard['payee_card_no'] = false;
                 }
                 if (processedCard && processedCard['ifCardValid']) {
                     //if card no is same of selected card
                     if (processedCard['cardBrand'].toUpperCase() == this.payee_cardname.toUpperCase() &&
                         processedCard['ifCardValid'] === true) {
                         //card is valid we can continue
-
                     } else {
                         this.creditCard['hasError'] = true;
                         this.creditCard['payee_card_no'] = false;
@@ -293,14 +298,17 @@ export class ProductPayment {
                         this.ifPaymentConfirmed = true;
                         return false;
                     } else {
-                        if (processedCard['cardBrand'].toUpperCase() == 'VISA' && this.creditCard['payee_card_cvv'].length > 3) {
+                        if (processedCard['cardBrand'].toUpperCase() == 'VISA' && payee_card_cvv.length > 3) {
                             this.creditCard['hasError'] = true;
                             this.creditCard['payee_card_cvv'] = false;
                             this.ifPaymentConfirmed = true;
                             return false;
                         }
                     }
+                    this.presentLoading();
+
                     if (this.creditCard['hasError'] === true) {
+
                     }
                     else {
                         this.ifPaymentConfirmed = true;
@@ -321,8 +329,6 @@ export class ProductPayment {
                             myForm.controls.payee_contact_no.status &&
                             payee_email && myForm.controls.payee_email.status
                         ) {
-
-                            this.presentLoading();
                             this.payment_btn = 'Aguarde';
                             var orderData = {};
                             orderData['customer_id'] = this.user_token;
@@ -335,7 +341,8 @@ export class ProductPayment {
                             } else {
                                 orderData['super_attribute'] = {};
                             }
-                            if (this.hotelType !== "VALE") {
+                            orderData['is_ja'] = false;
+                            if (this.hotelType !== "Vale") {
                                 // payement/card data
                                 var stepReceipt = this.checkReceipt;
                                 orderData['ip'] = "";
@@ -350,7 +357,7 @@ export class ProductPayment {
                                     orderData['lastcheckout'] = this.getHumanDate(stepReceipt.lastCheckOut);
                                     orderData['product'] = stepReceipt.productId;
                                     orderData['related_product'] = "";
-                                    orderData['total_price'] = stepReceipt.clientPrice; //client price
+                                    orderData['total_price'] = stepReceipt.totalPrice; //client price
                                     orderData['total_ref_price'] = stepReceipt.displayPrice; //display price
                                     orderData['expproductId'] = 6118;
                                     orderData['comment_textarea'] = this.checkSelected.specialMsg;
@@ -368,34 +375,37 @@ export class ProductPayment {
                                 for (var i = 0; i < Object.keys(roomData.selectedRoom).length; i++) {
                                     var roomId = roomData.selectedRoom[i].category;
                                     var superAttrib = roomData.selectedRoom[i].superAttribute;
-                                    var su_key: any, su_value: any;
+                                    var su_key: any
+                                    var su_value: any;
                                     _.forEach(superAttrib, function(value, key) {
                                         su_key = key;
                                         su_value = value;
                                     });
-
-                                    if (orderData['super_attribute[su_key]']) {
+                                    if (orderData['super_attribute'][su_key]) {
                                         var preValue;
-                                        if (orderData['super_attribute[su_key][su_value]']) {
-                                            preValue = parseInt(orderData['super_attribute[su_key][su_value]']);
-                                            orderData['super_attribute[su_key][su_value]'] = preValue + parseInt(roomData.selectedRoom[i].rooms);
+                                        if (orderData['super_attribute'][su_key][su_value]) {
+                                            //                                            preValue = parseInt(orderData['super_attribute[' + su_key + '][' + su_value + ']']);
+                                            preValue = parseInt(orderData['super_attribute'][su_key][su_value]);
+                                            orderData['super_attribute'][su_key][su_value] = preValue + parseInt(roomData.selectedRoom[i].rooms);
+                                            //                                            orderData['super_attribute[' + su_key + '][' + su_value + ']'] = preValue + parseInt(roomData.selectedRoom[i].rooms);
                                         } else {
-                                            orderData['super_attribute[su_key][su_value]'] = parseInt(roomData.selectedRoom[i].rooms);
-
+                                            orderData['super_attribute'][su_key][su_value] = parseInt(roomData.selectedRoom[i].rooms);
+                                            //                                            orderData['super_attribute[' + su_key + '][' + su_value + ']'] = parseInt(roomData.selectedRoom[i].rooms);
                                         }
                                     } else {
-                                        orderData['super_attribute[su_key]'] = {};
-                                        orderData['super_attribute[su_key][su_value]'] = parseInt(roomData.selectedRoom[i].rooms);
+                                        orderData['super_attribute'][su_key] = {}
+                                        orderData['super_attribute'][su_key][su_value] = parseInt(roomData.selectedRoom[i].rooms);
                                     }
                                     //check if already initialized
-                                    if (orderData['subroom[roomId]']) {
+                                    var sub_roomId = this.splitId(roomId, roomData.selectedRoom[i]["id"]);
+                                    if (orderData["subroom"][roomId]) {
+                                        orderData['subroom'][roomId][sub_roomId] = this.calculateSubRoom(roomData.selectedRoom[i]["id"]);
 
                                     } else {
-                                        orderData['subroom[roomId]'] = {};
-                                    }
+                                        orderData['subroom'][roomId] = {};
+                                        orderData['subroom'][roomId][sub_roomId] = this.calculateSubRoom(roomData.selectedRoom[i]["id"]);
 
-                                    var sub_roomId = this.splitId(roomId, roomData.selectedRoom[i]["id"]);
-                                    orderData['subroom[roomId][sub_roomId]'] = this.calculateSubRoom(roomData.selectedRoom[i]["id"]);
+                                    }
                                     var thisCategoryName = roomData.selectedRoom[i].categoryName;
                                     for (var j = 0; j < Object.keys(roomData.selectedRoom[i]["selected"]).length; j++) {
                                         if (categoryCheck[thisCategoryName]) {
@@ -405,33 +415,44 @@ export class ProductPayment {
                                             categoryCheck[thisCategoryName] = 1;
                                         }
                                         var indexKey = roomData.selectedRoom[i].categoryName + " #" + categoryCheck[thisCategoryName];
-                                        if (roomData.selectedRoom[i]["selected"][j]["username"])
-                                            orderData['shipping["name"][indexKey]'] = roomData.selectedRoom[i]["selected"][j]["username"];
-                                        if (roomData.selectedRoom[i]["selected"][j]["adult"])
-                                            orderData['shipping["adults"][indexKey]'] = roomData.selectedRoom[i]["selected"][j]["adult"];
-                                        if (roomData.selectedRoom[i]["selected"][j]["child"])
-                                            orderData['shipping["children"][indexKey]'] = roomData.selectedRoom[i]["selected"][j]["child"];
-                                        else
-                                            orderData['shipping["children"][indexKey]'] = "-";
-                                        if (roomData.selectedRoom[i]["selected"][j]["childAge"])
-                                            orderData['shipping["age"][indexKey]'] = roomData.selectedRoom[i]["selected"][j]["childAge"];
-                                        else
-                                            orderData['shipping["age"][indexKey]'] = "ex: 4 e 7";
+                                        if (roomData.selectedRoom[i]["selected"][j]["username"]) {
+                                            orderData['shipping'].name[indexKey] = roomData.selectedRoom[i]["selected"][j]["username"];
+                                        }
+                                        if (roomData.selectedRoom[i]["selected"][j]["adult"]) {
+                                            orderData['shipping'].adults[indexKey] = roomData.selectedRoom[i]["selected"][j]["adult"];
+                                        } if (roomData.selectedRoom[i]["selected"][j]["child"]) {
+                                            orderData['shipping'].children[indexKey] = roomData.selectedRoom[i]["selected"][j]["child"];
+                                        } else {
+                                            orderData['shipping'].children[indexKey] = "-";
+                                        }
+                                        if (roomData.selectedRoom[i]["selected"][j]["childAge"]) {
+                                            orderData['shipping'].age[indexKey] = roomData.selectedRoom[i]["selected"][j]["childAge"];
+                                        }
+                                        else {
+                                            orderData['shipping'].age[indexKey] = "ex: 4 e 7";
+                                        }
                                     }
                                 }
-
-
                             }
-
+                            //vale form data
+                            if (this.hotelType == 'Vale') {
+                                orderData['comment_textarea'] = this._navParams.get('presentear_Comment');
+                                orderData['name'] = this._navParams.get('presentear_Firstname');
+                                orderData['surname'] = this._navParams.get('presentear_Surname');
+                                orderData['email'] = this._navParams.get('presentear_Email');
+                                orderData['date'] = this._navParams.get('presentear_GiftDate');// full date object
+                                orderData['amount'] = String(this._navParams.get('totalPrice'));
+                            }
+                            orderData['customer_email_field_cc'] = this.payee_email;
                             orderData['payment'] = {
                                 method: "son_Moip_standard",
                                 forma_pagamento: "CartaoCredito",
-                                credito_parcelamento: this.payee_emi['num_emi'] + "|" + this.payee_emi['intallment'], //giftPayment.selectedEmi 1|15
+                                credito_parcelamento: this.payee_emi['num_emi'] + "|" + (this.payee_emi['intallment'] | 0), //giftPayment.selectedEmi 1|15
                                 credito_instituicao: this.payee_cardname, //giftPayment.selectedCard
-                                credito_portador_nome: this.payee_cardname, //giftPayment.payee_cardname name on card
-                                credito_numero: payee_card_no, //giftPayment.payee_card_no
-                                credito_expiracao_mes: parseInt(cardMonth[1]), //giftPayment.payee_card_month
-                                credito_expiracao_ano: parseInt(cardMonth[0].toString().substr(2, 2)), //giftPayment.payee_card_month two digit of year
+                                credito_portador_nome: payee_name, //giftPayment.payee_cardname name on card
+                                credito_numero: ((payee_card_no) * 1), //giftPayment.payee_card_no
+                                credito_expiracao_mes: (this.card_month * 1), //  *1 /giftPayment.payee_card_month
+                                credito_expiracao_ano: ((this.card_year.toString().substr(2, 2)) * 1), //   / giftPayment.payee_card_month two digit of year
                                 credito_codigo_seguranca: payee_card_cvv, //giftPayment.payee_card_cvv
                                 credito_portador_cpftemp: payee_cpf, //giftPayment.payee_cpf
                                 redito_portador_telefonetempdd: payee_contact_code, //giftPayment.payee_contact_code
@@ -440,48 +461,21 @@ export class ProductPayment {
                                 credito_portador_nascimento2: "",
                                 credito_portador_nascimento3: ""
                             };
-
-                            //vale form data
-                            if (this.hotelType = 'VALE') {
-                                orderData['comment_textarea'] = this._navParams.get('presentear_Comment');
-                                orderData['name'] = this._navParams.get('presentear_Firstname');
-                                orderData['surname'] = this._navParams.get('presentear_Surname');
-                                orderData['email'] = this._navParams.get('presentear_Email');
-                                orderData['date'] = new Date(this._navParams.get('presentear_GiftDate'));// full date object
-                                orderData['amount'] = this._navParams.get('totalPrice');
-
-                            }
-                            orderData['customer_email_field_cc'] = this.payee_email;
-
                             this._api.ajaxRequest(this.path, orderData).subscribe((response) => {
+                                this.loading.dismiss();
                                 this.payment_btn = 'Finalizr a reserva';
                                 if (response && response['success'] == true && response['error'] == false) {
-
                                     if (response['redirect'] && response['redirect.length'] > 0) {
                                         this.payment_btn = 'Finalizr a reserva';
-                                        this._nav.push(OrderSuccess);
+                                        //                                        this._nav.push(OrderSuccess);
                                     }
                                 }
                                 else {
-                                    this._nav.push(OrderFail);
-                                    //ip is blocked for request
-                                    //                    if (response.fraud) {
-                                    //                        this.fraud = true;
-                                    //                        this.giftPayment_btn = 'Comprar o presente';
-                                    //                        $ionicLoading.hide();
-                                    //                        $ionicBackdrop.release();
-                                    //                    } else {
-                                    //                        this.giftPayment_btn = 'Comprar o presente';
-                                    //                        $ionicLoading.hide();
-                                    //                        $ionicBackdrop.release();
-                                    //                        $state.go("menu.orderFail/:id", { id: stepReceipt.productId });
-                                    //                    }
-
-
+                                    //                                                                                                                                                                                                                                                                                                                                                        //                                                                                                                                                                                                                                                                                     //                        $state.g                                                                                            //                    }
                                 }
-
+                            }, err => {
+                                console.log("error")
                             });
-
 
                         }
                         else {
@@ -513,12 +507,12 @@ export class ProductPayment {
 
     }
     presentLoading() {
-        let loading = this.loadingCtrl.create({
+        this.loading = this.loadingCtrl.create({
             content: '<h3 class="loader-title">Por favor aguarde...</h3><p class="loader-body">Dê-nos alguns segundos... Seu pedido está sendo processado!</p>',
             duration: 500000,
             dismissOnPageChange: false
         });
-        loading.present();
+        this.loading.present();
     }
     backToFlash() {
     }

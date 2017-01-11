@@ -194,7 +194,7 @@ export class HotelDetail implements AfterViewChecked {
             });
 
     }
-    showOffer() {
+    showOffer(){
         this.ifRules = false;
         this.ifMaps = false;
         this.ifOffer = true;
@@ -229,7 +229,8 @@ export class HotelDetail implements AfterViewChecked {
                 name: this.pageTitle,
                 location: this.location,
                 is_ja: this.data.is_ja,
-                flashType: 'Hotel'
+                flashType: 'Hotel',
+                super_attribute: this.itemObject.super_attribute//edit by mohit
             }
             this.nav.push(calendar, paramdata)
 

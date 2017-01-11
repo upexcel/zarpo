@@ -156,7 +156,8 @@ export class ValeDetail {
         this.pageTitle = this.navParams.get('name');
     }
     onDateChanged(e: any) {
-        this.giftDate = e.formatted;
+        this.giftDate=e.date.year+"-"+e.date.month+"-"+e.date.day;
+//        this.giftDate = e.formatted;
     }
     showCalender() {
         console.log("show calender");
