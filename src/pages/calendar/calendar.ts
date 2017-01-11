@@ -819,9 +819,6 @@ export class calendar {
                     };
                     //                    CheckRegister.set(CheckRegisterData);
                     //modified
-                    console.log("this.bookingResponse.checkout.last_checkin * 1000",this.bookingResponse.checkout.last_checkin)
-                    console.log("name",this.name);
-                    console.log("super_attribute",)
                     var receiptData = {
                         productType: this.flashType,
                         productId: this.pId,

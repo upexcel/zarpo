@@ -47,9 +47,7 @@ export class Receipt {
         private _date: DateService
     ) {
         this.hotelType = this._navParams.get('productType');
-        console.log(this.hotelType);
         if (this.hotelType === 'Vale') {
-            console.log('vale');
             this.giftName = this._navParams.get('giftName');
             this.giftLocation = this._navParams.get('giftLocation');
             this.firstname = this._navParams.get('firstname');
@@ -82,7 +80,6 @@ export class Receipt {
             result.subscribe((response: any) => {
                 if (response.point_balance) {
                     console.log(response.point_balance);
-                    console.log(this._navParams.get('giftPrice'));
                     var pointdiff = parseInt(this._navParams.get('giftPrice')) - parseInt(response.point_balance);
                     if (pointdiff >= 15) {
                         this.reward = parseInt(response.point_balance);

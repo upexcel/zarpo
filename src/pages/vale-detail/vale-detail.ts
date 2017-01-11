@@ -157,7 +157,6 @@ export class ValeDetail {
     }
     onDateChanged(e: any) {
         this.giftDate=e.date.year+"-"+e.date.month+"-"+e.date.day;
-        console.log("eDate ",this.giftDate)
 //        this.giftDate = e.formatted;
     }
     showCalender() {

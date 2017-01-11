@@ -119,7 +119,6 @@ export class ProductPayment {
 
         this._checkSelected.getData().then((response) => {
             this.checkSelected = response;
-            console.log(this.checkSelected)
         });
         this._checkReceipt.getData().then((response) => {
             this.checkReceipt = response;
@@ -141,7 +140,6 @@ export class ProductPayment {
         //            console.log("this.super_attribute",this.super_attribute)
         //        });
         this.creditCard['hasError'] = false;
-
     }
     public myDate: any;
     monthSelected(e) {
@@ -181,7 +179,6 @@ export class ProductPayment {
         this.ifPaymentConfirmed = false;
     }
     modelChange() {
-        console.log("modelChange coll")
         this.creditCard = {};
         this.creditCard['hasError'] = false;
         this.creditCard['payee_card_month'] = true;
@@ -243,7 +240,6 @@ export class ProductPayment {
             m = "0" + m;
         var y = x.getFullYear();
         var todaydate = y + "-" + m + "-" + d;
-        console.log(todaydate);
         return todaydate;
     }
     payment_confirm(myForm: any) {
@@ -336,8 +332,6 @@ export class ProductPayment {
                             this.payment_btn = 'Aguarde';
                             var orderData = {};
                             orderData['customer_id'] = this.user_token;
-                            console.log("330")
-                            console.log(this._navParams.get('productId'))
                             orderData['product'] = this._navParams.get('productId');
                             //provide super attribute
                             if (this.super_attribute) {
@@ -348,13 +342,11 @@ export class ProductPayment {
                                 orderData['super_attribute'] = {};
                             }
                             orderData['is_ja'] = false;
-                            console.log("hotelType", this.hotelType);
                             if (this.hotelType !== "Vale") {
                                 // payement/card data
                                 var stepReceipt = this.checkReceipt;
                                 orderData['ip'] = "";
                                 //hotel data
-                                console.log("stepReceipt", stepReceipt)
                                 if (stepReceipt) {
                                     orderData['checkin_day'] = new Date(Date.parse(stepReceipt.checkInDate)).getDate();
                                     orderData['checkin_month'] = new Date(Date.parse(stepReceipt.checkInDate)).getMonth();
@@ -381,23 +373,18 @@ export class ProductPayment {
                                 var roomData = this.checkSelected;
                                 var categoryCheck = {};
                                 for (var i = 0; i < Object.keys(roomData.selectedRoom).length; i++) {
-                                    console.log("i", i);
                                     var roomId = roomData.selectedRoom[i].category;
                                     var superAttrib = roomData.selectedRoom[i].superAttribute;
                                     var su_key: any
                                     var su_value: any;
-                                    console.log("373");
                                     _.forEach(superAttrib, function(value, key) {
                                         su_key = key;
                                         su_value = value;
                                     });
                                     if (orderData['super_attribute'][su_key]) {
-                                        console.log("have value if ")
                                         var preValue;
                                         if (orderData['super_attribute'][su_key][su_value]) {
-                                            console.log("386 ")
                                             //                                            preValue = parseInt(orderData['super_attribute[' + su_key + '][' + su_value + ']']);
-                                            console.log("parseInt(orderData['super_attribute'][su_key][su_value])", parseInt(orderData['super_attribute'][su_key][su_value]))
                                             preValue = parseInt(orderData['super_attribute'][su_key][su_value]);
                                             orderData['super_attribute'][su_key][su_value] = preValue + parseInt(roomData.selectedRoom[i].rooms);
                                             //                                            orderData['super_attribute[' + su_key + '][' + su_value + ']'] = preValue + parseInt(roomData.selectedRoom[i].rooms);
@@ -405,10 +392,7 @@ export class ProductPayment {
                                             orderData['super_attribute'][su_key][su_value] = parseInt(roomData.selectedRoom[i].rooms);
                                             //                                            orderData['super_attribute[' + su_key + '][' + su_value + ']'] = parseInt(roomData.selectedRoom[i].rooms);
                                         }
-                                        console.log("preValue", preValue)
                                     } else {
-                                        console.log(399);
-                                        console.log("parseInt(roomData.selectedRoom[i].rooms)", parseInt(roomData.selectedRoom[i].rooms))
                                         orderData['super_attribute'][su_key] = {}
                                         orderData['super_attribute'][su_key][su_value] = parseInt(roomData.selectedRoom[i].rooms);
                                     }
@@ -422,12 +406,9 @@ export class ProductPayment {
                                         orderData['subroom'][roomId][sub_roomId] = this.calculateSubRoom(roomData.selectedRoom[i]["id"]);
 
                                     }
-                                    console.log("output", roomId, sub_roomId, this.calculateSubRoom(roomData.selectedRoom[i]["id"]))
-
                                     var thisCategoryName = roomData.selectedRoom[i].categoryName;
                                     for (var j = 0; j < Object.keys(roomData.selectedRoom[i]["selected"]).length; j++) {
                                         if (categoryCheck[thisCategoryName]) {
-                                            console.log("421");
                                             var lastIndex = categoryCheck[thisCategoryName];
                                             categoryCheck[thisCategoryName] = lastIndex + 1;
                                         } else {
@@ -455,13 +436,10 @@ export class ProductPayment {
                             }
                             //vale form data
                             if (this.hotelType == 'Vale') {
-                                console.log("Vale")
                                 orderData['comment_textarea'] = this._navParams.get('presentear_Comment');
                                 orderData['name'] = this._navParams.get('presentear_Firstname');
                                 orderData['surname'] = this._navParams.get('presentear_Surname');
                                 orderData['email'] = this._navParams.get('presentear_Email');
-                                console.log("Date", this._navParams.get('presentear_GiftDate'));
-                                //                                console.log(new Date(this._navParams.get('presentear_GiftDate')))
                                 orderData['date'] = this._navParams.get('presentear_GiftDate');// full date object
                                 orderData['amount'] = String(this._navParams.get('totalPrice'));
                             }
@@ -483,14 +461,11 @@ export class ProductPayment {
                                 credito_portador_nascimento2: "",
                                 credito_portador_nascimento3: ""
                             };
-                            console.log(orderData);
                             this._api.ajaxRequest(this.path, orderData).subscribe((response) => {
                                 this.loading.dismiss();
                                 this.payment_btn = 'Finalizr a reserva';
                                 if (response && response['success'] == true && response['error'] == false) {
-                                    console.log("481")
                                     if (response['redirect'] && response['redirect.length'] > 0) {
-                                        console.log("483")
                                         this.payment_btn = 'Finalizr a reserva';
                                         //                                        this._nav.push(OrderSuccess);
                                     }

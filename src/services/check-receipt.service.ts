@@ -8,7 +8,6 @@ export class CheckReceiptService {
         this.ReceiptData = data;
     };
     getData() {
-        console.log("this.ReceiptData",this.ReceiptData)
         return Promise.resolve(this.ReceiptData);
     };
 }
