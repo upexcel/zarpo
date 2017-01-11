@@ -39,7 +39,7 @@ export class DatePickerComponent {
         var curYear = dateObj.getFullYear();
         // curYear = parseInt(curYear);
         var j = curYear;
-        for (j=2016; j <= curYear + 20; j++) {
+        for (j; j <= curYear + 20; j++) {
             this.years.push(j);
         }
     }

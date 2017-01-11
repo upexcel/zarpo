@@ -119,7 +119,7 @@
                        >
                        <div class='clear marB5 overflow date-picker' (click)="modelChange()" 
                        [ngClass]="{errormsgB:formsubmitted===true && giftDate === ''}" >
-                    <my-date-picker [options]="myDatePickerOptions" [title]="dateTitle"  [showIcon]="showIcon"
+                    <my-date-picker [options]="myDatePickerOptions" [title]="dateTitle" [showIcon]="showIcon"
                         (dateChanged)="onDateChanged($event)"></my-date-picker>
                 </div>
                 <textarea  noSpace onReturn  placeholder="Seu recado" (click)="modelChange()" 

@@ -13,11 +13,11 @@
                         <ion-row class="no-padding" *ngIf="emiSet && emiSet.length > 0">
                             <ion-col  class="no-padding" (click)="modelChange()" >
                                 <select class="giftPayment-select" [ngClass]="{'errormsgB': ifPaymentConfirmed && payee_emi=='-1'}"
-                                        [(ngModel)]="payee_emi" [ngModelOptions]="{standalone: true}">
-                                        <option value="-1">Selecione o número de parcelas</option>
-                                    <option  value="{{emi}}" *ngFor="let emi of emiSet; let index=index">
-                                             {{index+1}}x R$ {{emi.intallment}}
-                                             | Total: R$ {{emi.total}} 
+                                        [(ngModel)]="payee_emi" [ngModelOptions]="{standalone: true}" (ngModelChange)=select(payee_emi)>
+                                        <option value="-1" >Selecione o número de parcelas</option>
+                                    <option *ngFor="let emi of emiSet; let index=index"  [ngValue]="emi" >
+                                        {{index+1}}x R$ {{emi.intallment}}
+                                        | Total: R$ {{emi.total}} 
                                 </option>
                             </select>
                         </ion-col>
@@ -52,7 +52,6 @@
                     <ion-row>
                         <ion-col  class="no-padding">
                             <input type="text" noSpace onReturn   word-case name="input2"
-
                                    formControlName="payee_name"  placeholder="Nome impresso no cartão"
                                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"       
                                    [ngClass]="{'errormsgB': ifPaymentConfirmed && (paymentForm.controls.payee_name.value.trim().length < 1|| !paymentForm.controls.payee_name.valid)}" 
@@ -60,15 +59,15 @@
                         </ion-col>
                     </ion-row>
                     <div class="clear"></div>
-                   
+
                     <ion-row>
                         <ion-col id="giftCalender" class="no-padding" width-60 >
-                             <date-picker [ifFormSubmit]="ifPaymentConfirmed"  [ifHasError]="creditCard.payee_card_month" (monthSelected)="monthSelected($event)" (yearSelected)="yearSelected($event)"></date-picker>
-<!--                            <div class='clear marB5'
-                                 [ngClass]="{'errormsgB': ifPaymentConfirmed && (!payee_card_month || creditCard.payee_card_month == false)}">
-                                 <my-date-picker [options]="myDatePickerOptions" [title]="dateTitle"
-                                    (dateChanged)="onDateChanged($event)"></my-date-picker>
-                            </div>-->
+                            <date-picker [ifFormSubmit]="ifPaymentConfirmed"  [ifHasError]="creditCard.payee_card_month" (monthSelected)="monthSelected($event)" (yearSelected)="yearSelected($event)"></date-picker>
+                            <!--                            <div class='clear marB5'
+                                                             [ngClass]="{'errormsgB': ifPaymentConfirmed && (!payee_card_month || creditCard.payee_card_month == false)}">
+                                                             <my-date-picker [options]="myDatePickerOptions" [title]="dateTitle"
+                                                                (dateChanged)="onDateChanged($event)"></my-date-picker>
+                                                        </div>-->
                             <!--                             <ion-item>
                           <ion-label>Date</ion-label>
                           <ion-datetime displayFormat="MM/YYYY" (ionChange)="onDateChanged(myDate)" min="2018" max="2040" [(ngModel)]="myDate" [ngModelOptions]="{standalone: true}"></ion-datetime>

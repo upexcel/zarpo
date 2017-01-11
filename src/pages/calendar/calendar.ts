@@ -756,7 +756,7 @@ export class calendar {
             calenderData.checkout_day = new Date(this.changePerTimeZone(this.checkoutDate).getTime()).getDate();
             calenderData.checkout_month = new Date(this.changePerTimeZone(this.checkoutDate).getTime()).getMonth();
             calenderData.checkout_year = new Date(this.changePerTimeZone(this.checkoutDate).getTime()).getFullYear();
-            calenderData.lastcheckout = this.getHumanDate(this.bookingResponse.checkout.last_checkin * 1000);
+            calenderData.lastcheckout = this.getHumanDate(this.bookingResponse.checkout.last_checkin);
             calenderData.product = this.pId;
             calenderData.related_product = "";
             calenderData.total_price = this.selected_ClientPrice; //client price
@@ -770,7 +770,6 @@ export class calendar {
             for (var i = 0; i < Object.keys(roomData).length; i++) {
                 var roomId = roomData[i].category;
                 var superAttrib = roomData[i].superAttribute;
-
                 var su_key;
                 var su_value;
                 for (var key in roomData[i].superAttribute) {
@@ -820,6 +819,9 @@ export class calendar {
                     };
                     //                    CheckRegister.set(CheckRegisterData);
                     //modified
+                    console.log("this.bookingResponse.checkout.last_checkin * 1000",this.bookingResponse.checkout.last_checkin)
+                    console.log("name",this.name);
+                    console.log("super_attribute",)
                     var receiptData = {
                         productType: this.flashType,
                         productId: this.pId,
@@ -830,7 +832,8 @@ export class calendar {
                         name: this.name,
                         giftPrice: this.selected_ClientPrice,
                         displayPrice: this.selected_MRP,
-                        lastCheckOut: this.bookingResponse.checkout.last_checkin * 1000
+                        lastCheckOut: this.bookingResponse.checkout.last_checkin,
+                        super_attribute:this._navParams.get("super_attribute")
                     };
                     this._checkReceiptService.setData(receiptData);
                     this._guestDetailService.setData(RegisterData);

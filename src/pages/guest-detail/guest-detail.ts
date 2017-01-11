@@ -38,7 +38,7 @@ export class GuestDetail implements AfterViewChecked {
         group_id: "",
         is_ja: false
     };
-    comment: string;
+    comment: string="";
     nav: NavController;
     navParams: NavParams;
     api: Rxjs;
