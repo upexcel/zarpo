@@ -57,6 +57,7 @@ export class ProductPayment {
     checkSelected: any;
     checkReceipt: any;
     apiLoader: boolean;
+    loading:any;
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,
@@ -308,7 +309,7 @@ export class ProductPayment {
                             return false;
                         }
                     }
-                                                this.presentLoading();
+                    this.presentLoading();
 
                     if (this.creditCard['hasError'] === true) {
 
@@ -462,7 +463,7 @@ export class ProductPayment {
                                 console.log("Date", this._navParams.get('presentear_GiftDate'));
                                 //                                console.log(new Date(this._navParams.get('presentear_GiftDate')))
                                 orderData['date'] = this._navParams.get('presentear_GiftDate');// full date object
-                                orderData['amount'] = this._navParams.get('totalPrice');
+                                orderData['amount'] = String(this._navParams.get('totalPrice'));
                             }
                             orderData['customer_email_field_cc'] = this.payee_email;
                             orderData['payment'] = {
@@ -484,6 +485,7 @@ export class ProductPayment {
                             };
                             console.log(orderData);
                             this._api.ajaxRequest(this.path, orderData).subscribe((response) => {
+                                this.loading.dismiss();
                                 this.payment_btn = 'Finalizr a reserva';
                                 if (response && response['success'] == true && response['error'] == false) {
                                     console.log("481")
@@ -530,12 +532,12 @@ export class ProductPayment {
 
     }
     presentLoading() {
-        let loading = this.loadingCtrl.create({
+        this.loading = this.loadingCtrl.create({
             content: '<h3 class="loader-title">Por favor aguarde...</h3><p class="loader-body">Dê-nos alguns segundos... Seu pedido está sendo processado!</p>',
             duration: 500000,
             dismissOnPageChange: false
         });
-        loading.present();
+        this.loading.present();
     }
     backToFlash() {
     }
