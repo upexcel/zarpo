@@ -137,7 +137,6 @@ export class ProductPayment {
 
         //        this._super.convert(this.checkReceipt.super_attribute).then((res) => {
         //            this.super_attribute = res;
-        //            console.log("this.super_attribute",this.super_attribute)
         //        });
         this.creditCard['hasError'] = false;
     }
@@ -188,7 +187,6 @@ export class ProductPayment {
     getMyIP() {
         //        if (window.plugins && window.plugins.networkinterface) {
         //            networkinterface.getIPAddress(function(ip) {
-        //                console.log(ip);
         //                this.ip = ip;
         //            });
         //        } else {
