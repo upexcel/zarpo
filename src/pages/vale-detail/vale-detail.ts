@@ -98,7 +98,6 @@ export class ValeDetail {
         });
 
         this.events.subscribe('custom:created', (item: any) => {
-            console.log("custom back");
             this.backbutton();
         });
 //        this.valeForm = this._fb.group({
@@ -160,7 +159,6 @@ export class ValeDetail {
 //        this.giftDate = e.formatted;
     }
     showCalender() {
-        console.log("show calender");
     }
     backbutton() {
         if (this.ifPresentear === true) {
@@ -172,7 +170,6 @@ export class ValeDetail {
             this.customback = false;
         } else {
 
-            console.log("diff");
             //            this._nav.pop();
         }
     }
@@ -213,7 +210,6 @@ export class ValeDetail {
         });
     }
     toggleGroup(group: string) {
-        console.log(group);
         this.currentGroup = 'xxx';
         if (this.isGroupShown(group)) {
             this.shownGroup = null;
@@ -234,7 +230,6 @@ export class ValeDetail {
         }
     }
     update(e: any) {
-        console.log(e);
         //        if (true) {
         //            var barProgress = (e.target.max / e.target.offsetWidth) * (e.gesture.touches[0].screenX - e.target.offsetLeft);
         //        }
@@ -275,7 +270,6 @@ export class ValeDetail {
     }
     showPresentear() {
         this.customback = true;
-        console.log(this.customback);
         this.ifPresentear = true;
         this.ifOffer = false;
         this.ifRules = false;
@@ -291,7 +285,6 @@ export class ValeDetail {
         var comment = form.controls.comment;
         this.ifSubmitted = true;
         this.formsubmitted = true;
-        console.log(firstname, lname, email, comment)
         // check the validation of fields
         if (firstname.value.trim().length < 1 || !firstname.valid ||
             lname.value.trim().length < 1 || !lname.valid ||
@@ -315,7 +308,6 @@ export class ValeDetail {
                 giftPrice: this.itemObject.value,
                 super_attribute: this.super_attribute
             };
-            console.log(parcelData);
             this._checkReceiptService.setData(parcelData);
             this.nav.push(Receipt, parcelData);
         }

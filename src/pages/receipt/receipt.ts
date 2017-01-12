@@ -58,9 +58,6 @@ export class Receipt {
 
         }
         else {
-            console.log('not vale');
-            console.log("*********Name=", this._navParams.get('name'))
-
             this.checkInDate = this._navParams.get('productId');
             this.name = this._navParams.get('name');
             this.location = this._navParams.get('location');
@@ -79,7 +76,6 @@ export class Receipt {
         this._userData.fetchUserData().then((result: any) => {
             result.subscribe((response: any) => {
                 if (response.point_balance) {
-                    console.log(response.point_balance);
                     var pointdiff = parseInt(this._navParams.get('giftPrice')) - parseInt(response.point_balance);
                     if (pointdiff >= 15) {
                         this.reward = parseInt(response.point_balance);
@@ -93,7 +89,6 @@ export class Receipt {
     getNights() {
         this._date.getNights(this.checkInDate, this.checkOutDate).then((response) => {
             this.totalNights = response;
-            console.log(this.totalNights);
         });
     }
     redirect() {
@@ -113,7 +108,6 @@ export class Receipt {
                 super_attribute: this._navParams.get('super_attribute'),
                 hotelType: this.hotelType
             };
-            console.log("vale innnnn")
             this._receiptService.setData(giftPaymentData);
             this._nav.push(ProductPayment, giftPaymentData);
         }
