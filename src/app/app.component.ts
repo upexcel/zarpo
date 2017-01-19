@@ -56,44 +56,12 @@ export class MyApp {
         app: App
     ) {
         this.app = app;
-        //        Keyboard.disableScroll(false);
         this.events = _events;
-        //        this.local = new Storage(LocalStorage);
-        //        this.rootPage = Login;
         this.hotelTags();
         this.pacote();
         this.ja();
         this.date();
         platform.ready().then(() => {
-//            var keyHeight;
-//            var resize = platform.height();
-//            Keyboard.onKeyboardShow().subscribe((ee) => {
-//                if (ee.keyboardHeight) {
-//                    console.log("cooooooollll", ee)
-//                    keyHeight = ee.keyboardHeight;
-//                    $('input ,textarea').focus(function() {
-//                        console.log("cooooooollll")
-//                        var elementOffset = 0;
-//                        var distance = 0;
-//                        elementOffset = $(this).offset().top;
-//                        distance = (resize - keyHeight);
-//                        if (distance > elementOffset) { }
-//                        else {
-//                            var scroll = elementOffset - distance;
-//                            $('.scroll-content').animate({
-//                                scrollTop: scroll + 50
-//                            }, 500);
-//                        }
-//                    })
-//                }
-//            })          
-
-//            Keyboard.onKeyboardHide().subscribe(() => {
-//                $('.scroll-content').animate({
-//                    scrollTop: 0
-//                }, 500);
-//            });
-
             BackgroundMode.enable();
 
             var push = Push.init({
@@ -135,7 +103,6 @@ export class MyApp {
             this.local.get('user_data').then((data) => {
                 console.log("push", push);
                 if (Network.connection && Network.connection !== 'none') {
-                    console.log('checking2', data, Network.connection);
                     if (data) {
                         this.rootPage = menu;
                     } else {
@@ -143,7 +110,6 @@ export class MyApp {
                     }
                 }
                 else {
-                    console.log('checking3', Network.connection);
                     this.rootPage = offline;
                 }
 
@@ -154,7 +120,6 @@ export class MyApp {
             //window.addEventListener('click', clickMe, false);
 
             //            StatusBar.hide();
-            //            Keyboard.hideKeyboardAccessoryBar(false);
             GoogleAnalytics.debugMode();
             GoogleAnalytics.startTrackerWithId('UA-62977551-2');
             GoogleAnalytics.enableUncaughtExceptionReporting(true)

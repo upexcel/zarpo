@@ -54,20 +54,8 @@ export class invite {
         if (this._navParams.get('name')) {
             this.zarpoIcon = false;
         }
-        //        $(document).ready(function() {
-        //            $('input').on('focus', function(e) {
-        //                e.originalEvent.srcElement.autofocus = true;
-        //                console.log("focus", e.originalEvent.srcElement.autofocus)
-        //                console.log("focus", e)
-        ////                e.preventDefault(); e.stopPropagation();
-        ////                window.scrollTo(0, 0); //the second 0 marks the Y scroll pos. Setting this to i.e. 100 will push the screen up by 100px. 
-        //                console.log("jquery working")
-        //            });
-        //        })
     }
-    change(e) {
-        console.log("change coll", e);
-    }
+
     ionViewWillEnter() {
         this._user.getValue('user_data').then((response) => {
             if (response) {
@@ -106,7 +94,6 @@ export class invite {
                 is_ja: false
             }
             this._ajaxRxjs.ajaxRequest(api, data).subscribe((response: any) => {
-                console.log(response);
                 this.button_name = 'Enviar Convites';
                 if (response.error == 1) {
                     this.error_msg = response.error_status_message;
@@ -134,7 +121,6 @@ export class invite {
             is_ja: false
         };
         this._ajaxRxjs.ajaxRequest(api, myrewarddata).subscribe((response: any) => {
-            console.log(response);
             this.user_reward = response.data;
             let str = response.data.Créditos_disponíveis;
             let res = str.replace(",00", "");
