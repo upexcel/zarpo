@@ -20,11 +20,11 @@
                         <form novalidate name="signupForm" >
 
                             <div *ngIf="!signupForm">
-                                <input noSpace onReturn onError ifFormSubmitted="{{Uemail}}" noSpace onReturn type="email"  [(ngModel)]="user.email" ngControl="email"
+                                <input noSpace onReturn onError focus ifFormSubmitted="{{Uemail}}" noSpace onReturn type="email"  [(ngModel)]="user.email" ngControl="email"
                                         (click)="modelChange()"  #email="ngModel"  required
                                         pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$"
                                         [class.errormsg]="Uemail" class="inputArea " name="signupEmail" placeholder="Seu e-mail">
-                                <input  noSpace onReturn onError="true" noSpace onReturn type="password" (click)="modelChange()" [(ngModel)]="user.password" [class.errormsg]="Upassword && !user.password"   class="mypwd" name="signupPasswordR" placeholder="{{placeholder}}">
+                                <input  noSpace onReturn focus onError="true" noSpace onReturn type="password" (click)="modelChange()" [(ngModel)]="user.password" [class.errormsg]="Upassword && !user.password"   class="mypwd" name="signupPasswordR" placeholder="{{placeholder}}">
                                 <button ion-button class="button button-block loginbtn marT20" color="primary" type="button"
                                         (click)="login(user,signup_button,email.errors)" *ngIf="signup_button !== 'Aguarde'"
                                         >
@@ -65,10 +65,10 @@
                     <!--<form novalidate name="registerForm">--> 
 
                     <div *ngIf="signupForm">
-                        <input  noSpace onReturn (click)="modelChange()" type="text" [(ngModel)]="user.name" 
+                        <input  noSpace onReturn focus (click)="modelChange()" type="text" [(ngModel)]="user.name" 
                                 [ngClass]="{'errormsg':registerSubmit==true &&(!user.name || user.name.invalid)}" name="firstname" placeholder="Nome">
 
-                                <input  noSpace onReturn (click)="modelChange()" type="text" 
+                                <input  noSpace onReturn focus (click)="modelChange()" type="text" 
                                 [ngClass]="{'errormsg':registerSubmit==true &&(!user.surname || user.surname.invalid)}"
                                 name="surname" [(ngModel)]="user.surname"  placeholder="Sobrenome">
 

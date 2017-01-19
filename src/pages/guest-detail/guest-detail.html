@@ -13,14 +13,14 @@
                         <ion-grid class='no-margin no-padding'>
                             <ion-row class='no-margin no-padding'>
                                 <ion-col class='no-margin no-padding'>
-                                    <input type="text"  name="first" class="username" on-tap="modelChange()"
+                                    <input type="text" focus name="first" class="username" on-tap="modelChange()"
                                            *ngIf="(bookingRooms[key].selected[key1]) && key == 0 && key1 == 0" 
                                            [(ngModel)]="bookingRooms[key].selected[key1].username" 
                                            [ngClass]="{ 'errormsgB': (!bookingRooms[key].selected[key1].username) && (ifSubmitted)}"
                                            placeholder="Informe 1 nome por quarto" [disabled]="disableMyForm == true" 
                                            autocorrect="off" autocomplete="off" spellcheck="false"/>
 
-                                           <input type="text"  name="secondInput" class="username" on-tap="modelChange()"
+                                           <input type="text" focus name="secondInput" class="username" on-tap="modelChange()"
                                            *ngIf="(bookingRooms[key].selected[key1]) &&  (key > 0 || key1 > 0)" 
                                     [(ngModel)]="bookingRooms[key].selected[key1].username" 
                                     [ngClass]="{ 'errormsgB': (!bookingRooms[key].selected[key1].username) && (ifSubmitted)}"
@@ -35,8 +35,8 @@
                                 <ion-col width-33 class='no-margin no-padding'>
                                     <select 
                                         [(ngModel)]="bookingRooms[key].selected[key1].adult"
-                                        name="adultroom" class="adultroom " (click)="modelChange()"
-                                        [ngClass]="{ 'errormsgB': (bookingRooms[key].selected[key1].adult == 0 || !bookingRooms[key].selected[key1].adult) && (ifSubmitted)}"
+                                        name="adultroom" class="adultroom" (click)="modelChange()"
+                                        [ngClass]="{ 'sele': selectedroom.kid > 0 , 'errormsgB': (bookingRooms[key].selected[key1].adult == 0 || !bookingRooms[key].selected[key1].adult) && (ifSubmitted)}"
                                         [disabled]="disableMyForm == true"  *ngIf="bookingRooms[key].selected[key1]">
                                         <option
                                             value="0">
@@ -49,7 +49,7 @@
                                 </select>
                             </ion-col>
                             <ion-col width-33 class='no-margin no-padding' *ngIf="selectedroom.kid > 0">
-                                <select class="marL5" name="adultroom2"
+                                <select class="marL5 sele" name="adultroom2"
                                         [(ngModel)]="bookingRooms[key].selected[key1].child" (click)="modelChange()"
                                         [disabled]="disableMyForm == true" *ngIf="bookingRooms[key].selected[key1]">
                                         <option  
@@ -86,8 +86,8 @@
 		    <!--third box-->
 <div  class="checkoutDivcard hotel-venda marT20">
     <div class="check-title " style="padding-left: 10px;"> Solicitação especial (opcional)</div>
-    <div class="fl1 no-border" name="myForm" id="myFormID" style="padding-top: 0px;">
-        <textarea  name="textarea1" form="myFormID" type="text"  rows="5" placeholder="Sua solicitação será transmitida ao nosso parceiro junto com sua reserva." 
+    <div class="fl1 no-border" style="padding-top: 0px;">
+        <textarea  name="textarea1" focus form="myFormID" type="text"  rows="5" placeholder="Sua solicitação será transmitida ao nosso parceiro junto com sua reserva." 
                    class="vale-textarea comment" on-tap="modelChange()"
                    [disabled]="disableMyForm == true"
                    [(ngModel)]="comment" autocorrect="off" autocomplete="off" spellcheck="false">

@@ -24,6 +24,7 @@ import { MoipService } from '../services/moip.service';
 import { GeocoderService } from '../services/geocoder.service';
 import { SuperService } from '../services/super.service';
 import { PaymentService } from '../services/payment.service';
+import { FocusComponent } from '../services/keybordFocus';
 //COMPONENTS
 import { calendar } from '../pages/calendar/calendar';
 import { CalenderClosed } from '../pages/calender-closed/calender-closed';
@@ -150,6 +151,7 @@ import { MyDatePicker } from '../pages/my-date-picker/my-date-picker.component';
         ZarpoSliderComponent,
         OnReturnDirective,
         NoSpaceDirective,
+        FocusComponent,
         MyDatePicker,
         OnErrorDirective,
         MyDatePicker,

@@ -39,7 +39,7 @@
                         <ion-col  class="no-padding" width-64>
                             <ion-row>
                                 <ion-row>
-                                    <input type="text" name="inputone" noSpace onReturn class="marL5"  style=""
+                                    <input type="text" focus name="inputone" noSpace onReturn class="marL5"  style=""
                                            formControlName="payee_card_no" (click)="modelChange()" placeholder="Número do cartão" 
                                            [ngClass]="{'errormsgB': ifPaymentConfirmed && (paymentForm.controls.payee_card_no.value.trim().length < 1||
                                            !paymentForm.controls.payee_card_no.valid|| creditCard.payee_card_no == false)}" />
@@ -51,7 +51,7 @@
                     <!--                    third row-->
                     <ion-row>
                         <ion-col  class="no-padding">
-                            <input type="text" noSpace onReturn   word-case name="input2"
+                            <input type="text" focus noSpace onReturn   word-case name="input2"
                                    formControlName="payee_name"  placeholder="Nome impresso no cartão"
                                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"       
                                    [ngClass]="{'errormsgB': ifPaymentConfirmed && (paymentForm.controls.payee_name.value.trim().length < 1|| !paymentForm.controls.payee_name.valid)}" 
@@ -86,7 +86,7 @@
                         </ion-col>
                         <ion-col  class="no-padding" width-40>
                             <ion-row>
-                                <input type="text"  noSpace onReturn  name="input3" id="cvv"  placeholder="Cód. segurança" 
+                                <input focus type="text"  noSpace onReturn  name="input3" id="cvv"  placeholder="Cód. segurança" 
                                        formControlName="payee_card_cvv"  
                                        [ngClass]="{'errormsgB': ifPaymentConfirmed && (paymentForm.controls.payee_card_cvv.value.trim().length < 1|| !paymentForm.controls.payee_card_cvv.valid|| creditCard.payee_card_cvv == false )}" 
                                        class=" marL5" (click)="modelChange()"/>
@@ -98,21 +98,21 @@
                         Titular do cartão
                     </div>
                     <ion-row>
-                        <input type="text" name="input4" noSpace onReturn  minlength="11" maxlength="11"
+                        <input focus type="text" name="input4" noSpace onReturn  minlength="11" maxlength="11"
                                formControlName="payee_cpf" (click)="modelChange()" placeholder="CPF do titular"
                                [ngClass]="{'errormsgB': ifPaymentConfirmed && (paymentForm.controls.payee_cpf.value.trim().length < 1|| !paymentForm.controls.payee_cpf.valid)}" />
                     </ion-row>
                     <div class="clear"></div>
                     <ion-row>
                         <ion-col  class="no-padding" col-20>
-                            <input type="text" name="input5" noSpace onReturn placeholder="DDD" class="" (click)="modelChange()"
+                            <input focus type="text" name="input5" noSpace onReturn placeholder="DDD" class="" (click)="modelChange()"
                                    formControlName="payee_contact_code" style="" minlength="2" maxlength="2"
                                    [ngClass]="{'errormsgB': ifPaymentConfirmed && (paymentForm.controls.payee_contact_code.value.trim().length < 1|| !paymentForm.controls.payee_contact_code.valid)}" />
 
                         </ion-col>
                         <ion-col  class="no-padding" col-80>
                             <ion-row>
-                                <input type="text" name="input6" noSpace onReturn class="marL5"  minlength="8" maxlength="9"
+                                <input focus type="text" name="input6" noSpace onReturn class="marL5"  minlength="8" maxlength="9"
                                        formControlName="payee_contact_no" (click)="modelChange()" placeholder="Telefone do titular" 
                                        [ngClass]="{'errormsgB': ifPaymentConfirmed && (paymentForm.controls.payee_contact_no.value.trim().length < 1|| !paymentForm.controls.payee_contact_no.valid)}" />
 
@@ -121,7 +121,7 @@
                     </ion-row>
                     <div class="clear"></div>
                     <ion-row>
-                        <input type="email" name="input7" noSpace onReturn (change)="emailChange()"
+                        <input focus type="email" name="input7" noSpace onReturn (change)="emailChange()"
                                formControlName="payee_email" (click)="modelChange()" placeholder="E-mail Zarpo"
 
                                class="" 

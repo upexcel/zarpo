@@ -1,34 +1,34 @@
 import { Events, NavController, Content, NavParams } from 'ionic-angular'
-import {Component,ElementRef, ViewChild, forwardRef} from '@angular/core'
-import  _ from 'lodash'
+import { Component, ElementRef, ViewChild, forwardRef } from '@angular/core'
+import _ from 'lodash'
 
-import {config} from '../../config'
-import {RoomsPipe} from '../../filters/keys/rooms.pipe';
-import {AdultChildPipe} from '../../filters/keys/adult-child.pipe';
-import {FormatDatePipe} from '../../filters/date/format-date.pipe';
+import { config } from '../../config'
+import { RoomsPipe } from '../../filters/keys/rooms.pipe';
+import { AdultChildPipe } from '../../filters/keys/adult-child.pipe';
+import { FormatDatePipe } from '../../filters/date/format-date.pipe';
 
-import {Receipt} from '../receipt/receipt'
-import {Rxjs} from '../../services/Rxjs'
-import {ZarpoNavComponent} from '../../zarpo-nav/zarpo-nav.component';
-import {errorhandler} from '../../services/error';
-import {CalenderService} from '../../services/calender.service';
+import { Receipt } from '../receipt/receipt'
+import { Rxjs } from '../../services/Rxjs'
+import { ZarpoNavComponent } from '../../zarpo-nav/zarpo-nav.component';
+import { errorhandler } from '../../services/error';
+import { CalenderService } from '../../services/calender.service';
 
-import {LocalStorageService} from '../../services/local-storage.service';
-import {DateService} from '../../services/date.service';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { DateService } from '../../services/date.service';
 //import {GuestDetail} from '../guest-detail/guest-detail';
-import {HotelFlash} from '../hotel-flash/hotel-flash';
+import { HotelFlash } from '../hotel-flash/hotel-flash';
 
-import {calendarService} from './calendar.servise';
+import { calendarService } from './calendar.servise';
 
-import {GuestDetailService} from '../../services/guest-detail.service';
+import { GuestDetailService } from '../../services/guest-detail.service';
 declare var jQuery: any;
 export var newStock: any;
-import {CheckReceiptService} from '../../services/check-receipt.service';
+import { CheckReceiptService } from '../../services/check-receipt.service';
 @Component({
     templateUrl: 'calendar.html',
-//    directives: [forwardRef(() => ZarpoNavComponent), hotelList],
-//    providers: [calendarService, DateService],
-//    pipes: [RoomsPipe, AdultChildPipe, FormatDatePipe]
+    //    directives: [forwardRef(() => ZarpoNavComponent), hotelList],
+    //    providers: [calendarService, DateService],
+    //    pipes: [RoomsPipe, AdultChildPipe, FormatDatePipe]
 })
 
 export class calendar {
@@ -85,7 +85,7 @@ export class calendar {
         });
         this.flashType = this._navParams.get('flashType');
         this.update();
-       
+
     }
     ionViewWillEnter() {
         this.activateStep1();
@@ -97,6 +97,17 @@ export class calendar {
         this.selectedbookingRooms = [];
         this.selected_ClientPrice = 0;
         this.selected_MRP = 0;
+    }
+    swipeEvent(e) {
+        if (e.direction == 2) {
+            //left  
+            jQuery('.ui-datepicker-next span').trigger('click');
+        }
+        else if (e.direction == 4) {
+            //right    
+            jQuery(".ui-datepicker-prev span").trigger('click');
+        }
+
     }
     prevDate(startDate: string) {
         var prevDate = "";
@@ -334,7 +345,7 @@ export class calendar {
 
         });
     }
-    rulePacote(dmy:any, checkinTimestamp:any, minStayTimeStamp:any) {
+    rulePacote(dmy: any, checkinTimestamp: any, minStayTimeStamp: any) {
         var thisDateTimestamp = this.changePerTimeZone(dmy).getTime();
         //calender date should be greter than checkin date and 
         //on that date stocks should be available 
@@ -369,7 +380,7 @@ export class calendar {
 
         }
     }
-    ruleHotel(dmy:any, checkinTimestamp:any, minStayTimeStamp:any) {
+    ruleHotel(dmy: any, checkinTimestamp: any, minStayTimeStamp: any) {
         var thisDateTimestamp = this.changePerTimeZone(dmy).getTime();
         //calender date should be greter than checkin date and 
         //on that date stocks should be available 
@@ -613,14 +624,14 @@ export class calendar {
         }
         //make subrooms of closed rooms seletion zero
         if (this.header[group] === false) {
-            var searchElement =  jQuery("select");//remeber
-            var selectArray =  jQuery(divdetail).find(searchElement);//remember
+            var searchElement = jQuery("select");//remeber
+            var selectArray = jQuery(divdetail).find(searchElement);//remember
             for (var i = 0; i < selectArray.length; i++) {
                 var target = "#" + selectArray[i].id;
                 this.subroom[selectArray[i].id] = "0";
                 //                    $scope.$evalAsync();
                 //                    $(target);
-                var optval =  jQuery(target).children('option:first')
+                var optval = jQuery(target).children('option:first')
                     .attr({
                         'value': '0',
                         'label': '0',
@@ -634,7 +645,7 @@ export class calendar {
         jQuery(divdetail).slideToggle("fast");
 
     };
-    popOutRoom(id:any) {
+    popOutRoom(id: any) {
         for (var i = 0; i < this.selectedbookingRooms.length; i++) {
             if (this.selectedbookingRooms[i].id == id) {
                 this.selectedbookingRooms.splice(i, 1);
@@ -643,7 +654,7 @@ export class calendar {
         }
 
     }
-    getStock(id:any) {
+    getStock(id: any) {
         var availableStock;
         var key1 = id + "_" + this.checkinDate;
         var key2 = id + "_" + this.checkoutDate;
@@ -661,7 +672,7 @@ export class calendar {
         return new Array(parseInt(data));
     };
     //function after selecting room and recording its detail
-    getRoom(subroom:any, value:any, category:any, categoryNmae:any, superAttribute:any) {
+    getRoom(subroom: any, value: any, category: any, categoryNmae: any, superAttribute: any) {
         if (this.minError || this.maxError) {
             this.minError = false;
             this.maxError = false;
@@ -698,7 +709,7 @@ export class calendar {
         var key = id + "_" + this.checkinDate;
         return this.bookingResponse.checkout.priceRef[key];
     };
-    ifOldSelection(id:any) {
+    ifOldSelection(id: any) {
         var foundAt = -1;
         for (var i = 0; i < this.selectedbookingRooms.length; i++) {
             if (this.selectedbookingRooms[i].id === id) {
@@ -830,7 +841,7 @@ export class calendar {
                         giftPrice: this.selected_ClientPrice,
                         displayPrice: this.selected_MRP,
                         lastCheckOut: this.bookingResponse.checkout.last_checkin,
-                        super_attribute:this._navParams.get("super_attribute")
+                        super_attribute: this._navParams.get("super_attribute")
                     };
                     this._checkReceiptService.setData(receiptData);
                     this._guestDetailService.setData(RegisterData);
@@ -861,7 +872,7 @@ export class calendar {
         }
 
     };
-    calculateSubRoom(id:any) {
+    calculateSubRoom(id: any) {
         var total = 0;
         var roomData = this.selectedbookingRooms;
         for (var i = 0; i < Object.keys(roomData).length; i++) {
@@ -892,13 +903,13 @@ export class calendar {
         //        this.events.publish('rs:booking', { clientprice: this.selected_ClientPrice, mrp: this.selected_MRP, selectedRomm: this.selectedbookingRooms });
 
     }
-    splitId(rid:any, sid:any) {
+    splitId(rid: any, sid: any) {
         var cutLetter = rid.length;
         var result = sid.slice(cutLetter, sid.length);
         return result;
     }
     public da: any; public mo: any;
-    getHumanDate(timestamp:any) {
+    getHumanDate(timestamp: any) {
         var x = new Date(timestamp);
         this.da = x.getDate();
         if (this.da < 10) {

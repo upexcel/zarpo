@@ -1,4 +1,4 @@
-import { NavController, NavParams, Platform } from 'ionic-angular'
+import { Content, NavController, NavParams, Platform } from 'ionic-angular'
 import { Component } from '@angular/core';
 import { ForgotPwd } from '../forgot-pwd/forgot-pwd';
 import { FooterComponent } from '../../footer/footer.component';
@@ -12,6 +12,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { SocialSharing } from 'ionic-native';
 import { AppAvailability } from 'ionic-native';
 import { Clipboard } from 'ionic-native';
+declare var $: any;
 
 @Component({
     templateUrl: 'invite.html'
@@ -53,9 +54,20 @@ export class invite {
         if (this._navParams.get('name')) {
             this.zarpoIcon = false;
         }
-
+        //        $(document).ready(function() {
+        //            $('input').on('focus', function(e) {
+        //                e.originalEvent.srcElement.autofocus = true;
+        //                console.log("focus", e.originalEvent.srcElement.autofocus)
+        //                console.log("focus", e)
+        ////                e.preventDefault(); e.stopPropagation();
+        ////                window.scrollTo(0, 0); //the second 0 marks the Y scroll pos. Setting this to i.e. 100 will push the screen up by 100px. 
+        //                console.log("jquery working")
+        //            });
+        //        })
     }
-
+    change(e) {
+        console.log("change coll", e);
+    }
     ionViewWillEnter() {
         this._user.getValue('user_data').then((response) => {
             if (response) {

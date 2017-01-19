@@ -1,32 +1,33 @@
-import {App, Platform, Nav, NavController, Events} from 'ionic-angular';
+import { App, Platform, Nav, NavController, Events, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Push } from 'ionic-native';
-import {Component, ViewChild, Inject} from '@angular/core';
-import {Location, LocationStrategy, HashLocationStrategy} from '@angular/common';
+import { Component, ViewChild, Inject } from '@angular/core';
+import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
 //import {DomSanitizationService} from '@angular/platform-browser';
-import {GoogleTagService} from '../services/google-tag.service';
-import {StatusBar, GoogleAnalytics, BackgroundMode} from 'ionic-native';
-import {Login} from '../pages/login/login';
-import {menu} from '../pages/menu/menu.component';
+import { GoogleTagService } from '../services/google-tag.service';
+import { StatusBar, GoogleAnalytics, BackgroundMode } from 'ionic-native';
+import { Login } from '../pages/login/login';
+import { menu } from '../pages/menu/menu.component';
 //import * as localforage from "localforage";
-import {HotelFlash} from '../pages/hotel-flash/hotel-flash';
-import {offline} from '../pages/offline/offline';
-import {Network, Keyboard, InAppBrowser} from 'ionic-native';
+import { HotelFlash } from '../pages/hotel-flash/hotel-flash';
+import { offline } from '../pages/offline/offline';
+import { Network, Keyboard, InAppBrowser } from 'ionic-native';
 
 //services
-import {menuService} from '../services/menu.service';
-import {Rxjs} from '../services/Rxjs';
-import {CalenderService} from '../services/calender.service';
+import { menuService } from '../services/menu.service';
+import { Rxjs } from '../services/Rxjs';
+import { CalenderService } from '../services/calender.service';
 
-import {LocalStorageService} from '../services/local-storage.service';
-import {UserDetailService} from '../services/user-detail.service';
-import {GuestDetailService} from '../services/guest-detail.service';
-import {CheckSelectedService} from '../services/check-selected.service';
-import {CheckReceiptService} from '../services/check-receipt.service';
+import { LocalStorageService } from '../services/local-storage.service';
+import { UserDetailService } from '../services/user-detail.service';
+import { GuestDetailService } from '../services/guest-detail.service';
+import { CheckSelectedService } from '../services/check-selected.service';
+import { CheckReceiptService } from '../services/check-receipt.service';
+declare var $: any;
 
 
-import {errorhandler} from '../services/error';
-import {facebookLogin} from '../services/fbLogin';
+import { errorhandler } from '../services/error';
+import { facebookLogin } from '../services/fbLogin';
 //filters
 //import {GOOGLE_MAPS_PROVIDERS, provideLazyMapsAPILoaderConfig} from 'angular2-google-maps/core';
 
@@ -40,6 +41,7 @@ export class MyApp {
     moipObj: any;
     user_login: boolean = false;
     events: Events;
+    app: any;
     constructor(
         platform: Platform,
         public local: Storage,
@@ -53,6 +55,8 @@ export class MyApp {
         private _errorhandler: errorhandler,
         app: App
     ) {
+        this.app = app;
+        //        Keyboard.disableScroll(false);
         this.events = _events;
         //        this.local = new Storage(LocalStorage);
         //        this.rootPage = Login;
@@ -61,7 +65,35 @@ export class MyApp {
         this.ja();
         this.date();
         platform.ready().then(() => {
-            console.log('checking');
+//            var keyHeight;
+//            var resize = platform.height();
+//            Keyboard.onKeyboardShow().subscribe((ee) => {
+//                if (ee.keyboardHeight) {
+//                    console.log("cooooooollll", ee)
+//                    keyHeight = ee.keyboardHeight;
+//                    $('input ,textarea').focus(function() {
+//                        console.log("cooooooollll")
+//                        var elementOffset = 0;
+//                        var distance = 0;
+//                        elementOffset = $(this).offset().top;
+//                        distance = (resize - keyHeight);
+//                        if (distance > elementOffset) { }
+//                        else {
+//                            var scroll = elementOffset - distance;
+//                            $('.scroll-content').animate({
+//                                scrollTop: scroll + 50
+//                            }, 500);
+//                        }
+//                    })
+//                }
+//            })          
+
+//            Keyboard.onKeyboardHide().subscribe(() => {
+//                $('.scroll-content').animate({
+//                    scrollTop: 0
+//                }, 500);
+//            });
+
             BackgroundMode.enable();
 
             var push = Push.init({
@@ -80,25 +112,25 @@ export class MyApp {
                 console.log("push", permission);
             });
 
-//            push.on('registration', function(data) {
-//                // data.registrationId
-//                console.log(data);
-//            });
-//
-//            push.on('notification', function(data) {
-//                // data.message,
-//                // data.title,
-//                // data.count,
-//                // data.sound,
-//                // data.image,
-//                // data.additionalData
-//                console.log(data);
-//            });
-//
-//            push.on('error', function(e) {
-//                // e.message
-//                console.log("eror",e);
-//            });
+            //            push.on('registration', function(data) {
+            //                // data.registrationId
+            //                console.log(data);
+            //            });
+            //
+            //            push.on('notification', function(data) {
+            //                // data.message,
+            //                // data.title,
+            //                // data.count,
+            //                // data.sound,
+            //                // data.image,
+            //                // data.additionalData
+            //                console.log(data);
+            //            });
+            //
+            //            push.on('error', function(e) {
+            //                // e.message
+            //                console.log("eror",e);
+            //            });
 
             this.local.get('user_data').then((data) => {
                 console.log("push", push);
@@ -116,27 +148,13 @@ export class MyApp {
                 }
 
             });
+
+
+
             //window.addEventListener('click', clickMe, false);
-            function clickMe(e) {
-                e.preventDefault();
-                e = e || window.event;
-                var element = e.target || e.srcElement;
-                if (element.tagName == 'A' || element.tagName == 'a' ||
-                    element.parentElement.tagName == 'A' || element.parentElement.tagName == 'a') {
-
-                    if ((element.href && element.href.length > 5) || (element.parentElement.href && element.parentElement.href.length > 5)) {
-                        var url = element.parentElement.href || element.href;
-                        window.open(url, "_blank", "location=yes");
-                        return false; // prevent default action and stop event propagation 
-                    }
-
-                }
-            };
-
 
             //            StatusBar.hide();
-            Keyboard.hideKeyboardAccessoryBar(false);
-            Keyboard.disableScroll(false);
+            //            Keyboard.hideKeyboardAccessoryBar(false);
             GoogleAnalytics.debugMode();
             GoogleAnalytics.startTrackerWithId('UA-62977551-2');
             GoogleAnalytics.enableUncaughtExceptionReporting(true)
@@ -145,20 +163,11 @@ export class MyApp {
                 });
         });
         this.addConnectivityListeners();
-        this.keyBoardListeners();
         console.log(BackgroundMode.isEnabled());
 
     }
-    ngAfterViewInit() {
-        // Let's navigate from TabsPage to Page1
-    }
     keyBoardListeners() {
-        Keyboard.onKeyboardShow().subscribe(() => {
-            console.log("keyboard opennnn");
-        });
-        Keyboard.onKeyboardHide().subscribe(() => {
-            console.log("keyboard hideeeee");
-        });
+
     }
     addConnectivityListeners() {
 

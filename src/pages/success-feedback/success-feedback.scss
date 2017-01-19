@@ -108,12 +108,12 @@
 }
 ion-loading{
     ion-backdrop {
-        background-color: #424242;
+        background-color: black;
         opacity: 1 !important;
     }
     .loading-wrapper {
         max-width: 100%;
-        background-color: #424242;
+        background-color: white;
         box-shadow: none;
         .loading-spinner{
             display: none;
@@ -124,13 +124,13 @@ ion-loading{
     }
     h3.loader-title {
         font-size: 17px;
-        color: #FDFAD0 !important;
+        color: black !important;
         font-weight: 600;
         text-align: center;
     }
     p.loader-body {
         font-size: 15px;
-        color: #fff;
+        color: #828080;;
         text-align: center;
     }
 }

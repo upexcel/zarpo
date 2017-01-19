@@ -26,7 +26,7 @@
                     </ion-grid>
                     <!--Calender for checkout-date-->
                     <div id="step1"  *ngIf="dateNotSelected && !step3" class="marU10">
-                        <div id="checkout_datepicker" >
+                        <div id="checkout_datepicker" (swipe)="swipeEvent($event)" >
 
                         </div>
                         <ion-row class="legend" *ngIf="bookingResponse.checkin.first_checkin">
@@ -45,7 +45,7 @@
                     <div id="step2" class="marU10" *ngIf="!dateNotSelected">
 
 
-                        <div id="checkin_datepicker" >
+                        <div id="checkin_datepicker" (swipe)="swipeEvent($event)" >
 
                         </div>
                         <ion-row class="legend" *ngIf="responseReady===true">

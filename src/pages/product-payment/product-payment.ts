@@ -57,7 +57,7 @@ export class ProductPayment {
     checkSelected: any;
     checkReceipt: any;
     apiLoader: boolean;
-    loading:any;
+    loading: any;
     constructor(
         private _nav: NavController,
         private _navParams: NavParams,
@@ -84,7 +84,7 @@ export class ProductPayment {
                 ]),
                 payee_name: new FormControl('', [
                     Validators.maxLength(30),
-                    Validators.pattern('[a-zA-Z]*'),
+                    Validators.pattern('[a-zA-Z_ ]*$'),
                     Validators.required
                 ]),
                 payee_card_cvv: new FormControl('', [
@@ -303,8 +303,6 @@ export class ProductPayment {
                             return false;
                         }
                     }
-                    this.presentLoading();
-
                     if (this.creditCard['hasError'] === true) {
 
                     }
@@ -327,6 +325,7 @@ export class ProductPayment {
                             myForm.controls.payee_contact_no.status &&
                             payee_email && myForm.controls.payee_email.status
                         ) {
+                            this.presentLoading();
                             this.payment_btn = 'Aguarde';
                             var orderData = {};
                             orderData['customer_id'] = this.user_token;
@@ -465,16 +464,17 @@ export class ProductPayment {
                                 if (response && response['success'] == true && response['error'] == false) {
                                     if (response['redirect'] && response['redirect.length'] > 0) {
                                         this.payment_btn = 'Finalizr a reserva';
-                                        //                                        this._nav.push(OrderSuccess);
+                                        this._nav.push(OrderSuccess);
                                     }
                                 }
                                 else {
-                                    //                                                                                                                                                                                                                                                                                                                                                        //                                                                                                                                                                                                                                                                                     //                        $state.g                                                                                            //                    }
+                                    this._nav.push(OrderFail);
                                 }
                             }, err => {
                                 console.log("error")
-                            });
+                                this.loading.dismiss();
 
+                            });
                         }
                         else {
                             console.log("has error in form");
