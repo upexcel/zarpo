@@ -1,4 +1,4 @@
-import { NavController, NavParams, Platform } from 'ionic-angular'
+import { Content, NavController, NavParams, Platform } from 'ionic-angular'
 import { Component } from '@angular/core';
 import { ForgotPwd } from '../forgot-pwd/forgot-pwd';
 import { FooterComponent } from '../../footer/footer.component';
@@ -12,6 +12,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { SocialSharing } from 'ionic-native';
 import { AppAvailability } from 'ionic-native';
 import { Clipboard } from 'ionic-native';
+declare var $: any;
 
 @Component({
     templateUrl: 'invite.html'
@@ -53,7 +54,6 @@ export class invite {
         if (this._navParams.get('name')) {
             this.zarpoIcon = false;
         }
-
     }
 
     ionViewWillEnter() {
@@ -94,7 +94,6 @@ export class invite {
                 is_ja: false
             }
             this._ajaxRxjs.ajaxRequest(api, data).subscribe((response: any) => {
-                console.log(response);
                 this.button_name = 'Enviar Convites';
                 if (response.error == 1) {
                     this.error_msg = response.error_status_message;
@@ -122,7 +121,6 @@ export class invite {
             is_ja: false
         };
         this._ajaxRxjs.ajaxRequest(api, myrewarddata).subscribe((response: any) => {
-            console.log(response);
             this.user_reward = response.data;
             let str = response.data.Créditos_disponíveis;
             let res = str.replace(",00", "");

@@ -66,6 +66,12 @@
         }
 
     } 
+        form.fl1{
+        select.sele {
+            border-right: none;
+        }
+
+    } 
     input[type="text"]:disabled {
         color: #000000;
         font-family: HelveticaLight,Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -73,7 +79,7 @@
         color: #a6a6a6 !important;
         opacity: 1;
         background-color: transparent;
-   
+
     }
     .fl1{
         input {

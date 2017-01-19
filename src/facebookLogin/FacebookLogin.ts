@@ -9,8 +9,7 @@ import {HotelFlash} from '../pages/hotel-flash/hotel-flash';
 import {LocalStorageService} from '../services/local-storage.service';
 @Component({
     selector: "fb-login",
-    templateUrl: 'facebook.html',
- 
+    templateUrl: 'facebook.html' 
 })
 
 export class FacebookComponent {
